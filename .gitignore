@@ -16,5 +16,5 @@ yarn-error.log*
 # macOS-specific files
 .DS_Store
 
-vendor/
+resources/theme
 .vs_code/
