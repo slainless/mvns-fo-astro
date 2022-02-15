@@ -24,6 +24,10 @@ const { title } = Astro.props
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <meta
       name="theme-color"
       media="(prefers-color-scheme: light)"
@@ -37,9 +41,9 @@ const { title } = Astro.props
     <title>{title}</title>
     <slot name="head" />
   </head>
-  <body class="dark:bg-zinc-900 dark:text-white">
+  <body class="dark:bg-black dark:text-white font-body flex flex-col gap-12">
     <slot name="pre-main" />
-    <main>
+    <main class="flex flex-col gap-24 pb-24">
       <slot />
     </main>
     <slot name="post-main" />
