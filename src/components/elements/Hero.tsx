@@ -3,7 +3,7 @@ export default function Hero() {
     <section id="hero" class="w-full flex items-center">
       <img
         id="hero-image"
-        class="w-7/12 rounded-r-2xl"
+        class="w-7/12 rounded-r-2xl pointer-events-none"
         src="/image/hero-image.jpg"
       ></img>
       <div
@@ -13,7 +13,7 @@ export default function Hero() {
         <div class="font-heading flex flex-col items-center">
           <h1
             id="hero-title"
-            class="text-6xl flex flex-col font-regular gap-1 uppercase"
+            class="text-6xl flex flex-col font-regular gap-1 uppercase leading-none"
           >
             <span>They Changed</span>
             <span>the World.</span>
