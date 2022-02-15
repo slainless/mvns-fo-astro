@@ -17,4 +17,4 @@ yarn-error.log*
 .DS_Store
 
 resources/theme
-.vs_code/
+.vscode
