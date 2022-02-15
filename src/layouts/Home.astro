@@ -1,0 +1,11 @@
+---
+import Base from './Base.astro'
+import Header from './Header.tsx'
+const { title } = Astro.props
+---
+
+<Base {title}>
+  <slot name="head" slot="head" />
+  <Header slot="pre-main" />
+  <slot />
+</Base>

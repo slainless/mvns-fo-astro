@@ -1,0 +1,33 @@
+---
+// Barebone layout to share common head between pages.
+const { title } = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href={Astro.resolve('../styles/global.css')}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins&family=Roboto:wght@400;500;700&family=Sansita:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body class="dark:bg-zinc-900 dark:text-white">
+    <slot name="pre-main" />
+    <main>
+      <slot />
+    </main>
+    <slot name="post-main" />
+  </body>
+</html>
