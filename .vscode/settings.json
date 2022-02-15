@@ -2,7 +2,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "liveServer.settings.root": "./dist/",
-  "conventionalCommits.scopes": ["layout", "block", "theme"],
+  "conventionalCommits.scopes": ["layout", "block", "theme", "element"],
   "prettier.quoteProps": "consistent",
   "prettier.semi": false,
   "prettier.singleQuote": true
