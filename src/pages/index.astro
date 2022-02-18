@@ -2,15 +2,19 @@
 // Component Imports
 import Hero from '../components/elements/Hero.tsx'
 import Featured from '../components/elements/Featured.tsx'
-import LeaderboardAds from '../components/blocks/LeaderboardAds.tsx'
+import Trending from '../components/elements/Trending.astro'
+import RegisterPlugin from '../components/elements/RegisterPlugin.tsx'
+import Ads from '../components/blocks/Ads.tsx'
 import Home from '../layouts/Home.astro'
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
-<Home title="Test">
+<Home title="PAGE PUBLIC">
   <Hero />
   <Featured />
-  <LeaderboardAds />
+  <Ads width={728} height={90} src="/image/leaderboard-ad-placeholder.png" />
+  <!-- <RegisterPlugin /> -->
+  <Trending />
 </Home>
