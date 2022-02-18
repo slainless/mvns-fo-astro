@@ -24,9 +24,9 @@ const TrendingCard: FunctionComponent<CardProps> = (props) => {
     <div {...rest} class={mergeClass(style, cls)}>
       <Card.Container>
         <Card.Image src={imgSrc} />
-        <Card.Header class="py-3 px-3">
+        <Card.Header class="py-4 px-4">
           <div
-            class="badge dark:bg-white dark:text-black w-max text-xs px-3 py-0.5 rounded-full"
+            class="badge dark:bg-white dark:text-black w-max text-xs px-3 py-1 rounded-full"
             hidden={badgeText == null}
           >
             {badgeText}
@@ -36,10 +36,11 @@ const TrendingCard: FunctionComponent<CardProps> = (props) => {
           <h4 class="card-title font-heading text-2xl" hidden={title == null}>
             {title}
           </h4>
-          <h5
-            class="card-subtitle border-t-4 border-t-white w-max mt-2 pt-2"
+          <hr
+            class="w-4 mx-auto border-2 my-3 border-white"
             hidden={subtitle == null}
-          >
+          />
+          <h5 class="card-subtitle w-max" hidden={subtitle == null}>
             {subtitle}
           </h5>
           <span class="card-minor-info text-xs" hidden={type == null}>

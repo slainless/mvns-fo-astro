@@ -30,7 +30,7 @@ export default function Footer() {
           © 2022, Mavensdotlive Sdn Bhd. All right reserved.
         </span>
         <div class="flex justify-end gap-7">
-          <div class="flex gap-16">
+          {/* <div class="flex gap-16">
             <span id="language" class="!text-sm flex items-center">
               <span class="material-icons !text-lg">language</span>
               <span></span>
@@ -39,7 +39,7 @@ export default function Footer() {
               <span class="material-icons !text-lg">attach_money</span>
               <span class="underline">USD</span>
             </span>
-          </div>
+          </div> */}
           <div id="social-media" class="flex text-2xl gap-3">
             <a
               aria-label="tiktok-link"
