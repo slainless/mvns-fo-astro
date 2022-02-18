@@ -5,12 +5,12 @@ export default function TrendingCarousel() {
   return (
     <Carousel.Container id="trending-container" class="mt-12">
       <Carousel.PrevButton />
-      <Carousel.Content>
+      <Carousel.Content class="hide-scrollbar">
         <Card imgSrc="/image/trending-card-1.jpg" class="snap-start" />
         <Card
           imgSrc="/image/trending-card-2.jpg"
           title="Developing Entrepreneurial Mindset"
-          subtitle="CL"
+          subtitle="Chai Li"
           type="Beginner (1 Hour)"
           badgeText="January 2022"
           class="snap-start"
@@ -18,7 +18,7 @@ export default function TrendingCarousel() {
         <Card
           imgSrc="/image/trending-card-2.jpg"
           title="Developing Entrepreneurial Mindset"
-          subtitle="CL"
+          subtitle="Kevin Sanjaya"
           type="Beginner (1 Hour)"
           badgeText="January 2022"
           class="snap-start"
@@ -26,7 +26,7 @@ export default function TrendingCarousel() {
         <Card
           imgSrc="/image/trending-card-2.jpg"
           title="Developing Entrepreneurial Mindset"
-          subtitle="CL"
+          subtitle="Richard Dawkins"
           type="Beginner (1 Hour)"
           badgeText="January 2022"
           class="snap-start"

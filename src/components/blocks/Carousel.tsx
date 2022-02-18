@@ -5,7 +5,7 @@ import { ArrowButton } from './../bits/Button'
 import { useRef } from 'preact/hooks'
 import {
   fastChildrenCheck,
-  getScrollPositionOf,
+  getScrollVisibilityState,
 } from 'src/functions/dom-helper'
 
 type DivAttr = HTMLAttributes<HTMLDivElement>
@@ -41,11 +41,59 @@ module Carousel {
 
     if (nextArrow) {
       ;(nextArrow.props as ArrowButtonProps).onClick = (e) => {
+        if (contentRef.current == null) return
+        const parent = contentRef.current
+        if (parent.scrollLeft === parent.scrollWidth) return
+
+        // get element which is hidden but previous element
+        // is partial-right or visible
+        fastChildrenCheck(parent, (el) => {
+          const prevSibling = el.previousElementSibling
+          if (prevSibling == null || !(prevSibling instanceof HTMLElement))
+            return false
+
+          const prevPos = getScrollVisibilityState(prevSibling)!
+          const currentPos = getScrollVisibilityState(el)!
+
+          console.log([currentPos, el], [prevPos, prevSibling])
+
+          return (
+            currentPos.x == 'hidden' &&
+            (prevPos.x == 'partial-right' || prevPos.x == 'visible')
+          )
+        }).then((el) => {
+          // scroll to that element
+          if (el) el.scrollIntoView()
+          else parent.lastElementChild?.scrollIntoView()
+        })
       }
     }
 
     if (prevArrow) {
       ;(prevArrow.props as ArrowButtonProps).onClick = (e) => {
+        if (contentRef.current == null) return
+        const parent = contentRef.current
+        if (parent.scrollLeft === 0) return
+
+        // get element which is hidden or partial-left but next element
+        // is visible
+        fastChildrenCheck(parent, (el) => {
+          const nextSibling = el.nextElementSibling
+          if (nextSibling == null || !(nextSibling instanceof HTMLElement))
+            return false
+
+          const nextPos = getScrollVisibilityState(nextSibling)!
+          const currentPos = getScrollVisibilityState(el)!
+
+          return (
+            nextPos.x == 'visible' &&
+            (currentPos.x == 'hidden' || currentPos.x == 'partial-left')
+          )
+        }).then((el) => {
+          // scroll to that element
+          if (el) el.scrollIntoView()
+          else parent.firstElementChild?.scrollIntoView()
+        })
       }
     }
 
