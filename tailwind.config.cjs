@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     fontFamily: {
       'heading': ['Sansita', 'Montserrat'],
-      'body': ['Roboto', 'Poppins']
+      'heading-alt': ['Poppins'],
+      'body': ['Roboto', 'Poppins'],
     }
   }
 }

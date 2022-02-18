@@ -5,5 +5,11 @@
   "conventionalCommits.scopes": ["layout", "block", "theme", "element"],
   "prettier.quoteProps": "consistent",
   "prettier.semi": false,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "tailwindCSS.experimental.classRegex": ["cntl`([^`]*)"],
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  }
 }
