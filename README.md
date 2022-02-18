@@ -3,6 +3,7 @@
 Build with Astro + Preact for [mavensdotlive](https://mavens.live).
 
 This project is dark mode compatible ([CSS: @prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)). **TURN ON** dark mode, light mode is second class.
+(TODO: reverting dark mode, using only dark theme on default)
 
 This project is using `Prettier` as formatter. It's recommended to use `esbenp.prettier-vscode` extension
 from VS Code to format code on save. Settings included in `.vscode`.
@@ -11,7 +12,7 @@ from VS Code to format code on save. Settings included in `.vscode`.
 
 ## Stack
 
-- Main & SSG Framework: [Astro](https://astro.build)
+- Main & JAMStack Framework: [Astro](https://astro.build)
 - Front-end Framework: [Preact](https://preactjs.com)
 - UI Framework: [tailwindcss](https://tailwindcss.com)
 - Build Tool: [Snowpack](https://www.snowpack.dev)
