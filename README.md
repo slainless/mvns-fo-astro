@@ -2,7 +2,7 @@
 
 Build with Astro + Preact for [mavensdotlive](https://mavens.live).
 
-This project is dark mode compatible ([CSS: @prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)). **TURN ON** dark mode, light mode is second class.
+~~This project is dark mode compatible ([CSS: @prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)),~~ subject to change. **TURN ON** dark mode for now.
 (TODO: revert dark mode to use only dark theme by default)
 
 This project is using `Prettier` as formatter. It's recommended to use `esbenp.prettier-vscode` extension
