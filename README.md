@@ -47,6 +47,49 @@ It's pretty straightforward, clone the repo, then:
 
 ---
 
+## Project Structure
+
+```
+.
+├── dist/
+├── docs/
+├── node_modules/
+├── public/
+│   └── image/
+├── resources
+└── src/
+    ├── api/
+    ├── functions/
+    ├── layouts/
+    ├── pages/
+    ├── styles/
+    └── components/
+        ├── bits/
+        ├── blocks/
+        └── elements/
+```
+
+General folders:
+
+- `dist/`: Distribution folder, contains product of static site generation. Can be serve directly, recommended to use `ritwickdey.LiveServer` extension to serve from VS Code directly for development purpose. Config is provided in `.vscode`
+- `public/`: Static files which will be copied directly to `dist`
+- `resources/`: Resource that is not affecting source code directly, like example components, references, etc.
+- `docs/`: General documentation & knowledge base, TBA.
+
+Source folders (`src/`):
+
+- `api/`: Contains DTO contracts, data parser, DTO type definition, etc.
+- `functions/`: Contains common core/utility functions
+- `layouts/`: Contains common layout for pages
+- `pages/`: Contains individual pages
+- `styles/`: Contains style-related files.
+- `components/`: Contains building blocks for the projects
+  - `bits/`: Contains small repeatable components
+  - `blocks/` Contains bigger (bigger as in bigger scale than bits or composed of multiple bits components) repeatable components
+  - `elements`: Contains unique (per page) element, e.g. `Hero.tsx` element should not be used twice on the same page
+
+---
+
 ## References
 
 - Astro documentation: [https://docs.astro.build/en/getting-started/](https://docs.astro.build/en/getting-started/)

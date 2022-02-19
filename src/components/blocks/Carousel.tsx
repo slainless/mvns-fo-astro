@@ -11,6 +11,9 @@ import {
 type DivAttr = HTMLAttributes<HTMLDivElement>
 type ArrowButtonProps = Parameters<typeof ArrowButton>[0]
 module Carousel {
+  /**
+   * Initial style for Carousel
+   */
   export namespace Style {
     export const Container = cntl`relative px-5`
     export const Content = cntl`
@@ -26,6 +29,21 @@ module Carousel {
     export const PrevButton = cntl`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12`
   }
 
+  /**
+   * Container components for the carousel. Need other counterparts
+   * to function correctly.
+   *
+   * For example, carousel structure:
+   * ```tsx
+   *  <Carousel.Container>
+   *    <Carousel.Content>
+   *      <!-- Put your cards/content here -->
+   *    </Carousel.Content>
+   *    <Carousel.NextButton/>
+   *    <Carousel.PrevButton/>
+   *  </Carousel.Container>
+   * ```
+   */
   export const Container: FunctionComponent<DivAttr> = (props) => {
     const { class: cls, children, ...rest } = props
     const contentRef = useRef<HTMLDivElement>(null)
@@ -35,10 +53,14 @@ module Carousel {
       content: (child) => child.type === Content,
     })
 
+    // injecting ref to content, for easier dom control/access
+    // only injected if content exist
     if (content) {
       ;(content.props as DivAttr).ref = contentRef
     }
 
+    // injecting scroll to next element functionality to next arrow
+    // on click
     if (nextArrow) {
       ;(nextArrow.props as ArrowButtonProps).onClick = (e) => {
         if (contentRef.current == null) return
@@ -69,6 +91,8 @@ module Carousel {
       }
     }
 
+    // injecting scroll to prev element functionality to prev arrow
+    // on click
     if (prevArrow) {
       ;(prevArrow.props as ArrowButtonProps).onClick = (e) => {
         if (contentRef.current == null) return

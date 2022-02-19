@@ -15,19 +15,19 @@ export function mergeClass(...classes: (string | undefined | null)[]) {
   return finalCls.trim()
 }
 
-type FindChildrenParams = { [k in string]: (child: VNode) => boolean }
+type FindChildrenPredicates = { [k in string]: (child: VNode) => boolean }
 type FindChildrenReturns<T> = { [k in keyof T]: VNode | null }
-export function findChildren<T extends FindChildrenParams>(
+export function findChildren<T extends FindChildrenPredicates>(
   children: ComponentChildren,
   predicates: T,
   extract?: false
 ): FindChildrenReturns<T>
-export function findChildren<T extends FindChildrenParams>(
+export function findChildren<T extends FindChildrenPredicates>(
   children: ComponentChildren,
   predicates: T,
   extract: true
 ): FindChildrenReturns<T> & { other: ComponentChildren | null }
-export function findChildren<T extends FindChildrenParams>(
+export function findChildren<T extends FindChildrenPredicates>(
   children: ComponentChildren,
   predicates: T,
   extract = false
