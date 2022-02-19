@@ -7,41 +7,40 @@ type DivAttr = HTMLAttributes<HTMLDivElement>
 export module Card {
   namespace Style {
     export const Container = cntl`
-      relative
       flex
       flex-col
       rounded-md
       overflow-hidden
-    `
-
-    export const Image = cntl`
-      h-full
+      justify-between
+      bg-cover
     `
 
     export const Content = cntl`
-      absolute
-      bottom-0
     `
 
     export const Header = cntl`
-      absolute
-      top-0
     `
   }
 
-  export const Container: FunctionComponent<DivAttr> = (props) => {
-    const { class: cls, children, ...rest } = props
-    const { content, image, header } = findChildren(children, {
+  export const Container: FunctionComponent<DivAttr & { bgImg?: string }> = (
+    props
+  ) => {
+    const { class: cls, children, bgImg, ...rest } = props
+    const { content, header } = findChildren(children, {
       content: (child) => child.type === Content,
-      image: (child) => child.type === Image,
+      // image: (child) => child.type === Image,
       header: (child) => child.type === Header,
     })
 
     return (
-      <div class={mergeClass(cls, Style.Container)} {...rest}>
+      <div
+        style={bgImg ? `background-image: url('${bgImg}')` : ''}
+        class={mergeClass(cls, Style.Container)}
+        {...rest}
+      >
         {header}
         {content}
-        {image}
+        {/* {image} */}
       </div>
     )
   }
@@ -54,7 +53,15 @@ export module Card {
     class: mergeClass('card-content', Style.Content),
   })
 
-  export const Image = createSingleton('img', {
-    class: mergeClass('card-image', Style.Image),
-  })
+  // type ImgAttr = HTMLAttributes<HTMLDivElement> & { src: string }
+  // export const Image: FunctionComponent<ImgAttr> = (props) => {
+  //   const { class: cls, src, ...rest } = props
+  //   return (
+  //     <div
+  //       {...rest}
+  //       style="background-image: url(`${}`)"
+  //       class={mergeClass('card-image', Style.Image)}
+  //     ></div>
+  //   )
+  // }
 }

@@ -77,16 +77,18 @@ module Carousel {
           const prevPos = getScrollVisibilityState(prevSibling)!
           const currentPos = getScrollVisibilityState(el)!
 
-          console.log([currentPos, el], [prevPos, prevSibling])
-
           return (
             currentPos.x == 'hidden' &&
             (prevPos.x == 'partial-right' || prevPos.x == 'visible')
           )
         }).then((el) => {
           // scroll to that element
-          if (el) el.scrollIntoView()
-          else parent.lastElementChild?.scrollIntoView()
+          // if (el) el.scrollIntoView({ block: 'nearest' })
+          // else parent.lastElementChild?.scrollIntoView({ block: 'nearest' })
+          if (el) {
+            const { pos } = getScrollVisibilityState(el)!
+            parent.scrollBy(pos.element.right - pos.view.right, 0)
+          } else parent.scrollTo(parent.scrollWidth, 0)
         })
       }
     }
@@ -115,8 +117,13 @@ module Carousel {
           )
         }).then((el) => {
           // scroll to that element
-          if (el) el.scrollIntoView()
-          else parent.firstElementChild?.scrollIntoView()
+          // if (el) el.scrollIntoView({ block: 'nearest' })
+          // else parent.lastElementChild?.scrollIntoView({ block: 'nearest' })
+
+          if (el) {
+            const { pos } = getScrollVisibilityState(el)!
+            parent.scrollBy(pos.element.left - pos.view.left, 0)
+          } else parent.scrollTo(0, 0)
         })
       }
     }
