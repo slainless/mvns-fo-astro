@@ -3,7 +3,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "moduleResolution": "node",
-    "strict": true,
+    // "strict": true,
     "baseUrl": "./",
     "skipLibCheck": true
   }

@@ -8,6 +8,8 @@ Build with Astro + Preact for [mavensdotlive](https://mavens.live).
 This project is using `Prettier` as formatter. It's recommended to use `esbenp.prettier-vscode` extension
 from VS Code to format code on save. Settings included in `.vscode`. [Why prettier?](https://prettier.io/docs/en/why-prettier.html)
 
+Typescript `strict` mode disabled, allowing contributions with untyped syntax (vanilla/normal JS syntax in TSX/TS)
+
 ---
 
 ## Stack
@@ -29,11 +31,8 @@ This particular stack is selected as the backbone of the project for reasons:
 - `Typescript` is productive, fault-preventive/safe, and scalable in JS project. [AirBnB case](https://www.youtube.com/watch?v=P-J9Eg7hJwE&t=702s)
 - `Typescript` for more stricter coding standard and tighter integration with IDE
 - `Preact` instead of `React` for smaller bundle size with same functionality
-- `tailwindcss` for maximum compatibility with server-side hydration, extensibile, while staying native
+- `tailwindcss` for maximum compatibility with server-side hydration, extensible, while staying native
   (as in native static css since it's processed only at build time with `PostCSS`)
-
-NB:
-_UI Framework used is still subject to change_
 
 ---
 
@@ -82,7 +81,7 @@ Source folders (`src/`):
 - `functions/`: Contains common core/utility functions
 - `layouts/`: Contains common layout for pages
 - `pages/`: Contains individual pages
-- `styles/`: Contains style-related files.
+- `styles/`: Contains style-related files
 - `components/`: Contains building blocks for the projects
   - `bits/`: Contains small repeatable components
   - `blocks/` Contains bigger (bigger as in bigger scale than bits or composed of multiple bits components) repeatable components
