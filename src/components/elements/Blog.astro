@@ -1,0 +1,11 @@
+---
+import Section from '../blocks/Section.tsx'
+import Carousel from './Blog/Carousel.tsx'
+---
+
+<Section.Container id="latest-blog">
+  <div class="mx-10 flex items-center gap-5">
+    <Section.Title class="leading-none">Latest blog</Section.Title>
+  </div>
+  <Carousel client:only />
+</Section.Container>

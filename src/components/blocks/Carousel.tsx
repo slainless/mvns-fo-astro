@@ -29,6 +29,12 @@ module Carousel {
     export const PrevButton = cntl`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12`
   }
 
+  type ContainerProps = FunctionComponent<
+    DivAttr & {
+      /** Useful if children's width is not symmetrically divided.  */
+      detectPartial?: boolean
+    }
+  >
   /**
    * Container components for the carousel. Need other counterparts
    * to function correctly.
@@ -44,8 +50,8 @@ module Carousel {
    *  </Carousel.Container>
    * ```
    */
-  export const Container: FunctionComponent<DivAttr> = (props) => {
-    const { class: cls, children, ...rest } = props
+  export const Container: ContainerProps = (props) => {
+    const { class: cls, children, detectPartial, ...rest } = props
     const contentRef = useRef<HTMLDivElement>(null)
     const { nextArrow, prevArrow, content } = findChildren(children, {
       nextArrow: (child) => child.type === NextButton,
@@ -65,7 +71,7 @@ module Carousel {
       ;(nextArrow.props as ArrowButtonProps).onClick = (e) => {
         if (contentRef.current == null) return
         const parent = contentRef.current
-        if (parent.scrollLeft === parent.scrollWidth) return
+        if (parent.scrollLeft === parent.scrollWidth) parent.scrollTo(0, 0)
 
         // get element which is hidden but previous element
         // is partial-right or visible
@@ -78,7 +84,8 @@ module Carousel {
           const currentPos = getScrollVisibilityState(el)!
 
           return (
-            currentPos.x == 'hidden' &&
+            (currentPos.x == 'hidden' ||
+              (detectPartial == true && currentPos.x == 'partial-right')) &&
             (prevPos.x == 'partial-right' || prevPos.x == 'visible')
           )
         }).then((el) => {
@@ -88,7 +95,7 @@ module Carousel {
           if (el) {
             const { pos } = getScrollVisibilityState(el)!
             parent.scrollBy(pos.element.right - pos.view.right, 0)
-          } else parent.scrollTo(parent.scrollWidth, 0)
+          } else parent.scrollTo(0, 0)
         })
       }
     }
@@ -99,7 +106,7 @@ module Carousel {
       ;(prevArrow.props as ArrowButtonProps).onClick = (e) => {
         if (contentRef.current == null) return
         const parent = contentRef.current
-        if (parent.scrollLeft === 0) return
+        if (parent.scrollLeft === 0) parent.scrollTo(parent.scrollWidth, 0)
 
         // get element which is hidden or partial-left but next element
         // is visible
@@ -112,7 +119,8 @@ module Carousel {
           const currentPos = getScrollVisibilityState(el)!
 
           return (
-            nextPos.x == 'visible' &&
+            (nextPos.x == 'visible' ||
+              (detectPartial == true && currentPos.x == 'partial-right')) &&
             (currentPos.x == 'hidden' || currentPos.x == 'partial-left')
           )
         }).then((el) => {
@@ -123,7 +131,7 @@ module Carousel {
           if (el) {
             const { pos } = getScrollVisibilityState(el)!
             parent.scrollBy(pos.element.left - pos.view.left, 0)
-          } else parent.scrollTo(0, 0)
+          } else parent.scrollTo(parent.scrollWidth, 0)
         })
       }
     }
