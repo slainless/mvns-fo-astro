@@ -16,8 +16,9 @@ const { title } = Astro.props
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"
     />
+    <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins&family=Roboto:wght@100;300;400;500;600;700&family=Sansita:wght@400;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@400;600;700;900&family=Roboto:wght@100;300;400;500;600;700&family=Sansita:wght@400;700;900&display=swap"
       rel="stylesheet"
     />
     <link
@@ -42,6 +43,8 @@ const { title } = Astro.props
     <slot name="head" />
   </head>
   <body class="dark:bg-black dark:text-white font-body flex flex-col gap-12">
+    <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+    <script> videojs.options.autoSetup = false </script>
     <slot name="pre-main" />
     <main class="flex flex-col gap-24 pb-24">
       <slot />
