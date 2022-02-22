@@ -4,9 +4,8 @@ type Position = {
   bottom: number
   left: number
 }
-export function getScrollPositionOf(
-  el: HTMLElement
-): { element: Position; view: Position } | null {
+type ScrollPosition = { element: Position; view: Position }
+export function getScrollPositionOf(el: HTMLElement): ScrollPosition | null {
   const parent = el.parentElement
   if (parent == null) return null
 
@@ -42,7 +41,24 @@ type VisibilityState<A extends string, B extends string> =
   | `partial-${A}`
   | `partial-${B}`
   | 'hidden'
-export function getScrollVisibilityState(el: HTMLElement) {
+type ScrollVisibilityState = {
+  x: VisibilityState<'left', 'right'>
+  y: VisibilityState<'top', 'bottom'>
+  pos: ScrollPosition
+}
+
+export function getScrollVisibilityState(
+  el: HTMLElement,
+  calculateVisibilityPercentage: true
+): (ScrollVisibilityState & { percentage: { x: number; y: number } }) | null
+export function getScrollVisibilityState(
+  el: HTMLElement,
+  calculateVisibilityPercentage?: boolean
+): ScrollVisibilityState | null
+export function getScrollVisibilityState(
+  el: HTMLElement,
+  calculateVisibilityPercentage = false
+) {
   const pos = getScrollPositionOf(el)
   if (pos == null) return null
 
@@ -69,6 +85,45 @@ export function getScrollVisibilityState(el: HTMLElement) {
       ? 'partial-bottom'
       : 'hidden'
 
+  if (calculateVisibilityPercentage) {
+    const clientWidthX = () => pos.element.right - pos.element.left
+    const scrollWidthX = () => pos.view.right - pos.view.left
+    const clientWidthY = () => pos.element.bottom - pos.element.top
+    const scrollWidthY = () => pos.view.bottom - pos.view.top
+
+    const percentage = {
+      x:
+        xState == 'partial-left'
+          ? ((pos.element.right - pos.view.left) / clientWidthX()) * 100
+          : xState == 'partial-right'
+          ? ((pos.view.right - pos.element.left) / clientWidthX()) * 100
+          : xState == 'visible'
+          ? 100
+          : xState == 'hidden'
+          ? 0
+          : xState == 'overflow'
+          ? (clientWidthX() / scrollWidthX()) * 100
+          : 0,
+      y:
+        yState == 'partial-top'
+          ? ((pos.element.bottom - pos.view.top) / clientWidthY()) * 100
+          : yState == 'partial-bottom'
+          ? ((pos.view.bottom - pos.element.top) / clientWidthY()) * 100
+          : yState == 'visible'
+          ? 100
+          : yState == 'hidden'
+          ? 0
+          : yState == 'overflow'
+          ? (clientWidthY() / scrollWidthY()) * 100
+          : 0,
+    }
+    return {
+      x: xState,
+      y: yState,
+      pos,
+      percentage,
+    }
+  }
   return {
     x: xState,
     y: yState,

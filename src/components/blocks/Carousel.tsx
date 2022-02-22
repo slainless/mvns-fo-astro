@@ -20,7 +20,6 @@ module Carousel {
       overflow-x-scroll
       flex
       flex-row
-      mx-2
       snap-x
       snap-proximity
       scroll-smooth
@@ -81,13 +80,20 @@ module Carousel {
             return false
 
           const prevPos = getScrollVisibilityState(prevSibling)!
-          const currentPos = getScrollVisibilityState(el)!
+          const currentPos = getScrollVisibilityState(el, true)!
 
           return (
-            (currentPos.x == 'hidden' ||
-              (detectPartial == true && currentPos.x == 'partial-right')) &&
-            (prevPos.x == 'partial-right' || prevPos.x == 'visible')
+            (currentPos.x == 'partial-right' && currentPos.percentage.x < 90) ||
+            (currentPos.x == 'hidden' &&
+              (prevPos.x == 'visible' ||
+                prevPos.x == 'partial-right' ||
+                prevPos.x == 'overflow'))
           )
+          //   currentPos.x == 'partia'
+          //   (currentPos.x == 'hidden' ||
+          //     (detectPartial == true && currentPos.x == 'partial-right')) &&
+          //   (prevPos.x == 'partial-right' || prevPos.x == 'visible')
+          // )
         }).then((el) => {
           // scroll to that element
           // if (el) el.scrollIntoView({ block: 'nearest' })
@@ -116,12 +122,14 @@ module Carousel {
             return false
 
           const nextPos = getScrollVisibilityState(nextSibling)!
-          const currentPos = getScrollVisibilityState(el)!
+          const currentPos = getScrollVisibilityState(el, true)!
 
           return (
-            (nextPos.x == 'visible' ||
-              (detectPartial == true && currentPos.x == 'partial-right')) &&
-            (currentPos.x == 'hidden' || currentPos.x == 'partial-left')
+            (currentPos.x == 'partial-left' && currentPos.percentage.x < 90) ||
+            (currentPos.x == 'hidden' &&
+              (nextPos.x == 'visible' || nextPos.x == 'overflow'))
+            // nextPos.x == 'visible' &&
+            // (currentPos.x == 'hidden' || currentPos.x == 'partial-left')
           )
         }).then((el) => {
           // scroll to that element
@@ -143,7 +151,7 @@ module Carousel {
       >
         {nextArrow}
         {prevArrow}
-        <div class="overflow-hidden -mx-2">{content}</div>
+        <div class="overflow-hidden rounded-lg">{content}</div>
       </div>
     )
   }

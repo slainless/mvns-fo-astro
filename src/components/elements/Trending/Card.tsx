@@ -19,7 +19,7 @@ const TrendingCard: FunctionComponent<CardProps> = (props) => {
     ...rest
   } = props
 
-  const style = 'trending-card w-1/4 flex flex-grow-1 flex-shrink-0 p-2'
+  const style = 'trending-card w-1/4 flex flex-grow-1 flex-shrink-0 px-2'
   return (
     <div {...rest} class={mergeClass(style, cls)}>
       <Card.Container bgImg={imgSrc} class="w-full h-[28rem]">
