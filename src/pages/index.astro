@@ -6,7 +6,7 @@ import Home from '../layouts/Home.astro'
 import Hero from '../components/elements/Hero.tsx'
 import Featured from '../components/elements/Featured.tsx'
 import Trending from '../components/elements/Trending.astro'
-import RegisterPlugin from '../components/elements/RegisterPlugin.tsx'
+import RegisterPlugin from '../components/elements/RegisterPlugin.astro'
 import Ads from '../components/blocks/Ads.tsx'
 import VideoOnDemand from '../components/elements/VideoOnDemand.astro'
 import BusinessBanner from '../components/elements/BusinessBanner.tsx'
@@ -18,10 +18,10 @@ import CategoryNav from '../components/elements/CategoryNav.tsx'
 ---
 
 <Home title="PAGE PUBLIC">
+  <RegisterPlugin />
   <Hero />
   <Featured />
   <Ads width={728} height={90} src="/image/leaderboard-ad-placeholder.png" />
-  <!-- <RegisterPlugin /> -->
   <Trending />
   <VideoOnDemand />
   <BusinessBanner />

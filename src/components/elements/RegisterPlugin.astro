@@ -1,0 +1,46 @@
+---
+---
+
+<aside
+  id="register-plugin"
+  class="w-full dark:bg-zinc-900 flex justify-end px-16 gap-8 py-5 fixed bottom-0 z-50 opacity-0 pointer-events-none transition-all duration-500 transform translate-y-full"
+  hidden
+>
+  <span class="w-60 text-sm">
+    Learn from the most inspiring artists, leaders, and icons in the world.
+  </span>
+  <a
+    id="register-plugin-button"
+    class="dark:bg-red-600 flex items-center uppercase text-xs tracking-widest font-light px-5 rounded-lg"
+  >
+    Register Now
+  </a>
+</aside>
+<script type="module">
+  import { throttle } from 'lodash-es'
+  function hider() {
+    const scrollY = window.scrollY
+
+    const hide =
+      scrollY <= 0 ||
+      scrollY <= 580 ||
+      // scroll position + screen height > total document height - 580
+      scrollY + window.innerHeight > document.body.offsetHeight - 580
+
+    if (!hide && window['register-plugin'].hidden) {
+      window['register-plugin'].hidden = false
+    } else if (hide && window['register-plugin'].hidden == false) {
+      window['register-plugin'].hidden = true
+    }
+  }
+  hider()
+
+  const throttled = throttle(hider, 500)
+  document.addEventListener('scroll', throttled)
+</script>
+
+<style>
+  #register-plugin:not([hidden]) {
+    @apply opacity-95 pointer-events-auto translate-y-0;
+  }
+</style>
