@@ -4,7 +4,7 @@ import Search from './Header/Search.tsx'
 ---
 
 <header
-  class="px-16 grid grid-cols-3 sticky top-0 bg-black z-50 w-full py-5 items-center transition-all shadow-md"
+  class="px-16 grid grid-cols-3 fixed top-0 bg-black z-50 w-full py-5 items-center transition-all shadow-md"
   id="header"
 >
   <img
@@ -20,9 +20,7 @@ import Search from './Header/Search.tsx'
     function compactHeader() {
       if (window.scrollY >= 100 && header.dataset.compact == null) {
         header.dataset.compact = ''
-      }
-
-      if (window.scrollY < 100 && header.dataset.compact === '') {
+      } else if (window.scrollY < 100 && header.dataset.compact === '') {
         delete header.dataset.compact
       }
     }
