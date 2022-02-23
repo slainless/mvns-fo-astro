@@ -40,8 +40,8 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
 		},
     resolve: {
       alias: {
-        // react: 'preact/compat',
-        // 'react-dom': 'preact/compat',
+        react: 'preact/compat',
+        'react-dom': 'preact/compat',
         // "@Api": "./src/api",
         // "@Bits": "./src/components/bits",
         // "@Blocks": "./src/components/blocks",

@@ -14,9 +14,7 @@
       "@Functions/*": ["src/functions/*"],
       "@Layouts/*": ["src/layouts/*"],
       "@Pages/*": ["src/pages/*"],
-      "@Components/*": ["src/components/*"],
-      "react": ["node_modules/preact/compat/dist/compat.module.js"],
-      "react-dom": ["node_modules/preact/compat/dist/compat.module.js"]
+      "@Components/*": ["src/components/*"]
     }
   },
   "include": ["src/**/*"]
