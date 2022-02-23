@@ -19,9 +19,20 @@ class RoleClass {
   is(...roles: (Role | Role[])[]) {
     const first = roles[0]
     if (roles.length === 1 && !Array.isArray(first)) {
-      return first === 0
-        ? this.role === Role.NONE
-        : (this.role & first) === first
+      return first === this.role
+    }
+    const _roles = (Array.isArray(first) ? first : roles) as Role[]
+
+    const all = _roles.reduce((p: Role, c: Role) => p | c)
+    return this.role === all
+  }
+
+  and(role: number | Role | Role[]): boolean
+  and(...roles: Role[]): boolean
+  and(...roles: (Role | Role[])[]) {
+    const first = roles[0]
+    if (roles.length === 1 && !Array.isArray(first)) {
+      return first === 0 ? false : (this.role & first) === first
     }
     const _roles = (Array.isArray(first) ? first : roles) as Role[]
 
@@ -54,7 +65,7 @@ export class User {
 
 const mockUser = {
   name: 'Muhammad al-Fatih',
-  role: new RoleClass([Role.STUDENT]),
+  role: new RoleClass([Role.STUDENT, Role.INSTRUCTOR]),
 }
 export function getUser(): User | null {
   return mockUser

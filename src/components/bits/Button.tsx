@@ -16,6 +16,7 @@ export const ArrowButton: FunctionComponent<
     shadow-md
     justify-center
     items-center
+    text-2xl
   `
 
   return (
