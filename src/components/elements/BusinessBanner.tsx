@@ -1,4 +1,4 @@
-import Section from '../blocks/Section'
+import Section from '@Blocks/Section'
 
 const BACKGROUND_URL = `image/business-banner.png`
 

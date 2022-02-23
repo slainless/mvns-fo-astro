@@ -1,10 +1,4 @@
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Tiktok,
-  Youtube,
-} from 'src/components/bits/Brand'
+import { Facebook, Instagram, Linkedin, Tiktok, Youtube } from '@Bits/Brand'
 import List from './Footer/List'
 
 export default function Footer() {

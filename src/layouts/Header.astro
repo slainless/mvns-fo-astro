@@ -14,7 +14,7 @@ import Search from './Header/Search.tsx'
     class="h-11 transition-all"
   />
   <Search />
-  <Navigation />
+  <Navigation client:load />
   <script type="module" client:load>
     import { throttle } from 'lodash-es'
     function compactHeader() {

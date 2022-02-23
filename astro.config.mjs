@@ -1,7 +1,7 @@
 // Full Astro Configuration API Documentation:
 // https://docs.astro.build/reference/configuration-reference
 
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 
 const preactCompatPlugin = {
   name: 'preact-compat',
@@ -33,10 +33,24 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
 	renderers: ['@astrojs/renderer-preact'],
 	vite: {
 		optimizeDeps: {
-			exclude: ['node:path', 'node:fs', 'node', 'casual', '@fakerjs/faker'],
+			exclude: ['node:path', 'node:fs', 'node', 'casual', '@fakerjs/faker', 'video.js'],
 			esbuildOptions: {
-				plugins: [preactCompatPlugin]
+				// plugins: [preactCompatPlugin]
 			}
-		}
+		},
+    resolve: {
+      alias: {
+        // react: 'preact/compat',
+        // 'react-dom': 'preact/compat',
+        // "@Api": "./src/api",
+        // "@Bits": "./src/components/bits",
+        // "@Blocks": "./src/components/blocks",
+        // "@Elements": "./src/components/elements",
+        // "@Functions": "./src/functions",
+        // "@Layouts": "./src/layouts",
+        // "@Pages": "./src/pages",
+        // "@Components": "./src/components",
+      }
+    }
 	}
 });

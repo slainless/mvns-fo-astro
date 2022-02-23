@@ -1,9 +1,9 @@
-import Carousel from '../../blocks/Carousel'
+import Carousel from '@Blocks/Carousel'
 import Card from './Card'
 
 export default function TrendingCarousel() {
   return (
-    <Carousel.Container id="trending-container" class="mt-12" detectPartial>
+    <Carousel.Container id="blog-container" class="mt-12" detectPartial>
       <Carousel.PrevButton />
       <Carousel.Content class="hide-scrollbar">
         <Card imgSrc="/image/blog-thumb.jpg" class="snap-center" />

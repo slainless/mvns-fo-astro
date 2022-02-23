@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'preact'
 import cntl from 'cntl'
-import { createSingleton } from 'src/functions/jsx-factory'
+import { createSingleton } from '@Functions/jsx-factory'
 
 module Section {
   export const Container = createSingleton('section', {

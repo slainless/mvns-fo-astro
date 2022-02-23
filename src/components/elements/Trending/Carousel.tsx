@@ -1,5 +1,5 @@
 import Card from './Card'
-import Carousel from '../../blocks/Carousel'
+import Carousel from '@Blocks/Carousel'
 
 export default function TrendingCarousel() {
   return (

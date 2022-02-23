@@ -1,6 +1,6 @@
 import cntl from 'cntl'
-import { createSingleton } from 'src/functions/jsx-factory'
-import { mergeClass } from 'src/functions/jsx-helper'
+import { createSingleton } from '@Functions/jsx-factory'
+import { mergeClass } from '@Functions/jsx-helper'
 
 type ButtonAttr = HTMLAttributes<HTMLButtonElement>
 export const ArrowButton: FunctionComponent<

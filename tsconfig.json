@@ -3,8 +3,21 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "moduleResolution": "node",
-    // "strict": true,
-    "baseUrl": "./",
-    "skipLibCheck": true
-  }
+    "strict": true,
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "paths": {
+      "@Api/*": ["src/api/*"],
+      "@Bits/*": ["src/components/bits/*"],
+      "@Blocks/*": ["src/components/blocks/*"],
+      "@Elements/*": ["src/components/elements/*"],
+      "@Functions/*": ["src/functions/*"],
+      "@Layouts/*": ["src/layouts/*"],
+      "@Pages/*": ["src/pages/*"],
+      "@Components/*": ["src/components/*"],
+      "react": ["node_modules/preact/compat/dist/compat.module.js"],
+      "react-dom": ["node_modules/preact/compat/dist/compat.module.js"]
+    }
+  },
+  "include": ["src/**/*"]
 }

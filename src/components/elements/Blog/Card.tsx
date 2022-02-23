@@ -1,5 +1,5 @@
-import { mergeClass } from 'src/functions/jsx-helper'
-import { Card } from '../../blocks/Card'
+import { mergeClass } from '@Functions/jsx-helper'
+import { Card } from '@Blocks/Card'
 
 type CardProps = HTMLAttributes<HTMLDivElement> & {
   imgSrc: string

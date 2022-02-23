@@ -1,12 +1,12 @@
-import { createSingleton } from 'src/functions/jsx-factory'
+import { createSingleton } from '@Functions/jsx-factory'
 import cntl from 'cntl'
-import { findChildren, mergeClass } from 'src/functions/jsx-helper'
-import { ArrowButton } from './../bits/Button'
+import { findChildren, mergeClass } from '@Functions/jsx-helper'
+import { ArrowButton } from '@Bits/Button'
 import { useRef } from 'preact/hooks'
 import {
   fastChildrenCheck,
   getScrollVisibilityState,
-} from 'src/functions/dom-helper'
+} from '@Functions/dom-helper'
 
 type DivAttr = HTMLAttributes<HTMLDivElement>
 type ArrowButtonProps = Parameters<typeof ArrowButton>[0]
