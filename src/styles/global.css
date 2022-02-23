@@ -13,3 +13,10 @@
   width: 0;
   height: 0;
 }
+
+.material-icons-outlined,
+.material-icons {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  font-weight: inherit !important;
+}
