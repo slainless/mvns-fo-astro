@@ -19,7 +19,7 @@ const VideoOnDemandCard: FunctionComponent<CardProps> = (props) => {
     ...rest
   } = props
 
-  const style = 'trending-card w-1/2 flex flex-grow-1 flex-shrink-0 px-2'
+  const style = 'vod-card w-1/2 flex flex-grow-1 flex-shrink-0 px-2'
   return (
     <div {...rest} class={mergeClass(style, cls)}>
       <Card.Container

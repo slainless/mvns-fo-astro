@@ -1,7 +1,7 @@
 import Carousel from '@Blocks/Carousel'
 import Card from './Card'
 
-export default function TrendingCarousel() {
+export default function BlogCarousel() {
   return (
     <Carousel.Container id="blog-container" class="mt-12" detectPartial>
       <Carousel.PrevButton />
