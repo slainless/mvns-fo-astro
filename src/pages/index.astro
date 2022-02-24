@@ -12,6 +12,8 @@ import VideoOnDemand from '@Elements/VideoOnDemand.astro'
 import BusinessBanner from '@Elements/BusinessBanner.astro'
 import Blog from '@Elements/Blog.astro'
 import CategoryNav from '@Elements/CategoryNav.tsx'
+import MostRated from '@Elements/MostRated.tsx'
+
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
@@ -26,4 +28,5 @@ import CategoryNav from '@Elements/CategoryNav.tsx'
   <BusinessBanner />
   <Blog />
   <CategoryNav client:load />
+  <MostRated client:load />
 </Home>
