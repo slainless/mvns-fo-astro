@@ -35,13 +35,13 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
 		optimizeDeps: {
 			exclude: ['node:path', 'node:fs', 'node', 'casual', '@fakerjs/faker', 'video.js'],
 			esbuildOptions: {
-				// plugins: [preactCompatPlugin]
+				plugins: [preactCompatPlugin]
 			}
 		},
     resolve: {
       alias: {
-        react: 'preact/compat',
-        'react-dom': 'preact/compat',
+        // react: 'preact/compat',
+        // 'react-dom': 'preact/compat',
         // "@Api": "./src/api",
         // "@Bits": "./src/components/bits",
         // "@Blocks": "./src/components/blocks",
