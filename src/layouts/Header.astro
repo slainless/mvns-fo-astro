@@ -32,7 +32,7 @@ import cntl from 'cntl'
   />
   <Search />
   <Navigation client:load />
-  <script type="module" client:load>
+  <script hoist type="module">
     import { throttle } from 'lodash-es'
     function compactHeader() {
       if (window.scrollY >= 100 && header.dataset.compact == null) {

@@ -17,7 +17,7 @@ import Blog from '@Elements/landing-page/Blog.tsx'
 ---
 
 <Home title="PAGE PUBLIC">
-  <script slot="head" type="module" client:load>
+  <script slot="head" hoist type="module">
     import { RoleClass, Role } from '@Api/user'
 
     window.USER = {

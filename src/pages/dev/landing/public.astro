@@ -19,7 +19,7 @@ import CategoryNav from '@Elements/landing-page/CategoryNav.tsx'
 ---
 
 <Home title="PAGE PUBLIC">
-  <script slot="head" type="module" client:load>
+  <script slot="head" hoist type="module">
     import { RoleClass, Role } from '@Api/user'
 
     window.USER = {
