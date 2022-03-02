@@ -14,7 +14,9 @@
       "@Functions/*": ["src/functions/*"],
       "@Layouts/*": ["src/layouts/*"],
       "@Pages/*": ["src/pages/*"],
-      "@Components/*": ["src/components/*"]
+      "@Styles/*": ["src/styles/*"],
+      "@Components/*": ["src/components/*"],
+      "@/*": ["*"]
     }
   },
   "include": ["src/**/*"]
