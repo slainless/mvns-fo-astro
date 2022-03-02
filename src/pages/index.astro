@@ -1,5 +1,6 @@
 ---
 import Base from '@Layouts/Base.astro'
+import cntl from 'cntl'
 import { map } from 'lodash-es'
 const NAVIGATION = {
   Common: {
@@ -16,17 +17,17 @@ const NAVIGATION = {
 }
 ---
 
-<Base title="Development Navigation" bodyClass="dark:bg-white dark:text-black">
+<Base title="Development Navigation" bodyClass={cntl`dark:bg-white dark:text-black font-mono`}>
   <div class="flex flex-col items-stretch p-10">
     {map(NAVIGATION, (v, i) => (
       <div class="flex flex-col items-stretch">
-        <h1 class="text-4xl font-bold py-5">{i}</h1>
+        <h1 class="text-4xl font-bold py-5 font-mono">{i}</h1>
         <ul>
           {map(v, (w, j) => (
             <li>
               <a
                 href={w}
-                class="text-xl text-blue-500 hover:text-red-500"
+                class="text-xl text-blue-500 hover:text-red-500 font-mono"
                 target="_blank"
                 // @ts-ignore
                 set:html={`${j} --> ${w}`}

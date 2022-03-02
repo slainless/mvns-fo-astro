@@ -9,6 +9,7 @@ const Config = {
       'heading': ['Sansita', 'Montserrat'],
       'heading-alt': ['Poppins'],
       'body': ['Roboto', 'Poppins'],
+      'mono': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
     }
   }
 }
