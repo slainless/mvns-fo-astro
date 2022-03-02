@@ -7,7 +7,7 @@ export enum Role {
   BUSINESS = 0b0100,
 }
 
-class RoleClass {
+export class RoleClass {
   private role: number
   constructor(roles: Role[]) {
     console.log('what the asd', roles)
@@ -68,5 +68,5 @@ const mockUser = {
   role: new RoleClass([Role.STUDENT, Role.INSTRUCTOR]),
 }
 export function getUser(): User | null {
-  return mockUser
+  return window ? window.USER : mockUser
 }

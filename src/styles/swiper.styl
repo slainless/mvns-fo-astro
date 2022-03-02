@@ -1,0 +1,47 @@
+.swiper {
+  &-slide,
+  &-slide > * {
+    height: inherit;
+  }
+
+  &-button {
+    &-prev,
+    &-next {
+      @apply bg-zinc-900/90 text-white z-10 rounded-full w-12 h-12;
+      @apply backdrop-filter backdrop-blur-sm;
+
+      line-height: 0;
+      font-size: 0;
+
+      &:hover {
+        @apply bg-zinc-900/90;
+      }
+
+      &::after {
+        @apply text-xl;
+      }
+    }
+
+    &-prev {
+      @apply transform -translate-x-1/2;
+      left: 0;
+      top: 50%;
+
+      &::after {
+        content: 'navigate_before';
+        font-family: 'Material Icons Outlined';
+      }
+    }
+
+    &-next {
+      @apply transform translate-x-1/2;
+      right: 0;
+      top: 50%;
+
+      &::after {
+        content: 'navigate_next';
+        font-family: 'Material Icons Outlined';
+      }
+    }
+  }
+}

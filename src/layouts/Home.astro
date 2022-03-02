@@ -6,13 +6,13 @@ import Ads from '@Blocks/Ads.tsx'
 const { title } = Astro.props
 ---
 
-<Base {title} class="mt-32">
+<Base {title} class="mt-16 lg:mt-32">
   <slot name="head" slot="head" />
   <Header slot="pre-main" />
   <slot />
   <Ads
     slot="post-main"
-    src="/image/footer-ad-placeholder.png"
+    src="/media/footer-ad-placeholder.png"
     width={1197}
     height={250}
   />

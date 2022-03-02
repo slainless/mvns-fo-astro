@@ -1,0 +1,38 @@
+---
+// layout
+import Home from '@Layouts/Home.astro'
+
+// elements
+import Featured from '@Elements/landing-page/Featured.tsx'
+import ComingSoon from '@Elements/landing-page/ComingSoon.tsx'
+import StartLearning from '@Elements/landing-page/StartLearning.tsx'
+import ContinueLearning from '@Elements/landing-page/ContinueLearning.tsx'
+import MostRelevant from '@Elements/landing-page/MostRelevant.tsx'
+import RegisterPlugin from '@Elements/RegisterPlugin.astro'
+import Ads from '@Blocks/Ads.tsx'
+import Classes from '@Elements/landing-page/Classes.tsx'
+import Blog from '@Elements/landing-page/Blog.tsx'
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<Home title="PAGE PUBLIC">
+  <script slot="head" type="module" client:load>
+    import { RoleClass, Role } from '@Api/user'
+
+    window.USER = {
+      name: 'Yusuf Harun',
+      role: new RoleClass([Role.STUDENT]),
+    }
+  </script>
+  <RegisterPlugin />
+  <StartLearning client:load />
+  <ContinueLearning client:load />
+  <Ads width={728} height={90} src="/media/leaderboard-ad-placeholder.png" />
+  <Featured title="New classes added every month" />
+  <MostRelevant client:load />
+  <ComingSoon client:load />
+  <Blog client:load />
+  <Classes client:load />
+</Home>

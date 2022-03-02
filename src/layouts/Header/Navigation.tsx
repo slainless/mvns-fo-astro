@@ -5,7 +5,10 @@ import Popover from './Popover'
 
 const Container = ({ children }: any) => (
   <nav class="flex items-center justify-end gap-6" id="navigation">
-    {children}
+    <div class="hidden lg:contents">{children}</div>
+    <button class="flex lg:hidden">
+      <span class="material-icons-outlined">menu</span>
+    </button>
   </nav>
 )
 
@@ -23,7 +26,7 @@ export default function Navigation() {
   const user: User | null = useMemo(getUser, [])
 
   return (
-    <nav class="flex items-center justify-end gap-6" id="navigation">
+    <Container>
       {user == null || user.role.is(0) ? (
         defaultNav
       ) : user.role.or(Role.STUDENT | Role.INSTRUCTOR) ? (
@@ -47,6 +50,6 @@ export default function Navigation() {
       ) : (
         <></>
       )}
-    </nav>
+    </Container>
   )
 }

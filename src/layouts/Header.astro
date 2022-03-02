@@ -1,17 +1,34 @@
 ---
 import Navigation from './Header/Navigation.tsx'
 import Search from './Header/Search.tsx'
+import cntl from 'cntl'
 ---
 
 <header
-  class="px-16 grid grid-cols-3 fixed top-0 bg-black z-50 w-full py-5 items-center transition-all shadow-md"
+  class={cntl`
+    px-5 lg:px-16 
+    py-3 lg:py-5
+    grid 
+    grid-cols-2 lg:grid-cols-3 
+    fixed top-0 bg-black z-50 w-full 
+    items-center transition-all shadow-md
+  `}
   id="header"
 >
+  <style>
+    [data-compact] {
+      @apply py-2 lg:py-3;
+    }
+
+    [data-compact] img {
+      @apply h-7 lg:h-10;
+    }
+  </style>
   <img
     id="logo"
-    src="/image/logo-trimmed.png"
+    src="/media/logo-trimmed.png"
     alt="logo"
-    class="h-11 transition-all"
+    class="h-7 lg:h-11 transition-all"
   />
   <Search />
   <Navigation client:load />
@@ -29,13 +46,4 @@ import Search from './Header/Search.tsx'
     const throttled = throttle(compactHeader, 500)
     document.addEventListener('scroll', throttled)
   </script>
-  <style lang="styl">
-    [data-compact] {
-      @apply py-3
-
-      img {
-        @apply h-10;
-      }
-    }
-  </style>
 </header>

@@ -1,0 +1,40 @@
+---
+// layout
+import Home from '@Layouts/Home.astro'
+
+// elements
+import Hero from '@Elements/landing-page/Hero.tsx'
+import Featured from '@Elements/landing-page/Featured.tsx'
+import Trending from '@Elements/landing-page/Trending.tsx'
+import ComingSoon from '@Elements/landing-page/ComingSoon.tsx'
+import RegisterPlugin from '@Elements/RegisterPlugin.astro'
+import Ads from '@Blocks/Ads.tsx'
+import VideoOnDemand from '@Elements/landing-page/VideoOnDemand.tsx'
+import BusinessBanner from '@Elements/landing-page/BusinessBanner.tsx'
+import Blog from '@Elements/landing-page/Blog.tsx'
+import CategoryNav from '@Elements/landing-page/CategoryNav.tsx'
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<Home title="PAGE PUBLIC">
+  <script slot="head" type="module" client:load>
+    import { RoleClass, Role } from '@Api/user'
+
+    window.USER = {
+      name: 'Yusuf Harun',
+      role: new RoleClass([Role.NONE]),
+    }
+  </script>
+  <RegisterPlugin />
+  <Hero />
+  <Featured />
+  <Ads width={728} height={90} src="/media/leaderboard-ad-placeholder.png" />
+  <Trending client:load />
+  <VideoOnDemand client:load />
+  <BusinessBanner />
+  <ComingSoon client:load />
+  <Blog client:load />
+  <CategoryNav client:load />
+</Home>

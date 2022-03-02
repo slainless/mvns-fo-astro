@@ -1,17 +1,33 @@
 ---
 // Barebone layout to share common head between pages.
-const { title, class: cls } = Astro.props
+import cntl from 'cntl'
+import { twMerge } from 'tailwind-merge'
+const { title, class: cls, bodyClass } = Astro.props
 ---
 
 <html lang="en">
   <head>
     <meta charSet="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
     <link
       rel="stylesheet"
       type="text/css"
       href={Astro.resolve('../styles/global.css')}
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href={Astro.resolve('../styles/slick.styl')}
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href={Astro.resolve('../styles/swiper.styl')}
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"
@@ -29,6 +45,17 @@ const { title, class: cls } = Astro.props
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      charSet="UTF-8"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+    />
+    <!-- <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+    /> -->
     <meta
       name="theme-color"
       media="(prefers-color-scheme: light)"
@@ -42,11 +69,25 @@ const { title, class: cls } = Astro.props
     <title>{title}</title>
     <slot name="head" />
   </head>
-  <body class="dark:bg-black dark:text-white font-body flex flex-col gap-12">
+  <body
+    class={twMerge(
+      'dark:bg-black dark:text-white font-body flex flex-col gap-12',
+      bodyClass
+    )}
+  >
     <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
     <script> videojs.options.autoSetup = false </script>
     <slot name="pre-main" />
-    <main class={`flex flex-col gap-24 pb-24 ${cls ?? ''}`}>
+    <main
+      class={twMerge(
+        cntl`
+          flex flex-col 
+          gap-12 lg:gap-24 
+          pb-24
+        `,
+        cls
+      )}
+    >
       <slot />
     </main>
     <slot name="post-main" />

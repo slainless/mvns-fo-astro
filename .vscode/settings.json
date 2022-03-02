@@ -2,7 +2,14 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "liveServer.settings.root": "./dist/",
-  "conventionalCommits.scopes": ["layout", "block", "theme", "element"],
+  "conventionalCommits.scopes": [
+    "layout",
+    "block",
+    "theme",
+    "element",
+    "build",
+    "style"
+  ],
   "prettier.quoteProps": "consistent",
   "prettier.semi": false,
   "prettier.singleQuote": true,
@@ -11,5 +18,10 @@
     "other": true,
     "comments": false,
     "strings": true
+  },
+  "javascript.suggest.jsdoc.generateReturns": false,
+  "typescript.suggest.jsdoc.generateReturns": false,
+  "files.associations": {
+    "*.styl": "postcss"
   }
 }

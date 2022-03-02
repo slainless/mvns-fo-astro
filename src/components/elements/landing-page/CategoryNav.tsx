@@ -34,10 +34,7 @@ function Navigation({ hidden = false }) {
           preload="auto"
           data-setup={JSON.stringify({})}
         >
-          <source
-            src="https://manifest.prod.boltdns.net/manifest/v1/hls/v4/clear/5344802162001/c08f816b-84ec-4725-9150-9b8a4b1c0f4e/3cdf6554-731a-4a4b-908d-96d5c77abd57/10s/rendition.m3u8?fastly_token=NjIxODlkNGVfMGI0NjMxMzhmNGVmYTRmNTAyNTEzYTQxNTRkZmVhYTdkM2EyOTRjMGU0MzNiYWNjOTVmNWI3ZTFmZGRjMGEwOQ%3D%3D"
-            type="application/x-mpegURL"
-          />
+          <source src="/media/rendition.m3u8" type="application/x-mpegURL" />
         </video>
       </div>
       <div class="absolute top-0 left-0 w-full h-full">

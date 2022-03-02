@@ -4,29 +4,29 @@ import Home from '@Layouts/Home.astro'
 
 // elements
 import Hero from '@Elements/Hero.astro'
-import Featured from '@Elements/Featured.astro'
-import Trending from '@Elements/Trending.astro'
-import RegisterPlugin from '@Elements/RegisterPlugin.astro'
-import Ads from '@Blocks/Ads.tsx'
-import VideoOnDemand from '@Elements/VideoOnDemand.astro'
-import BusinessBanner from '@Elements/BusinessBanner.astro'
-import Blog from '@Elements/Blog.astro'
-import CategoryNav from '@Elements/CategoryNav.tsx'
-import MostRated from '@Elements/MostRated.tsx'
+import Featured from '@Elements/landing-page/Featured.tsx'
+// import Trending from '@Elements/landing-page/Trending.astro'
+// import RegisterPlugin from '@Elements/RegisterPlugin.astro'
+// import Ads from '@Blocks/Ads.tsx'
+// import VideoOnDemand from '@Elements/VideoOnDemand.astro'
+// import BusinessBanner from '@Elements/BusinessBanner.astro'
+// import Blog from '@Elements/Blog.astro'
+// import CategoryNav from '@Elements/CategoryNav.tsx'
+// import MostRated from '@Elements/MostRated.tsx'
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <Home title="PAGE PUBLIC">
-  <RegisterPlugin />
+  <!-- <RegisterPlugin /> -->
   <Hero />
   <Featured />
-  <Ads width={728} height={90} src="/image/leaderboard-ad-placeholder.png" />
+  <!-- <Ads width={728} height={90} src="/media/leaderboard-ad-placeholder.png" />
   <Trending />
   <VideoOnDemand />
   <BusinessBanner />
   <Blog />
   <CategoryNav client:load />
-  <MostRated client:load />
+  <MostRated client:load /> -->
 </Home>

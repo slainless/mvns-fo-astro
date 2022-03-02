@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { JSX } from 'preact'
-import { mergeClass } from './jsx-helper'
+import { twMerge } from 'tailwind-merge'
 
 /**
  * Create a singleton function factory with initial attributes that can
@@ -45,7 +45,7 @@ export function createSingleton<T extends keyof JSX.IntrinsicElements>(
     const { class: defC, ...defRest } = defaultProps
     const { class: c, ...rest } = props
     const newRest: Record<string, any> = Object.assign({}, defRest, rest, {
-      class: mergeClass(c, defC),
+      class: twMerge(c, defC),
     })
 
     return h(type, newRest)
