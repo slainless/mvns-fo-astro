@@ -1,9 +1,4 @@
-import {
-  ComponentChildren,
-  ComponentChild,
-  isValidElement,
-  VNode,
-} from 'preact'
+import { ReactNode, ReactChild, isValidElement, ReactElement } from 'react'
 import { isArray, mapValues } from 'lodash-es'
 
 export function mergeClass(...classes: (string | undefined | null)[]) {
@@ -15,24 +10,26 @@ export function mergeClass(...classes: (string | undefined | null)[]) {
   return finalCls.trim()
 }
 
-type FindChildrenPredicates = { [k in string]: (child: VNode) => boolean }
-type FindChildrenReturns<T> = { [k in keyof T]: VNode | null }
+type FindChildrenPredicates = {
+  [k in string]: (child: ReactElement) => boolean
+}
+type FindChildrenReturns<T> = { [k in keyof T]: ReactElement | null }
 export function findChildren<T extends FindChildrenPredicates>(
-  children: ComponentChildren,
+  children: ReactNode,
   predicates: T,
   extract?: false
 ): FindChildrenReturns<T>
 export function findChildren<T extends FindChildrenPredicates>(
-  children: ComponentChildren,
+  children: ReactNode,
   predicates: T,
   extract: true
-): FindChildrenReturns<T> & { other: ComponentChildren | null }
+): FindChildrenReturns<T> & { other: ReactNode | null }
 export function findChildren<T extends FindChildrenPredicates>(
-  children: ComponentChildren,
+  children: ReactNode,
   predicates: T,
   extract = false
-): FindChildrenReturns<T> & { other?: ComponentChildren | null } {
-  function runPredicates(child: VNode) {
+): FindChildrenReturns<T> & { other?: ReactNode | null } {
+  function runPredicates(child: ReactElement) {
     for (const key in predicates) {
       if (predicates[key](child)) return { [key]: child }
     }
@@ -56,7 +53,7 @@ export function findChildren<T extends FindChildrenPredicates>(
   } else {
   }
 
-  const extracted: ComponentChild[] = []
+  const extracted: ReactChild[] = []
   const result: FindChildrenReturns<T> = mapValues(predicates, () => null)
   for (const child of children) {
     if (!isValidElement(child)) {

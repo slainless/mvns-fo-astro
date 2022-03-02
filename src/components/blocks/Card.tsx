@@ -29,7 +29,7 @@ export module Card {
   export const Container: FunctionComponent<DivAttr & { bgImg?: string }> = (
     props
   ) => {
-    const { class: cls, children, bgImg, ...rest } = props
+    const { className: cls, children, bgImg, ...rest } = props
     const { content, header } = findChildren(children, {
       content: (child) => child.type === Content,
       // image: (child) => child.type === Image,
@@ -38,8 +38,10 @@ export module Card {
 
     return (
       <div
-        style={bgImg ? `background-image: url('${bgImg}')` : ''}
-        class={twMerge(cls, Style.Container)}
+        style={{
+          backgroundImage: bgImg ? `url(${bgImg})` : '',
+        }}
+        className={twMerge(cls, Style.Container)}
         {...rest}
       >
         {header}
@@ -50,11 +52,11 @@ export module Card {
   }
 
   export const Header = createSingleton('div', {
-    class: twMerge('card-header', Style.Header),
+    className: twMerge('card-header', Style.Header),
   })
 
   export const Content = createSingleton('div', {
-    class: twMerge('card-content', Style.Content),
+    className: twMerge('card-content', Style.Content),
   })
 }
 
@@ -99,32 +101,34 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
   return (
     <Card.Container
       bgImg={bgImg}
-      class={twMerge(
+      className={twMerge(
         'h-full snap-start bg-center',
         styleOverrides?.card?.container
       )}
     >
       <Card.Header
-        class={twMerge(
+        className={twMerge(
           'flex gap-5 p-4 justify-between',
           styleOverrides?.card?.header
         )}
       >
-        <div class="flex flex-col gap-2">
-          {badges ? badges.map((badge) => <Badge>{badge}</Badge>) : null}
+        <div className="flex flex-col gap-2">
+          {badges
+            ? badges.map((badge, key) => <Badge key={key}>{badge}</Badge>)
+            : null}
         </div>
-        <div class="items-end">
-          <Favorite filled={favorite} class={styleOverrides?.favorite} />
+        <div className="items-end">
+          <Favorite filled={favorite} className={styleOverrides?.favorite} />
         </div>
       </Card.Header>
       <Card.Content
-        class={twMerge(
+        className={twMerge(
           'p-4 text-center items-center flex flex-col',
           styleOverrides?.card?.content
         )}
       >
         <h4
-          class={twMerge(
+          className={twMerge(
             'card-title font-heading-alt text-2xl font-semibold',
             styleOverrides?.title
           )}
@@ -133,29 +137,29 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
           {title}
         </h4>
         <hr
-          class="w-5 mx-auto border-2 my-3 border-white"
+          className="w-5 mx-auto border-2 my-3 border-white"
           hidden={subtitle == null && price == null}
         />
         <span
-          class={twMerge(
+          className={twMerge(
             'card-price font-heading-alt text-lg font-semibold',
             styleOverrides?.price
           )}
           hidden={price == null}
         >{`$${price}`}</span>
-        <h5 class="card-subtitle w-max" hidden={subtitle == null}>
+        <h5 className="card-subtitle w-max" hidden={subtitle == null}>
           {subtitle}
         </h5>
-        <span class="card-minor-info flex gap-3" hidden={type == null}>
+        <span className="card-minor-info flex gap-3" hidden={type == null}>
           <Quota
             hidden={quota == null}
             filled={+filled}
             max={+max}
-            class={twMerge('card-quota', quota == null ? 'hidden' : '')}
+            className={twMerge('card-quota', quota == null ? 'hidden' : '')}
           />
           <Calendar
             hidden={date == null}
-            class={twMerge(
+            className={twMerge(
               'card-date',
               date == null ? 'hidden' : '',
               styleOverrides?.date

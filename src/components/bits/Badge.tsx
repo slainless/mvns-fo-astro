@@ -7,7 +7,7 @@ const BaseStyle = cntl`
 `
 
 export const Badge = createSingleton('span', {
-  class: twMerge(
+  className: twMerge(
     BaseStyle,
     cntl`
     bg-white text-black
@@ -16,7 +16,7 @@ export const Badge = createSingleton('span', {
 })
 
 export const InvertedBadge = createSingleton('span', {
-  class: twMerge(
+  className: twMerge(
     BaseStyle,
     cntl`
       bg-transparent text-white border-2 border-white

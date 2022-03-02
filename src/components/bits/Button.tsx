@@ -7,7 +7,7 @@ type ButtonAttr = HTMLAttributes<HTMLButtonElement>
 export const Arrow: FunctionComponent<
   Omit<ButtonAttr & { type: 'next' | 'prev' }, 'children'>
 > = (props) => {
-  const { class: cls, type, ...rest } = props
+  const { className: cls, type, ...rest } = props
   const style = cntl`
     bg-zinc-900/90
     backdrop-filter
@@ -23,8 +23,8 @@ export const Arrow: FunctionComponent<
   `
 
   return (
-    <button {...rest} class={mergeClass('arrow', style, cls)}>
-      <span class="material-icons-outlined">
+    <button {...rest} className={mergeClass('arrow', style, cls)}>
+      <span className="material-icons-outlined">
         {type == 'next'
           ? 'navigate_next'
           : type == 'prev'
@@ -42,12 +42,12 @@ export const Favorite: FunctionComponent<
     emptyStyle?: string
   }
 > = (props) => {
-  const { class: cls, filled, filledStyle, emptyStyle, ...rest } = props
+  const { className: cls, filled, filledStyle, emptyStyle, ...rest } = props
 
   return (
     <button
       {...rest}
-      class={twMerge(
+      className={twMerge(
         cntl`
           ${
             filled
@@ -59,7 +59,7 @@ export const Favorite: FunctionComponent<
         cls
       )}
     >
-      <span class="material-icons-outlined">
+      <span className="material-icons-outlined">
         {filled ? 'favorite' : 'favorite_border'}
       </span>
     </button>
@@ -68,11 +68,11 @@ export const Favorite: FunctionComponent<
 
 type AnchorAttr = HTMLAttributes<HTMLAnchorElement>
 export const Link: FunctionComponent<AnchorAttr> = (props) => {
-  const { class: cls, ...rest } = props
+  const { className: cls, ...rest } = props
   return (
     <a
       {...rest}
-      class={twMerge(
+      className={twMerge(
         `
         mt-4 button flex items-center 
         bg-white text-black 

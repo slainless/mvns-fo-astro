@@ -1,5 +1,4 @@
-import { h } from 'preact'
-import { JSX } from 'preact'
+import { createElement, ReactHTML, HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 /**
@@ -13,14 +12,14 @@ import { twMerge } from 'tailwind-merge'
  * Example, create `div` singleton with default class `container p-5`:
  * ```ts
  *  const Container = createSingleton('div', {
- *    class: `container p-5`
+ *    className: `container p-5`
  *  })
  * ```
  *
  * Later, we can call the singleton and add more classes:
  * ```tsx
  *  <main>
- *    <Container class="warning-box bg-yellow-300">
+ *    <Container className="warning-box bg-yellow-300">
  *      <!-- content here -->
  *    </Container>
  *  </main>
@@ -29,7 +28,7 @@ import { twMerge } from 'tailwind-merge'
  * When build, it will output:
  * ```tsx
  *  <main>
- *    <div class="container p-5 warning-box bg-yellow-300">
+ *    <div className="container p-5 warning-box bg-yellow-300">
  *      <!-- content here -->
  *    </div>
  *  </main>
@@ -37,17 +36,17 @@ import { twMerge } from 'tailwind-merge'
  *
  * TODO: fix type to allow arbitrary attributes
  */
-export function createSingleton<T extends keyof JSX.IntrinsicElements>(
+export function createSingleton<T extends keyof ReactHTML>(
   type: T,
-  defaultProps: JSX.IntrinsicElements[T]
-): FunctionComponent<JSX.IntrinsicElements[T]> {
+  defaultProps: HTMLAttributes<ReactHTML[T]>
+): FunctionComponent<HTMLAttributes<ReactHTML[T]>> {
   return (props) => {
-    const { class: defC, ...defRest } = defaultProps
-    const { class: c, ...rest } = props
+    const { className: defC, ...defRest } = defaultProps
+    const { className: c, ...rest } = props
     const newRest: Record<string, any> = Object.assign({}, defRest, rest, {
-      class: twMerge(c, defC),
+      className: twMerge(c, defC),
     })
 
-    return h(type, newRest)
+    return createElement(type, newRest)
   }
 }

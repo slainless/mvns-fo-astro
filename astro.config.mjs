@@ -30,12 +30,12 @@ const preactCompatPlugin = {
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
 	// Enable the Preact renderer to support Preact JSX components.
-	renderers: ['@astrojs/renderer-preact'],
+	renderers: ['@astrojs/renderer-react'],
 	vite: {
 		optimizeDeps: {
 			exclude: ['node:path', 'node:fs', 'node', 'casual', '@fakerjs/faker', 'video.js'],
 			esbuildOptions: {
-				plugins: [preactCompatPlugin]
+				// plugins: [preactCompatPlugin]
 			}
 		},
     resolve: {

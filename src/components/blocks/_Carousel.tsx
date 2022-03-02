@@ -2,7 +2,7 @@ import { createSingleton } from '@Functions/jsx-factory'
 import cntl from 'cntl'
 import { findChildren, mergeClass } from '@Functions/jsx-helper'
 import { Arrow } from '@Bits/Button'
-import { useRef } from 'preact/hooks'
+import { useRef } from 'react'
 import {
   fastChildrenCheck,
   getScrollVisibilityState,
@@ -50,7 +50,7 @@ module Carousel {
    * ```
    */
   export const Container: ContainerProps = (props) => {
-    const { class: cls, children, detectPartial, ...rest } = props
+    const { className: cls, children, detectPartial, ...rest } = props
     const contentRef = useRef<HTMLDivElement>(null)
     const { nextArrow, prevArrow, content } = findChildren(children, {
       nextArrow: (child) => child.type === NextButton,
@@ -147,34 +147,42 @@ module Carousel {
     return (
       <div
         {...rest}
-        class={mergeClass('carousel-container', Style.Container, cls)}
+        className={mergeClass('carousel-container', Style.Container, cls)}
       >
         {nextArrow}
         {prevArrow}
-        <div class="overflow-hidden rounded-lg">{content}</div>
+        <div className="overflow-hidden rounded-lg">{content}</div>
       </div>
     )
   }
 
   export const Content = createSingleton('div', {
-    class: mergeClass('carousel-content', Style.Content),
+    className: mergeClass('carousel-content', Style.Content),
   })
 
   export const NextButton: FunctionComponent<Omit<ArrowButtonProps, 'type'>> = (
     props
   ) => {
-    const { class: cls, children, ...rest } = props
+    const { className: cls, children, ...rest } = props
     return (
-      <Arrow {...rest} type="next" class={mergeClass(Style.NextButton, cls)} />
+      <Arrow
+        {...rest}
+        type="next"
+        className={mergeClass(Style.NextButton, cls)}
+      />
     )
   }
 
   export const PrevButton: FunctionComponent<Omit<ArrowButtonProps, 'type'>> = (
     props
   ) => {
-    const { class: cls, children, ...rest } = props
+    const { className: cls, children, ...rest } = props
     return (
-      <Arrow {...rest} type="prev" class={mergeClass(Style.PrevButton, cls)} />
+      <Arrow
+        {...rest}
+        type="prev"
+        className={mergeClass(Style.PrevButton, cls)}
+      />
     )
   }
 }

@@ -1,6 +1,5 @@
 import Swiper, { Navigation, SwiperOptions } from 'swiper'
-import { useEffect, useMemo, useRef } from 'preact/hooks'
-import { ComponentChild } from 'preact'
+import { useEffect, useMemo, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { nanoid } from 'nanoid'
 
@@ -12,7 +11,7 @@ type CommonProps = HTMLAttributes<HTMLDivElement> & {
   options?: SwiperOptions
 }
 export const Common: FunctionComponent<CommonProps> = (props) => {
-  const { children, class: cls, id, options, ...rest } = props
+  const { children, className: cls, id, options, ...rest } = props
   // const randomId = useMemo(() => nanoid(5), [])
   const swiperRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -37,16 +36,16 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
   }, [swiperRef])
 
   return (
-    <div class="swiper-container relative" id={`carousel-${id}`}>
-      <div class="swiper-button-prev" id={`prev-${id}`}></div>
+    <div className="swiper-container relative" id={`carousel-${id}`}>
+      <div className="swiper-button-prev" id={`prev-${id}`}></div>
       <div
         {...rest}
-        class={twMerge('swiper w-full rounded-lg', cls)}
+        className={twMerge('swiper w-full rounded-lg', cls)}
         ref={swiperRef}
       >
-        <div class="swiper-wrapper">{children}</div>
+        <div className="swiper-wrapper">{children}</div>
       </div>
-      <div class="swiper-button-next" id={`next-${id}`}></div>
+      <div className="swiper-button-next" id={`next-${id}`}></div>
     </div>
   )
 }

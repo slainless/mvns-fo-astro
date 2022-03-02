@@ -15,7 +15,7 @@ export default function Featured(props: Props) {
       <Section.Title>{title ?? 'New classes added every month'}</Section.Title>
       <Section.Content
         id="featured-container"
-        class={cntl`
+        className={cntl`
           mt-7 lg:mt-12 
           relative 
           h-96 lg:h-[32rem]
@@ -23,13 +23,13 @@ export default function Featured(props: Props) {
           rounded-lg lg:rounded-none
           flex flex-col items-end
         `}
-        style={`background-image: url('/media/featured-image.png')`}
+        style={{ backgroundImage: `url('/media/featured-image.png')` }}
       >
-        <div class="w-max p-5 z-10">
-          <Favorite class="text-4xl" emptyStyle={cntl`text-white/50`} />
+        <div className="w-max p-5 z-10">
+          <Favorite className="text-4xl" emptyStyle={cntl`text-white/50`} />
         </div>
         <div
-          class={cntl`
+          className={cntl`
             absolute top-0 right-0
             h-full
             w-full lg:w-96
@@ -38,20 +38,23 @@ export default function Featured(props: Props) {
           `}
         >
           <Badge>New</Badge>
-          <h3 id="featured-title" class="font-heading text-3xl uppercase mt-4">
+          <h3
+            id="featured-title"
+            className="font-heading text-3xl uppercase mt-4"
+          >
             Developing Entrepreneurial Mindset
           </h3>
-          <Separator class="mt-7 mb-3" />
-          <h4 id="featured-subtitle" class="leading-none">
+          <Separator className="mt-7 mb-3" />
+          <h4 id="featured-subtitle" className="leading-none">
             Chai Li
           </h4>
-          <div class="flex gap-3 mt-2">
+          <div className="flex gap-3 mt-2">
             <Quota filled={8} max={10} suffix="Students" />
             <Calendar>Jan 21-29, 22</Calendar>
           </div>
           <Link>
-            <span class="material-icons mr-2 !text-xl">play_arrow</span> Watch
-            Trailer
+            <span className="material-icons mr-2 !text-xl">play_arrow</span>{' '}
+            Watch Trailer
           </Link>
         </div>
       </Section.Content>

@@ -37,7 +37,7 @@ export default function ClassesView(props: Props) {
   } = props
   return (
     <div
-      class={twMerge(
+      className={twMerge(
         'container mx-auto px-0 lg:px-12 overflow-hidden',
         styleOverrides?.section?.container
       )}
@@ -46,19 +46,19 @@ export default function ClassesView(props: Props) {
       <Section.Title
         subtitle={subtitle}
         subtitleHref={subtitleHref}
-        class={styleOverrides?.section?.title}
+        className={styleOverrides?.section?.title}
       >
         {title}
       </Section.Title>
-      <Section.Content class={styleOverrides?.section?.content}>
+      <Section.Content className={styleOverrides?.section?.content}>
         <Swiper
           id={`${id}-swiper`}
-          class={twMerge('h-[28rem]', styleOverrides?.swiper)}
+          className={twMerge('h-[28rem]', styleOverrides?.swiper)}
           options={swiperOptions}
         >
           {isBrowser ? (
-            classes.map((item) => (
-              <SwiperSlide>
+            classes.map((item, key) => (
+              <SwiperSlide key={key}>
                 <Card styleOverrides={styleOverrides?.card} {...item} />
               </SwiperSlide>
             ))

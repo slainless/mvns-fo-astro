@@ -1,6 +1,6 @@
 import { Popover, Transition } from '@headlessui/react'
 import { Fragment, JSX } from 'preact'
-import { useEffect, useMemo } from 'preact/hooks'
+import { useEffect, useMemo } from 'react'
 import { mergeClass } from '@Functions/jsx-helper'
 // import { createPopper } from '@popperjs/core'
 import cntl from 'cntl'
@@ -8,7 +8,7 @@ import { Role, User } from '@Api/user'
 import { createSingleton } from '@Functions/jsx-factory'
 
 const MenuItem = createSingleton('a', {
-  class: cntl`py-1 px-4 hover:bg-gray-100 transition-colors rounded-lg`,
+  className: cntl`py-1 px-4 hover:bg-gray-100 transition-colors rounded-lg`,
 })
 
 export default function MenuPopover(props: { user: User }) {
@@ -33,12 +33,12 @@ export default function MenuPopover(props: { user: User }) {
   console.log(user.role.or(Role.INSTRUCTOR), user.role)
 
   return (
-    <Popover class="contents">
+    <Popover className="contents">
       {({ open }: { open: boolean }) => (
         <>
-          <Popover.Button as="div" class="contents">
+          <Popover.Button as="div" className="contents">
             <button
-              class={cntl`
+              className={cntl`
               inline-flex
               text-xl
               transition-transform
@@ -48,7 +48,7 @@ export default function MenuPopover(props: { user: User }) {
               id="menu-toggle-button"
               aria-label="Menu Popup"
             >
-              <span class="material-icons-outlined">
+              <span className="material-icons-outlined">
                 {open ? 'close' : 'menu'}
               </span>
             </button>
@@ -56,11 +56,11 @@ export default function MenuPopover(props: { user: User }) {
           <Popover.Panel
             // unmount={false}
             static={true}
-            class="contents"
+            className="contents"
           >
             <div
               id="menu-panel"
-              class={cntl`
+              className={cntl`
                 absolute bg-white rounded-md p-3
                 top-0 right-0 mt-5
                 ${open ? '' : 'hidden'}

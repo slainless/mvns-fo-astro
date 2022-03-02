@@ -8,20 +8,20 @@ type QuotaProps = {
 
 type SpanAttr = HTMLAttributes<HTMLSpanElement>
 export const Quota: FunctionComponent<SpanAttr & QuotaProps> = (props) => {
-  const { filled, max, class: cls, children, suffix, ...rest } = props
+  const { filled, max, className: cls, children, suffix, ...rest } = props
   return (
     <span
       {...rest}
-      class={twMerge('quota flex gap-2 text-sm items-center', cls)}
+      className={twMerge('quota flex gap-2 text-sm items-center', cls)}
     >
-      <span class="text-base">
-        <span class="material-icons-outlined" aria-label="icon">
+      <span className="text-base">
+        <span className="material-icons-outlined" aria-label="icon">
           how_to_reg
         </span>
       </span>
       <span>
-        <span class="filled">{filled}</span>/
-        <span class="limit font-bold">{max}</span>
+        <span className="filled">{filled.toString()}</span>/
+        <span className="limit font-bold">{max.toString()}</span>
       </span>
       {suffix ?? children}
     </span>
@@ -29,14 +29,14 @@ export const Quota: FunctionComponent<SpanAttr & QuotaProps> = (props) => {
 }
 
 export const Calendar: FunctionComponent<SpanAttr> = (props) => {
-  const { class: cls, children, ...rest } = props
+  const { className: cls, children, ...rest } = props
   return (
     <span
       {...rest}
-      class={twMerge('date flex gap-2 text-sm items-center', cls)}
+      className={twMerge('date flex gap-2 text-sm items-center', cls)}
     >
-      <span class="text-base">
-        <span class="material-icons-outlined" aria-label="icon">
+      <span className="text-base">
+        <span className="material-icons-outlined" aria-label="icon">
           event
         </span>
       </span>

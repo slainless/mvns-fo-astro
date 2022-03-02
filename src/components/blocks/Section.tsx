@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 
 module Section {
   export const Container = createSingleton('section', {
-    class: cntl`
+    className: cntl`
       container mx-auto
       px-0 lg:px-12 overflow-hidden
     `,
@@ -18,10 +18,10 @@ module Section {
       subtitleHref?: string
     }
   > = (props) => {
-    const { class: cls, subtitle, subtitleHref, ...rest } = props
+    const { className: cls, subtitle, subtitleHref, ...rest } = props
     return (
       <div
-        class={cntl`
+        className={cntl`
           inline-flex items-center justify-start
           flex-wrap
           gap-x-5
@@ -31,7 +31,7 @@ module Section {
       >
         <h2
           {...rest}
-          class={twMerge(
+          className={twMerge(
             cntl`
               section-title font-semibold
               text-2xl lg:text-3xl
@@ -41,7 +41,7 @@ module Section {
         />
         <a
           href={subtitleHref}
-          class="section-subtitle opacity-80 text-lg"
+          className="section-subtitle opacity-80 text-lg"
           hidden={subtitle == null}
         >
           {subtitle}
@@ -51,7 +51,7 @@ module Section {
   }
 
   export const Content = createSingleton('div', {
-    class: cntl`
+    className: cntl`
       section-content mx-7 lg:mx-0
       mt-7
     `,

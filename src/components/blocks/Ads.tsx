@@ -5,8 +5,14 @@ export default function Ads(props: {
 }) {
   const { width, height, src } = props
   return (
-    <aside class="ads w-full flex items-center justify-center">
-      <img style={`width: ${width}px; height: ${height}px;`} src={src}></img>
+    <aside className="ads w-full flex items-center justify-center">
+      <img
+        style={{
+          width: `${width}px`,
+          height: `${height}px`,
+        }}
+        src={src}
+      ></img>
     </aside>
   )
 }
