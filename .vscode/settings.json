@@ -8,7 +8,8 @@
     "theme",
     "element",
     "build",
-    "style"
+    "style",
+    "page"
   ],
   "prettier.quoteProps": "consistent",
   "prettier.semi": false,

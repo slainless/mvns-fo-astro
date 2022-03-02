@@ -20,7 +20,11 @@ type Props = {
     swiper?: string
     section?: {
       container?: string
-      title?: string
+      title?: {
+        container?: string
+        title?: string
+        subtitle?: string
+      }
       content?: string
     }
   }
@@ -46,7 +50,7 @@ export default function ClassesView(props: Props) {
       <Section.Title
         subtitle={subtitle}
         subtitleHref={subtitleHref}
-        className={styleOverrides?.section?.title}
+        styleOverrides={styleOverrides?.section?.title}
       >
         {title}
       </Section.Title>

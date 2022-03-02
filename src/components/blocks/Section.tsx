@@ -16,18 +16,32 @@ module Section {
     HeadingAttr & {
       subtitle?: string
       subtitleHref?: string
+      styleOverrides?: {
+        container?: string
+        title?: string
+        subtitle?: string
+      }
     }
   > = (props) => {
-    const { className: cls, subtitle, subtitleHref, ...rest } = props
+    const {
+      className: cls,
+      subtitle,
+      subtitleHref,
+      styleOverrides,
+      ...rest
+    } = props
     return (
       <div
-        className={cntl`
-          inline-flex items-center justify-start
-          flex-wrap
-          gap-x-5
-          gap-y-2
-          px-7 lg:px-0
-        `}
+        className={twMerge(
+          cntl`
+            inline-flex items-center justify-start
+            flex-wrap
+            gap-x-5
+            gap-y-2
+            px-7 lg:px-0
+          `,
+          styleOverrides?.container
+        )}
       >
         <h2
           {...rest}
@@ -36,12 +50,16 @@ module Section {
               section-title font-semibold
               text-2xl lg:text-3xl
             `,
-            cls
+            cls,
+            styleOverrides?.title
           )}
         />
         <a
           href={subtitleHref}
-          className="section-subtitle opacity-80 text-lg"
+          className={twMerge(
+            'section-subtitle opacity-80 text-lg',
+            styleOverrides?.subtitle
+          )}
           hidden={subtitle == null}
         >
           {subtitle}
