@@ -10,7 +10,6 @@ export enum Role {
 export class RoleClass {
   private role: number
   constructor(roles: Role[]) {
-    console.log('what the asd', roles)
     this.role = roles.length > 0 ? roles.reduce((p, c) => p | c) : 0
   }
 

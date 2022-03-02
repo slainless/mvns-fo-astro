@@ -1,32 +1,40 @@
 ---
-// layout
-import Home from '@Layouts/Home.astro'
-
-// elements
-import Hero from '@Elements/Hero.astro'
-import Featured from '@Elements/landing-page/Featured.tsx'
-// import Trending from '@Elements/landing-page/Trending.astro'
-// import RegisterPlugin from '@Elements/RegisterPlugin.astro'
-// import Ads from '@Blocks/Ads.tsx'
-// import VideoOnDemand from '@Elements/VideoOnDemand.astro'
-// import BusinessBanner from '@Elements/BusinessBanner.astro'
-// import Blog from '@Elements/Blog.astro'
-// import CategoryNav from '@Elements/CategoryNav.tsx'
-// import MostRated from '@Elements/MostRated.tsx'
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
+import Base from '@Layouts/Base.astro'
+import { map } from 'lodash-es'
+const NAVIGATION = {
+  Common: {
+    Login: '/portal/login',
+  },
+  Backoffice: {
+    Index: '/portal/',
+  },
+  Landing: {
+    Public: '/dev/landing/public',
+    Student: '/dev/landing/student',
+    Instructor: '/dev/landing/instructor',
+  },
+}
 ---
 
-<Home title="PAGE PUBLIC">
-  <!-- <RegisterPlugin /> -->
-  <Hero />
-  <Featured />
-  <!-- <Ads width={728} height={90} src="/media/leaderboard-ad-placeholder.png" />
-  <Trending />
-  <VideoOnDemand />
-  <BusinessBanner />
-  <Blog />
-  <CategoryNav client:load />
-  <MostRated client:load /> -->
-</Home>
+<Base title="Development Navigation" bodyClass="dark:bg-white dark:text-black">
+  <div class="flex flex-col items-stretch p-10">
+    {map(NAVIGATION, (v, i) => (
+      <div class="flex flex-col items-stretch">
+        <h1 class="text-4xl font-bold py-5">{i}</h1>
+        <ul>
+          {map(v, (w, j) => (
+            <li>
+              <a
+                href={w}
+                class="text-xl text-blue-500 hover:text-red-500"
+                target="_blank"
+                // @ts-ignore
+                set:html={`${j} --> ${w}`}
+              ></a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</Base>
