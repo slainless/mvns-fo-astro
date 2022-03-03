@@ -3,6 +3,11 @@ declare module 'tailwind.config.cjs' {
   export default ref
 }
 
+declare module '*.md' {
+  const ref: any
+  export default ref
+}
+
 interface Window {
   USER: import('@Api/user').User
 }

@@ -1,0 +1,21 @@
+---
+import Home from '@Layouts/Home.astro'
+import Hero from '@Elements/business/Hero.tsx'
+import DocumentView from '@Elements/DocumentView.tsx'
+import TOC from '@Elements/business/TOC.md'
+---
+
+<Home title="TOC Business">
+  <Hero />
+  <DocumentView client:load>
+    <TOC />
+    <div class="w-full flex justify-center mt-10">
+      <button
+        class="bg-red-600 py-3 px-10 rounded-lg text-sm tracking-widest uppercase flex items-center gap-2"
+      >
+        Register
+        <span class="material-icons-outlined"> arrow_forward </span>
+      </button>
+    </div>
+  </DocumentView>
+</Home>

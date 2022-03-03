@@ -1,0 +1,38 @@
+@css {
+  #main-article h2 {
+    @apply before:content-[''] before:w-14 before:border-y-4 before:border-red-600 before:block before:mb-1;
+  }
+}
+
+#main-article {
+  h2 {
+    @apply text-lg tracking-widest py-5 font-bold scroll-mt-16;
+  }
+
+  p,
+  ul,
+  ol {
+    @apply mb-5;
+  }
+
+  ul,
+  ol {
+    @apply pl-5;
+  }
+
+  li {
+    @apply pl-3;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  a {
+    @apply text-red-500 underline;
+  }
+}
