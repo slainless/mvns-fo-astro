@@ -77,7 +77,6 @@ export default function DocumentView(props: HTMLAttributes<HTMLDivElement>) {
         <article id="main-article" className="flex-grow">
           {children}
         </article>
-        <style></style>
       </main>
       <Ads
         width={300}

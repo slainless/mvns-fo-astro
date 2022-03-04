@@ -2,6 +2,7 @@ import Swiper, { Navigation, SwiperOptions } from 'swiper'
 import { useEffect, useMemo, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { nanoid } from 'nanoid'
+import './Carousel.styl'
 
 // import 'swiper/css'
 // import 'swiper/css/navigation'

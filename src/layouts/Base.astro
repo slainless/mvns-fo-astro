@@ -2,6 +2,7 @@
 // Barebone layout to share common head between pages.
 import cntl from 'cntl'
 import { twMerge } from 'tailwind-merge'
+import '@Styles/global.css'
 const { title, class: cls, bodyClass } = Astro.props
 ---
 
@@ -13,21 +14,6 @@ const { title, class: cls, bodyClass } = Astro.props
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href={Astro.resolve('../styles/global.css')}
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href={Astro.resolve('../styles/slick.styl')}
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href={Astro.resolve('../styles/swiper.styl')}
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"
