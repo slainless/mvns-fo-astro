@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 import { isArray } from 'lodash-es'
 import { Badge } from '@Bits/Badge'
 import { Favorite } from '@Bits/Button'
-import { Calendar, Quota } from '@Bits/Info'
+import { Calendar, Quota, SkillLevel } from '@Bits/Info'
 
 type DivAttr = HTMLAttributes<HTMLDivElement>
 export module Card {
@@ -65,11 +65,11 @@ type CommonProps = DivAttr & {
   bgImg?: string
   title?: string
   subtitle?: string
-  type?: string
   favorite?: boolean
   price?: string
   quota?: `${number}/${number}`
   date?: string
+  level?: string
   styleOverrides?: {
     card?: {
       header?: string
@@ -80,6 +80,8 @@ type CommonProps = DivAttr & {
     title?: string
     price?: string
     date?: string
+    quota?: string
+    level?: string
   }
 }
 export const Common: FunctionComponent<CommonProps> = (props) => {
@@ -88,11 +90,11 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
     bgImg,
     title,
     subtitle,
-    type,
     favorite,
     price,
     quota,
     date,
+    level,
     styleOverrides,
     ...rest
   } = props
@@ -118,7 +120,9 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
             : null}
         </div>
         <div className="items-end">
-          <Favorite filled={favorite} className={styleOverrides?.favorite} />
+          {favorite != null ? (
+            <Favorite filled={favorite} className={styleOverrides?.favorite} />
+          ) : null}
         </div>
       </Card.Header>
       <Card.Content
@@ -150,23 +154,26 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
         <h5 className="card-subtitle w-max" hidden={subtitle == null}>
           {subtitle}
         </h5>
-        <span className="card-minor-info flex gap-3" hidden={type == null}>
-          <Quota
-            hidden={quota == null}
-            filled={+filled}
-            max={+max}
-            className={twMerge('card-quota', quota == null ? 'hidden' : '')}
-          />
-          <Calendar
-            hidden={date == null}
-            className={twMerge(
-              'card-date',
-              date == null ? 'hidden' : '',
-              styleOverrides?.date
-            )}
-          >
-            {date}
-          </Calendar>
+        <span className="card-minor-info flex gap-3">
+          {quota ? (
+            <Quota
+              filled={+filled}
+              max={+max}
+              className={twMerge('card-quota', styleOverrides?.quota)}
+            />
+          ) : null}
+          {date ? (
+            <Calendar className={twMerge('card-date', styleOverrides?.date)}>
+              {date}
+            </Calendar>
+          ) : null}
+          {level ? (
+            <SkillLevel
+              className={twMerge('card-level', styleOverrides?.level)}
+            >
+              {level}
+            </SkillLevel>
+          ) : null}
         </span>
       </Card.Content>
     </Card.Container>

@@ -3,48 +3,33 @@ import { SwiperSlide } from 'swiper/react'
 import { Common as Swiper } from '@Blocks/Carousel'
 import { Common as Card } from '@Blocks/Card'
 import isBrowser from '@Functions/isBrowser'
-import ClassesView from '@Elements/ClassesView'
+import CardView from '@Elements/CardView'
 import cntl from 'cntl'
 
 const Items: Parameters<typeof Card>[0][] = [
   {
     bgImg: '/media/trending-card-2.jpg',
     title: 'Developing Entrepreneurial Mindset',
-    // subtitle: 'Chai Li',
-    type: 'Beginner (1 Hour)',
-    badges: ['Live', 'Finance & Accounting'],
-    favorite: true,
-    price: '49.65',
-    quota: '8/10',
-    date: 'Jan 21-29, 22',
+    subtitle: 'Chai Li',
+    badges: ['Finance & Accounting'],
   },
   {
     bgImg: '/media/trending-card-2.jpg',
     title: 'Developing Entrepreneurial Mindset',
-    // subtitle: 'Kevin Sanjaya',
-    type: 'Beginner (1 Hour)',
-    badges: ['Offline', 'IT & Software'],
-    favorite: true,
-    price: '49.65',
-    quota: '8/10',
-    date: 'Jan 21-29, 22',
+    subtitle: 'Kevin Sanjaya',
+    badges: ['IT & Software'],
   },
   {
     bgImg: '/media/trending-card-2.jpg',
     title: 'Developing Entrepreneurial Mindset',
-    // subtitle: 'Richard Dawkins',
-    type: 'Beginner (1 Hour)',
-    badges: ['Recording', 'Business'],
-    price: '49.65',
+    subtitle: 'Richard Dawkins',
+    badges: ['Business'],
   },
   {
     bgImg: '/media/trending-card-2.jpg',
     title: 'Developing Entrepreneurial Mindset',
-    // subtitle: 'Richard Dawkins',
-    type: 'Beginner (1 Hour)',
-    badges: ['Recording', 'Health & Fitness'],
-    favorite: true,
-    price: '49.65',
+    subtitle: 'Richard Dawkins',
+    badges: ['Health & Fitness'],
   },
   {
     bgImg: '/media/trending-card-2.jpg',
@@ -56,7 +41,7 @@ const Items: Parameters<typeof Card>[0][] = [
 
 export default function Blog() {
   return (
-    <ClassesView
+    <CardView
       id="blog"
       swiperOptions={{
         rewind: true,
@@ -70,6 +55,9 @@ export default function Blog() {
             container: cntl`w-full justify-between`,
             // subtitle: cntl`flex-grow`,
           },
+        },
+        card: {
+          title: cntl`font-heading font-normal`,
         },
       }}
     />

@@ -5,7 +5,7 @@ import isBrowser from '@Functions/isBrowser'
 import { SwiperOptions } from 'swiper'
 import { SwiperSlide } from 'swiper/react'
 import cntl from 'cntl'
-import ClassesView from '@Elements/ClassesView'
+import CardView from '@Elements/CardView'
 
 const Items: Parameters<typeof Card>[0][] = [
   {
@@ -39,7 +39,7 @@ const swiperOptions: SwiperOptions = {
 
 export default function Blog() {
   return (
-    <ClassesView
+    <CardView
       id="blog"
       title="Latest blog"
       swiperOptions={swiperOptions}

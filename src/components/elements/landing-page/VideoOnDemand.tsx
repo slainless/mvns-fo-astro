@@ -5,14 +5,13 @@ import { SwiperSlide } from 'swiper/react'
 import isBrowser from '@Functions/isBrowser'
 import { SwiperOptions } from 'swiper'
 import cntl from 'cntl'
-import ClassesView from './../ClassesView'
+import CardView from '../CardView'
 
 const Items: Parameters<typeof Card>[0][] = [
   {
     bgImg: '/media/vod-card.jpg',
     title: 'Developing Entrepreneurial Mindset',
     // subtitle: 'Chai Li',
-    type: 'Beginner (1 Hour)',
     badges: ['Offline', 'Finance & Accounting'],
     favorite: true,
     price: '49.65',
@@ -23,7 +22,7 @@ const Items: Parameters<typeof Card>[0][] = [
     bgImg: '/media/vod-card.jpg',
     title: 'Developing Entrepreneurial Mindset',
     // subtitle: 'Kevin Sanjaya',
-    type: 'Beginner (1 Hour)',
+    favorite: false,
     badges: ['Recording', 'Finance & Accounting'],
     price: '49.65',
   },
@@ -31,7 +30,7 @@ const Items: Parameters<typeof Card>[0][] = [
     bgImg: '/media/vod-card.jpg',
     title: 'Developing Entrepreneurial Mindset',
     subtitle: 'Richard Dawkins',
-    type: 'Beginner (1 Hour)',
+    favorite: false,
     badges: ['Live', 'Health & Fitness'],
   },
   { bgImg: '/media/vod-card.jpg' },
@@ -45,7 +44,7 @@ const swiperOptions: SwiperOptions = {
 
 export default function VideoOnDemand() {
   return (
-    <ClassesView
+    <CardView
       id="vod"
       title="Video on demand"
       subtitle="See all classes"

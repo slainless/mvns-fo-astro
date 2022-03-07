@@ -3,7 +3,7 @@ import { SwiperSlide } from 'swiper/react'
 import { Common as Swiper } from '@Blocks/Carousel'
 import { Common as Card } from '@Blocks/Card'
 import isBrowser from '@Functions/isBrowser'
-import ClassesView from '@Elements/ClassesView'
+import CardView from '@Elements/CardView'
 import cntl from 'cntl'
 
 const Items: Parameters<typeof Card>[0][] = [
@@ -11,7 +11,6 @@ const Items: Parameters<typeof Card>[0][] = [
     bgImg: '/media/trending-card-2.jpg',
     title: 'Developing Entrepreneurial Mindset',
     // subtitle: 'Chai Li',
-    type: 'Beginner (1 Hour)',
     badges: ['Live', 'Finance & Accounting'],
     favorite: true,
     price: '49.65',
@@ -22,7 +21,6 @@ const Items: Parameters<typeof Card>[0][] = [
     bgImg: '/media/trending-card-2.jpg',
     title: 'Developing Entrepreneurial Mindset',
     // subtitle: 'Kevin Sanjaya',
-    type: 'Beginner (1 Hour)',
     badges: ['Offline', 'IT & Software'],
     favorite: true,
     price: '49.65',
@@ -33,7 +31,7 @@ const Items: Parameters<typeof Card>[0][] = [
     bgImg: '/media/trending-card-2.jpg',
     title: 'Developing Entrepreneurial Mindset',
     // subtitle: 'Richard Dawkins',
-    type: 'Beginner (1 Hour)',
+    favorite: false,
     badges: ['Recording', 'Business'],
     price: '49.65',
   },
@@ -41,7 +39,6 @@ const Items: Parameters<typeof Card>[0][] = [
     bgImg: '/media/trending-card-2.jpg',
     title: 'Developing Entrepreneurial Mindset',
     // subtitle: 'Richard Dawkins',
-    type: 'Beginner (1 Hour)',
     badges: ['Recording', 'Health & Fitness'],
     favorite: true,
     price: '49.65',
@@ -56,7 +53,7 @@ const Items: Parameters<typeof Card>[0][] = [
 
 export default function ContinueLearning() {
   return (
-    <ClassesView
+    <CardView
       id="continue-learning"
       swiperOptions={{
         rewind: true,

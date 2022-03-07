@@ -44,3 +44,20 @@ export const Calendar: FunctionComponent<SpanAttr> = (props) => {
     </span>
   )
 }
+
+export const SkillLevel: FunctionComponent<SpanAttr> = (props) => {
+  const { className: cls, children, ...rest } = props
+  return (
+    <span
+      {...rest}
+      className={twMerge('skill-level flex gap-2 text-sm items-center', cls)}
+    >
+      <span className="text-base">
+        <span className="material-icons-outlined" aria-label="icon">
+          insights
+        </span>
+      </span>
+      <span>{children}</span>
+    </span>
+  )
+}

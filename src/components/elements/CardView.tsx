@@ -29,7 +29,7 @@ type Props = {
     }
   }
 }
-export default function ClassesView(props: Props) {
+export default function CardView(props: Props) {
   const {
     id,
     title,
@@ -40,7 +40,7 @@ export default function ClassesView(props: Props) {
     styleOverrides,
   } = props
   return (
-    <div
+    <section
       className={twMerge(
         'container mx-auto px-0 lg:px-12 overflow-hidden',
         styleOverrides?.section?.container
@@ -71,6 +71,6 @@ export default function ClassesView(props: Props) {
           )}
         </Swiper>
       </Section.Content>
-    </div>
+    </section>
   )
 }
