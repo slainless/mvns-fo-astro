@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "dev:experimental": "astro dev --experimental-static-build",
+    "start": "yarn run dev",
     "build": "astro build --experimental-static-build",
     "build:force": "rimraf dist && yarn build",
     "preview": "astro preview"
@@ -14,7 +15,7 @@
     "@types/react": "^17.0.39",
     "@types/react-slick": "^0.23.8",
     "@types/tailwindcss": "^3.0.9",
-    "astro": "^0.23.3",
+    "astro": "^0.23.7",
     "autoprefixer": "^10.4.2",
     "casual": "^1.6.2",
     "postcss": "^8.4.6",

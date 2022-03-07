@@ -5,6 +5,8 @@
     "strict": true,
     "baseUrl": ".",
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@Api/*": ["src/api/*"],
       "@Bits/*": ["src/components/bits/*"],
