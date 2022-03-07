@@ -4,8 +4,8 @@ export default function Input() {
   return (
     <Section.Container id="input-container">
       <Section.Content className="flex flex-col gap-12">
-        <h1 className="text-3xl">Search result for:</h1>
-        <div className="flex gap-3">
+        <h1 className="text-4xl font-bold">30 results for ...</h1>
+        {/* <div className="flex gap-3">
           <input
             id="search-input"
             placeholder="I'm looking for ..."
@@ -14,7 +14,7 @@ export default function Input() {
           <button className="bg-red-500 rounded-md text-white py-2 px-7 tracking-widest font-light uppercase text-xs">
             Search
           </button>
-        </div>
+        </div> */}
       </Section.Content>
     </Section.Container>
   )

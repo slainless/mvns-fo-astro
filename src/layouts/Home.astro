@@ -3,10 +3,11 @@ import Base from './Base.astro'
 import Header from './Header.astro'
 import Footer from './Footer.tsx'
 import Ads from '@Blocks/Ads.tsx'
-const { title } = Astro.props
+import { twMerge } from 'tailwind-merge'
+const { title, class: cls } = Astro.props
 ---
 
-<Base {title} class="mt-16 lg:mt-32">
+<Base {title} class={twMerge('mt-16 lg:mt-32', cls)}>
   <slot name="head" slot="head" />
   <Header slot="pre-main" />
   <slot />
