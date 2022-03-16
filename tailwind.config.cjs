@@ -9,9 +9,12 @@ const Config = {
       'heading': ['Sansita', 'Montserrat'],
       'heading-alt': ['Poppins'],
       'body': ['Roboto', 'Poppins'],
-      'mono': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+      'mono': '"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
     }
-  }
+  },
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ]
 }
 
 module.exports = Config

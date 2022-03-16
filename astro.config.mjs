@@ -33,9 +33,11 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
 	renderers: ['@astrojs/renderer-react'],
 	vite: {
 		optimizeDeps: {
-			exclude: ['node:path', 'node:fs', 'node', 'casual', '@fakerjs/faker', 'video.js'],
+			exclude: ['video.js'],
 			esbuildOptions: {
-				// plugins: [preactCompatPlugin]
+				plugins: [
+          // esbuildCommonjs(['hashlru'])
+        ]
 			}
 		},
     resolve: {
