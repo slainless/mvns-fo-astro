@@ -24,6 +24,12 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @apply bg-black text-white font-body flex flex-col gap-12;
+}
+
+.vjs-control-text {
+  display: none;
 }
 
 .card-carousel.slick {

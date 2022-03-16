@@ -55,13 +55,13 @@ const { title, class: cls, bodyClass } = Astro.props
     <title>{title}</title>
     <slot name="head" />
   </head>
-  <body
-    class={twMerge(
-      'bg-black text-white font-body flex flex-col gap-12',
-      bodyClass
-    )}
-  >
+  <body>
     <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.js"
+      integrity="sha512-wKJflLtBLm17q2xfXgyi1zHcd5v61unuxlu5rr8KWo7aCYl/lBT3Tg+gthkVDVIY+NUFwylUW/3w5kmFao18Hg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
     <script> videojs.options.autoSetup = false </script>
     <slot name="pre-main" />
     <main

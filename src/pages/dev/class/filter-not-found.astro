@@ -1,0 +1,23 @@
+---
+import Home from '@Layouts/Home.astro'
+import Section from '@Blocks/Section.tsx'
+import Filter from '@Elements/class/Filter.tsx'
+import cntl from 'cntl'
+---
+
+<Home title="Filter Not Found">
+  <Section.Container id="all-classes">
+    <Section.Title
+      styleOverrides={{
+        title: cntl`lg:text-5xl`,
+      }}>Not Found</Section.Title
+    >
+    <Section.Content className="flex flex-col gap-10">
+      <Filter client:load />
+      <div class="flex items-center justify-center flex-col gap-20 my-10">
+        <!-- <h1 class="text-5xl">Sorry Data Not Found</h1> -->
+        <img src="/media/not-found-illust.png" class="w-[32rem]" />
+      </div>
+    </Section.Content>
+  </Section.Container>
+</Home>

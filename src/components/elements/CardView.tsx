@@ -62,7 +62,7 @@ export default function CardView(props: Props) {
         >
           {isBrowser ? (
             classes.map((item, key) => (
-              <SwiperSlide key={key}>
+              <SwiperSlide key={id + key}>
                 <Card styleOverrides={styleOverrides?.card} {...item} />
               </SwiperSlide>
             ))

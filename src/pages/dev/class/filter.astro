@@ -1,0 +1,25 @@
+---
+import Home from '@Layouts/Home.astro'
+import Section from '@Blocks/Section.tsx'
+import Pagination from '@Elements/Pagination.tsx'
+import Grid from '@Elements/class/Grid.tsx'
+import Filter from '@Elements/class/Filter.tsx'
+import cntl from 'cntl'
+---
+
+<Home title="Filter Classes">
+  <Section.Container id="all-classes">
+    <Section.Title
+      styleOverrides={{
+        title: cntl`lg:text-5xl`,
+      }}>30 results based on your filters</Section.Title
+    >
+    <Section.Content className="flex flex-col gap-10">
+      <Filter client:load />
+      <Grid />
+      <div class="w-full flex items-center justify-center mt-12">
+        <Pagination />
+      </div>
+    </Section.Content>
+  </Section.Container>
+</Home>

@@ -6,14 +6,15 @@ const BaseStyle = cntl`
   badge w-max text-xs px-3 py-1 rounded-full
 `
 
-export const Badge = createSingleton('span', {
-  className: twMerge(
-    BaseStyle,
-    cntl`
-    bg-white text-black
-  `
-  ),
-})
+type SpanAttr = HTMLAttributes<HTMLSpanElement>
+export function Badge(props: SpanAttr) {
+  const { className, children } = props
+  return (
+    <span className={twMerge(BaseStyle, 'bg-white text-black', className)}>
+      {children}
+    </span>
+  )
+}
 
 export const InvertedBadge = createSingleton('span', {
   className: twMerge(

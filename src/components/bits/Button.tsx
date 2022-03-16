@@ -66,6 +66,31 @@ export const Favorite: FunctionComponent<
   )
 }
 
+type IconProps = ButtonAttr & {
+  icon: string
+  outlined?: boolean
+  styleOverrides?: {
+    icon?: string
+  }
+}
+export function Icon(props: IconProps) {
+  const { outlined, icon, styleOverrides, className, ...rest } = props
+  return (
+    <button className={twMerge('text-2xl inline-flex', className)} {...rest}>
+      <span
+        className={twMerge(
+          outlined === null || outlined
+            ? 'material-icons-outlined'
+            : 'material-icons',
+          styleOverrides?.icon
+        )}
+      >
+        {icon}
+      </span>
+    </button>
+  )
+}
+
 type AnchorAttr = HTMLAttributes<HTMLAnchorElement>
 export const Link: FunctionComponent<AnchorAttr> = (props) => {
   const { className: cls, ...rest } = props

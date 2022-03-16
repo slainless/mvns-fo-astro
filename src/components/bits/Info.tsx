@@ -61,3 +61,44 @@ export const SkillLevel: FunctionComponent<SpanAttr> = (props) => {
     </span>
   )
 }
+
+type CommonProps = SpanAttr & {
+  icon: string
+  text?: string
+  outlined?: boolean
+  styleOverrides?: {
+    container?: string
+    icon?: string
+    text?: string
+  }
+}
+export function Common(props: CommonProps) {
+  const { icon, text, outlined, styleOverrides, className, children, ...rest } =
+    props
+  return (
+    <span
+      className={twMerge(
+        'common-info text-lg flex flex-row items-center gap-2',
+        className,
+        styleOverrides?.container
+      )}
+      {...rest}
+    >
+      <span
+        className={twMerge(
+          outlined == null || outlined
+            ? 'material-icons-outlined'
+            : 'material-icons',
+          styleOverrides?.icon
+        )}
+      >
+        {icon}
+      </span>
+      <span
+        className={twMerge('common-info-text text-md', styleOverrides?.text)}
+      >
+        {text ?? children}
+      </span>
+    </span>
+  )
+}
