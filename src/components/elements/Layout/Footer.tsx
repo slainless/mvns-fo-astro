@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Tiktok, Youtube } from '@Bits/Brand'
+import { Facebook, Instagram, LinkedIn, Tiktok, Youtube } from '@Bits/Brand'
 import List from './Footer/List'
 
 export default function Footer() {
@@ -68,7 +68,7 @@ export default function Footer() {
               id="social-media-tiktok"
               className="w-6 h-6"
             >
-              <Linkedin />
+              <LinkedIn />
             </a>
           </div>
         </div>

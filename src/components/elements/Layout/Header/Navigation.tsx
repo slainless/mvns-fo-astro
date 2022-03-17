@@ -4,6 +4,8 @@ import { getUser, Role, User } from '@Api/user'
 import Popover from './Popover'
 import { Link } from '@Bits/Button'
 import cntl from 'cntl'
+import { twMerge } from 'tailwind-merge'
+import Login from '@Elements/Login'
 
 const Container = ({ children }: any) => (
   <nav className="flex items-center justify-end gap-6" id="navigation">
@@ -14,35 +16,40 @@ const Container = ({ children }: any) => (
   </nav>
 )
 
-type LinkItem = [label: string, href: string]
 const LinkStyle = cntl`
   tracking-normal after:w-0
   text-white
 `
+const DefaultNav = (
+  <>
+    <Link className={LinkStyle} href="/instructor/tos">
+      Become Instructor
+    </Link>
+    <Login title="Login">
+      <Link className={LinkStyle} href="javascript:void(0);">
+        Log In
+      </Link>
+    </Login>
+    <Link
+      className={twMerge(
+        LinkStyle,
+        'after:w-1/3 after:left-auto after:right-0 transition-colors hover:text-red-500'
+      )}
+      href="javascript:void(0);"
+    >
+      Register
+    </Link>
+  </>
+)
+
 export default function Navigation() {
-  const links: LinkItem[] = [
-    ['Become Instructor', '/instructor/tos'],
-    ['Log In', '#'],
-    ['Register', '#'],
-  ]
-
-  const defaultNav = (
-    <>
-      {links.map((link) => (
-        <Link key={link[0] + link[1]} className={LinkStyle} href={link[1]}>
-          {link[0]}
-        </Link>
-      ))}
-    </>
-  )
-
-  if (!isBrowser) return <Container>{defaultNav}</Container>
+  if (!isBrowser) return <Container>{DefaultNav}</Container>
   const user: User | null = useMemo(getUser, [])
 
   return (
     <Container>
       {user == null || user.role.is(0) ? (
-        defaultNav
+        DefaultNav
       ) : user.role.or(Role.STUDENT | Role.INSTRUCTOR) ? (
         <>
           <a>
