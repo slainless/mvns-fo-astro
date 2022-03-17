@@ -1,6 +1,6 @@
 import cntl from 'cntl'
 import { Root as Separator } from '@radix-ui/react-separator'
-import { Link } from '@Bits/Button'
+import { Common as Button } from '@Bits/Button'
 
 type ActionProps = {
   icon: string
@@ -86,9 +86,12 @@ export default function Overview() {
             <div id="overview-price">
               Prices: <span className="text-red-500 font-bold">$35.00</span>
             </div>
-            <Link id="overview-cart" className="mt-0 text-white bg-red-600">
+            <Button
+              id="overview-cart"
+              className="mt-0 text-white bg-red-600 border-red-600 hover:border-white hover:translate-y-0"
+            >
               Add to Cart
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ export default function Footer() {
         <List title="FAQ" links={[['Student'], ['Instructor'], ['Business']]} />
       </div>
       <div className="grid grid-cols-2 pt-6">
-        <span id="copyright" className="font-heading-alt text-zinc-500 text-sm">
+        <span id="copyright" className="font-heading text-zinc-500 text-sm">
           © 2022, Mavensdotlive Sdn Bhd. All right reserved.
         </span>
         <div className="flex justify-end gap-7">

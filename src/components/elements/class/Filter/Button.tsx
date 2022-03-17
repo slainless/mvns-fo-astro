@@ -1,15 +1,23 @@
 import { Badge } from '@Bits/Badge'
 import { ForwardedRef, forwardRef } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 type ButtonProps = HTMLAttributes<HTMLButtonElement> & {}
 const Button = forwardRef(
   (props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
     return (
-      <button ref={ref} {...rest}>
-        <Badge className="text-sm py-1 border-2 border-gray-300">
-          {children}
-        </Badge>
+      <button
+        ref={ref}
+        {...rest}
+        className={twMerge(
+          'text-sm py-1 font-heading border-2 border-white',
+          'bg-white text-black rounded-full px-3',
+          'hover:bg-transparent hover:shadow-lg hover:shadow-white/30 hover:text-white transition-all duration-300',
+          className
+        )}
+      >
+        {children}
       </button>
     )
   }

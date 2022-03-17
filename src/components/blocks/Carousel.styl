@@ -8,13 +8,15 @@
     &-prev,
     &-next {
       @apply bg-zinc-900/90 text-white z-10 rounded-full w-12 h-12;
+      @apply transition-all;
       @apply backdrop-filter backdrop-blur-sm;
 
       line-height: 0;
       font-size: 0;
 
-      &:hover {
-        @apply bg-zinc-900/90;
+      &:hover,
+      &:focus {
+        @apply ring-4 ring-red-600/50;
       }
 
       &::after {

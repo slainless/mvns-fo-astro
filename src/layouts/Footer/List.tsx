@@ -7,7 +7,7 @@ export default function LinkList(props: {
     <div className="footer-links flex flex-col gap-3 w-max justify-self-center">
       <h4 className="footer-links-title font-bold mb-5">{title}</h4>
       {links.map((link, i) => (
-        <a key={i} href={link[1]} className="font-heading-alt text-sm">
+        <a key={i} href={link[1]} className="font-heading text-sm">
           {link[0]}
         </a>
       ))}

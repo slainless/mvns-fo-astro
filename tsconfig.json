@@ -17,6 +17,7 @@
       "@Pages/*": ["src/pages/*"],
       "@Styles/*": ["src/styles/*"],
       "@Components/*": ["src/components/*"],
+      "@Dev/*": ["src/_dev/*"],
       "@/*": ["*"]
     }
   },

@@ -38,55 +38,57 @@ export default function Dialog(props: DialogProps & PrimitiveProps) {
   return (
     <Dialog_.Root {...rest}>
       <Dialog_.Trigger asChild>{trigger}</Dialog_.Trigger>
-      <Dialog_.Portal className="filter-dialog">
+      <Dialog_.Portal className="filter-dialog hidden">
         <Dialog_.Overlay className="bg-black/80 h-full w-full fixed z-40" />
-        <Dialog_.Content
-          className={twMerge(
-            `
-            inset-0 fixed z-50 w-max 
-            h-max left-1/2 top-1/2 
-            -translate-x-1/2  -translate-y-1/2
+        <Dialog_.Content className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fixed z-50 flex items-center justify-center pointer-events-none">
+          <div
+            className={twMerge(
+              `
+            w-max h-max 
             bg-slate-50 text-black rounded-2xl shadow-md drop-shadow-md
             pb-4 pt-8 px-8 flex flex-col gap-3
             max-w-md
+            animate-enter-scaled
+            pointer-events-auto
           `,
-            styleOverrides?.card
-          )}
-        >
-          <Dialog_.Title
-            className={twMerge(
-              'tracking-wide text-lg px-4 font-medium',
-              styleOverrides?.title
+              styleOverrides?.card
             )}
           >
-            {title}
-          </Dialog_.Title>
-          <VisuallyHidden>
-            <Dialog_.Description>{desc}</Dialog_.Description>
-          </VisuallyHidden>
-          <div
-            className={twMerge(
-              'filter-content px-4',
-              styleOverrides?.content,
-              className
-            )}
-          >
-            {children}
-          </div>
-          <Separator className="h-[1px] w-full bg-black/10 mt-5" />
-          <div className="filter-footer justify-between flex gap-10">
-            <button
-              className="underline font-bold tracking-wide underline-offset-2"
-              onClick={onReset}
+            <Dialog_.Title
+              className={twMerge(
+                'tracking-wide text-lg px-4 font-bold font-heading text-red-600',
+                styleOverrides?.title
+              )}
             >
-              Reset
-            </button>
-            <button
-              onClick={onApply}
-              className="border-[1px] border-gray-200 rounded-lg shadow-lg drop-shadow-lg font-bold tracking-widest uppercase px-9 py-1 text-red-500"
+              {title}
+            </Dialog_.Title>
+            <VisuallyHidden>
+              <Dialog_.Description>{desc}</Dialog_.Description>
+            </VisuallyHidden>
+            <div
+              className={twMerge(
+                'filter-content px-4',
+                styleOverrides?.content,
+                className
+              )}
             >
-              Filter
-            </button>
+              {children}
+            </div>
+            <Separator className="h-[1px] w-full bg-black/10 mt-5" />
+            <div className="filter-footer justify-between flex gap-10">
+              <button
+                className="underline font-bold tracking-wide underline-offset-2"
+                onClick={onReset}
+              >
+                Reset
+              </button>
+              <button
+                onClick={onApply}
+                className="border-[1px] border-gray-200 rounded-lg shadow-lg drop-shadow-lg font-bold tracking-widest uppercase px-9 py-1 text-red-500"
+              >
+                Filter
+              </button>
+            </div>
           </div>
         </Dialog_.Content>
       </Dialog_.Portal>

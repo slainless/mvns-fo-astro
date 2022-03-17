@@ -1,16 +1,41 @@
+import { Common as Button } from '@Bits/Button'
 import Section from '@Blocks/Section'
-const BACKGROUND_URL = `/media/business-banner.png`
+import cntl from 'cntl'
+
+const OverlayBgStyle = cntl`
+  before:content-['']
+
+  before:z-[2]
+
+  before:opacity-0 hover:before:opacity-100 
+
+  before:bg-gradient-to-br
+  before:absolute before:inset-0 before:w-full before:h-full
+  before:transition-all
+  hover:before:from-transparent hover:before:to-red-400
+`
 
 export default function BusinessBanner() {
   return (
     <Section.Container id="business-banner">
       <div
-        style={{ backgroundImage: `url('${BACKGROUND_URL}')` }}
         className={`
-          bg-cover bg-no-repeat 
-          h-[28rem] lg:h-[36rem] 
-          bg-[right_-18rem_bottom_0] sm:bg-[right_-12rem_bottom_-4rem] 
-          bg-[#FDDC9E]
+          relative group
+          h-[28rem] lg:h-[36rem] rounded-lg
+
+          bg-gradient-to-br from-orange-100 to-orange-300
+
+          transition-all
+
+          after:content-['']
+          after:absolute after:inset-0 after:w-full after:h-full
+
+          after:z-[1]
+
+          after:bg-[url('/media/business-banner.png')]
+          after:bg-cover after:bg-no-repeat 
+          after:transition-all
+          after:bg-[right_-18rem_bottom_0] sm:after:bg-[right_-12rem_bottom_-4rem]
         `}
       >
         <div
@@ -21,21 +46,22 @@ export default function BusinessBanner() {
           px-10 sm:px-0
           sm:pl-12 
           gap-10
+          z-[3]
         `}
         >
-          <h1 className="font-bold text-5xl sm:text-6xl text-white drop-shadow-md sm:text-red-600 leading-tight">
-            Mavens for Business
+          <h1 className="font-bold text-5xl sm:text-6xl text-white drop-shadow-md sm:text-red-600 leading-tight font-display">
+            <span>Mavens</span> <span className="font-light text-3xl">for</span>
+            <br />
+            <span className="font-black">Business</span>
           </h1>
-          <button
-            className={`
-              bg-white text-red-600 text-xs tracking-wider py-3 
-              rounded-md shadow-md drop-shadow-md uppercase
-              max-w-[16rem]
-            `}
+          <Button
+            href="/business/tos"
+            className="z-[3] text-red-500 hover:border-red-600 hover:shadow-red-600/30 hover:text-red-500 hover:bg-white shadow-md"
           >
             Register Business
-          </button>
+          </Button>
         </div>
+        {/* <div className="overlay absolute inset-0 w-full h-full bg-black z-0"></div> */}
       </div>
     </Section.Container>
   )

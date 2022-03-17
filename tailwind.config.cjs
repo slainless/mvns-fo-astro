@@ -5,11 +5,28 @@ const Config = {
     './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue,md,mdx}',
   ],
   theme: {
-    fontFamily: {
-      'heading': ['Sansita', 'Montserrat'],
-      'heading-alt': ['Poppins'],
-      'body': ['Roboto', 'Poppins'],
-      'mono': '"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+    extend: {
+      fontFamily: {
+        'display': ['Big Shoulders Display'],
+        'heading': ['Poppins'],
+        'body': ['Inter', 'Poppins'],
+        'mono': '"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+      },
+      animation: {
+        'enter-scaled': 'appear-scaled-up 300ms ease-out'
+      },
+      keyframes: {
+        'appear-scaled-up': {
+          '0%': {
+            opacity: 0,
+            transform: 'scale(0.95)'
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'scale(1)'
+          }
+        }
+      }
     }
   },
   plugins: [

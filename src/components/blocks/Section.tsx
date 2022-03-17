@@ -2,6 +2,7 @@ import type { FunctionComponent } from 'preact'
 import cntl from 'cntl'
 import { createSingleton } from '@Functions/jsx-factory'
 import { twMerge } from 'tailwind-merge'
+import { Link } from '@Bits/Button'
 
 module Section {
   export const Container = createSingleton('section', {
@@ -54,16 +55,16 @@ module Section {
             styleOverrides?.title
           )}
         />
-        <a
+        <Link
           href={subtitleHref}
           className={twMerge(
-            'section-subtitle opacity-80 text-lg',
+            'section-subtitle text-lg tracking-normal text-white/80 after:w-0',
             styleOverrides?.subtitle
           )}
           hidden={subtitle == null}
         >
           {subtitle}
-        </a>
+        </Link>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import Section from '@Blocks/Section'
 import cntl from 'cntl'
 import { Badge } from '@Bits/Badge'
-import { Favorite, Link } from '@Bits/Button'
+import { Favorite, Common as Button } from '@Bits/Button'
 import Separator from '@Bits/Separator'
 import { Calendar, Quota } from '@Bits/Info'
 
@@ -26,7 +26,10 @@ export default function Featured(props: Props) {
         style={{ backgroundImage: `url('/media/featured-image.png')` }}
       >
         <div className="w-max p-5 z-10">
-          <Favorite className="text-4xl" emptyStyle={cntl`text-white/50`} />
+          <Favorite
+            className="text-4xl w-14 h-14"
+            emptyStyle={cntl`text-white/50`}
+          />
         </div>
         <div
           className={cntl`
@@ -40,22 +43,22 @@ export default function Featured(props: Props) {
           <Badge>New</Badge>
           <h3
             id="featured-title"
-            className="font-heading text-3xl uppercase mt-4"
+            className="font-heading text-3xl uppercase mt-4 font-bold"
           >
-            Developing Entrepreneurial Mindset
+            Politics: Inclusive Leadership
           </h3>
           <Separator className="mt-7 mb-3" />
           <h4 id="featured-subtitle" className="leading-none">
-            Chai Li
+            Bill Clinton
           </h4>
           <div className="flex gap-3 mt-2">
             <Quota filled={8} max={10} suffix="Students" />
             <Calendar>Jan 21-29, 22</Calendar>
           </div>
-          <Link>
+          <Button className="mt-4">
             <span className="material-icons mr-2 !text-xl">play_arrow</span>{' '}
             Watch Trailer
-          </Link>
+          </Button>
         </div>
       </Section.Content>
     </Section.Container>

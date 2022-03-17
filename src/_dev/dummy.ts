@@ -1,0 +1,103 @@
+import { Common } from '@Blocks/Card'
+
+export const slimCard: Parameters<typeof Common>[0][] = [
+  {
+    bgImg: '/media/card-bg (4).jpg',
+    title: 'Developing Entrepreneurial Mindset',
+    // subtitle: 'Chai Li',
+    badges: ['Live', 'Finance & Accounting'],
+    favorite: true,
+    price: '49.65',
+    quota: '8/10',
+    date: 'Jan 21-29, 22',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg (5).jpg',
+    title: 'Developing Entrepreneurial Mindset',
+    // subtitle: 'Kevin Sanjaya',
+    badges: ['Offline', 'IT & Software'],
+    favorite: true,
+    price: '49.65',
+    quota: '8/10',
+    date: 'Jan 21-29, 22',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg (6).jpg',
+    title: 'Developing Entrepreneurial Mindset',
+    favorite: false,
+    // subtitle: 'Richard Dawkins',
+    badges: ['Recording', 'Business'],
+    price: '49.65',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg (8).jpg',
+    title: 'Developing Entrepreneurial Mindset',
+    // subtitle: 'Richard Dawkins',
+    badges: ['Recording', 'Health & Fitness'],
+    favorite: true,
+    price: '49.65',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg (9).jpg',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg (7).jpg',
+    href: '/class/detail',
+  },
+]
+
+export const largeCard: Parameters<typeof Common>[0][] = [
+  {
+    bgImg: '/media/card-bg-lg (1).jpg',
+    title: 'Developing Entrepreneurial Mindset',
+    // subtitle: 'Chai Li',
+    badges: ['Live', 'Finance & Accounting'],
+    favorite: true,
+    price: '49.65',
+    quota: '8/10',
+    date: 'Jan 21-29, 22',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg-lg (2).jpg',
+    title: 'Developing Entrepreneurial Mindset',
+    // subtitle: 'Kevin Sanjaya',
+    badges: ['Offline', 'IT & Software'],
+    favorite: true,
+    price: '49.65',
+    quota: '8/10',
+    date: 'Jan 21-29, 22',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg-lg (3).jpg',
+    title: 'Developing Entrepreneurial Mindset',
+    favorite: false,
+    // subtitle: 'Richard Dawkins',
+    badges: ['Recording', 'Business'],
+    price: '49.65',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg-lg (4).jpg',
+    title: 'Developing Entrepreneurial Mindset',
+    // subtitle: 'Richard Dawkins',
+    badges: ['Recording', 'Health & Fitness'],
+    favorite: true,
+    price: '49.65',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg-lg (5).jpg',
+    href: '/class/detail',
+  },
+  {
+    bgImg: '/media/card-bg-lg (6).jpg',
+    href: '/class/detail',
+  },
+]

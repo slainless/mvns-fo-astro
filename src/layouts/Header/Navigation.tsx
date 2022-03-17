@@ -2,6 +2,8 @@ import { useMemo, useEffect, useState } from 'react'
 import isBrowser from '@Functions/isBrowser'
 import { getUser, Role, User } from '@Api/user'
 import Popover from './Popover'
+import { Link } from '@Bits/Button'
+import cntl from 'cntl'
 
 const Container = ({ children }: any) => (
   <nav className="flex items-center justify-end gap-6" id="navigation">
@@ -12,13 +14,25 @@ const Container = ({ children }: any) => (
   </nav>
 )
 
+type LinkItem = [label: string, href: string]
+const LinkStyle = cntl`
+  tracking-normal after:w-0
+  text-white
+`
 export default function Navigation() {
+  const links: LinkItem[] = [
+    ['Become Instructor', '/instructor/tos'],
+    ['Log In', '#'],
+    ['Register', '#'],
+  ]
+
   const defaultNav = (
     <>
-      <a>Become Instructor</a>
-      {/* <a>For Business</a> */}
-      <a>Log In</a>
-      <a>Register</a>
+      {links.map((link) => (
+        <Link key={link[0] + link[1]} className={LinkStyle} href={link[1]}>
+          {link[0]}
+        </Link>
+      ))}
     </>
   )
 

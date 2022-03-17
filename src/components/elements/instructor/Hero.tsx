@@ -1,4 +1,5 @@
 import cntl from 'cntl'
+import { Common as Button } from '@Bits/Button'
 
 export default function Hero() {
   return (
@@ -33,7 +34,8 @@ export default function Hero() {
             id="hero-title"
             className={cntl`
               text-[44px] lg:text-5xl 
-              inline-flex flex-col font-heading 
+              inline-flex flex-col font-display
+              font-black 
               gap-0 
               leading-[85%]
               uppercase
@@ -58,24 +60,9 @@ export default function Hero() {
           </h2>
         </div>
         <nav className="font-body mt-4 gap-3 flex flex-col text-sm">
-          <a
-            id="register-link"
-            className={`
-              bg-red-600 text-white font-poppins uppercase tracking-widest
-              py-3 rounded-md inline-block font-medium text-xs px-10
-            `}
-          >
+          <Button className="font-bold bg-red-600 border-red-600 text-white hover:text-red-600 hover:shadow-red-600/30">
             Register Now
-          </a>
-          {/* <div className="inline-flex gap-3 flex-wrap justify-center">
-            <text>Not sure what to learn?</text>
-            <a
-              id="all-class-link"
-              className="tracking-wider text-red-600 underline underline-offset-2"
-            >
-              View All Classes
-            </a>
-          </div> */}
+          </Button>
         </nav>
       </div>
     </section>

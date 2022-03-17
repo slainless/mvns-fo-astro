@@ -84,7 +84,9 @@ export default function Grid() {
           {...item}
           styleOverrides={{
             card: {
-              container: cntl`h-[28rem]`,
+              container: cntl`h-[28rem] overflow-visible`,
+              overlay: cntl`scale-100 group-hover:scale-[1.05] transition-all rounded-md`,
+              background: cntl`scale-100 group-hover:scale-[1.05] transition-all rounded-md`,
             },
           }}
         ></Card>

@@ -1,4 +1,4 @@
-declare module 'tailwind.config.cjs' {
+declare module '@/tailwind.config.cjs' {
   const ref: import('tailwindcss/tailwind-config').TailwindConfig
   export default ref
 }

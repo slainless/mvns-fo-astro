@@ -4,51 +4,7 @@ import { Common as Swiper } from '@Blocks/Carousel'
 import { Common as Card } from '@Blocks/Card'
 import isBrowser from '@Functions/isBrowser'
 import CardView from '@Elements/CardView'
-
-const Items: Parameters<typeof Card>[0][] = [
-  {
-    bgImg: '/media/trending-card-2.jpg',
-    title: 'Developing Entrepreneurial Mindset',
-    // subtitle: 'Chai Li',
-    badges: ['Live', 'Finance & Accounting'],
-    favorite: true,
-    price: '49.65',
-    quota: '8/10',
-    date: 'Jan 21-29, 22',
-  },
-  {
-    bgImg: '/media/trending-card-2.jpg',
-    title: 'Developing Entrepreneurial Mindset',
-    // subtitle: 'Kevin Sanjaya',
-    badges: ['Offline', 'IT & Software'],
-    favorite: true,
-    price: '49.65',
-    quota: '8/10',
-    date: 'Jan 21-29, 22',
-  },
-  {
-    bgImg: '/media/trending-card-2.jpg',
-    title: 'Developing Entrepreneurial Mindset',
-    favorite: false,
-    // subtitle: 'Richard Dawkins',
-    badges: ['Recording', 'Business'],
-    price: '49.65',
-  },
-  {
-    bgImg: '/media/trending-card-2.jpg',
-    title: 'Developing Entrepreneurial Mindset',
-    // subtitle: 'Richard Dawkins',
-    badges: ['Recording', 'Health & Fitness'],
-    favorite: true,
-    price: '49.65',
-  },
-  {
-    bgImg: '/media/trending-card-2.jpg',
-  },
-  {
-    bgImg: '/media/trending-card-2.jpg',
-  },
-]
+import { slimCard as Items } from '@Dev/dummy'
 
 export default function Classes() {
   return (
@@ -60,6 +16,7 @@ export default function Classes() {
       classes={Items}
       title="Classes"
       subtitle="See all classes"
+      subtitleHref="/class/all"
     />
   )
 }
