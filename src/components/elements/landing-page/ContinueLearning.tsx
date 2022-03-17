@@ -5,7 +5,7 @@ import { Common as Card } from '@Blocks/Card'
 import isBrowser from '@Functions/isBrowser'
 import CardView from '@Elements/CardView'
 import cntl from 'cntl'
-import { slimCard as Items } from '@Dev/dummy'
+import { largeCard as Items } from '@Dev/dummy'
 
 export default function ContinueLearning() {
   return (

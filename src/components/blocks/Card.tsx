@@ -70,6 +70,11 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
             bg-cover bg-center scale-105 
             group-hover:scale-100 transition-transform
             z-[1]
+
+            after:block after:bg-gradient-to-t after:from-black/80
+            after:to-transparent after:scale-105
+
+            after:content-[''] after:w-full after:h-full
           `,
             styleOverrides?.card?.background
           )}
