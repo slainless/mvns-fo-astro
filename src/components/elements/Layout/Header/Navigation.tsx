@@ -6,6 +6,7 @@ import { Link } from '@Bits/Button'
 import cntl from 'cntl'
 import { twMerge } from 'tailwind-merge'
 import Login from '@Elements/Login'
+import Register from '@Elements/Register'
 
 const Container = ({ children }: any) => (
   <nav className="flex items-center justify-end gap-6" id="navigation">
@@ -30,15 +31,17 @@ const DefaultNav = (
         Log In
       </Link>
     </Login>
-    <Link
-      className={twMerge(
-        LinkStyle,
-        'after:w-1/3 after:left-auto after:right-0 transition-colors hover:text-red-500'
-      )}
-      href="javascript:void(0);"
-    >
-      Register
-    </Link>
+    <Register title="Register">
+      <Link
+        className={twMerge(
+          LinkStyle,
+          'after:w-1/3 after:left-auto after:right-0 transition-colors hover:text-red-500'
+        )}
+        href="javascript:void(0);"
+      >
+        Register
+      </Link>
+    </Register>
   </>
 )
 

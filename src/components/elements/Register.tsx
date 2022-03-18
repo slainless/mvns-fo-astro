@@ -11,10 +11,13 @@ const FieldsetStyle = cntl`
   flex flex-col gap-2
 `
 
-type LoginProps = Omit<Parameters<typeof Dialog>[0], 'trigger' | 'children'> & {
+type RegisterProps = Omit<
+  Parameters<typeof Dialog>[0],
+  'trigger' | 'children'
+> & {
   children: ReactElement
 }
-export default function Login(props: LoginProps) {
+export default function Register(props: RegisterProps) {
   const { children, ...rest } = props
 
   return (
@@ -22,15 +25,45 @@ export default function Login(props: LoginProps) {
       trigger={children}
       hideTitle={true}
       {...rest}
-      className="flex flex-col gap-3 px-3 max-w-xs"
+      className="flex flex-col gap-3 px-3 max-w-sm"
     >
       <h4 className="font-heading text-2xl font-medium">
-        Hello, Welcome Back!
+        Create your free account
       </h4>
       <span className="text-sm">
-        Log in with your data that you entered during your registration
+        See how the world’s best user experiences are created
       </span>
       <form className="flex flex-col gap-2">
+        <fieldset className={'grid grid-cols-2 gap-2'}>
+          <div className={FieldsetStyle}>
+            <Label
+              htmlFor="login-first-name"
+              className="font-heading text-sm opacity-80 w-max"
+            >
+              First Name
+            </Label>
+            <Input
+              name="first-name"
+              id="login-first-name"
+              placeholder="e.g. John"
+              className="py-2"
+            />
+          </div>
+          <div className={FieldsetStyle}>
+            <Label
+              htmlFor="login-last-name"
+              className="font-heading text-sm opacity-80 w-max"
+            >
+              Last Name
+            </Label>
+            <Input
+              name="last-name"
+              id="login-last-name"
+              placeholder="e.g. Doe"
+              className="py-2"
+            />
+          </div>
+        </fieldset>
         <fieldset className={FieldsetStyle}>
           <Label
             htmlFor="login-username"
@@ -46,17 +79,12 @@ export default function Login(props: LoginProps) {
           />
         </fieldset>
         <fieldset className={FieldsetStyle}>
-          <div className="flex flex-row justify-between text-sm">
-            <Label
-              htmlFor="login-password"
-              className="font-heading text-sm opacity-80 w-max"
-            >
-              Password
-            </Label>
-            <Link className="after:w-0 after:-bottom-0.5 tracking-normal">
-              Forgot password?
-            </Link>
-          </div>
+          <Label
+            htmlFor="login-password"
+            className="font-heading text-sm opacity-80 w-max"
+          >
+            Password
+          </Label>
           <Input
             name="username"
             id="login-password"
@@ -72,7 +100,7 @@ export default function Login(props: LoginProps) {
           py-2.5 mt-3
         "
         >
-          Start now!
+          Create your account
         </Button>
       </form>
       <Separator
@@ -94,7 +122,7 @@ export default function Login(props: LoginProps) {
           <span className="w-6 h-6 group-hover:brightness-0 group-hover:invert transition-all">
             <ColoredGoogle />
           </span>{' '}
-          Sign In with Google
+          Sign Up with Google
         </Button>
         <Button
           className="
@@ -106,13 +134,18 @@ export default function Login(props: LoginProps) {
           <span className="w-6 h-6 invert">
             <LinkedIn />
           </span>{' '}
-          Sign In with LinkedIn
+          Sign Up with LinkedIn
         </Button>
-        <span className="text-center text-sm">
-          Don't have an account?{' '}
-          <Link className="tracking-normal after:w-0 after:-bottom-0.5">
-            Sign up
-          </Link>
+        <span className="text-sm inline-flex items-stretch flex-col gap-1">
+          <span className="text-black/80 text-xs">
+            By signing up, you agree to our communications and usage terms.
+          </span>
+          <span className="text-sm text-center w-full">
+            Already have an account?{' '}
+            <Link className="tracking-normal after:w-0 after:-bottom-0.5">
+              Sign up
+            </Link>
+          </span>
         </span>
       </div>
     </Dialog>
