@@ -18,7 +18,7 @@ export default function Hero() {
           rounded-none lg:rounded-r-2xl 
           pointer-events-none
         `}
-        src="/media/hero-image.jpg"
+        src="/media/jumbotron-bg (1).jpg"
       />
       <div
         id="hero-callout"
