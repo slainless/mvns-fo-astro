@@ -29,20 +29,24 @@ export default function Hero() {
           order-1
         `}
       >
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-0">
           <h1
             id="hero-title"
             className={cntl`
-              text-[44px] lg:text-5xl 
-              inline-flex flex-col font-display
-              font-black 
-              gap-0 
+              text-[44px] lg:text-7xl 
+              font-display
+              font-black
               leading-[85%]
               uppercase
             `}
           >
-            <span>Inspire, Engage &</span>
-            <span>Advance Yourself</span>
+            Share{' '}
+            <span className="relative after:absolute after:-top-2 after:w-full after:h-2 after:bg-red-600 after:left-0">
+              your
+            </span>{' '}
+            <br />
+            <span className="text-red-600">Passion</span>
+            {/* <span>Advance Yourself</span> */}
             {/* <span
               className={cntl`
                 text-red-600
@@ -54,9 +58,9 @@ export default function Hero() {
           </h1>
           <h2
             id="hero-subtitle"
-            className="font-body mt-3 w-72 opacity-80 text-xl"
+            className="font-body mt-3 w-72 opacity-80 text-lg"
           >
-            To be the best instructor.
+            Make masters out of students.
           </h2>
         </div>
         <nav className="font-body mt-4 gap-3 flex flex-col text-sm">

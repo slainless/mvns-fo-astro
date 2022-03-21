@@ -18,7 +18,7 @@ export default function Hero() {
           rounded-none lg:rounded-r-2xl 
           pointer-events-none
         `}
-        src="/media/jumbotron-bg (1).jpg"
+        src="/media/landing/hero.jpg"
       />
       <div
         id="hero-callout"
@@ -38,14 +38,13 @@ export default function Hero() {
               uppercase
             `}
           >
-            <span>They Changed</span>
-            <span>the World.</span>
+            <span className="text-8xl">Get</span>
             <span
               className={cntl`
                 text-red-600
               `}
             >
-              Now You.
+              Certified!
             </span>
           </h1>
           <h2 id="hero-subtitle" className="font-body mt-3 w-72 opacity-80">
