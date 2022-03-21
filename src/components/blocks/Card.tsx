@@ -86,8 +86,9 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
           className={twMerge(
             `
             card-overlay block absolute inset-0 w-full h-full z-[2] 
-            bg-gradient-to-b from-red-600/50 to-black/80
+            bg-gradient-to-b from-red-600/80 to-black/80
             transition-opacity opacity-0 group-hover:opacity-100
+            group-hover:backdrop-grayscale
           `,
             styleOverrides?.card?.overlay
           )}
