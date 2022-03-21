@@ -1,0 +1,76 @@
+---
+import { Markdown } from 'astro/components'
+import Home from '@Layouts/Home.astro'
+import Section from '@Blocks/Section'
+import cntl from 'cntl'
+---
+
+<Home title="Privacy Policy">
+  <Section.Container>
+    <Section.Title
+      subtitle="Last updated on January 20, 2022"
+      styleOverrides={{
+        container: cntl`inline-flex flex-col gap-1 items-start`,
+        title: cntl`lg:text-4xl`,
+        subtitle: cntl`text-md`,
+      }}
+    >
+      Privacy & Policy
+    </Section.Title>
+    <Section.Content className="gap-5 flex flex-col" id="privacy-policy">
+      <div class="card">
+        <Markdown>
+          ## Privacy
+
+          - When a student takes a class on mavens.live, we will share the student’s username and
+            profile with the teacher for the purpose of teaching these students on Mavensdotlive.
+          - By enrolling in a class on Mavensdotlive, a student grants to us permission to share
+            that student’s information with the teacher. The teacher is required to respect the privacy
+            of the student.
+          - The teacher may use that personal information for no other purpose, such as sending unsolicited
+            commercial messages or unauthorized transactions.
+          - Without express consent from that person, you must not add any Mavensdotlive misuse of any
+            student’s personal information.
+          - Remember that you need to comply with all relevant legal rules when you use Mavensdotlive. This
+            includes applicable data protection and privacy laws which govern the ways in which you can use
+            another Mavensdotlive user’s information.
+        </Markdown>
+      </div>
+      <div class="card">
+        <Markdown>
+          ## Cookie Policy
+
+          - We use several common tracking tools on our website. These may include browser cookies. We may
+            also use web beacons, flash cookies, and similar technologies.
+          - We use these tools to: Recognize new or past users, improve our website, collect information about
+            your browsing history, better understand the interests of our users and web site visitors and
+            serve them with the most relevant content.
+        </Markdown>
+      </div>
+    </Section.Content>
+  </Section.Container>
+</Home>
+
+<style global lang="stylus">
+  #privacy-policy .card {
+    @apply text-black bg-white rounded-lg py-10 px-10 flex flex-col gap-3;
+
+    & h2 {
+      @apply text-2xl font-heading font-bold;
+    }
+
+    & ul {
+      @apply list-disc list-outside pl-5 inline-flex flex-col gap-2 font-medium;
+
+      & li {
+        @apply pl-3;
+      }
+
+      & li::marker {
+        @apply text-red-600 text-lg h-full;
+        font-family: 'Material Icons Outlined';
+        content: 'check_circle';
+      }
+    }
+  }
+</style>

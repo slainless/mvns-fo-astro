@@ -10,7 +10,7 @@ export default function Footer() {
       >
         <List
           title="Support"
-          links={[['Privacy Policy'], ['Term of Condition']]}
+          links={[['Privacy & Policy', '/privacy'], ['Term of Condition']]}
         />
         <List
           title="Classes"
