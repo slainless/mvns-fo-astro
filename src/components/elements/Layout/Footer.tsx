@@ -16,7 +16,10 @@ export default function Footer() {
           title="Classes"
           links={[['Feature'], ['Trending'], ['Popular'], ['Coming Soon']]}
         />
-        <List title="About" links={[['Blog'], ['Mavens dot live']]} />
+        <List
+          title="About"
+          links={[['Blog'], ['Mavens dot live', '/about-us']]}
+        />
         <List title="FAQ" links={[['Student'], ['Instructor'], ['Business']]} />
       </div>
       <div className="grid grid-cols-2 pt-6">

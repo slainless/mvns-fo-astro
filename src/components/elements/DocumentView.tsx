@@ -1,9 +1,13 @@
 import Ads from '@Blocks/Ads'
 import { ReactElement, useEffect, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 import './DocumentView.styl'
 
-export default function DocumentView(props: HTMLAttributes<HTMLDivElement>) {
-  const { children } = props
+type Props = HTMLAttr<'div'> & {
+  hideAds?: boolean
+}
+export default function DocumentView(props: Props) {
+  const { children, className, hideAds, ...rest } = props
   const [headings, setHeadings] = useState<HTMLHeadingElement[]>([])
   const [activeHeading, setActiveHeading] = useState<string[]>([])
 
@@ -55,7 +59,7 @@ export default function DocumentView(props: HTMLAttributes<HTMLDivElement>) {
   }, [])
 
   return (
-    <section id="document" className="flex gap-10">
+    <section id="document" className={'flex gap-10'}>
       <main className="contents">
         <div
           id="navigation-sidebar"
@@ -74,17 +78,22 @@ export default function DocumentView(props: HTMLAttributes<HTMLDivElement>) {
             ))}
           </ul>
         </div>
-        <article id="main-article" className="flex-grow">
+        <article
+          id="main-article"
+          className={twMerge('flex-grow max-w-3xl', className)}
+        >
           {children}
         </article>
       </main>
-      <Ads
-        width={300}
-        height={600}
-        src="/media/sidebar-ad-placeholder.png"
-        id="sidebar-ads"
-        className="sticky top-12 items-start h-max w-max pr-10 flex-shrink-0"
-      />
+      {hideAds ? null : (
+        <Ads
+          width={300}
+          height={600}
+          src="/media/sidebar-ad-placeholder.png"
+          id="sidebar-ads"
+          className="sticky top-12 items-start h-max w-max pr-10 flex-shrink-0"
+        />
+      )}
     </section>
   )
 }
