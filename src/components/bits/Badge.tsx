@@ -6,13 +6,16 @@ const BaseStyle = cntl`
   badge w-max text-xs px-3 py-1 rounded-full
 `
 
-type SpanAttr = HTMLAttributes<HTMLSpanElement>
-export function Badge(props: SpanAttr) {
-  const { className, children } = props
+type Props = HTMLAttr<'a'>
+export function Badge(props: Props) {
+  const { className, children, ...rest } = props
   return (
-    <span className={twMerge(BaseStyle, 'bg-white text-black', className)}>
+    <a
+      className={twMerge(BaseStyle, 'bg-white text-black', className)}
+      {...rest}
+    >
       {children}
-    </span>
+    </a>
   )
 }
 

@@ -52,8 +52,8 @@ export const Favorite: FunctionComponent<
         cntl`
           ${
             filled
-              ? filledStyle ?? 'text-red-600'
-              : emptyStyle ?? 'text-white/50'
+              ? twMerge('text-red-600', filledStyle)
+              : twMerge('text-white/50', emptyStyle)
           }
           text-2xl inline-flex items-center justify-center
           rounded-full w-10 h-10

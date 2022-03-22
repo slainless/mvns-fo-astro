@@ -33,8 +33,9 @@ function Navigation({ hidden = false }) {
             {CATEGORIES.map((cat, key) => (
               <a
                 key={key}
-                className="hover:before:content-['\__'] hover:before:text-red-500 drop-shadow-md"
+                className="before:w-0 hover:before:mr-2 before:h-2 before:inline-block before:transition-all before:bg-red-600 hover:before:w-4 drop-shadow-md"
                 children={cat[0]}
+                href="/class/all"
               />
             ))}
           </nav>

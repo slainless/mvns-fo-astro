@@ -41,7 +41,9 @@ export default function Blog() {
   return (
     <CardView
       id="blog"
-      title="Latest blog"
+      title="Our blog"
+      subtitle="See all"
+      subtitleHref="/blog/all"
       swiperOptions={swiperOptions}
       classes={Items}
       styleOverrides={{

@@ -30,7 +30,8 @@ export default function Header() {
         py-3 lg:py-5
         grid 
         grid-cols-2 lg:grid-cols-3 
-        fixed top-0 bg-black z-30 w-full 
+        fixed top-0 bg-black z-30 w-full
+        text-white
         items-center transition-all shadow-md`,
         compact ? 'py-2 lg:py-3' : ''
       )}

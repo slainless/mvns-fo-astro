@@ -58,7 +58,7 @@ module Section {
         <Link
           href={subtitleHref}
           className={twMerge(
-            'section-subtitle text-lg tracking-normal text-white/80 after:w-0',
+            'section-subtitle text-base tracking-normal text-white/80 after:w-0',
             styleOverrides?.subtitle
           )}
           hidden={subtitle == null}

@@ -102,17 +102,27 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
           styleOverrides?.card?.header
         )}
       >
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1">
           {badges
-            ? badges.map((badge, key) => <Badge key={key}>{badge}</Badge>)
+            ? badges.map((badge, key) => (
+                <Badge
+                  key={key}
+                  className="pointer-events-auto"
+                  href="/class/all"
+                >
+                  {badge}
+                </Badge>
+              ))
             : null}
         </div>
         <div className="items-end">
           {favorite != null ? (
             <Favorite
               filled={favorite}
+              filledStyle={cntl`group-hover:text-white`}
+              emptyStyle={cntl`group-hover:text-white`}
               className={twMerge(
-                'pointer-events-auto',
+                'pointer-events-auto hover:bg-white/30 drop-shadow-md',
                 styleOverrides?.favorite
               )}
             />
