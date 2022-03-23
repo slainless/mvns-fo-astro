@@ -2,6 +2,7 @@ import Section from '@Blocks/Section'
 import { Common as Info } from '@Bits/Info'
 import * as Avatar from '@radix-ui/react-avatar'
 import cntl from 'cntl'
+import { Common as Button, Icon } from '@Bits/Button'
 
 const template = Array(6)
   .fill(0)
@@ -29,18 +30,28 @@ function ReviewItem(props: ReviewItemProps) {
         </Avatar.Root>
         <div className="review-authorship flex flex-col">
           <span className="review-author font-bold text-lg">{user}</span>
-          <span className="review-date text-gray-500 text-sm">{date}</span>
+          <div>
+            <div className="review-rating flex flex-row gap-0">
+              <Icon icon="star" className="text-base text-red-600" />
+              <Icon icon="star" className="text-base text-red-600" />
+              <Icon icon="star" className="text-base text-red-600" />
+              <Icon icon="star" className="text-base text-red-600" />
+              <Icon icon="star" className="text-base text-gray-500" />
+            </div>
+            <span className="review-date text-gray-500 text-sm">{date}</span>
+          </div>
         </div>
       </div>
       <div className="review-content text-white/70">
         <p>{desc}</p>
-      </div>
-      <div className="review-footer">
         <button className="flex items-center gap-2 text-xl">
-          <span className="underline text-base font-medium">Show more</span>
-          <span className="material-icons-outlined">chevron_right</span>
+          <span className="underline text-base font-medium text-white hover:text-red-600 transition-colors">
+            See more
+          </span>
+          {/* <span className="material-icons-outlined">chevron_right</span> */}
         </button>
       </div>
+      <div className="review-footer"></div>
     </div>
   )
 }
@@ -48,9 +59,11 @@ function ReviewItem(props: ReviewItemProps) {
 export default function Review() {
   return (
     <Section.Container id="the-review">
-      <Section.Title className="lg:text-3xl">Reviews</Section.Title>
-      <Section.Content className="flex flex-col gap-10 max-w-4xl">
-        <div id="review-info" className="flex flex-row items-center gap-5">
+      <Section.Title id="the-review-title" className="lg:text-3xl">
+        Reviews
+      </Section.Title>
+      <Section.Content className="flex flex-col gap-10 max-w-4xl items-center">
+        <div id="review-info" className="flex flex-row self-start gap-5">
           <Info
             icon="star"
             className="text-2xl"
@@ -60,13 +73,16 @@ export default function Review() {
           >
             <span className="font-bold">4.8</span> (31 Reviews)
           </Info>
-          <a className="underline">See all reviews</a>
+          {/* <a className="underline">See all reviews</a> */}
         </div>
         <div id="review" className="grid grid-cols-2 gap-y-10 gap-x-32">
           {template.map((item, key) => (
             <ReviewItem key={item.user + key} {...item}></ReviewItem>
           ))}
         </div>
+        <Button className="w-max border-transparent bg-transparent text-white hover:border-white">
+          Load More
+        </Button>
       </Section.Content>
     </Section.Container>
   )

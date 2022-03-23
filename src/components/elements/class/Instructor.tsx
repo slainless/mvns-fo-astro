@@ -1,10 +1,13 @@
 import Section from '@Blocks/Section'
 import * as Avatar from '@radix-ui/react-avatar'
+import cntl from 'cntl'
 
 export default function Instructor() {
   return (
     <Section.Container id="the-instructor">
-      <Section.Title className="lg:text-3xl">Instructor</Section.Title>
+      <Section.Title id="the-instructor-title" className="lg:text-3xl">
+        Instructor
+      </Section.Title>
       <Section.Content className="flex flex-col gap-10 max-w-xl">
         <div className="flex flex-row gap-10 items-center">
           <Avatar.Root className="w-20 rounded-full overflow-hidden">

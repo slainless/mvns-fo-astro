@@ -3,12 +3,13 @@ import Dialog, { OptionalProps } from './Dialog'
 import { Common as Checkbox } from '@Bits/Checkbox'
 import { Root as Label } from '@radix-ui/react-label'
 import cntl from 'cntl'
+import Popover from './Popover'
 
 const FieldStyle = cntl`flex flex-row gap-2`
 
 export default function Popular(props: OptionalProps) {
   return (
-    <Dialog
+    <Popover
       {...props}
       title="Most Popular Class"
       trigger={<Button>Popular</Button>}
@@ -20,8 +21,8 @@ export default function Popular(props: OptionalProps) {
       </div>
       <div className={FieldStyle}>
         <Checkbox id="on-demand-check" />
-        <Label htmlFor="on-demand-check">On-demand Class</Label>
+        <Label htmlFor="on-demand-check">Recording Class</Label>
       </div>
-    </Dialog>
+    </Popover>
   )
 }

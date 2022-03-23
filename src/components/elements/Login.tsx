@@ -24,9 +24,7 @@ export default function Login(props: LoginProps) {
       {...rest}
       className="flex flex-col gap-3 px-3 max-w-xs"
     >
-      <h4 className="font-heading text-2xl font-medium">
-        Hello, Welcome Back!
-      </h4>
+      <h4 className="font-heading text-2xl font-medium">Log In</h4>
       <span className="text-sm">
         Log in with your data that you entered during your registration
       </span>
@@ -72,7 +70,7 @@ export default function Login(props: LoginProps) {
           py-2.5 mt-3
         "
         >
-          Start now!
+          Log In
         </Button>
       </form>
       <Separator
@@ -94,7 +92,7 @@ export default function Login(props: LoginProps) {
           <span className="w-6 h-6 group-hover:brightness-0 group-hover:invert transition-all">
             <ColoredGoogle />
           </span>{' '}
-          Sign In with Google
+          Log In with Google
         </Button>
         <Button
           className="
@@ -106,7 +104,7 @@ export default function Login(props: LoginProps) {
           <span className="w-6 h-6 invert">
             <LinkedIn />
           </span>{' '}
-          Sign In with LinkedIn
+          Log In with LinkedIn
         </Button>
         <span className="text-center text-sm">
           Don't have an account?{' '}

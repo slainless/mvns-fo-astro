@@ -8,7 +8,7 @@ module Section {
   export const Container = createSingleton('section', {
     className: cntl`
       container mx-auto
-      px-0 lg:px-12 overflow-hidden
+      px-0 lg:px-12
     `,
   })
 
@@ -58,7 +58,7 @@ module Section {
         <Link
           href={subtitleHref}
           className={twMerge(
-            'section-subtitle text-base tracking-normal text-white/80 after:w-0',
+            'section-subtitle text-sm tracking-normal text-white/80 after:w-0',
             styleOverrides?.subtitle
           )}
           hidden={subtitle == null}

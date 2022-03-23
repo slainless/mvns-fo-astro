@@ -41,7 +41,9 @@ export default function Detail() {
   }, [])
   return (
     <Section.Container id="the-detail">
-      <Section.Title className="lg:text-3xl">Detail Class</Section.Title>
+      <Section.Title id="the-detail-title" className="lg:text-3xl ">
+        Detail Class
+      </Section.Title>
       <Section.Content className="flex flex-col gap-10">
         <div id="class-info" className="flex flex-col">
           <Info
@@ -177,7 +179,7 @@ export default function Detail() {
                 ))}
               </ol>
             </div>
-            <aside id="recommended-classes">
+            {/* <aside id="recommended-classes">
               <div className="recommended-class flex flex-row gap-3 items-center h-24">
                 <div className="w-24">
                   <AspectRatio ratio={1}>
@@ -194,7 +196,7 @@ export default function Detail() {
                   <h6 className="text-sm leading-none">Chai Li</h6>
                 </div>
               </div>
-            </aside>
+            </aside> */}
           </div>
         </div>
       </Section.Content>

@@ -3,7 +3,7 @@ import List from './Footer/List'
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-black px-20 py-10">
+    <footer id="footer" className="bg-white text-black px-20 py-10">
       <div
         id="footer-links"
         className="grid grid-cols-4 border-b-2 border-b-zinc-300 pb-20"

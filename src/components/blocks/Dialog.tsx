@@ -99,6 +99,12 @@ export default function Dialog(
             >
               {children}
             </div>
+            <Dialog_.Close
+              className="w-6 h-6 rounded-full hover:bg-red-200 hover:text-red-600 absolute top-4 right-4 z-1 text-black flex items-center justify-center"
+              aria-label="Close"
+            >
+              <span className="material-icons-outlined">close</span>
+            </Dialog_.Close>
           </div>
         </Dialog_.Content>
       </Dialog_.Portal>

@@ -35,7 +35,7 @@ const DefaultNav = (
       <Link
         className={twMerge(
           LinkStyle,
-          'after:w-1/3 after:left-auto after:right-0 transition-colors hover:text-red-500'
+          'after:w-0 after:left-auto after:right-0 transition-colors hover:text-red-500'
         )}
         href="javascript:void(0);"
       >

@@ -25,3 +25,10 @@ import Suggestion from '@Elements/class/Suggestion.tsx'
   </div>
   <Suggestion client:load />
 </Home>
+
+<style global>
+  html {
+    scroll-padding-top: calc(theme('spacing.header') + theme('spacing.16'));
+    scroll-behavior: smooth;
+  }
+</style>

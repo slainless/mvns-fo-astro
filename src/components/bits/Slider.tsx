@@ -25,7 +25,7 @@ export function Common(props: SliderRootProps) {
       </Slider.Track>
       {Array(thumbNum ?? 1)
         .fill(0)
-        .map((i) => (
+        .map((_, i) => (
           <Slider.SliderThumb
             key={i}
             className={twMerge(ThumbStyle, styleOverrides?.thumb)}

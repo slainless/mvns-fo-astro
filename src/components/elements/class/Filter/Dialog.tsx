@@ -1,3 +1,4 @@
+import { Common as Button, Link } from '@Bits/Button'
 import * as Dialog_ from '@radix-ui/react-dialog'
 import { Root as Separator } from '@radix-ui/react-separator'
 import { Root as VisuallyHidden } from '@radix-ui/react-visually-hidden'
@@ -10,6 +11,7 @@ type DialogProps = {
   title: string
   desc?: string
   children?: ReactNode
+  hideTitle?: boolean
   className?: string
   styleOverrides?: {
     card?: string
@@ -27,6 +29,7 @@ export default function Dialog(props: DialogProps & PrimitiveProps) {
   const {
     onReset,
     onApply,
+    hideTitle,
     trigger,
     title,
     children,
@@ -45,8 +48,8 @@ export default function Dialog(props: DialogProps & PrimitiveProps) {
             className={twMerge(
               `
             w-max h-max 
-            bg-slate-50 text-black rounded-2xl shadow-md drop-shadow-md
-            pb-4 pt-8 px-8 flex flex-col gap-3
+          bg-white text-black rounded-2xl shadow-md drop-shadow-md
+            flex flex-col gap-3
             max-w-md
             animate-enter-scaled
             pointer-events-auto
@@ -54,40 +57,50 @@ export default function Dialog(props: DialogProps & PrimitiveProps) {
               styleOverrides?.card
             )}
           >
-            <Dialog_.Title
-              className={twMerge(
-                'tracking-wide text-lg px-4 font-bold font-heading text-red-600',
-                styleOverrides?.title
-              )}
-            >
-              {title}
-            </Dialog_.Title>
+            {hideTitle ? (
+              <VisuallyHidden>
+                <Dialog_.Title>{title}</Dialog_.Title>
+              </VisuallyHidden>
+            ) : (
+              <>
+                <Dialog_.Title
+                  className={twMerge(
+                    'tracking-wide text-lg font-bold font-heading px-12 py-5 border-b-[1px] ',
+                    styleOverrides?.title
+                  )}
+                >
+                  {title}
+                </Dialog_.Title>
+                <Dialog_.Close
+                  className="w-6 h-6 rounded-full hover:bg-red-200 hover:text-red-600 absolute top-4 right-4 z-1 text-black flex items-center justify-center"
+                  aria-label="Close"
+                >
+                  <span className="material-icons-outlined">close</span>
+                </Dialog_.Close>
+              </>
+            )}
             <VisuallyHidden>
               <Dialog_.Description>{desc}</Dialog_.Description>
             </VisuallyHidden>
             <div
               className={twMerge(
-                'filter-content px-4',
+                'filter-content py-4 px-12 ',
                 styleOverrides?.content,
                 className
               )}
             >
               {children}
             </div>
-            <Separator className="h-[1px] w-full bg-black/10 mt-5" />
-            <div className="filter-footer justify-between flex gap-10">
-              <button
-                className="underline font-bold tracking-wide underline-offset-2"
+            <div className="filter-footer justify-between flex gap-10 items-center px-4 py-4 border-t-[1px] ">
+              <Button
+                className="border-transparent hover:translate-y-0 underline underline-offset-2 font-bold hover:bg-red-600 hover:shadow-red-600/30"
                 onClick={onReset}
               >
                 Reset
-              </button>
-              <button
-                onClick={onApply}
-                className="border-[1px] border-gray-200 rounded-lg shadow-lg drop-shadow-lg font-bold tracking-widest uppercase px-9 py-1 text-red-500"
-              >
+              </Button>
+              <Button className="hover:translate-y-0 bg-black border-black hover:text-white hover:bg-red-600 hover:border-red-600 text-white hover:shadow-red-600/30">
                 Filter
-              </button>
+              </Button>
             </div>
           </div>
         </Dialog_.Content>

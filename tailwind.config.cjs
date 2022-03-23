@@ -6,8 +6,11 @@ const Config = {
   ],
   theme: {
     extend: {
+      spacing: {
+        header: '5rem'
+      },
       fontFamily: {
-        'display': ['Big Shoulders Display'],
+        'display': ['Big Shoulders Display', 'Impact'],
         'heading': ['Poppins'],
         'body': ['Inter', 'Poppins'],
         'mono': '"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'

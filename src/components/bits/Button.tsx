@@ -118,6 +118,7 @@ export function Common(props: CommonProps) {
         hover:-translate-y-1
         hover:bg-transparent hover:text-white
         hover:shadow-lg hover:shadow-white/20
+        cursor-pointer
       `,
         cls
       )}
