@@ -1,4 +1,5 @@
 import { Common } from '@Blocks/Card'
+import Item from '@Elements/blog/Item'
 
 export const slimCard: Parameters<typeof Common>[0][] = [
   {
@@ -177,5 +178,59 @@ export const largeCard: Parameters<typeof Common>[0][] = [
     date: 'Jan 21-29, 22',
     badges: ['Recording', 'Business'],
     href: '/class/detail',
+  },
+]
+
+const lorem = `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+  Eu enim amet aliquam in viverra in augue placerat cursus. 
+  Nisl, suspendisse turpis molestie hendrerit ullamcorper. 
+  Arcu leo faucibus mi sit et. Aliquet sed tellus porttitor laoreet.
+  Massa aliquet ullamcorper in penatibus vitae enim pharetra tellus. 
+  Quam enim, sit a eu morbi ac mi tellus. Sed fames elementum laoreet eget lacinia pulvinar. 
+  In a, id libero condimentum cursus mi velit. 
+  Tempus sed turpis euismod dui egestas auctor erat.
+`
+
+export const blogItems: Parameters<typeof Item>[0][] = [
+  {
+    title: `Everything You Need to Know About Business`,
+    desc: lorem,
+    tags: ['News', 'Business'],
+    bgImg: '/media/blog-thumb.png',
+    date: 'January 20, 2022',
+    href: '/blog/detail',
+  },
+  {
+    title: `Everything You Need to Know About Business`,
+    desc: lorem,
+    tags: ['News', 'Business'],
+    bgImg: '/media/blog-thumb.png',
+    date: 'January 20, 2022',
+    href: '/blog/detail',
+  },
+  {
+    title: `Everything You Need to Know About Business`,
+    desc: lorem,
+    tags: ['News', 'Business'],
+    bgImg: '/media/blog-thumb.png',
+    date: 'January 20, 2022',
+    href: '/blog/detail',
+  },
+  {
+    title: `Everything You Need to Know About Business`,
+    desc: lorem,
+    tags: ['News', 'Business'],
+    bgImg: '/media/blog-thumb.png',
+    date: 'January 20, 2022',
+    href: '/blog/detail',
+  },
+  {
+    title: `Everything You Need to Know About Business`,
+    desc: lorem,
+    tags: ['News', 'Business'],
+    bgImg: '/media/blog-thumb.png',
+    date: 'January 20, 2022',
+    href: '/blog/detail',
   },
 ]
