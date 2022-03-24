@@ -9,7 +9,8 @@
     "element",
     "build",
     "style",
-    "page"
+    "page",
+    "bits"
   ],
   "prettier.quoteProps": "consistent",
   "prettier.semi": false,
