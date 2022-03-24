@@ -2,29 +2,30 @@ import { Arrow } from '@Bits/Button'
 import cntl from 'cntl'
 import { twMerge } from 'tailwind-merge'
 
-type ButtonAttr = HTMLAttributes<HTMLButtonElement>
-function NumericButton(
-  props: ButtonAttr & {
-    active?: boolean
-  }
-) {
-  const { className, children, active } = props
-  const Style = cntl`
-    flex items-center justify-center
-    h-8 w-8
-    bg-transparent
-    border-2
-    border-white
-    rounded-full
-    leading-none
-  `
+const ButtonStyle = cntl`
+  flex items-center justify-center
+  h-8 w-8
+  bg-transparent
+  border-2
+  border-white
+  rounded-full
+  leading-none
+`
+type ButtonProps = HTMLAttr<'button'> & {
+  active?: boolean
+  activeStyle?: string
+}
+function Button(props: ButtonProps) {
+  const { className, children, active, activeStyle } = props
 
   return (
     <button
       className={twMerge(
-        Style,
+        ButtonStyle,
         className,
-        active ? `bg-red-600 text-white border-red-600` : ``
+        active
+          ? twMerge(`bg-red-600 text-white border-red-600`, activeStyle)
+          : ``
       )}
     >
       {children}
@@ -39,14 +40,54 @@ const ArrowStyle = cntl`
   bg-white
   text-black
 `
-export default function Pagination() {
+type PaginationProps = HTMLAttr<'div'> & {
+  styleOverrides?: {
+    container?: string
+    arrow?: string
+    button?: {
+      style?: string
+      active?: string
+    }
+  }
+}
+export default function Pagination(props: PaginationProps) {
+  const { className, styleOverrides, ...rest } = props
   return (
-    <div className="pagination flex items-center gap-3">
-      <Arrow type="prev" className={ArrowStyle}></Arrow>
-      <NumericButton active>1</NumericButton>
-      <NumericButton>2</NumericButton>
-      <NumericButton>3</NumericButton>
-      <Arrow type="next" className={ArrowStyle}></Arrow>
+    <div
+      className={twMerge(
+        'pagination flex items-center gap-3',
+        className,
+        styleOverrides?.container
+      )}
+      {...rest}
+    >
+      <Arrow
+        arrowType="prev"
+        className={twMerge(ArrowStyle, styleOverrides?.arrow)}
+      ></Arrow>
+      <Button
+        active
+        className={styleOverrides?.button?.style}
+        activeStyle={styleOverrides?.button?.active}
+      >
+        1
+      </Button>
+      <Button
+        className={styleOverrides?.button?.style}
+        activeStyle={styleOverrides?.button?.active}
+      >
+        2
+      </Button>
+      <Button
+        className={styleOverrides?.button?.style}
+        activeStyle={styleOverrides?.button?.active}
+      >
+        3
+      </Button>
+      <Arrow
+        arrowType="next"
+        className={twMerge(ArrowStyle, styleOverrides?.arrow)}
+      ></Arrow>
     </div>
   )
 }
