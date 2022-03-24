@@ -5,10 +5,9 @@ import { twMerge } from 'tailwind-merge'
 import { ReactHTML } from 'react'
 
 type ButtonAttr = HTMLAttr<'button'>
-export const Arrow: FunctionComponent<
-  Omit<ButtonAttr & { type: 'next' | 'prev' }, 'children'>
-> = (props) => {
-  const { className: cls, type, ...rest } = props
+type ArrowProps = Omit<ButtonAttr, 'children'> & { arrowType: 'next' | 'prev' }
+export function Arrow(props: ArrowProps) {
+  const { className: cls, arrowType, ...rest } = props
   const style = cntl`
     bg-zinc-900/90
     backdrop-filter
@@ -26,9 +25,9 @@ export const Arrow: FunctionComponent<
   return (
     <button {...rest} className={mergeClass('arrow', style, cls)}>
       <span className="material-icons-outlined">
-        {type == 'next'
+        {arrowType == 'next'
           ? 'navigate_next'
-          : type == 'prev'
+          : arrowType == 'prev'
           ? 'navigate_before'
           : ''}
       </span>
