@@ -6,7 +6,11 @@
 
 #main-article {
   h2 {
-    @apply text-lg tracking-widest py-5 font-bold scroll-mt-16;
+    @apply text-lg tracking-widest py-5 font-bold scroll-mt-header;
+
+    &:first-child {
+      @apply pt-0;
+    }
   }
 
   p,

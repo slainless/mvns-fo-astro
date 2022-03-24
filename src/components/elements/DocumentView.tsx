@@ -59,19 +59,20 @@ export default function DocumentView(props: Props) {
   }, [])
 
   return (
-    <section id="document" className={'flex gap-10'}>
+    <section id="document" className={'flex'}>
       <main className="contents">
         <div
           id="navigation-sidebar"
-          className="h-max items-start top-20 sticky pl-10"
+          className="h-max items-start top-[calc(theme(spacing.header)_+_theme(spacing.10))] sticky"
         >
-          <ul className="flex flex-col gap-3 w-56 uppercase tracking-widest text-xs">
+          <ul className="flex flex-col gap-3 w-80 pl-16 pr-8 uppercase tracking-widest overflow-auto text-sm h-[calc(calc(100vh_-_theme(spacing.header))_-_theme(spacing.20))]">
             {headings.map((heading, i) => (
               <li
                 key={heading.id}
-                className={
-                  activeHeading.includes(heading.id) ? 'text-red-500' : ''
-                }
+                className={twMerge(
+                  'relative transition-all after:transition-all after:w-0 after:h-full after:bg-red-600 after:absolute after:-left-3 after:top-0',
+                  activeHeading.includes(heading.id) ? 'text-red-600' : ''
+                )}
               >
                 <a href={'#' + heading.id}>{heading.textContent}</a>
               </li>
@@ -80,12 +81,12 @@ export default function DocumentView(props: Props) {
         </div>
         <article
           id="main-article"
-          className={twMerge('flex-grow max-w-3xl', className)}
+          className={twMerge('flex-grow max-w-4xl px-20', className)}
         >
           {children}
         </article>
       </main>
-      {hideAds ? null : (
+      {/* {hideAds ? null : (
         <Ads
           width={300}
           height={600}
@@ -93,7 +94,7 @@ export default function DocumentView(props: Props) {
           id="sidebar-ads"
           className="sticky top-12 items-start h-max w-max pr-10 flex-shrink-0"
         />
-      )}
+      )} */}
     </section>
   )
 }
