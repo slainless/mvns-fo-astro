@@ -41,7 +41,7 @@ export default function Hero() {
             `}
           >
             Share{' '}
-            <span className="relative after:absolute after:-top-2 after:w-full after:h-2 after:bg-red-600 after:left-0">
+            <span className="relative after:absolute after:-top-2 after:w-0 after:h-2 after:bg-red-600 after:left-0">
               your
             </span>{' '}
             <br />

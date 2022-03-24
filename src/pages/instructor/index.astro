@@ -1,21 +1,25 @@
 ---
 import Home from '@Layouts/Home.astro'
 import Hero from '@Elements/instructor/Hero.tsx'
+import TrustedBy from '@Elements/instructor/TrustedBy.tsx'
+import Reasons from '@Elements/instructor/Reasons.tsx'
 import DocumentView from '@Elements/DocumentView.tsx'
 import TOC from '@Elements/instructor/TOC.md'
+import { Common as Button } from '@Bits/Button'
+import cntl from 'cntl'
 ---
 
 <Home title="Become an Instructor">
   <Hero />
-  <DocumentView client:load>
+  <Reasons />
+  <TrustedBy />
+  <DocumentView styleOverrides={{ container: cntl`mt-20` }} client:load>
     <TOC />
     <div class="w-full flex justify-center mt-10">
-      <button
-        class="bg-red-600 py-3 px-10 rounded-lg text-sm tracking-widest uppercase flex items-center gap-2"
-      >
+      <Button className="flex items-center gap-2">
         Register
         <span class="material-icons-outlined"> arrow_forward </span>
-      </button>
+      </Button>
     </div>
   </DocumentView>
 </Home>
