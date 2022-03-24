@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 import { Root as AspectRatio } from '@radix-ui/react-aspect-ratio'
 
-type ItemProps = HTMLAttr<'div'> & {
+type ItemProps = HTMLAttr<'a'> & {
   title: string
   tags?: string[]
   desc?: string
@@ -40,13 +40,14 @@ export default function Item(props: ItemProps) {
     ...rest
   } = props
   return (
-    <div
+    <a
       className={twMerge(
         'blog-item',
         'flex flex-col gap-5',
         className,
         styleOverrides?.container
       )}
+      {...rest}
     >
       <div className={styleOverrides?.background?.container}>
         <AspectRatio ratio={ratio ?? 16 / 9}>
@@ -102,11 +103,17 @@ export default function Item(props: ItemProps) {
           {desc}
         </p>
         <div className={twMerge('item-info', styleOverrides?.info?.container)}>
-          <span className={twMerge('item-date', styleOverrides?.info?.date)}>
+          <div
+            className={twMerge(
+              'item-date',
+              'text-sm text-gray-500 font-medium',
+              styleOverrides?.info?.date
+            )}
+          >
             {date}
-          </span>
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   )
 }

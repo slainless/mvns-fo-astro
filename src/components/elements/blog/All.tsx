@@ -5,6 +5,7 @@ import { Separator } from '@radix-ui/react-separator'
 import cntl from 'cntl'
 import { merge } from 'lodash-es'
 import Item from './Item'
+import List from './List'
 
 export default function All() {
   return (
@@ -17,30 +18,7 @@ export default function All() {
             </Section.Title>
             <Separator className="w-full h-[1px] bg-black absolute top-1/2 -translate-y-1/2" />
           </div>
-          <div id="all-blogs" className="flex flex-col gap-10">
-            {blogItems.map((item) => {
-              return (
-                <Item
-                  {...merge<Partial<typeof item>, typeof item>(
-                    {
-                      styleOverrides: {
-                        container: cntl`flex flex-row gap-10`,
-                        content: cntl`w-2/3`,
-                        background: {
-                          container: cntl`w-1/3 flex-grow`,
-                        },
-                        title: cntl`order-2`,
-                        tags: { container: cntl`order-1` },
-                        desc: cntl`order-3`,
-                      },
-                      ratio: 16 / 12,
-                    },
-                    item
-                  )}
-                />
-              )
-            })}
-          </div>
+          <List />
         </div>
         <Ads
           width={300}

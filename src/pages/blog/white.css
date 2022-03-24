@@ -1,7 +1,0 @@
-body {
-  @apply !bg-white !text-black;
-}
-
-#footer {
-  @apply text-white bg-black;
-}
