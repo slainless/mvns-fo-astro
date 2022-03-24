@@ -48,6 +48,7 @@ export const Favorite: FunctionComponent<
     <button
       {...rest}
       className={twMerge(
+        'button',
         cntl`
           ${
             filled

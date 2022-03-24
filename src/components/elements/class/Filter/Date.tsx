@@ -138,7 +138,7 @@ export default function ClassDate(props: OptionalProps) {
                         hover:bg-red-500 hover:text-white 
                         rounded-lg flex items-center justify-center w-10 h-10
                         `,
-                        isToday ? 'bg-blue-50 text-blue-900 font-bold' : '',
+                        isToday ? 'font-bold' : '',
                         isSelected ? 'bg-red-400 text-white' : '',
                         isInRange ? 'bg-red-50 text-red-900' : ''
                       )}

@@ -5,9 +5,12 @@ import './DocumentView.styl'
 
 type Props = HTMLAttr<'div'> & {
   hideAds?: boolean
+  styleOverrides?: {
+    container?: string
+  }
 }
 export default function DocumentView(props: Props) {
-  const { children, className, hideAds, ...rest } = props
+  const { children, className, hideAds, styleOverrides, ...rest } = props
   const [headings, setHeadings] = useState<HTMLHeadingElement[]>([])
   const [activeHeading, setActiveHeading] = useState<string[]>([])
 
@@ -59,7 +62,10 @@ export default function DocumentView(props: Props) {
   }, [])
 
   return (
-    <section id="document" className={'flex'}>
+    <section
+      id="document"
+      className={twMerge('flex', styleOverrides?.container)}
+    >
       <main className="contents">
         <div
           id="navigation-sidebar"
