@@ -3,33 +3,40 @@ import Base from '@Layouts/Base.astro'
 import cntl from 'cntl'
 import { map } from 'lodash-es'
 const NAVIGATION = {
-  Common: {
-    Login: '/portal/login',
+  Backend: {
+    Documentation: '/backend/api/documentation',
   },
   Backoffice: {
     Index: '/portal/',
   },
   Landing: {
-    Public: '/dev/landing/public',
+    Public: '/',
     Student: '/dev/landing/student',
     Instructor: '/dev/landing/instructor',
+    Business: '/dev/landing/business',
   },
   Class: {
-    'All Classes': '/dev/class/all',
-    Detail: '/dev/class/detail',
-    Filter: '/dev/class/filter',
-    'Filter, Not Found': '/dev/class/filter-not-found',
+    'All Classes': '/class/all',
+    Detail: '/class/detail',
+    Filter: '/class/filter',
+    'Filter, Not Found': '/class/filter-not-found',
+  },
+  Blog: {
+    'All Blogs': '/blog/all',
+    Detail: '/blog/detail',
+    Filter: '/blog/filter',
+    'Filter, Not Found': '/blog/filter-not-found',
   },
   Search: {
-    Search: '/dev/search',
+    Search: '/search',
     'Not Found': '/dev/search/not-found',
   },
   'Become an Instructor': {
-    TOC: '/dev/instructor',
+    TOC: '/instructor',
     // Register: '/dev/instructor/register',
   },
   'Business': {
-    TOC: '/dev/business',
+    TOC: '/business',
     // Register: '/dev/instructor/register',
   },
 }
