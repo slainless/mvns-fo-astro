@@ -23,7 +23,7 @@ const LinkStyle = cntl`
 `
 const DefaultNav = (
   <>
-    <Link className={LinkStyle} href="/instructor/tos">
+    <Link className={LinkStyle} href="/instructor">
       Become Instructor
     </Link>
     <Login title="Login">
