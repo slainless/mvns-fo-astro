@@ -80,7 +80,7 @@ type IconProps = {
 } & HTMLAttr<'button'>
 
 export function Icon(props: IconProps) {
-  const { outlined, icon, styleOverrides, className, ...rest } = props
+  const { outlined, icon, styleOverrides, className, children, ...rest } = props
   return (
     <button className={twMerge('text-2xl inline-flex', className)} {...rest}>
       <span
@@ -93,14 +93,30 @@ export function Icon(props: IconProps) {
       >
         {icon}
       </span>
+      {children}
     </button>
   )
 }
 
+const CommonMods = {
+  'fill-red': cntl`bg-red-600 border-red-600 text-white`,
+  'to-outline-red': cntl`hover:bg-transparent hover:border-red-600 hover:text-red-600 hover:shadow-red-600/30`,
+  'to-fill-red': cntl`hover:bg-red-600 hover:border-red-600 hover:shadow-red-600/30`,
+
+  'fill-black': cntl`bg-black text-white border-black`,
+  'to-outline-black': cntl`hover:bg-transparent hover:border-black hover:text-black hover:shadow-black/20`,
+  'to-fill-black': cntl`hover:bg-black hover:border-black hover:shadow-black/20`,
+
+  'no-translate': cntl`hover:translate-y-0`,
+} as const
+type CommonModsKeys = keyof typeof CommonMods
+
 type AnchorAttr = HTMLAttr<'a'>
-type CommonProps = AnchorAttr & {}
+type CommonProps = AnchorAttr & {
+  mods?: CommonModsKeys | CommonModsKeys[]
+}
 export function Common(props: CommonProps) {
-  const { className: cls, ...rest } = props
+  const { className: cls, mods, ...rest } = props
   return (
     <a
       {...rest}
@@ -120,6 +136,11 @@ export function Common(props: CommonProps) {
         hover:shadow-lg hover:shadow-white/20
         cursor-pointer
       `,
+        ...(Array.isArray(mods)
+          ? mods.map((k) => CommonMods[k])
+          : typeof mods == 'string'
+          ? [CommonMods[mods]]
+          : ['']),
         cls
       )}
     ></a>
