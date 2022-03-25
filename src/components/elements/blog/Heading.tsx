@@ -1,3 +1,5 @@
+import { Icon } from '@Bits/Button'
+import Share from '@Elements/Share'
 import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 import { Separator } from '@radix-ui/react-separator'
 
@@ -49,7 +51,7 @@ export default function Heading() {
         </ul>
       </header>
       <section id="blog-background" className="flex flex-col gap-3">
-        <AspectRatio ratio={16 / 9}>
+        <AspectRatio ratio={16 / 9} className="relative">
           <div
             id="blog-image"
             className="w-full h-full bg-cover"
@@ -57,6 +59,17 @@ export default function Heading() {
               backgroundImage: `url('${img}')`,
             }}
           ></div>
+          <Share
+            title="Share this blog"
+            url="https://mavens.upanastudio.com/blog/detail"
+          >
+            <Icon
+              icon="share"
+              className="absolute bottom-0 left-0 flex flex-row gap-2 py-2 px-4 bg-black/50 text-white text-base transition-colors hover:bg-red-600/50"
+            >
+              Share
+            </Icon>
+          </Share>
         </AspectRatio>
         <div id="blog-image-caption" className="text-gray-500 text-sm">
           {imgCaption}

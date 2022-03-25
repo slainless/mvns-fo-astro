@@ -1,16 +1,18 @@
 import cntl from 'cntl'
 import { Root as Separator } from '@radix-ui/react-separator'
 import { Common as Button } from '@Bits/Button'
+import Share from '@Elements/Share'
+import { forwardRef, Ref } from 'react'
 
-type ActionProps = {
+type ActionProps = HTMLAttr<'a'> & {
   icon: string
   text: string
   outlined?: boolean
 }
 function Action(props: ActionProps) {
-  const { icon, text, outlined } = props
+  const { icon, text, outlined, ...rest } = props
   return (
-    <a className="overview-action flex flex-col gap-2">
+    <a className="overview-action flex flex-col gap-2" {...rest}>
       <span className="action-icon text-xl">
         <span
           className={
@@ -77,7 +79,12 @@ export default function Overview() {
           <div id="overview-actions" className="flex flex-row gap-10 my-8">
             <Action icon="play_arrow" outlined={false} text="Trailer" />
             <Action icon="content_copy" text="Sample" />
-            <Action icon="share" text="Share" />
+            <Share
+              title="Share this class"
+              url="https://mavens.upanastudio.com/class/detail"
+            >
+              <Action icon="share" text="Share" href="javascript:void(0);" />
+            </Share>
           </div>
           <div
             id="overview-pricing"

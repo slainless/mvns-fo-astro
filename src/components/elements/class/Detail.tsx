@@ -76,7 +76,7 @@ export default function Detail() {
                 Business
               </ClassInfo>
             </div>
-            <button>
+            {/* <button>
               <ClassInfo
                 id="class-category"
                 icon="share"
@@ -87,7 +87,7 @@ export default function Detail() {
               >
                 Share
               </ClassInfo>
-            </button>
+            </button> */}
           </div>
         </div>
         <div id="class-media" className="flex flex-row gap-5">
