@@ -12,21 +12,25 @@ const Items: Parameters<typeof Card>[0][] = [
     bgImg: '/media/blog-thumb.jpg',
     title: 'Everything You Need to Know About Blog A...',
     date: 'Jan 21-29, 22',
+    href: '/blog/detail',
   },
   {
     bgImg: '/media/blog-thumb.jpg',
     title: 'Everything You Need to Know About Blog B...',
     date: 'Jan 21-29, 22',
+    href: '/blog/detail',
   },
   {
     bgImg: '/media/blog-thumb.jpg',
     title: 'Everything You Need to Know About Blog C...',
     date: 'Jan 21-29, 22',
+    href: '/blog/detail',
   },
   {
     bgImg: '/media/blog-thumb.jpg',
     title: 'Everything You Need to Know About Blog D...',
     date: 'Jan 21-29, 22',
+    href: '/blog/detail',
   },
 ]
 
