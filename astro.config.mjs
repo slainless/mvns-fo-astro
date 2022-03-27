@@ -2,6 +2,7 @@
 // https://docs.astro.build/reference/configuration-reference
 
 import { join, resolve } from 'node:path'
+import react from '@astrojs/react'
 
 const preactCompatPlugin = {
   name: 'preact-compat',
@@ -30,7 +31,7 @@ const preactCompatPlugin = {
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
 	// Enable the Preact renderer to support Preact JSX components.
-	renderers: ['@astrojs/renderer-react'],
+	integrations: [react()],
 	vite: {
 		optimizeDeps: {
 			exclude: ['video.js'],
