@@ -32,6 +32,9 @@ const preactCompatPlugin = {
 export default /** @type {import('astro').AstroUserConfig} */ ({
 	// Enable the Preact renderer to support Preact JSX components.
 	integrations: [react()],
+  buildOptions: {
+    site: 'https://mavens.upanastudio.com/'
+  },
 	vite: {
 		optimizeDeps: {
 			exclude: ['video.js'],
