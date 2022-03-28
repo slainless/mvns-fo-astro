@@ -1,4 +1,3 @@
-import type { FunctionComponent } from 'preact'
 import cntl from 'cntl'
 import { createSingleton } from '@Functions/jsx-factory'
 import { twMerge } from 'tailwind-merge'
@@ -12,18 +11,16 @@ module Section {
     `,
   })
 
-  type HeadingAttr = HTMLAttributes<HTMLHeadingElement>
-  export const Title: FunctionComponent<
-    HeadingAttr & {
+  type TitleProps = HTMLAttr<'h2'> & {
+    subtitle?: string
+    subtitleHref?: string
+    styleOverrides?: {
+      container?: string
+      title?: string
       subtitle?: string
-      subtitleHref?: string
-      styleOverrides?: {
-        container?: string
-        title?: string
-        subtitle?: string
-      }
     }
-  > = (props) => {
+  }
+  export function Title(props: TitleProps) {
     const {
       className: cls,
       subtitle,
@@ -35,6 +32,7 @@ module Section {
       <div
         className={twMerge(
           cntl`
+            section-heading
             inline-flex items-center justify-start
             flex-wrap
             gap-x-5

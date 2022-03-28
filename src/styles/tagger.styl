@@ -1,0 +1,16 @@
+.tagify {
+  --tag-bg: theme('colors.zinc.50');
+  --tag-hover: theme('colors.zinc.200');
+  --tag-inset-shadow-size: 10em;
+  --tag-text-color--edit: theme('colors.white');
+
+  &__tag {
+    &-text {
+      @apply break-all;
+    }
+
+    &__removeBtn {
+      @apply flex-shrink-0;
+    }
+  }
+}

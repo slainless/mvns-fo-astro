@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 const Config = {
   content: [
@@ -34,6 +36,9 @@ const Config = {
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
+    plugin(function ({ addVariant }) {
+      addVariant('selected', '&[aria-selected=true]')
+    })
   ]
 }
 

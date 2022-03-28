@@ -1,5 +1,6 @@
 import { createElement, ReactHTML, HTMLAttributes } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { isPlainObject, isString, merge, mergeWith } from 'lodash-es'
 
 /**
  * Create a singleton function factory with initial attributes that can
@@ -44,9 +45,46 @@ export function createSingleton<T extends keyof ReactHTML>(
     const { className: defC, ...defRest } = defaultProps
     const { className: c, ...rest } = props
     const newRest: Record<string, any> = Object.assign({}, defRest, rest, {
-      className: twMerge(c, defC),
+      className: twMerge(defC, c),
     })
 
     return createElement(type, newRest)
+  }
+}
+
+type StyleOverride = { [x in string]: StyleOverride } | string | undefined
+function styleMerger(val: StyleOverride, val2: StyleOverride): StyleOverride {
+  if (val == null) return val2
+  if (val2 == null) return val
+
+  if (isString(val) && isString(val2)) return twMerge(val, val2)
+  if (isPlainObject(val) && isPlainObject(val2))
+    return mergeWith({}, val, val2, styleMerger)
+}
+export function createOverride<T extends (props: any) => JSX.Element>(
+  factory: T,
+  overrides: Partial<Parameters<T>[0]>
+) {
+  return (props: Parameters<T>[0]): JSX.Element => {
+    const { className, styleOverrides, ...rest } = overrides
+    const {
+      className: className2,
+      styleOverrides: styleOverrides2,
+      ...rest2
+    } = props
+    const $rest = merge({}, rest, rest2)
+    const $className = twMerge(className, className2)
+    const $styleOverrides =
+      styleOverrides != null && styleOverrides2 != null
+        ? mergeWith(styleOverrides, styleOverrides2, styleMerger)
+        : styleOverrides == null
+        ? styleOverrides2
+        : styleOverrides
+
+    return createElement(factory, {
+      className: $className,
+      styleOverrides: $styleOverrides,
+      ...$rest,
+    })
   }
 }

@@ -2,7 +2,7 @@ import cntl from 'cntl'
 import { createSingleton } from '@Functions/jsx-factory'
 import { mergeClass } from '@Functions/jsx-helper'
 import { twMerge } from 'tailwind-merge'
-import { ReactHTML } from 'react'
+import { createElement, ReactHTML } from 'react'
 
 type ButtonAttr = HTMLAttr<'button'>
 type ArrowProps = Omit<ButtonAttr, 'children'> & { arrowType: 'next' | 'prev' }
@@ -77,25 +77,39 @@ type IconProps = {
   styleOverrides?: {
     icon?: string
   }
-} & HTMLAttr<'button'>
+}
 
-export function Icon(props: IconProps) {
-  const { outlined, icon, styleOverrides, className, children, ...rest } = props
-  return (
-    <button className={twMerge('text-2xl inline-flex', className)} {...rest}>
-      <span
-        className={twMerge(
-          outlined === null || outlined
-            ? 'material-icons-outlined'
-            : 'material-icons',
-          styleOverrides?.icon
-        )}
-      >
-        {icon}
-      </span>
-      {children}
-    </button>
-  )
+export function Icon<T extends keyof ReactHTML = 'button'>(
+  props: IconProps & { as?: T } & HTMLAttr<T>
+): JSX.Element {
+  const {
+    as: tag,
+    outlined,
+    icon,
+    styleOverrides,
+    className,
+    children,
+    ...rest
+  } = props
+  return createElement(tag ?? 'button', {
+    className: twMerge(cntl`text-2xl inline-flex`, className),
+    children: (
+      <>
+        <span
+          className={twMerge(
+            outlined === null || outlined
+              ? 'material-icons-outlined'
+              : 'material-icons',
+            styleOverrides?.icon
+          )}
+        >
+          {icon}
+        </span>
+        {children}
+      </>
+    ),
+    ...rest,
+  })
 }
 
 const CommonMods = {
@@ -106,6 +120,9 @@ const CommonMods = {
   'fill-black': cntl`bg-black text-white border-black`,
   'to-outline-black': cntl`hover:bg-transparent hover:border-black hover:text-black hover:shadow-black/20`,
   'to-fill-black': cntl`hover:bg-black hover:border-black hover:shadow-black/20`,
+
+  'hover-darker-fill': cntl`hover:bg-black/30`,
+  'hover-lighter-fill': cntl`hover:bg-white/30`,
 
   'no-translate': cntl`hover:translate-y-0`,
 } as const

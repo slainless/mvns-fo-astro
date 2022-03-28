@@ -8,6 +8,11 @@ declare module '*.md' {
   export default ref
 }
 
+declare module '*.svg' {
+  const ref: import('react').FunctionComponent
+  export default ref
+}
+
 interface Window {
   USER: import('@Api/user').User
 }

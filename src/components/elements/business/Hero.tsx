@@ -1,3 +1,4 @@
+import { Common as Button } from '@Bits/Button'
 import cntl from 'cntl'
 
 export default function Hero() {
@@ -28,19 +29,24 @@ export default function Hero() {
           order-1
         `}
       >
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-0">
           <h1
             id="hero-title"
             className={cntl`
-              text-[44px] lg:text-5xl 
-              inline-flex flex-col font-heading 
-              gap-0 
+              text-[44px] lg:text-7xl 
+              font-display
+              font-black
               leading-[85%]
               uppercase
             `}
           >
-            <span>Inspire, Engage &</span>
-            <span>Advance Yourself</span>
+            Built <span className="text-red-600">Talents</span>
+            <br />
+            that{' '}
+            <span className="relative after:absolute after:-bottom-1 after:w-full after:h-2 after:bg-red-600 after:left-0">
+              Last
+            </span>
+            {/* <span>Advance Yourself</span> */}
             {/* <span
               className={cntl`
                 text-red-600
@@ -52,30 +58,19 @@ export default function Hero() {
           </h1>
           <h2
             id="hero-subtitle"
-            className="font-body mt-3 w-72 opacity-80 text-xl"
+            className="font-body mt-5 w-72 opacity-80 text-lg"
           >
-            Mavens business upgrade your employee's skill
+            Designed for the future of work where workforces can grow and
+            thrive.
           </h2>
         </div>
         <nav className="font-body mt-4 gap-3 flex flex-col text-sm">
-          <a
-            id="register-link"
-            className={`
-              bg-red-600 text-white font-poppins uppercase tracking-widest
-              py-3 rounded-md inline-block font-medium text-xs px-10
-            `}
+          <Button
+            href="/business/register"
+            className="font-bold bg-red-600 border-red-600 text-white hover:text-red-600 hover:shadow-red-600/30"
           >
             Register Now
-          </a>
-          {/* <div className="inline-flex gap-3 flex-wrap justify-center">
-            <text>Not sure what to learn?</text>
-            <a
-              id="all-class-link"
-              className="tracking-wider text-red-600 underline underline-offset-2"
-            >
-              View All Classes
-            </a>
-          </div> */}
+          </Button>
         </nav>
       </div>
     </section>

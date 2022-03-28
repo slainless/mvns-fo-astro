@@ -6,9 +6,9 @@ export default function Footer() {
     <footer id="footer" className="bg-white text-black px-20 py-10">
       <div
         id="footer-links"
-        className="grid grid-cols-4 border-b-2 border-b-zinc-300 pb-20"
+        className="grid grid-cols-5 border-b-2 border-b-zinc-300 pb-20"
       >
-        <List
+        {/* <List
           title="Support"
           links={[['Privacy & Policy', '/privacy'], ['Term of Condition']]}
         />
@@ -20,7 +20,39 @@ export default function Footer() {
           title="About"
           links={[['Blog'], ['Mavens dot live', '/about-us']]}
         />
-        <List title="FAQ" links={[['Student'], ['Instructor'], ['Business']]} />
+        <List title="FAQ" links={[['Student'], ['Instructor'], ['Business']]} /> */}
+        <List
+          title="Mavensdotlive"
+          links={[
+            ['About Us', '/about-us'],
+            ['For Business', '/business'],
+            ['Become a Partner', '/partner'],
+            ['Become an Instructor', '/instructor'],
+            ['Careers', '/career'],
+          ]}
+        ></List>
+        <hr className="invisible"></hr>
+        <List
+          title="Classes"
+          links={[
+            ['Online', '/class/all'],
+            ['Physical', '/class/all'],
+            ['Video', '/class/all'],
+            ['Certification', '/class/all'],
+          ]}
+        ></List>
+        <hr className="invisible"></hr>
+        <List
+          title="More"
+          links={[
+            ['Help Centre', '/help'],
+            ['Terms', '/tos'],
+            ['Privacy', '/privacy-policy'],
+            ['Blog', '/blog/all'],
+            ['Sitemap', '/sitemap'],
+            ['Contact', '/contact'],
+          ]}
+        ></List>
       </div>
       <div className="grid grid-cols-2 pt-6">
         <span id="copyright" className="font-heading text-zinc-500 text-sm">

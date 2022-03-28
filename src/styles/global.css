@@ -64,3 +64,7 @@ body {
   @apply bg-yellow-600;
   /* background: var(--custom-thumb-color-hover) !important; */
 }
+
+kbd {
+  @apply bg-gray-200 text-black font-black px-1 py-0.5 tracking-wide border-[1px] border-gray-400 rounded-md shadow-sm;
+}

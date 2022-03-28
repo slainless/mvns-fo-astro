@@ -234,3 +234,60 @@ export const blogItems: Parameters<typeof Item>[0][] = [
     href: '/blog/detail',
   },
 ]
+
+type Item = {
+  product?: {
+    img: string
+    name: string
+  }
+  price?: string
+  quantity?: number
+  subtotal?: string
+}
+export const cartItems: Item[] = [
+  {
+    product: {
+      img: '/media/image 64.png',
+      name: 'Statistics Data Science and Business Analysis',
+    },
+    price: '$49.65',
+    quantity: 1,
+    subtotal: '$49.65',
+  },
+  {
+    product: {
+      img: '/media/image 64.png',
+      name: 'Statistics Data Science and Business Analysis',
+    },
+    price: '$49.65',
+    quantity: 1,
+    subtotal: '$49.65',
+  },
+  {
+    product: {
+      img: '/media/image 64.png',
+      name: 'Statistics Data Science and Business Analysis',
+    },
+    price: '$49.65',
+    quantity: 1,
+    subtotal: '$49.65',
+  },
+  {
+    product: {
+      img: '/media/image 64.png',
+      name: 'Statistics Data Science and Business Analysis',
+    },
+    price: '$49.65',
+    quantity: 1,
+    subtotal: '$49.65',
+  },
+  {
+    product: {
+      img: '/media/image 64.png',
+      name: 'Statistics Data Science and Business Analysis',
+    },
+    price: '$49.65',
+    quantity: 1,
+    subtotal: '$49.65',
+  },
+]

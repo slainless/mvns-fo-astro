@@ -1,0 +1,39 @@
+---
+import Home from '@Layouts/Home.astro'
+import { Common as Button } from '@Bits/Button'
+import { Input } from '@Blocks/Form'
+import Section from '@Blocks/Section.tsx'
+import Table from '@Elements/cart/Table.tsx'
+import cntl from 'cntl'
+---
+
+<Home title="Become an Instructor">
+  <Section.Container>
+    <Section.Title>My Cart</Section.Title>
+    <Section.Content className="mt-12 gap-10 flex flex-col">
+      <div class="flex gap-2 items-stretch">
+        <Input
+          className="w-64 h-full"
+          styleOverrides={{ container: cntl`inline-flex h-auto` }}
+          mods={['lightest-bg', 'darker-icon', 'focus-ring']}
+          placeholder="Coupon Code"
+          leadingIcon="redeem"
+        />
+        <Button
+          className="px-5 inline-flex"
+          mods={['fill-red', 'to-outline-red', 'no-translate']}
+        >
+          Apply Coupon
+        </Button>
+      </div>
+      <Table client:only />
+      <Button
+        className="flex gap-1 self-end w-48 py-5 text-sm"
+        mods={['fill-red', 'to-outline-red']}
+        href="/cart/checkout"
+        >Checkout <span class="material-icons-outlined">arrow_forward</span
+        ></Button
+      >
+    </Section.Content>
+  </Section.Container>
+</Home>

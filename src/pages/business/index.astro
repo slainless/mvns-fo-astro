@@ -3,6 +3,7 @@ import Home from '@Layouts/Home.astro'
 import Hero from '@Elements/business/Hero.tsx'
 import DocumentView from '@Elements/DocumentView.tsx'
 import TOC from '@Elements/business/TOC.md'
+import { Common as Button } from '@Bits/Button'
 ---
 
 <Home title="TOS Business">
@@ -10,12 +11,13 @@ import TOC from '@Elements/business/TOC.md'
   <DocumentView client:load>
     <TOC />
     <div class="w-full flex justify-center mt-10">
-      <button
-        class="bg-red-600 py-3 px-10 rounded-lg text-sm tracking-widest uppercase flex items-center gap-2"
+      <Button
+        className="flex items-center gap-2 font-bold"
+        href="/business/register"
       >
         Register
         <span class="material-icons-outlined"> arrow_forward </span>
-      </button>
+      </Button>
     </div>
   </DocumentView>
 </Home>
