@@ -67,7 +67,9 @@ export default function Hero() {
           </a> */}
           <div className="inline-flex gap-3 flex-wrap justify-center">
             <text>Not sure what to learn?</text>
-            <Link href="/class/all">View All Classes</Link>
+            <Link href="/class/all" className="after:w-0">
+              View All Classes
+            </Link>
             {/* <a
               id="all-class-link"
               className="tracking-wider text-red-600 underline underline-offset-2"
