@@ -13,7 +13,7 @@ export default function Sidebar() {
       />
       <div id="blog-recommendation" className="flex flex-col gap-5">
         <div className="font-bold text-xl font-heading border-b-2 pb-2">
-          Top Blog
+          Related Articles
         </div>
         <div className="flex flex-col">
           {Array(4)

@@ -55,7 +55,7 @@ export default function BusinessBanner() {
             <span className="font-black">Business</span>
           </h1>
           <Button
-            href="/business/tos"
+            href="/business/"
             className="z-[3] text-red-500 hover:border-red-600 hover:shadow-red-600/30 hover:text-red-500 hover:bg-white shadow-md"
           >
             Register Business
