@@ -3,17 +3,15 @@ import isBrowser from '@Functions/isBrowser'
 import { useEffect, useMemo } from 'react'
 
 const CATEGORIES: [display: string, href?: string][] = [
-  ['Food'],
-  ['Design & Style'],
-  ['Arts & Entertainment'],
-  ['Music'],
-  ['Business'],
-  ['Sports & Gaming'],
-  ['Writing'],
-  ['Science & Tech'],
-  ['Home & Lifestyle'],
-  ['Community & Government'],
-  ['Wellness'],
+  ['Design'],
+  ['Personal Development'],
+  ['IT & Software'],
+  ['Business & Policy'],
+  ['Marketing'],
+  ['Photography & Video'],
+  ['Teaching & Academics'],
+  ['Health & Fitness'],
+  ['Finance & Accounting'],
 ]
 
 function Navigation({ hidden = false }) {
@@ -29,7 +27,7 @@ function Navigation({ hidden = false }) {
           <h2 className="font-heading text-5xl font-bold drop-shadow-md">
             Choose a category to watch a class highlight.
           </h2>
-          <nav className="flex flex-col text-3xl font-heading gap-2 pl-10 font-bold">
+          <nav className="flex flex-col text-3xl font-heading gap-3 pl-10 font-bold">
             {CATEGORIES.map((cat, key) => (
               <a
                 key={key}

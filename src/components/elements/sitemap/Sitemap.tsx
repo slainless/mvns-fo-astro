@@ -4,7 +4,7 @@ import List from './List'
 export default function Sitemap() {
   return (
     <Section.Container>
-      <Section.Title className="lg:text-4xl">Sitemap</Section.Title>
+      <Section.Title className="lg:text-5xl">Sitemap</Section.Title>
       <Section.Content className="flex flex-col gap-12 lg:mt-12">
         <List
           title="Pages"
@@ -25,7 +25,7 @@ export default function Sitemap() {
           title="Class Categories"
           items={[
             ['Design', '/class/all'],
-            ['Personal Development Us', '/class/all'],
+            ['Personal Development', '/class/all'],
             ['IT & Software', '/class/all'],
             ['Business & Policy', '/class/all'],
             ['Marketing', '/class/all'],

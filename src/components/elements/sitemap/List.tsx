@@ -18,9 +18,9 @@ const ItemStyle = cntl`
   tracking-normal transition-colors
   text-white/50 before:h-[2px] before:bg-white/50 before:w-full
   before:absolute before:left-0 before:-bottom-1 hover:before:w-full
-  before:transition-all
+  before:transition-all 
 
-  after:w-0 hover:text-white hover:before:bg-white
+  after:w-0 hover:text-white after:duration-500
 `
 export default function List(props: Props) {
   const { className, styleOverrides, items, title, ...rest } = props
@@ -34,12 +34,17 @@ export default function List(props: Props) {
       )}
       {...rest}
     >
-      <h2 className={twMerge('font-heading text-2xl', styleOverrides?.title)}>
+      <h2
+        className={twMerge(
+          'font-heading text-2xl font-bold',
+          styleOverrides?.title
+        )}
+      >
         {title}
       </h2>
       <ul
         className={twMerge(
-          'grid grid-cols-2 gap-y-3 max-w-3xl',
+          'grid grid-cols-2 gap-y-3 max-w-3xl text-xl',
           styleOverrides?.list?.style
         )}
       >
