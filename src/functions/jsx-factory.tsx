@@ -88,3 +88,13 @@ export function createOverride<T extends (props: any) => JSX.Element>(
     })
   }
 }
+
+export function classedElement<
+  T extends keyof ReactHTML | ((props: any) => JSX.Element)
+>(factory: T, className: string) {
+  return (props: T extends keyof ReactHTML ? HTMLAttr<T> : never) =>
+    createElement(factory, {
+      ...props,
+      className: twMerge(className, props.className),
+    })
+}
