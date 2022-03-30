@@ -1,0 +1,21 @@
+#category-filter {
+  @apply py-2;
+
+  &::-webkit {
+    &-scrollbar {
+      max-width: 3px;
+      max-height: 3px;
+
+      &,
+      &-corner,
+      &-track,
+      &-track-piece {
+        @apply bg-transparent;
+      }
+
+      &-thumb {
+        @apply bg-zinc-700;
+      }
+    }
+  }
+}

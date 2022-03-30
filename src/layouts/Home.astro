@@ -10,6 +10,7 @@ const { title, class: cls, forceWhite } = Astro.props
 <Base {title} {forceWhite} class={twMerge('mt-16 lg:mt-32', cls)}>
   <slot name="head" slot="head" />
   <Header slot="pre-main" client:load />
+  <slot name="pre-main" slot="pre-main" />
   <slot />
   <Ads
     slot="post-main"

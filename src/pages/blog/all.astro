@@ -2,10 +2,14 @@
 import Home from '@Layouts/Home.astro'
 import Latest from '@Elements/blog/Latest.tsx'
 import All from '@Elements/blog/All.tsx'
+import CategoryBar from '@Elements/CategoryBar.tsx'
 import cntl from 'cntl'
 ---
 
-<Home title="All Blogs" forceWhite>
+<Home title="All Blogs" forceWhite class="lg:mt-0">
+  <div class="bg-black mt-header" slot="pre-main">
+    <CategoryBar className="mx-16" client:load />
+  </div>
   <Latest />
   <All />
 </Home>

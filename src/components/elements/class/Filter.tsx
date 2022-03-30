@@ -6,6 +6,7 @@ import Pricing from './Filter/Pricing'
 import Rating from './Filter/Rating'
 import { Common as Swiper } from '@Blocks/Carousel'
 import { SwiperSlide } from 'swiper/react'
+import CategoryBar from '@Elements/CategoryBar'
 
 const Tags = [
   'Finance & Accounting',
@@ -18,15 +19,19 @@ const Tags = [
 export default function Filter() {
   return (
     <div id="filter" className="flex items-center gap-5">
-      <div id="filter-list" className="flex gap-2">
+      <div id="filter-list" className="flex gap-2 shrink-0">
         <DateDialog />
         <Pricing />
         <Popular />
         <Rating />
       </div>
-      <Separator orientation="vertical" className="h-5 w-[1px] bg-white/50" />
-      <div id="tag-list" className="flex flex-row gap-5 flex-grow">
-        <div id="tag-active" className="w-max">
+      <Separator
+        orientation="vertical"
+        className="h-5 w-[1px] bg-white/50 shrink-0"
+      />
+      <CategoryBar />
+      {/* <div id="tag-list" className="flex flex-row gap-5 flex-grow">
+        <div id="tag-active" className="w-max shrink-0">
           <span className="underline underline-offset-4 w-max">
             <span className="material-icons-outlined underline">
               work_outline
@@ -34,14 +39,7 @@ export default function Filter() {
             Business
           </span>
         </div>
-        <div id="tag-swiper" className="flex-grow">
-          {/* <Swiper id="tags" className="h-full" options={{}}>
-            {Tags.map((tag, index) => (
-              <SwiperSlide key={tag}>{tag}</SwiperSlide>
-            ))}
-          </Swiper> */}
-        </div>
-      </div>
+      </div> */}
     </div>
   )
 }
