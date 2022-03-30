@@ -53,7 +53,10 @@ export default function Hero() {
           </h2>
         </div>
         <nav className="font-body mt-4 gap-3 flex flex-col text-sm">
-          <Button className="mt-4 text-center text-red-500 hover:bg-red-600 hover:border-red-600 hover:shadow-red-600/50 hover:text-white font-bold">
+          <Button
+            as="a"
+            className="mt-4 text-center text-red-500 hover:bg-red-600 hover:border-red-600 hover:shadow-red-600/50 hover:text-white font-bold"
+          >
             Register Now
           </Button>
           {/* <a

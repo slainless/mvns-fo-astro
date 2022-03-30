@@ -65,6 +65,7 @@ export default function Hero() {
         </div>
         <nav className="font-body mt-4 gap-3 flex flex-col text-sm">
           <Button
+            as="a"
             href="/instructor/register"
             className="font-bold bg-red-600 border-red-600 text-white hover:text-red-600 hover:shadow-red-600/30"
           >

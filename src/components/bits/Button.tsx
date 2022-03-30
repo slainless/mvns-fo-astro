@@ -125,6 +125,7 @@ const CommonMods = {
   'hover-lighter-fill': cntl`hover:bg-white/30`,
 
   'no-translate': cntl`hover:translate-y-0`,
+  'no-fill': cntl`bg-transparent`,
 } as const
 type CommonModsKeys = keyof typeof CommonMods
 
@@ -132,13 +133,14 @@ type AnchorAttr = HTMLAttr<'a'>
 type CommonProps = AnchorAttr & {
   mods?: CommonModsKeys | CommonModsKeys[]
 }
-export function Common(props: CommonProps) {
-  const { className: cls, mods, ...rest } = props
-  return (
-    <a
-      {...rest}
-      className={twMerge(
-        `
+export function Common<T extends 'button' | 'a' = 'button'>(
+  props: CommonProps & { as?: T } & HTMLAttr<T>
+) {
+  const { className: cls, mods, as, ...rest } = props
+  return createElement(as ?? 'button', {
+    ...rest,
+    className: twMerge(
+      cntl`
         button flex items-center
         justify-center 
         bg-white text-black 
@@ -153,15 +155,14 @@ export function Common(props: CommonProps) {
         hover:shadow-lg hover:shadow-white/20
         cursor-pointer
       `,
-        ...(Array.isArray(mods)
-          ? mods.map((k) => CommonMods[k])
-          : typeof mods == 'string'
-          ? [CommonMods[mods]]
-          : ['']),
-        cls
-      )}
-    ></a>
-  )
+      ...(Array.isArray(mods)
+        ? mods.map((k) => CommonMods[k])
+        : typeof mods == 'string'
+        ? [CommonMods[mods]]
+        : ['']),
+      cls
+    ),
+  })
 }
 
 const BaseLinkStyle = cntl`

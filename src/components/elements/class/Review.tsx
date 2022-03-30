@@ -80,7 +80,10 @@ export default function Review() {
             <ReviewItem key={item.user + key} {...item}></ReviewItem>
           ))}
         </div>
-        <Button className="w-max border-transparent bg-transparent text-white hover:border-white">
+        <Button
+          as="a"
+          className="w-max border-transparent bg-transparent text-white hover:border-white"
+        >
           Load More
         </Button>
       </Section.Content>

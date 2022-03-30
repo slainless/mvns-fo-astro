@@ -55,7 +55,10 @@ export default function RegisterPlugin() {
       <span className="w-72 text-sm">
         Learn from the most inspiring artists, leaders, and icons in the world.
       </span>
-      <Button className="text-white bg-red-600 border-red-600 hover:text-white hover:border-white hover:translate-y-0">
+      <Button
+        as="a"
+        className="text-white bg-red-600 border-red-600 hover:text-white hover:border-white hover:translate-y-0"
+      >
         Register Now
       </Button>
     </aside>

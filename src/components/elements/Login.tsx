@@ -83,6 +83,7 @@ export default function Login(props: LoginProps) {
       />
       <div id="alternative-login" className="flex flex-col gap-2 items-stretch">
         <Button
+          as="a"
           className="
           z-[1] bg-transparent text-black border-gray-300
           hover:bg-red-600 hover:border-red-600 hover:text-white hover:shadow-red-600/30 
@@ -95,6 +96,7 @@ export default function Login(props: LoginProps) {
           Log In with Google
         </Button>
         <Button
+          as="a"
           className="
           z-[1] bg-blue-600 text-white border-blue-600 
           hover:bg-red-600 hover:border-red-600 hover:text-white hover:shadow-red-600/30 

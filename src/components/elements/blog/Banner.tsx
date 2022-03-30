@@ -12,7 +12,10 @@ export default function Banner() {
           <br />
           our Instructor
         </div>
-        <Button className="bg-red-600 border-red-600 text-white hover:bg-red-600 hover:shadow-red-600/30 w-max">
+        <Button
+          as="a"
+          className="bg-red-600 border-red-600 text-white hover:bg-red-600 hover:shadow-red-600/30 w-max"
+        >
           Register
         </Button>
       </div>
