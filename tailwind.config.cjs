@@ -36,6 +36,7 @@ const Config = {
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/typography'),
     plugin(function ({ addVariant }) {
       addVariant('selected', '&[aria-selected=true]')
     })
