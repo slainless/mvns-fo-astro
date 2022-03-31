@@ -45,7 +45,7 @@ export default function Footer() {
         <List
           title="More"
           links={[
-            ['Help Centre', '/help'],
+            ['FAQs', '/faq'],
             ['Terms', '/tos'],
             ['Privacy', '/privacy-policy'],
             ['Blog', '/blog/all'],

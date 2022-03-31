@@ -1,0 +1,17 @@
+---
+import Home from '@Layouts/Home.astro'
+import View from '@Elements/faq/View.tsx'
+import GetStarted from '@Elements/faq/GetStarted.tsx'
+import Account from '@Elements/faq/Account.tsx'
+import Enrollment from '@Elements/faq/Enrollment.tsx'
+import Instructor from '@Elements/faq/Instructor.tsx'
+---
+
+<Home title="Public FAQ">
+  <View title="Frequently Asked Questions" client:load>
+    <GetStarted client:load />
+    <Account client:load />
+    <Enrollment client:load />
+    <Instructor client:load />
+  </View>
+</Home>

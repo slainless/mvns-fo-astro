@@ -38,7 +38,10 @@ const Config = {
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     plugin(function ({ addVariant }) {
-      addVariant('selected', '&[aria-selected=true]')
+      addVariant('selected', '&[aria-selected=true]'),
+      addVariant('opened', '&[data-state="open"]'),
+      addVariant('closed', '&[data-state="closed"]'),
+      addVariant('expanded', '&[aria-expanded=true]')
     })
   ]
 }

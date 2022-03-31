@@ -25,5 +25,6 @@
   "typescript.suggest.jsdoc.generateReturns": false,
   "files.associations": {
     "*.styl": "postcss"
-  }
+  },
+  "git.allowForcePush": true
 }
