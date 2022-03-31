@@ -20,3 +20,10 @@ const { title, class: cls, forceWhite } = Astro.props
   />
   <Footer slot="post-main" />
 </Base>
+
+<style global>
+  html {
+    scroll-padding-top: calc(theme('spacing.header') + theme('spacing.2'));
+    scroll-behavior: smooth;
+  }
+</style>

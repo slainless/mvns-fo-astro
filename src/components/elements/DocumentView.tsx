@@ -12,40 +12,46 @@ type Props = HTMLAttr<'div'> & {
 export default function DocumentView(props: Props) {
   const { children, className, hideAds, styleOverrides, ...rest } = props
   const [headings, setHeadings] = useState<HTMLHeadingElement[]>([])
-  const [activeHeading, setActiveHeading] = useState<string[]>([])
+  const [activeHeading, setActiveHeading] = useState<HTMLHeadingElement[]>([])
 
   useEffect(() => {
+    const marginTop = getComputedStyle(
+      document.documentElement
+    ).scrollPaddingTop
+
     const trackedHeadings = document.querySelectorAll(
-      '#main-article h1, #main-article h2, #main-article h3'
+      '#main-article h1:not(.untracked), #main-article h2:not(.untracked), #main-article h3:not(.untracked)'
     )
 
-    const options: IntersectionObserverInit = {
-      root: document,
-      rootMargin: '0px',
-      threshold: [0, 1],
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setActiveHeading((old) => {
+          const neo = new Set(old)
+          for (const entry of entries) {
+            const target = entry.target as HTMLHeadingElement
 
-    const observer = new IntersectionObserver((entries) => {
-      setActiveHeading((old) => {
-        const neo = new Set(old)
-        for (const entry of entries) {
-          const target = entry.target
-          const id = target.id
+            const isVisible = entry.intersectionRatio > 0
 
-          const isVisible = entry.intersectionRatio > 0
-
-          if (isVisible) {
-            if (neo.has(id)) {
-            } else neo.add(id)
-          } else {
-            if (neo.has(id)) neo.delete(id)
-            else {
+            if (isVisible) {
+              if (neo.has(target)) {
+              } else neo.add(target)
+            } else {
+              if (neo.has(target)) neo.delete(target)
+              else {
+              }
             }
           }
-        }
-        return Array.from(neo)
-      })
-    })
+          return Array.from(neo).sort((a, b) => {
+            return +(a.dataset['index'] ?? 0) - +(b.dataset['index'] ?? 0)
+          })
+        })
+      },
+      {
+        rootMargin: `-${marginTop ?? '0px'} 0px 0px 0px`,
+        root: null,
+        threshold: [0, 0.5],
+      }
+    )
 
     const els: HTMLHeadingElement[] = []
     type Entry = [string, HTMLHeadingElement][]
@@ -54,7 +60,7 @@ export default function DocumentView(props: Props) {
       els.push(heading)
       heading.dataset.index = index
 
-      if (index === '0') setActiveHeading([heading.id])
+      if (index === '0') setActiveHeading([heading])
       observer.observe(heading)
     }
 
@@ -77,7 +83,7 @@ export default function DocumentView(props: Props) {
                 key={heading.id}
                 className={twMerge(
                   'relative transition-all after:transition-all after:w-0 after:h-full after:bg-red-600 after:absolute after:-left-3 after:top-0',
-                  activeHeading.includes(heading.id) ? 'text-red-600' : ''
+                  activeHeading[0]?.id === heading.id ? 'text-red-600' : ''
                 )}
               >
                 <a href={'#' + heading.id}>{heading.textContent}</a>

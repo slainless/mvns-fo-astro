@@ -51,7 +51,7 @@ export default function Navigation(props: NavigationProps) {
         })
       },
       {
-        rootMargin: marginTop + ' 0px ' + marginTop + ' 0px',
+        rootMargin: `-${marginTop ?? '0px'} 0px 0px 0px`,
         root: document,
       }
     )
