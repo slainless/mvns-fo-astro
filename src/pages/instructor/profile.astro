@@ -1,0 +1,16 @@
+---
+import Home from '@Layouts/Home.astro'
+import Header from '@Elements/instructor/ProfileHeader.tsx'
+import CardView from '@Elements/CardView.tsx'
+import { slimCard } from '@Dev/dummy.ts'
+---
+
+<Home title="Instructor Profile" class="lg:mt-header">
+  <Header />
+  <CardView
+    id="classes"
+    title="Instructed Classes"
+    classes={slimCard}
+    client:only
+  />
+</Home>
