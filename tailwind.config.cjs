@@ -14,8 +14,8 @@ const Config = {
     },
     extend: {
       spacing: {
-        header: 'theme(spacing.20)',
-        'header-sm': 'theme(spacing.16)'
+        header: '5rem',
+        'header-sm': '4rem'
       },
       fontFamily: {
         'display': ['Big Shoulders Display', 'Impact'],

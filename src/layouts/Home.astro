@@ -7,7 +7,11 @@ import { twMerge } from 'tailwind-merge'
 const { title, class: cls, forceWhite } = Astro.props
 ---
 
-<Base {title} {forceWhite} class={twMerge('mt-16 lg:mt-32', cls)}>
+<Base
+  {title}
+  {forceWhite}
+  class={twMerge('mt-header-sm sm:mt-header pt-5', cls)}
+>
   <slot name="head" slot="head" />
   <Header slot="pre-main" client:load />
   <slot name="pre-main" slot="pre-main" />

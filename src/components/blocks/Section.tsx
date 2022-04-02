@@ -7,7 +7,7 @@ module Section {
   export const Container = createSingleton('section', {
     className: cntl`
       mx-auto w-full
-      px-5 xs:px-7 lg:px-12
+      px-5 xs:px-7 sm:px-16
     `,
   })
 

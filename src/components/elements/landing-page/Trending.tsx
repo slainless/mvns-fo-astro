@@ -59,7 +59,7 @@ export default function Trending() {
           },
         },
         section: {
-          content: cntl`-mr-5 xs:-mr-7 sm:mr-0 sm:px-5 lg:px-0`,
+          content: cntl`-mr-5 xs:-mr-7 sm:mr-0`,
         },
       }}
     />

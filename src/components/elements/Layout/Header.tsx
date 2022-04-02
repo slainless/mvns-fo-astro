@@ -28,7 +28,7 @@ export default function Header() {
     <header
       className={twMerge(
         `
-        sm:px-16
+        px-0 sm:px-16
         h-header-sm md:h-header
         grid grid-cols-2 lg:grid-cols-3 
         fixed top-0 bg-black z-30 w-full
@@ -39,7 +39,7 @@ export default function Header() {
       id="header"
       ref={ref}
     >
-      <a href="/" className="pl-5 sm:pl-0 w-max">
+      <a href="/" className="pl-5 xs:pl-7 sm:pl-0 w-max">
         <img
           id="logo"
           src="/media/logo-trimmed.png"
