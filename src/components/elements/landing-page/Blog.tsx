@@ -47,10 +47,9 @@ export default function Blog() {
         slidesPerView: 2,
         slidesPerGroup: 1,
         loop: true,
-        centeredSlides: true,
         breakpoints: {
           0: {
-            slidesPerView: 1,
+            slidesPerView: 1.25,
             slidesPerGroup: 1,
             spaceBetween: 15,
           },
@@ -60,7 +59,7 @@ export default function Blog() {
             spaceBetween: 20,
           },
           640: {
-            slidesPerView: 1.5,
+            slidesPerView: 1.25,
             slidesPerGroup: 1,
             spaceBetween: 25,
           },
@@ -81,7 +80,10 @@ export default function Blog() {
       classes={Items}
       styleOverrides={{
         swiper: {
-          style: cntl`h-[20rem] xs:h-[20rem] sm:h-[24rem] md:h-[28rem]`,
+          style: cntl`h-[20rem] xs:h-[20rem] sm:h-[24rem] md:h-[28rem] rounded-none`,
+          buttons: {
+            style: cntl`hidden sm:flex`,
+          },
         },
         card: {
           card: {
@@ -89,6 +91,9 @@ export default function Blog() {
           },
           title: cntl`text-left text-2xl drop-shadow-md`,
           date: cntl`text-md`,
+        },
+        section: {
+          content: cntl`-mr-5 xs:-mr-7 sm:mr-0`,
         },
       }}
     />
