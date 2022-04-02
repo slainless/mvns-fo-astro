@@ -4,7 +4,7 @@ import Notice from './Notice'
 
 export default function Notice404() {
   return (
-    <div className="container px-12 mx-auto flex justify-center items-center min-h-screen">
+    <div className="container px-12 mx-auto flex justify-center items-center h-screen -mt-header-sm sm:-mt-header">
       <Notice
         img="/media/sparks/cry.png"
         title="404"
@@ -17,7 +17,6 @@ export default function Notice404() {
           />
         }
         styleOverrides={{
-          title: cntl`text-9xl`,
           subsubtitle: cntl`text-zinc-500`,
         }}
       />
