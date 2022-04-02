@@ -138,6 +138,10 @@ type InputProps = HTMLAttr<'input'> &
     trailingIcon?: CommonIcon
     styleOverrides?: {
       input?: string
+      icon?: {
+        leading?: string
+        trailing?: string
+      }
     }
   }
 export function Input(props: InputProps): JSX.Element {
@@ -178,14 +182,16 @@ export function Input(props: InputProps): JSX.Element {
           input={leadingIcon}
           defaultStyle={twMerge(
             ...CommonInputMods.parse(iconMods as typeof mods),
-            'left-2'
+            'left-2',
+            styleOverrides?.icon?.leading
           )}
         />
         <CommonIcon
           input={trailingIcon}
           defaultStyle={twMerge(
             ...CommonInputMods.parse(iconMods as typeof mods),
-            'right-2'
+            'right-2',
+            styleOverrides?.icon?.trailing
           )}
         />
       </div>

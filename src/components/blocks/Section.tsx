@@ -6,8 +6,8 @@ import { Link } from '@Bits/Button'
 module Section {
   export const Container = createSingleton('section', {
     className: cntl`
-      container mx-auto
-      px-0 lg:px-12
+      mx-auto w-full
+      px-5 xs:px-7 lg:px-12
     `,
   })
 
@@ -37,7 +37,6 @@ module Section {
             flex-wrap
             gap-x-5
             gap-y-2
-            px-7 lg:px-0
           `,
           styleOverrides?.container
         )}
@@ -69,8 +68,7 @@ module Section {
 
   export const Content = createSingleton('div', {
     className: cntl`
-      section-content mx-7 lg:mx-0
-      mt-7
+      section-content mt-7
     `,
   })
 }

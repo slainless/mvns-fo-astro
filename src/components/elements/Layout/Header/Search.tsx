@@ -1,10 +1,16 @@
 import { Icon } from '@Bits/Button'
 import isBrowser from '@Functions/isBrowser'
+import { twMerge } from 'tailwind-merge'
 
 const SEARCH_PAGE_PATH = '/search'
-export default function Search() {
+type Props = HTMLAttr<'div'>
+export default function Search(props: Props) {
+  const { className, children, ...rest } = props
   return (
-    <div className="hidden lg:flex justify-center items-center">
+    <div
+      className={twMerge('flex justify-center items-center', className)}
+      {...rest}
+    >
       <form
         className="bg-zinc-800 w-max rounded-full flex items-center pr-1.5 text-sm gap-2 shadow-lg"
         name="search"

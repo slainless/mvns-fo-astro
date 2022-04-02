@@ -31,14 +31,14 @@ export default function Hero() {
           <h1
             id="hero-title"
             className={cntl`
-              text-[44px] lg:text-6xl 
+              text-5xl sm:text-6xl lg:text-6xl 
               inline-flex flex-col font-display font-black
               gap-0 
               leading-[85%]
               uppercase
             `}
           >
-            <span className="text-8xl">Get</span>
+            <span className="text-8xl sm:text-9xl lg:text-8xl">Get</span>
             <span
               className={cntl`
                 text-red-600
@@ -52,7 +52,7 @@ export default function Hero() {
             world.
           </h2>
         </div>
-        <nav className="font-body mt-4 gap-3 flex flex-col text-sm">
+        <nav className="font-body mt-4 gap-3 flex flex-col text-sm w-full max-w-[40ch] sm:w-max px-5">
           <Button
             as="a"
             className="mt-4 text-center text-red-500 hover:bg-red-600 hover:border-red-600 hover:shadow-red-600/50 hover:text-white font-bold"
@@ -68,9 +68,9 @@ export default function Hero() {
           >
             Register Now
           </a> */}
-          <div className="inline-flex gap-3 flex-wrap justify-center">
+          <div className="inline-flex gap-x-3 gap-y-1 flex-col items-center sm:flex-row justify-center">
             <text>Not sure what to learn?</text>
-            <Link href="/class/all" className="after:w-0">
+            <Link href="/class/all" className="after:w-0 w-max">
               View All Classes
             </Link>
             {/* <a

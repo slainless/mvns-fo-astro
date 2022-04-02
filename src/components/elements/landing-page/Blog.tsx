@@ -34,12 +34,7 @@ const Items: Parameters<typeof Card>[0][] = [
   },
 ]
 
-const swiperOptions: SwiperOptions = {
-  slidesPerView: 2,
-  slidesPerGroup: 1,
-  loop: true,
-  centeredSlides: true,
-}
+const swiperOptions: SwiperOptions = {}
 
 export default function Blog() {
   return (
@@ -48,9 +43,46 @@ export default function Blog() {
       title="Our blog"
       subtitle="See all"
       subtitleHref="/blog/all"
-      swiperOptions={swiperOptions}
+      swiperOptions={{
+        slidesPerView: 2,
+        slidesPerGroup: 1,
+        loop: true,
+        centeredSlides: true,
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            spaceBetween: 15,
+          },
+          475: {
+            slidesPerView: 1.25,
+            slidesPerGroup: 1,
+            spaceBetween: 20,
+          },
+          640: {
+            slidesPerView: 1.5,
+            slidesPerGroup: 1,
+            spaceBetween: 25,
+          },
+          768: {
+            slidesPerView: 1.5,
+            slidesPerGroup: 1,
+          },
+          1024: {
+            slidesPerView: 1.5,
+            slidesPerGroup: 1,
+          },
+          1280: {
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+          },
+        },
+      }}
       classes={Items}
       styleOverrides={{
+        swiper: {
+          style: cntl`h-[20rem] xs:h-[20rem] sm:h-[24rem] md:h-[28rem]`,
+        },
         card: {
           card: {
             content: cntl`p-10 items-start`,

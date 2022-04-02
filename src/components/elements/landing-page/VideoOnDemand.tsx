@@ -8,11 +8,7 @@ import cntl from 'cntl'
 import CardView from '../CardView'
 import { largeCard as Items } from '@Dev/dummy'
 
-const swiperOptions: SwiperOptions = {
-  slidesPerView: 2,
-  slidesPerGroup: 1,
-  rewind: true,
-}
+const swiperOptions: SwiperOptions = {}
 
 export default function VideoOnDemand() {
   return (
@@ -24,15 +20,59 @@ export default function VideoOnDemand() {
       styleOverrides={{
         card: {
           card: {
-            header: cntl`p-8`,
+            header: cntl`xs:p-8`,
           },
-          favorite: cntl`text-4xl w-16 h-16`,
-          title: cntl`text-4xl drop-shadow-md`,
-          price: cntl`text-3xl drop-shadow-md`,
+          favorite: cntl`xs:text-3xl md:text-4xl xs:w-16 xs:h-16`,
+          title: cntl`xs:text-3xl md:text-4xl`,
+          price: cntl`xs:text-2xl md:text-3xl`,
+        },
+        swiper: {
+          style: cntl`rounded-none`,
+          buttons: {
+            style: cntl`hidden sm:flex`,
+          },
+        },
+        section: {
+          content: cntl`-mr-5 xs:-mr-7 sm:mr-0 sm:px-5 lg:px-0`,
         },
       }}
       classes={Items}
-      swiperOptions={swiperOptions}
+      swiperOptions={{
+        rewind: true,
+        breakpoints: {
+          0: {
+            slidesPerView: 1.25,
+            slidesPerGroup: 1,
+            spaceBetween: 15,
+          },
+          375: {
+            slidesPerView: 1.2,
+            slidesPerGroup: 1,
+          },
+          475: {
+            slidesPerView: 1.25,
+            slidesPerGroup: 1,
+            spaceBetween: 20,
+          },
+          640: {
+            slidesPerView: 1.5,
+            slidesPerGroup: 1,
+            spaceBetween: 25,
+          },
+          768: {
+            slidesPerView: 1.5,
+            slidesPerGroup: 1,
+          },
+          1024: {
+            slidesPerView: 1.5,
+            slidesPerGroup: 1,
+          },
+          1280: {
+            slidesPerView: 2,
+            slidesPerGroup: 2,
+          },
+        },
+      }}
     />
   )
 }

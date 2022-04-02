@@ -3,10 +3,10 @@ import List from './Footer/List'
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-white text-black px-20 py-10">
+    <footer id="footer" className="bg-white text-black px-10 sm:px-20 py-10">
       <div
         id="footer-links"
-        className="grid grid-cols-5 border-b-2 border-b-zinc-300 pb-20"
+        className="flex flex-col sm:grid sm:grid-cols-3 lg:grid-cols-5 border-b-[1px] border-b-zinc-300 sm:px-0 pb-5 xs:pb-20"
       >
         {/* <List
           title="Support"
@@ -31,7 +31,7 @@ export default function Footer() {
             ['Careers', '/career'],
           ]}
         ></List>
-        <hr className="invisible"></hr>
+        <hr className="hidden lg:block invisible"></hr>
         <List
           title="Classes"
           links={[
@@ -41,7 +41,7 @@ export default function Footer() {
             ['Certification', '/class/all'],
           ]}
         ></List>
-        <hr className="invisible"></hr>
+        <hr className="hidden lg:block invisible"></hr>
         <List
           title="More"
           links={[
@@ -54,11 +54,15 @@ export default function Footer() {
           ]}
         ></List>
       </div>
-      <div className="grid grid-cols-2 pt-6">
-        <span id="copyright" className="font-heading text-zinc-500 text-sm">
-          © 2022, Mavensdotlive Sdn Bhd. All right reserved.
+      <div className="flex flex-col gap-y-5 sm:grid grid-cols-2 pt-6">
+        <span
+          id="copyright"
+          className="font-heading text-neutral-600 text-sm order-2 sm:order-1"
+        >
+          © 2022, Mavensdotlive Sdn Bhd. <br className="lg:hidden" />
+          All right reserved.
         </span>
-        <div className="flex justify-end gap-7">
+        <div className="flex sm:justify-end gap-7 order-1 sm:order-2">
           {/* <div className="flex gap-16">
             <span id="language" className="!text-sm flex items-center">
               <span className="material-icons !text-lg">language</span>
@@ -69,7 +73,10 @@ export default function Footer() {
               <span className="underline">USD</span>
             </span>
           </div> */}
-          <div id="social-media" className="flex text-2xl gap-3">
+          <div
+            id="social-media"
+            className="flex text-2xl gap-3 fill-neutral-600"
+          >
             <a
               aria-label="tiktok-link"
               id="social-media-tiktok"

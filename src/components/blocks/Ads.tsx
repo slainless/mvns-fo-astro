@@ -1,3 +1,4 @@
+import { AspectRatio } from '@radix-ui/react-aspect-ratio'
 import { twMerge } from 'tailwind-merge'
 
 export default function Ads(
@@ -9,17 +10,18 @@ export default function Ads(
 ) {
   const { width, height, src, className: cls, ...rest } = props
   return (
-    <aside
-      {...rest}
-      className={twMerge('ads w-full flex items-center justify-center', cls)}
-    >
-      <img
+    <aside className="w-full flex items-center justify-center">
+      <div
+        className="w-full flex items-center justify-center"
         style={{
-          width: `${width}px`,
-          height: `${height}px`,
+          maxWidth: width,
+          maxHeight: height,
         }}
-        src={src}
-      ></img>
+      >
+        <AspectRatio ratio={width / height}>
+          <img className="w-full h-full" src={src}></img>
+        </AspectRatio>
+      </div>
     </aside>
   )
 }

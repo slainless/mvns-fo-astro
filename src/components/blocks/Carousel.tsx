@@ -7,12 +7,26 @@ import './Carousel.styl'
 // import 'swiper/css'
 // import 'swiper/css/navigation'
 
-type CommonProps = HTMLAttributes<HTMLDivElement> & {
+type CommonProps = HTMLAttr<'div'> & {
   id: string
   options?: SwiperOptions
+  styleOverrides?: {
+    buttons?: {
+      style?: string
+      prev?: string
+      next?: string
+    }
+  }
 }
 export const Common: FunctionComponent<CommonProps> = (props) => {
-  const { children, className: cls, id, options, ...rest } = props
+  const {
+    children,
+    className: cls,
+    id,
+    options,
+    styleOverrides,
+    ...rest
+  } = props
   // const randomId = useMemo(() => nanoid(5), [])
   const swiperRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -38,7 +52,14 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
 
   return (
     <div className="swiper-container relative" id={`carousel-${id}`}>
-      <div className="swiper-button-prev" id={`prev-${id}`}></div>
+      <div
+        className={twMerge(
+          'swiper-button-prev',
+          styleOverrides?.buttons?.style,
+          styleOverrides?.buttons?.prev
+        )}
+        id={`prev-${id}`}
+      ></div>
       <div
         {...rest}
         className={twMerge('swiper w-full rounded-lg', cls)}
@@ -46,7 +67,14 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
       >
         <div className="swiper-wrapper">{children}</div>
       </div>
-      <div className="swiper-button-next" id={`next-${id}`}></div>
+      <div
+        className={twMerge(
+          'swiper-button-next',
+          styleOverrides?.buttons?.style,
+          styleOverrides?.buttons?.next
+        )}
+        id={`next-${id}`}
+      ></div>
     </div>
   )
 }

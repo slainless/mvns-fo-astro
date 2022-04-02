@@ -1,3 +1,4 @@
+import isBrowser from '@Functions/isBrowser'
 import { plainToInstance } from 'class-transformer'
 
 export enum Role {
@@ -62,10 +63,6 @@ export class User {
   role!: RoleClass
 }
 
-const mockUser = {
-  name: 'Muhammad al-Fatih',
-  role: new RoleClass([Role.STUDENT, Role.INSTRUCTOR]),
-}
 export function getUser(): User | null {
-  return window ? window.USER : mockUser
+  return isBrowser ? window.USER : null
 }

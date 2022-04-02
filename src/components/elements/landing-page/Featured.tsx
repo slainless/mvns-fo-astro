@@ -18,13 +18,19 @@ export default function Featured(props: Props) {
         className={cntl`
           mt-7 lg:mt-12 
           relative 
-          h-96 lg:h-[32rem]
-          bg-cover bg-[center_left_-10rem] lg:bg-left
+          h-[28rem] sm:h-[32rem]
           rounded-lg lg:rounded-none
           flex flex-col items-end
+          overflow-hidden
         `}
-        style={{ backgroundImage: `url('/media/featured-image.png')` }}
       >
+        <div id="featured-container-bg" className="contents">
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-[center_left_-12rem] lg:bg-left rounded-lg"
+            style={{ backgroundImage: `url('/media/featured-image.png')` }}
+          />
+          <div className="absolute inset-0 w-full h-full from-transparent to-black/80 bg-gradient-to-b lg:hidden" />
+        </div>
         <div className="w-max p-5 z-10">
           <Favorite
             className="text-4xl w-14 h-14"
@@ -52,7 +58,7 @@ export default function Featured(props: Props) {
             Bill Clinton
           </h4>
           <div className="flex gap-3 mt-2">
-            <Quota filled={8} max={10} suffix="Students" />
+            {/* <Quota filled={8} max={10} suffix="Students" /> */}
             <Calendar>Jan 21-29, 22</Calendar>
           </div>
           <Button className="mt-4">

@@ -18,6 +18,7 @@ type CommonProps = {
     title?: string
     desc?: string
     content?: string
+    overlay?: string
   }
 }
 
@@ -53,8 +54,18 @@ export default function Dialog(
     >
       <Dialog_.Trigger asChild>{trigger}</Dialog_.Trigger>
       <Dialog_.Portal className="filter-dialog hidden">
-        <Dialog_.Overlay className="bg-black/80 h-full w-full fixed z-40" />
-        <Dialog_.Content className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fixed z-50 flex items-center justify-center pointer-events-none rounded-lg">
+        <Dialog_.Overlay
+          className={twMerge(
+            'bg-black/80 h-full w-full fixed z-40',
+            styleOverrides?.overlay
+          )}
+        />
+        <Dialog_.Content
+          className={twMerge(
+            'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fixed z-50 flex items-center justify-center pointer-events-none rounded-lg',
+            styleOverrides?.content
+          )}
+        >
           <div
             className={twMerge(
               `

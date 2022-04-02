@@ -4,6 +4,8 @@ import cntl from 'cntl'
 import { useEffect, useRef, useState } from 'react'
 import { throttle } from 'lodash-es'
 import { twMerge } from 'tailwind-merge'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+import AltNavigation from './Header/AltNavigation'
 
 export default function Header() {
   const [compact, setCompact] = useState(false)
@@ -26,10 +28,9 @@ export default function Header() {
     <header
       className={twMerge(
         `
-        px-5 lg:px-16
-        h-header
-        grid 
-        grid-cols-2 lg:grid-cols-3 
+        sm:px-16
+        h-header-sm md:h-header
+        grid grid-cols-2 lg:grid-cols-3 
         fixed top-0 bg-black z-30 w-full
         text-white
         items-center transition-all shadow-md`,
@@ -38,19 +39,20 @@ export default function Header() {
       id="header"
       ref={ref}
     >
-      <a href="/">
+      <a href="/" className="pl-5 sm:pl-0 w-max">
         <img
           id="logo"
           src="/media/logo-trimmed.png"
           alt="logo"
           className={twMerge(
-            `h-7 lg:h-11 transition-all  pointer-events-none`,
+            `h-9 md:h-11 transition-all  pointer-events-none`,
             compact ? 'lg:h-10' : ''
           )}
         />
       </a>
-      <Search />
-      <Navigation />
+      <Search className="hidden lg:flex" />
+      <Navigation className="hidden lg:flex" />
+      <AltNavigation className="flex lg:hidden" />
     </header>
   )
 }

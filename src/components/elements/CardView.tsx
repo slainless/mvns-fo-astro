@@ -17,7 +17,9 @@ type Props = {
 
   styleOverrides?: {
     card?: Parameters<typeof Card>[0]['styleOverrides']
-    swiper?: string
+    swiper?: Parameters<typeof Swiper>[0]['styleOverrides'] & {
+      style?: string
+    }
     section?: {
       container?: string
       title?: {
@@ -40,9 +42,9 @@ export default function CardView(props: Props) {
     styleOverrides,
   } = props
   return (
-    <section
+    <Section.Container
       className={twMerge(
-        'container mx-auto px-0 lg:px-12 overflow-hidden',
+        'w-full mx-auto overflow-hidden',
         styleOverrides?.section?.container
       )}
       id={`${id}-class`}
@@ -57,8 +59,12 @@ export default function CardView(props: Props) {
       <Section.Content className={styleOverrides?.section?.content}>
         <Swiper
           id={`${id}-swiper`}
-          className={twMerge('h-[28rem]', styleOverrides?.swiper)}
+          className={twMerge(
+            'h-[24rem] xs:h-[28rem]',
+            styleOverrides?.swiper?.style
+          )}
           options={swiperOptions}
+          styleOverrides={styleOverrides?.swiper}
         >
           {isBrowser ? (
             classes.map((item, key) => (
@@ -71,6 +77,6 @@ export default function CardView(props: Props) {
           )}
         </Swiper>
       </Section.Content>
-    </section>
+    </Section.Container>
   )
 }

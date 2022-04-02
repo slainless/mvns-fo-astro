@@ -138,7 +138,7 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
         >
           <h4
             className={twMerge(
-              'card-title font-heading text-2xl font-semibold',
+              'card-title font-heading text-xl leading-tight xs:text-2xl font-semibold',
               styleOverrides?.title
             )}
             hidden={title == null}

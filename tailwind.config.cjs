@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 const Config = {
@@ -7,9 +8,14 @@ const Config = {
     './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue,md,mdx}',
   ],
   theme: {
+    screens: {
+      xs: '475px',
+      ...defaultTheme.screens
+    },
     extend: {
       spacing: {
-        header: '5rem'
+        header: 'theme(spacing.20)',
+        'header-sm': 'theme(spacing.16)'
       },
       fontFamily: {
         'display': ['Big Shoulders Display', 'Impact'],
