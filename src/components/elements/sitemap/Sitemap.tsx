@@ -4,7 +4,9 @@ import List from './List'
 export default function Sitemap() {
   return (
     <Section.Container>
-      <Section.Title className="lg:text-5xl">Sitemap</Section.Title>
+      <Section.Title className="text-3xl md:text-4xl lg:text-5xl">
+        Sitemap
+      </Section.Title>
       <Section.Content className="flex flex-col gap-12 lg:mt-12">
         <List
           title="Pages"

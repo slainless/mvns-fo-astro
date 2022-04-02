@@ -36,7 +36,7 @@ export default function List(props: Props) {
     >
       <h2
         className={twMerge(
-          'font-heading text-2xl font-bold',
+          'font-heading text-xl sm:text-2xl font-bold',
           styleOverrides?.title
         )}
       >
@@ -44,7 +44,7 @@ export default function List(props: Props) {
       </h2>
       <ul
         className={twMerge(
-          'grid grid-cols-2 gap-y-3 max-w-3xl text-xl',
+          'flex flex-col sm:grid grid-cols-2 gap-y-3 max-w-3xl text-base sm:text-xl',
           styleOverrides?.list?.style
         )}
       >
