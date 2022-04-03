@@ -17,7 +17,7 @@ export default function AltNavigation(props: Props) {
           className={twMerge(
             'flex md:hidden sticky top-[calc(theme(spacing.header-sm)+theme(spacing.3))] -mr-2 xs:-mr-4 sm:-mr-12',
             ' bg-zinc-700 rounded-full shadow-lg shadow-white/10 self-end items-center justify-center',
-            'h-header-sm w-header-sm text-2xl z-40'
+            'h-header-sm w-header-sm text-2xl z-20'
           )}
         >
           <span className="material-icons-outlined">article</span>

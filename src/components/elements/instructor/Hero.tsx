@@ -39,7 +39,7 @@ export default function Hero() {
           <h1
             id="hero-title"
             className={cntl`
-              text-5xl lg:text-7xl 
+              text-5xl sm:text-7xl 
               font-display
               font-black
               uppercase

@@ -17,7 +17,12 @@ export default function Hero() {
           w-full lg:w-7/12 
           rounded-none lg:rounded-l-2xl 
           pointer-events-none
-          order-2
+          order-1
+          lg:order-2
+          max-h-[theme(spacing.72)]
+          lg:max-h-[initial]
+          object-cover
+          object-top
         `}
         src="/media/instructor-hero.jpg"
       />
@@ -26,25 +31,29 @@ export default function Hero() {
         className={cntl`
           items-center flex flex-col text-center 
           w-full lg:w-5/12
-          order-1
+          order-2
+          lg:order-1
         `}
       >
         <div className="flex flex-col items-center gap-0">
           <h1
             id="hero-title"
             className={cntl`
-              text-[44px] lg:text-7xl 
+              
               font-display
               font-black
-              leading-[85%]
               uppercase
             `}
           >
-            Built <span className="text-red-600">Talents</span>
+            <span className="text-5xl sm:text-6xl">
+              Built <span className="text-red-600">Talents</span>
+            </span>
             <br />
-            that{' '}
-            <span className="relative after:absolute after:-bottom-1 after:w-full after:h-2 after:bg-red-600 after:left-0">
-              Last
+            <span className="text-6xl sm:text-7xl">
+              that{' '}
+              <span className="relative after:absolute after:-bottom-1 after:w-full after:h-2 after:bg-red-600 after:left-0">
+                Last
+              </span>
             </span>
             {/* <span>Advance Yourself</span> */}
             {/* <span
@@ -58,7 +67,7 @@ export default function Hero() {
           </h1>
           <h2
             id="hero-subtitle"
-            className="font-body mt-5 w-72 opacity-80 text-lg"
+            className="font-body mt-8 w-72 opacity-80 leading-tight"
           >
             Designed for the future of work where workforces can grow and
             thrive.
