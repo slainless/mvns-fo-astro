@@ -17,6 +17,10 @@ export default function Hero() {
           w-full lg:w-7/12 
           rounded-none lg:rounded-r-2xl 
           pointer-events-none
+          max-h-[theme(spacing.72)]
+          lg:max-h-[initial]
+          object-cover
+          object-top
         `}
         src="/media/landing/hero.jpg"
       />
@@ -52,10 +56,10 @@ export default function Hero() {
             world.
           </h2>
         </div>
-        <nav className="font-body mt-4 gap-3 flex flex-col text-sm w-full max-w-[40ch] sm:w-max px-5">
+        <nav className="font-body mt-4 gap-3 flex flex-col text-sm w-full max-w-[40ch] sm:w-max px-5 items-center">
           <Button
             as="a"
-            className="mt-4 text-center text-red-500 hover:bg-red-600 hover:border-red-600 hover:shadow-red-600/50 hover:text-white font-bold"
+            className="mt-4 px-10 w-max sm:w-full text-center text-red-500 hover:bg-red-600 hover:border-red-600 hover:shadow-red-600/50 hover:text-white font-bold"
           >
             Register Now
           </Button>

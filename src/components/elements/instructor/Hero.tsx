@@ -19,7 +19,8 @@ export default function Hero() {
           pointer-events-none
           order-1
           lg:order-2
-          max-h-[theme(spacing.96)]
+          max-h-[theme(spacing.72)]
+          lg:max-h-[initial]
           object-cover
           object-top
         `}

@@ -15,8 +15,8 @@ export default function AltNavigation(props: Props) {
         <a
           href="javascript:void(0);"
           className={twMerge(
-            'flex md:hidden sticky top-header-sm -mr-5 xs:-mr-7 sm:-mr-16',
-            ' bg-zinc-700 rounded-l-lg self-end items-center justify-center',
+            'flex md:hidden sticky top-[calc(theme(spacing.header-sm)+theme(spacing.3))] -mr-2 xs:-mr-4 sm:-mr-12',
+            ' bg-zinc-700 rounded-full shadow-lg shadow-white/10 self-end items-center justify-center',
             'h-header-sm w-header-sm text-2xl z-40'
           )}
         >
