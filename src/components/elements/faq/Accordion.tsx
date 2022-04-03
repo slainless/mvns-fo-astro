@@ -10,10 +10,13 @@ module Accordion {
   export function Container(props: ContainerProps) {
     const { title, children, className, ...rest } = props
     return (
-      <div className="accordion flex flex-col gap-5 max-w-4xl w-full">
+      <div className="accordion flex flex-col gap-5 max-w-4xl w-full mb-16">
         <h2 id={kebabCase(title)}>{title}</h2>
         <Accordion_.Root
-          className={twMerge('flex flex-col items-stretch gap-3', className)}
+          className={twMerge(
+            'flex flex-col items-stretch gap-3 not-prose',
+            className
+          )}
           {...rest}
         >
           {children}
@@ -40,7 +43,7 @@ module Accordion {
         <Accordion_.Header className="flex untracked">
           <Accordion_.Trigger
             className={twMerge(
-              'flex flex-row w-full justify-between gap-10 text-left items-center py-3 px-10 bg-zinc-900',
+              'flex flex-row w-full justify-between gap-10 text-left items-center py-3 px-5 xs:px-10 bg-zinc-900',
               'hover:bg-red-600 transition-all'
             )}
           >
@@ -56,7 +59,7 @@ module Accordion {
           )}
           {...rest}
         >
-          <div className="px-10 py-5">{children}</div>
+          <div className="px-5 xs:px-10 py-5">{children}</div>
         </Accordion_.Content>
       </Accordion_.Item>
     )
