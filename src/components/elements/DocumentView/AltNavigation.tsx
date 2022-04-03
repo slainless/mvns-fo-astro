@@ -27,7 +27,7 @@ export default function AltNavigation(props: Props) {
         <Dialog.Overlay className="fixed md:hidden w-full h-full bg-black/80 z-40" />
         <Dialog.Content
           onCloseAutoFocus={(e) => e.preventDefault()}
-          className="fixed md:hidden right-0 w-2/3 max-w-[20rem] h-full bg-black z-40 grid grid-rows-[auto_auto]"
+          className="fixed md:hidden right-0 w-2/3 max-w-[20rem] h-full bg-black z-40 flex flex-col"
         >
           <VisuallyHidden>
             <Dialog.Title>Navigation Sidebar</Dialog.Title>
