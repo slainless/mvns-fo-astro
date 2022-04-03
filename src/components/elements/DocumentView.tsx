@@ -1,7 +1,9 @@
 import Ads from '@Blocks/Ads'
 import { ReactElement, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import './DocumentView.styl'
+import * as Dialog from '@radix-ui/react-dialog'
+import Navigation from './DocumentView/Navigation'
+import AltNavigation from './DocumentView/AltNavigation'
 
 type Props = HTMLAttr<'div'> & {
   hideAds?: boolean
@@ -72,41 +74,25 @@ export default function DocumentView(props: Props) {
       id="document"
       className={twMerge('flex', styleOverrides?.container)}
     >
-      <main className="contents">
-        <div
-          id="navigation-sidebar"
-          className="h-max items-start top-[calc(theme(spacing.header)_+_theme(spacing.10))] sticky"
-        >
-          <ul className="flex flex-col gap-3 w-80 pl-16 pr-8 uppercase tracking-widest overflow-auto text-sm h-[calc(calc(100vh_-_theme(spacing.header))_-_theme(spacing.20))]">
-            {headings.map((heading, i) => (
-              <li
-                key={heading.id}
-                className={twMerge(
-                  'relative transition-all after:transition-all after:w-0 after:h-full after:bg-red-600 after:absolute after:-left-3 after:top-0',
-                  activeHeading[0]?.id === heading.id ? 'text-red-600' : ''
-                )}
-              >
-                <a href={'#' + heading.id}>{heading.textContent}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <main className="flex flex-col md:flex-row px-5 xs:px-7 sm:px-16 md:gap-16 lg:gap-20">
+        <Navigation
+          className="md:w-48 lg:w-64 pr-8 md:h-[calc(100vh-theme(spacing.header)-theme(spacing.20))]"
+          headings={headings}
+          activeHeadings={activeHeading}
+        />
+        <AltNavigation headings={headings} activeHeadings={activeHeading} />
         <article
           id="main-article"
-          className={twMerge('flex-grow max-w-4xl px-20', className)}
+          className={twMerge(
+            'flex-grow max-w-4xl prose prose-invert',
+            'prose-h2:before:w-14 prose-h2:before:bg-red-600 prose-h2:before:h-2 first:prose-h2:mt-0',
+            'prose-h2:relative prose-h2:before:absolute prose-h2:before:-top-3',
+            className
+          )}
         >
           {children}
         </article>
       </main>
-      {/* {hideAds ? null : (
-        <Ads
-          width={300}
-          height={600}
-          src="/media/sidebar-ad-placeholder.png"
-          id="sidebar-ads"
-          className="sticky top-12 items-start h-max w-max pr-10 flex-shrink-0"
-        />
-      )} */}
     </section>
   )
 }
