@@ -8,9 +8,14 @@ type ContentProps = HTMLAttr<'div'> & {
 function Content(props: ContentProps) {
   const { title, children, desc, ...rest } = props
   return (
-    <div className="reason flex flex-col items-center gap-5" {...rest}>
-      <div className="reason-title text-xl font-bold">{title}</div>
-      <div className="reason-desc text-gray-400 text-center">
+    <div
+      className="reason flex flex-col items-center gap-5 p-5 rounded-lg border-2 border-white/10"
+      {...rest}
+    >
+      <div className="reason-title text-xl font-bold text-neutral-300">
+        {title}
+      </div>
+      <div className="reason-desc text-neutral-400 text-center">
         {children ?? desc}
       </div>
     </div>
@@ -21,10 +26,12 @@ export default function Reasons() {
   return (
     <Section.Container
       id="more-reason"
-      className="flex flex-col w-full gap-12 items-center"
+      className="flex flex-col w-full sm:gap-12 items-center"
     >
-      <Section.Title>More reasons to join Mavensdotlive</Section.Title>
-      <Section.Content className="grid grid-cols-3 gap-20 items-stretch justify-center max-w-4xl">
+      <Section.Title className="inline-flex text-center">
+        More reasons to join Mavensdotlive
+      </Section.Title>
+      <Section.Content className="flex flex-col md:grid grid-cols-3 gap-y-5 gap-x-5 lg:gap-x-10 items-stretch justify-center max-w-4xl">
         <Content title="Reach More">
           Within a short amount of time, we have established strategic
           relationships with recognized partners

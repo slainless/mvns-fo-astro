@@ -17,7 +17,11 @@ export default function Hero() {
           w-full lg:w-7/12 
           rounded-none lg:rounded-l-2xl 
           pointer-events-none
-          order-2
+          order-1
+          lg:order-2
+          max-h-[theme(spacing.96)]
+          object-cover
+          object-top
         `}
         src="/media/instructor-hero.jpg"
       />
@@ -26,17 +30,17 @@ export default function Hero() {
         className={cntl`
           items-center flex flex-col text-center 
           w-full lg:w-5/12
-          order-1
+          order-2
+          lg:order-1
         `}
       >
         <div className="flex flex-col items-center gap-0">
           <h1
             id="hero-title"
             className={cntl`
-              text-[44px] lg:text-7xl 
+              text-5xl lg:text-7xl 
               font-display
               font-black
-              leading-[85%]
               uppercase
             `}
           >
@@ -45,7 +49,7 @@ export default function Hero() {
               your
             </span>{' '}
             <br />
-            <span className="text-red-600">Passion</span>
+            <span className="text-red-600 text-7xl">Passion</span>
             {/* <span>Advance Yourself</span> */}
             {/* <span
               className={cntl`
@@ -58,7 +62,7 @@ export default function Hero() {
           </h1>
           <h2
             id="hero-subtitle"
-            className="font-body mt-3 w-72 opacity-80 text-lg"
+            className="font-body mt-3 w-72 opacity-80 sm:text-lg"
           >
             Make masters out of students.
           </h2>
@@ -67,7 +71,7 @@ export default function Hero() {
           <Button
             as="a"
             href="/instructor/register"
-            className="font-bold bg-red-600 border-red-600 text-white hover:text-red-600 hover:shadow-red-600/30"
+            className="font-bold px-10 bg-red-600 border-red-600 text-white hover:text-red-600 hover:shadow-red-600/30"
           >
             Register Now
           </Button>

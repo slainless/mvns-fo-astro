@@ -9,16 +9,16 @@ import { Common as Button } from '@Bits/Button'
 import cntl from 'cntl'
 ---
 
-<Home title="Become an Instructor">
+<Home title="Become an Instructor" class="pt-0 gap-20">
   <Hero />
   <Reasons />
   <TrustedBy />
-  <DocumentView styleOverrides={{ container: cntl`mt-20` }} client:load>
+  <DocumentView styleOverrides={{ container: cntl`md:mt-20` }} client:load>
     <TOC />
-    <div class="w-full flex justify-center mt-10">
+    <div class="w-full flex justify-center mt-10 not-prose">
       <Button
         as="a"
-        className="flex items-center gap-2 font-bold"
+        className="flex items-center gap-2 font-bold "
         href="/instructor/register"
       >
         Register

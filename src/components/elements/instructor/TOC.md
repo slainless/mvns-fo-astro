@@ -49,11 +49,10 @@ Rest assured - as you are preparing your class, we will be responsible for:
 - You grant Mavensdotlive the rights detailed in the Terms of Use to offer, market, and utilize your content, and to sublicense it to students for these purposes directly or through third parties. This includes the right to add captions or otherwise modify content to ensure accessibility.
 - Any content you submit to your Session will not contain third party copyrighted material, or material that is subject to other third party proprietary rights, unless you have permission from the rightful owner of the material.
 - We reserve the right to cancel sessions, suspend payouts, and/or ban Instructor for any reason at any time, without prior notice, including in cases where:
-
-1. An Instructor or session does not comply with our policies or legal Terms (including the Terms of Use); a session falls below our quality standards or has a negative impact on students’ experience;
-2. an Instructor engages in behavior that might reflect unfavorably on Mavensdotlive or bring Mavensdotlive into public disrepute, contempt, scandal, or ridicule;
-3. an Instructor engages the services of a marketer or other business partner who violates Mavendotlive’'s policies; or
-4. as determined by Mavensdotlive in its sole discretion.
+  1.  An Instructor or session does not comply with our policies or legal Terms (including the Terms of Use); a session falls below our quality standards or has a negative impact on students’ experience;
+  2.  an Instructor engages in behavior that might reflect unfavorably on Mavensdotlive or bring Mavensdotlive into public disrepute, contempt, scandal, or ridicule;
+  3.  an Instructor engages the services of a marketer or other business partner who violates Mavendotlive’'s policies; or
+  4.  as determined by Mavensdotlive in its sole discretion.
 
 ## Financial arrangement
 
