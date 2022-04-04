@@ -18,6 +18,10 @@ export default function Hero() {
           rounded-none lg:rounded-l-2xl 
           pointer-events-none
           order-2
+          max-h-[theme(spacing.72)]
+          lg:max-h-[initial]
+          object-cover
+          object-top
         `}
         src="/media/instructor-hero.jpg"
       />
@@ -33,11 +37,10 @@ export default function Hero() {
           <h1
             id="hero-title"
             className={cntl`
-              text-[44px] lg:text-5xl 
+              text-5xl lg:text-5xl 
               inline-flex flex-col font-display
               font-black 
-              gap-0 
-              leading-[85%]
+              gap-0
               uppercase
             `}
           >
