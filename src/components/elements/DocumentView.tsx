@@ -5,6 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import Navigation from './DocumentView/Navigation'
 import AltNavigation from './DocumentView/AltNavigation'
 import Section from '@Blocks/Section'
+import useTrackElements from '@Functions/useTrackElements'
 
 type Props = HTMLAttr<'div'> & {
   title?: string
@@ -17,74 +18,23 @@ type Props = HTMLAttr<'div'> & {
 export default function DocumentView(props: Props) {
   const { children, className, title, styleOverrides, ...rest } = props
   const [headings, setHeadings] = useState<HTMLHeadingElement[]>([])
-  const [activeHeading, setActiveHeading] = useState<HTMLHeadingElement[]>([])
+  const activeHeadings = useTrackElements(headings, {
+    margin: () => {
+      const marginTop = getComputedStyle(
+        document.documentElement
+      ).scrollPaddingTop
+
+      return `-${marginTop ?? '0px'} 0px 0px 0px`
+    },
+    threshold: [0, 0.5],
+    deps: [headings],
+  }) as HTMLHeadingElement[]
 
   useEffect(() => {
-    const marginTop = getComputedStyle(
-      document.documentElement
-    ).scrollPaddingTop
-
     const trackedHeadings = document.querySelectorAll(
       '#main-article h1:not(.untracked), #main-article h2:not(.untracked), #main-article h3:not(.untracked)'
     )
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        setActiveHeading((old) => {
-          const neo = new Set(old)
-          for (const entry of entries) {
-            const target = entry.target as HTMLHeadingElement
-
-            const isVisible = entry.intersectionRatio > 0
-
-            if (isVisible) {
-              if (neo.size === 1) {
-                const exist = Array.from(neo)[0]
-                if (exist.dataset.lastVisible != null) {
-                  delete exist.dataset.lastVisible
-                  if (exist !== target) {
-                    neo.delete(exist)
-                  }
-                }
-              }
-              if (neo.has(target)) continue
-              neo.add(target)
-              continue
-            }
-
-            if (neo.has(target)) {
-              if (neo.size === 1) {
-                target.dataset.lastVisible = ''
-                continue
-              }
-              neo.delete(target)
-              continue
-            }
-          }
-          return Array.from(neo).sort((a, b) => {
-            return +(a.dataset['index'] ?? 0) - +(b.dataset['index'] ?? 0)
-          })
-        })
-      },
-      {
-        rootMargin: `-${marginTop ?? '0px'} 0px 0px 0px`,
-        root: null,
-        threshold: [0, 0.5],
-      }
-    )
-
-    const els: HTMLHeadingElement[] = []
-    type Entry = [string, HTMLHeadingElement][]
-
-    for (const [index, heading] of Object.entries(trackedHeadings) as Entry) {
-      els.push(heading)
-      heading.dataset.index = index
-
-      if (index === '0') setActiveHeading([heading])
-      observer.observe(heading)
-    }
-
-    setHeadings(els)
+    setHeadings(Array.from(trackedHeadings))
   }, [])
 
   return (
@@ -97,9 +47,9 @@ export default function DocumentView(props: Props) {
           <Navigation
             className="md:w-48 lg:w-64 pr-8 md:h-[calc(100vh-theme(spacing.header)-theme(spacing.20))]"
             headings={headings}
-            activeHeadings={activeHeading}
+            activeHeadings={activeHeadings}
           />
-          <AltNavigation headings={headings} activeHeadings={activeHeading} />
+          <AltNavigation headings={headings} activeHeadings={activeHeadings} />
           <article
             id="main-article"
             className={twMerge(

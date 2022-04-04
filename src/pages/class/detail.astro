@@ -13,9 +13,9 @@ import Suggestion from '@Elements/class/Suggestion.tsx'
   <div class="flex flex-col gap-12">
     <Navigation
       watchTargets={[
-        ['Details', '#the-detail', '#the-detail-title'],
-        ['Instructor', '#the-instructor', '#the-instructor-title'],
-        ['Review', '#the-review', '#the-review-title'],
+        ['Details', '#the-detail-title'],
+        ['Instructor', '#the-instructor-title'],
+        ['Review', '#the-review-title'],
       ]}
       client:load
     />
@@ -28,6 +28,8 @@ import Suggestion from '@Elements/class/Suggestion.tsx'
 
 <style global>
   html {
-    scroll-padding-top: calc(theme('spacing.header') + theme('spacing.16'));
+    scroll-padding-top: calc(
+      theme('spacing.header') + theme('spacing.16')
+    ) !important;
   }
 </style>

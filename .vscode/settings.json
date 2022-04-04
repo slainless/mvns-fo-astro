@@ -10,7 +10,8 @@
     "build",
     "style",
     "page",
-    "bits"
+    "bits",
+    "function"
   ],
   "prettier.quoteProps": "consistent",
   "prettier.semi": false,

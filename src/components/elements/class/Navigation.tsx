@@ -1,3 +1,4 @@
+import useTrackElements from '@Functions/useTrackElements'
 import cntl from 'cntl'
 import { cloneDeep } from 'lodash-es'
 import { useEffect, useState } from 'react'
@@ -20,49 +21,23 @@ const ButtonStyle = cntl`
   px-10 border-b-2 border-zinc-800 flex items-center justify-center
 `
 
-type ObserverResult = {
-  target: Target
-  isVisible: boolean
-}[]
 export default function Navigation(props: NavigationProps) {
   const { watchTargets, className, ...rest } = props
-  const [observerResult, setObserverResult] = useState<ObserverResult>(
-    watchTargets.map((t, i) => ({ target: t, isVisible: i === 0 }))
-  )
-  useEffect(() => {
-    const marginTop = getComputedStyle(
-      document.documentElement
-    ).scrollPaddingTop
-    const observer = new IntersectionObserver(
-      (entries) => {
-        setObserverResult((old) => {
-          const newResult = [...old]
+  const activeHeadings = useTrackElements(
+    watchTargets.map((t) => t[1]).join(', '),
+    {
+      margin: () => {
+        const marginTop = getComputedStyle(
+          document.documentElement
+        ).scrollPaddingTop
 
-          for (const entry of entries) {
-            const target = entry.target
-            const id = target.id
-
-            const isVisible = entry.intersectionRatio > 0
-            const current = newResult.find((t) => t.target[1] === `#${id}`)!
-            current.isVisible = isVisible
-          }
-
-          return newResult
-        })
+        return `-${marginTop ?? '0px'} 0px 0px 0px`
       },
-      {
-        rootMargin: `-${marginTop ?? '0px'} 0px 0px 0px`,
-        root: document,
-      }
-    )
-
-    const els = document.querySelectorAll(
-      watchTargets.map((t) => t[1]).join(', ')
-    )
-    for (const el of Array.from(els)) {
-      observer.observe(el)
+      threshold: [0, 0.5],
+      deps: [],
     }
-  }, [])
+  )
+
   return (
     <div
       id="detail-navigation"
@@ -70,20 +45,21 @@ export default function Navigation(props: NavigationProps) {
       {...rest}
     >
       <div className="grid-flow-col grid">
-        {watchTargets?.map((target) => {
-          const active = observerResult.filter((t) => t.isVisible).pop()
+        {watchTargets?.map(([label, id]) => {
+          console.log(activeHeadings[0]?.id, id)
+          // const active = observerResult.filter((t) => t.isVisible).pop()
 
           return (
             <a
-              id={target[1]}
-              key={target[1]}
-              href={target[2] ?? target[1]}
+              id={id}
+              key={id}
+              href={id}
               className={twMerge(
                 ButtonStyle,
-                target === active?.target ? 'border-white' : ''
+                id === '#' + activeHeadings[0]?.id ? 'border-white' : ''
               )}
             >
-              {target[0]}
+              {label}
             </a>
           )
         })}
