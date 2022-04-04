@@ -38,12 +38,27 @@ export default function DocumentView(props: Props) {
             const isVisible = entry.intersectionRatio > 0
 
             if (isVisible) {
-              if (neo.has(target)) {
-              } else neo.add(target)
-            } else {
-              if (neo.has(target)) neo.delete(target)
-              else {
+              if (neo.size === 1) {
+                const exist = Array.from(neo)[0]
+                if (exist.dataset.lastVisible != null) {
+                  delete exist.dataset.lastVisible
+                  if (exist !== target) {
+                    neo.delete(exist)
+                  }
+                }
               }
+              if (neo.has(target)) continue
+              neo.add(target)
+              continue
+            }
+
+            if (neo.has(target)) {
+              if (neo.size === 1) {
+                target.dataset.lastVisible = ''
+                continue
+              }
+              neo.delete(target)
+              continue
             }
           }
           return Array.from(neo).sort((a, b) => {
