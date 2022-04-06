@@ -1,4 +1,4 @@
-import { Icon } from '@Bits/Button'
+import { Icon, Link } from '@Bits/Button'
 import * as Dialog from '@radix-ui/react-dialog'
 import { Root as Toggle } from '@radix-ui/react-toggle'
 import cntl from 'cntl'
@@ -39,16 +39,15 @@ export default function AltNavigation(props: Props) {
       className={twMerge('justify-self-end flex items-center', className)}
     >
       {user != null ? (
-        <a>
-          <span className="text-2xl relative inline-flex items-center">
-            <span className="material-icons-outlined h-full">
-              shopping_cart
-            </span>
-            <span className="badge bg-red-500 py-0.5 px-1.5 text-xs rounded-full absolute top-0 right-0 transform -translate-y-1/3 translate-x-1/2 scale-90">
-              9
-            </span>
+        <Link
+          href="/cart"
+          className="text-2xl relative inline-flex items-center text-white"
+        >
+          <span className="material-icons-outlined h-full">shopping_cart</span>
+          <span className="badge bg-red-500 py-0.5 px-1.5 text-xs rounded-full absolute top-0 right-0 transform -translate-y-1/3 translate-x-1/2 scale-90">
+            9
           </span>
-        </a>
+        </Link>
       ) : (
         <></>
       )}
@@ -94,7 +93,7 @@ export default function AltNavigation(props: Props) {
                     <a
                       key={key}
                       href={href}
-                      onClick={onClick}
+                      onClick={(e) => onClick?.(e)}
                       className={twMerge('px-5 py-4 w-full')}
                     >
                       {display}

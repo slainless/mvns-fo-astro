@@ -78,7 +78,7 @@ export default function MenuPopover(props: Props) {
                   <a
                     key={key}
                     href={href}
-                    onClick={onClick}
+                    onClick={(e) => onClick?.(e)}
                     className={twMerge(
                       'py-1 px-4 hover:bg-gray-100 transition-colors rounded-lg'
                     )}
