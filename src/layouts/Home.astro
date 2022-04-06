@@ -3,6 +3,7 @@ import Base from './Base.astro'
 import Header from '@Elements/Layout/Header.tsx'
 import Footer from '@Elements/Layout/Footer.tsx'
 import Ads from '@Blocks/Ads.tsx'
+import { Toaster } from 'react-hot-toast'
 import { twMerge } from 'tailwind-merge'
 const { title, class: cls, forceWhite } = Astro.props
 ---
@@ -23,6 +24,7 @@ const { title, class: cls, forceWhite } = Astro.props
     height={250}
   />
   <Footer slot="post-main" />
+  <Toaster client:load />
 </Base>
 
 <style global>
