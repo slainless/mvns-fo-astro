@@ -52,28 +52,34 @@ export default function Blog() {
             slidesPerView: 1.25,
             slidesPerGroup: 1,
             spaceBetween: 15,
+            centeredSlides: false,
           },
           475: {
             slidesPerView: 1.25,
             slidesPerGroup: 1,
             spaceBetween: 20,
+            centeredSlides: false,
           },
           640: {
             slidesPerView: 1.25,
             slidesPerGroup: 1,
             spaceBetween: 25,
+            centeredSlides: false,
           },
           768: {
             slidesPerView: 1.5,
             slidesPerGroup: 1,
+            centeredSlides: false,
           },
           1024: {
-            slidesPerView: 1.5,
+            slidesPerView: 2,
             slidesPerGroup: 1,
+            centeredSlides: true,
           },
           1280: {
             slidesPerView: 2,
-            slidesPerGroup: 2,
+            slidesPerGroup: 1,
+            centeredSlides: true,
           },
         },
       }}
