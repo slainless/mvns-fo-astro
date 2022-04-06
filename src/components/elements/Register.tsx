@@ -1,15 +1,34 @@
 import Dialog from '@Blocks/Dialog'
-import { ReactElement } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { Root as Label } from '@radix-ui/react-label'
-import { Common as Input } from '@Bits/Input'
+import { Input } from '@Blocks/Form'
 import { Common as Button, Link } from '@Bits/Button'
+import { Common as Icon } from '@Bits/Icon'
 import { Root as Separator } from '@radix-ui/react-separator'
-import cntl from 'cntl'
 import { ColoredGoogle, Google, LinkedIn } from '@Bits/Brand'
+import cntl from 'cntl'
+import { register } from '@Api/user'
+import { useRequest } from 'ahooks'
+import { useForm } from 'react-hook-form'
+import { InternalErrorResponse } from '@Class/response'
+import { RegisterResponse } from '@Class/user'
+import toast from 'react-hot-toast'
+import { twMerge } from 'tailwind-merge'
+import { isEmpty } from 'lodash-es'
 
 const FieldsetStyle = cntl`
   flex flex-col gap-2
 `
+
+type Feedback = {
+  message: string
+  type: 'error' | 'warning' | 'ok'
+}
+const feedbackIcon: Record<Feedback['type'], string> = {
+  ok: 'check_circle',
+  warning: 'warning',
+  error: 'error',
+}
 
 type RegisterProps = Omit<
   Parameters<typeof Dialog>[0],
@@ -20,87 +39,193 @@ type RegisterProps = Omit<
 export default function Register(props: RegisterProps) {
   const { children, ...rest } = props
 
+  const [open, setOpen] = useState(false)
+
+  const [feedback, setFeedback] = useState<Feedback | null>(null)
+  const {
+    data: result,
+    loading,
+    error,
+    run,
+  } = useRequest(register, {
+    manual: true,
+  })
+
+  const {
+    register: reg,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+  const onSubmit = (data: any) => {
+    console.log(errors)
+    setFeedback(null)
+    run(data)
+  }
+
+  useEffect(() => {
+    const { data } = result ?? {}
+    if (data == null) {
+      setFeedback(null)
+      return
+    }
+    if (data instanceof InternalErrorResponse) {
+      // NOTE: backend need to document this
+      if (data.message.indexOf('users.users_email_unique') != -1)
+        setFeedback({
+          type: 'error',
+          message: 'Email already registered',
+        })
+      else
+        setFeedback({
+          type: 'error',
+          message: 'Internal server error',
+        })
+      return
+    }
+
+    if (data instanceof RegisterResponse) {
+      // setFeedback({
+      //   type: 'ok',
+      //   message: 'Register success!',
+      // })
+      setFeedback(null)
+      // setTimeout(() => {
+      //   setOpen(false)
+      // }, 500)
+      setOpen(false)
+      toast.success(`User registered.`)
+      reset()
+      // location.reload()
+      return
+    }
+  }, [result])
+
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      setFeedback({
+        type: 'warning',
+        message: 'All fields are required!',
+      })
+    }
+  }, [errors])
+
   return (
     <Dialog
+      open={open}
+      onOpenChange={setOpen}
       trigger={children}
       hideTitle={true}
       {...rest}
-      className="flex flex-col gap-3 px-3 max-w-sm"
+      className="flex flex-col gap-5 px-3 max-w-sm"
     >
       <h4 className="font-heading text-2xl font-medium">
         Create your free account
       </h4>
-      <span className="text-sm">
+      <span className="text-sm text-neutral-400">
         See how the world’s best user experiences are created
       </span>
-      <form className="flex flex-col gap-2">
-        <fieldset className={'grid grid-cols-2 gap-2'}>
-          <div className={FieldsetStyle}>
+      <form className="contents" onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col gap-3 items-stretch">
+          <fieldset className={'grid grid-cols-2 gap-2'}>
+            <div className={FieldsetStyle}>
+              <Label
+                htmlFor="login-first-name"
+                className="font-heading text-sm opacity-80 w-max"
+              >
+                First Name
+              </Label>
+              <Input
+                id="login-first-name"
+                placeholder="e.g. John"
+                mods={['focus-ring', 'darker-border', 'invalid-red-border']}
+                className="py-2 ring-offset-2 ring-offset-white"
+                aria-invalid={errors.firstname != null}
+                {...reg('firstname', { required: true })}
+              />
+            </div>
+            <div className={FieldsetStyle}>
+              <Label
+                htmlFor="login-last-name"
+                className="font-heading text-sm opacity-80 w-max"
+              >
+                Last Name
+              </Label>
+              <Input
+                id="login-last-name"
+                placeholder="e.g. Doe"
+                mods={['focus-ring', 'darker-border', 'invalid-red-border']}
+                className="py-2 ring-offset-2 ring-offset-white"
+                aria-invalid={errors.lastname != null}
+                {...reg('lastname', { required: true })}
+              />
+            </div>
+          </fieldset>
+          <fieldset className={FieldsetStyle}>
             <Label
-              htmlFor="login-first-name"
+              htmlFor="login-username"
               className="font-heading text-sm opacity-80 w-max"
             >
-              First Name
+              Email Address
             </Label>
             <Input
-              name="first-name"
-              id="login-first-name"
-              placeholder="e.g. John"
-              className="py-2"
+              id="login-username"
+              placeholder="example@gmail.com"
+              mods={['focus-ring', 'darker-border', 'invalid-red-border']}
+              className="py-2 ring-offset-2 ring-offset-white"
+              aria-invalid={errors.email != null}
+              {...reg('email', { required: true })}
             />
-          </div>
-          <div className={FieldsetStyle}>
+          </fieldset>
+          <fieldset className={FieldsetStyle}>
             <Label
-              htmlFor="login-last-name"
+              htmlFor="login-password"
               className="font-heading text-sm opacity-80 w-max"
             >
-              Last Name
+              Password
             </Label>
             <Input
-              name="last-name"
-              id="login-last-name"
-              placeholder="e.g. Doe"
-              className="py-2"
+              id="login-password"
+              placeholder="Enter password"
+              type="password"
+              mods={['focus-ring', 'darker-border', 'invalid-red-border']}
+              className="py-2 ring-offset-2 ring-offset-white"
+              aria-invalid={errors.password != null}
+              {...reg('password', { required: true })}
             />
+          </fieldset>
+          <div
+            id="login-feedback"
+            className={twMerge(
+              'inline-flex text-center gap-1 items-center text-sm self-center',
+              feedback?.type == 'error' ? 'text-red-700' : '',
+              feedback?.type == 'warning' ? 'text-yellow-700' : '',
+              feedback?.type == 'ok' ? 'text-green-700' : '',
+              feedback == null || isEmpty(feedback?.message) ? 'hidden' : ''
+            )}
+          >
+            <Icon
+              icon={feedbackIcon[feedback?.type ?? 'error']}
+              iconClass="!text-lg"
+            >
+              {feedback?.message}
+            </Icon>
           </div>
-        </fieldset>
-        <fieldset className={FieldsetStyle}>
-          <Label
-            htmlFor="login-username"
-            className="font-heading text-sm opacity-80 w-max"
-          >
-            Email Address
-          </Label>
-          <Input
-            name="username"
-            id="login-username"
-            placeholder="example@gmail.com"
-            className="py-2"
-          />
-        </fieldset>
-        <fieldset className={FieldsetStyle}>
-          <Label
-            htmlFor="login-password"
-            className="font-heading text-sm opacity-80 w-max"
-          >
-            Password
-          </Label>
-          <Input
-            name="username"
-            id="login-password"
-            placeholder="Enter password"
-            type="password"
-            className="py-2"
-          />
-        </fieldset>
+        </div>
         <Button
-          className="
-          z-[1] bg-red-600 text-white border-red-600 
-          hover:bg-red-600 hover:text-white hover:shadow-red-600/30 
-          py-2.5 mt-3
-        "
+          mods={['fill-red', 'to-fill-red', 'disabled-dim']}
+          className="z-[1] py-2.5 h-12"
+          disabled={loading}
         >
-          Create your account
+          {loading ? (
+            <div className="ball-pulse">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          ) : (
+            'Create your account'
+          )}
         </Button>
       </form>
       <Separator
