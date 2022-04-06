@@ -56,19 +56,20 @@ export default function Dialog(
       <Dialog_.Portal className="filter-dialog hidden">
         <Dialog_.Overlay
           className={twMerge(
-            'bg-black/80 h-full w-full fixed z-40',
+            'bg-black/80 inset-0 grid fixed z-50 place-items-center overflow-y-auto',
             styleOverrides?.overlay
           )}
-        />
-        <Dialog_.Content
-          className={twMerge(
-            'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fixed z-50 flex items-center justify-center pointer-events-none rounded-lg',
-            styleOverrides?.content
-          )}
         >
-          <div
+          <Dialog_.Content
             className={twMerge(
-              `
+              'w-max h-max flex place-items-center',
+              styleOverrides?.content
+            )}
+          >
+            <div
+              className={twMerge(
+                `
+                my-8
             w-max h-max 
             bg-white text-black rounded-2xl shadow-md drop-shadow-md
             py-8 px-8 flex flex-col gap-3
@@ -76,48 +77,55 @@ export default function Dialog(
             animate-enter-scaled
             pointer-events-auto
           `,
-              styleOverrides?.card
-            )}
-          >
-            {hideTitle || title === '' || title == null ? (
-              <VisuallyHidden>
-                <Dialog_.Title></Dialog_.Title>
-              </VisuallyHidden>
-            ) : (
-              <Dialog_.Title
-                className={twMerge(
-                  'tracking-wide text-lg font-bold font-heading text-black',
-                  styleOverrides?.title
-                )}
+                styleOverrides?.card
+              )}
+            >
+              {hideTitle || title === '' || title == null ? (
+                <VisuallyHidden>
+                  <Dialog_.Title></Dialog_.Title>
+                </VisuallyHidden>
+              ) : (
+                <Dialog_.Title
+                  className={twMerge(
+                    'tracking-wide text-lg font-bold font-heading text-black',
+                    styleOverrides?.title
+                  )}
+                >
+                  {title}
+                </Dialog_.Title>
+              )}
+
+              {hideDesc || desc === '' || desc == null ? (
+                <VisuallyHidden>
+                  <Dialog_.DialogDescription></Dialog_.DialogDescription>
+                </VisuallyHidden>
+              ) : (
+                <Dialog_.Description className={twMerge(styleOverrides?.desc)}>
+                  {desc}
+                </Dialog_.Description>
+              )}
+
+              <div
+                className={twMerge(className, styleOverrides?.content)}
+                {...rest}
               >
-                {title}
-              </Dialog_.Title>
-            )}
-
-            {hideDesc || desc === '' || desc == null ? (
-              <VisuallyHidden>
-                <Dialog_.DialogDescription></Dialog_.DialogDescription>
-              </VisuallyHidden>
-            ) : (
-              <Dialog_.Description className={twMerge(styleOverrides?.desc)}>
-                {desc}
-              </Dialog_.Description>
-            )}
-
-            <div
-              className={twMerge(className, styleOverrides?.content)}
-              {...rest}
-            >
-              {children}
+                {children}
+              </div>
+              <Dialog_.Close
+                className="w-6 h-6 rounded-full hover:bg-red-200 hover:text-red-600 absolute top-4 right-4 z-1 text-black flex items-center justify-center"
+                aria-label="Close"
+              >
+                <span className="material-icons-outlined">close</span>
+              </Dialog_.Close>
             </div>
-            <Dialog_.Close
-              className="w-6 h-6 rounded-full hover:bg-red-200 hover:text-red-600 absolute top-4 right-4 z-1 text-black flex items-center justify-center"
-              aria-label="Close"
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
             >
-              <span className="material-icons-outlined">close</span>
-            </Dialog_.Close>
-          </div>
-        </Dialog_.Content>
+              &#8203;
+            </span>
+          </Dialog_.Content>
+        </Dialog_.Overlay>
       </Dialog_.Portal>
     </Dialog_.Root>
   )
