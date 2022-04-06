@@ -1,4 +1,5 @@
 import cntl from 'cntl'
+import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const CommonStyle = cntl`
@@ -10,8 +11,14 @@ const CommonStyle = cntl`
   focus:border-red-600
   text-sm
 `
-type InputProps = HTMLAttr<'input'>
-export function Common(props: InputProps) {
+type InputProps = Omit<HTMLAttr<'input'>, 'ref'>
+export const Common = forwardRef((props: InputProps, ref: any) => {
   const { className, ...rest } = props
-  return <input className={twMerge(CommonStyle, className)} {...rest}></input>
-}
+  return (
+    <input
+      className={twMerge(CommonStyle, className)}
+      ref={ref}
+      {...rest}
+    ></input>
+  )
+})

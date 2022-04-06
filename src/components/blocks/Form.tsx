@@ -4,6 +4,8 @@ import { twMerge } from 'tailwind-merge'
 import { isString, partition } from 'lodash-es'
 import { Icon } from '@Bits/Button'
 import {
+  ForwardedRef,
+  forwardRef,
   isValidElement,
   ReactElement,
   ReactNode,
@@ -19,6 +21,7 @@ type FieldProps = {
   styleOverrides?: {
     container?: string
     label?: string
+    info?: string
   }
 }
 export function Field(
@@ -51,7 +54,8 @@ export function Field(
       <div
         className={twMerge(
           'input-notice text-xs text-white/80',
-          info != '' && info != null ? 'mt-1' : ''
+          info != '' && info != null ? 'mt-1' : '',
+          styleOverrides?.info
         )}
       >
         {info}
@@ -103,7 +107,7 @@ const CommonIcon = (props: {
 }
 
 const CommonInputStyle = cntl`
-  transition-colors outline-none
+  transition-all outline-none
   px-5 py-2.5 w-full
   font-heading
   text-sm
@@ -129,6 +133,8 @@ const CommonInputMods = createMods({
   'focus-red-border': cntl`focus:border-red-600 focus-within:border-red-600`,
 
   'focus-ring': cntl`focus:ring-2 focus-within:ring-2`,
+
+  'invalid-red-border': cntl`aria-invalid:border-red-600`,
 })
 
 type InputProps = HTMLAttr<'input'> &
@@ -137,6 +143,7 @@ type InputProps = HTMLAttr<'input'> &
     leadingIcon?: CommonIcon
     trailingIcon?: CommonIcon
     styleOverrides?: {
+      info?: string
       input?: string
       icon?: {
         leading?: string
@@ -144,60 +151,62 @@ type InputProps = HTMLAttr<'input'> &
       }
     }
   }
-export function Input(props: InputProps): JSX.Element {
-  const {
-    label,
-    info,
-    mods,
-    styleOverrides,
-    leadingIcon,
-    trailingIcon,
-    className,
-    name,
-    ...rest
-  } = props
+export const Input = forwardRef(
+  (props: Omit<InputProps, 'ref'>, ref: ForwardedRef<HTMLInputElement>) => {
+    const {
+      label,
+      info,
+      mods,
+      styleOverrides,
+      leadingIcon,
+      trailingIcon,
+      className,
+      ...rest
+    } = props
 
-  const [iconMods, restMods] = partition(mods, (mod) => mod.endsWith('icon'))
+    const [iconMods, restMods] = partition(mods, (mod) => mod.endsWith('icon'))
 
-  return (
-    <Field
-      label={label}
-      info={info}
-      htmlFor={name}
-      styleOverrides={styleOverrides}
-    >
-      <div className="input-set relative flex h-full items-center">
-        <input
-          className={twMerge(
-            CommonInputStyle,
-            ...CommonInputMods.parse(restMods as typeof mods),
-            leadingIcon != null ? 'pl-10' : '',
-            trailingIcon != null ? 'pr-10' : '',
-            className,
-            styleOverrides?.input
-          )}
-          {...rest}
-        ></input>
-        <CommonIcon
-          input={leadingIcon}
-          defaultStyle={twMerge(
-            ...CommonInputMods.parse(iconMods as typeof mods),
-            'left-2',
-            styleOverrides?.icon?.leading
-          )}
-        />
-        <CommonIcon
-          input={trailingIcon}
-          defaultStyle={twMerge(
-            ...CommonInputMods.parse(iconMods as typeof mods),
-            'right-2',
-            styleOverrides?.icon?.trailing
-          )}
-        />
-      </div>
-    </Field>
-  )
-}
+    return (
+      <Field
+        label={label}
+        info={info}
+        htmlFor={props.name}
+        styleOverrides={styleOverrides}
+      >
+        <div className="input-set relative flex h-full items-center">
+          <input
+            className={twMerge(
+              CommonInputStyle,
+              ...CommonInputMods.parse(restMods as typeof mods),
+              leadingIcon != null ? 'pl-10' : '',
+              trailingIcon != null ? 'pr-10' : '',
+              className,
+              styleOverrides?.input
+            )}
+            ref={ref}
+            {...rest}
+          ></input>
+          <CommonIcon
+            input={leadingIcon}
+            defaultStyle={twMerge(
+              ...CommonInputMods.parse(iconMods as typeof mods),
+              'left-2',
+              styleOverrides?.icon?.leading
+            )}
+          />
+          <CommonIcon
+            input={trailingIcon}
+            defaultStyle={twMerge(
+              ...CommonInputMods.parse(iconMods as typeof mods),
+              'right-2',
+              styleOverrides?.icon?.trailing
+            )}
+          />
+        </div>
+      </Field>
+    )
+  }
+)
 
 type TextAreaProps = HTMLAttr<'textarea'> &
   FieldProps & {

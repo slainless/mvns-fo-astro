@@ -124,6 +124,8 @@ const CommonMods = {
   'hover-darker-fill': cntl`hover:bg-black/30`,
   'hover-lighter-fill': cntl`hover:bg-white/30`,
 
+  'disabled-dim': cntl`disabled:opacity-50`,
+
   'no-translate': cntl`hover:translate-y-0`,
   'no-fill': cntl`bg-transparent`,
 } as const

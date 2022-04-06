@@ -34,7 +34,7 @@ export default function DocumentView(props: Props) {
     const trackedHeadings = document.querySelectorAll(
       '#main-article h1:not(.untracked), #main-article h2:not(.untracked), #main-article h3:not(.untracked)'
     )
-    setHeadings(Array.from(trackedHeadings))
+    setHeadings(Array.from(trackedHeadings) as HTMLHeadingElement[])
   }, [])
 
   return (
