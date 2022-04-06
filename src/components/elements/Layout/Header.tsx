@@ -6,9 +6,13 @@ import { throttle } from 'lodash-es'
 import { twMerge } from 'tailwind-merge'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import AltNavigation from './Header/AltNavigation'
+import getRoutes from './Header/Routes'
+import { useUserStore } from '@Api/user'
 
 export default function Header() {
   const [compact, setCompact] = useState(false)
+  const routes = getRoutes()
+  const user = useUserStore((state) => state.user)
   const ref = useRef<HTMLDivElement>(null)
 
   // useEffect(() => {
@@ -51,8 +55,8 @@ export default function Header() {
         />
       </a>
       <Search className="hidden lg:flex" />
-      <Navigation className="hidden lg:flex" />
-      <AltNavigation className="flex lg:hidden" />
+      <Navigation className="hidden lg:flex" routes={routes} user={user} />
+      <AltNavigation className="flex lg:hidden" routes={routes} user={user} />
     </header>
   )
 }

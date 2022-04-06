@@ -7,16 +7,20 @@ import cntl from 'cntl'
 import { twMerge } from 'tailwind-merge'
 import Login from '@Elements/Login'
 import Register from '@Elements/Register'
+import { User } from '@Class/user'
+import { Route } from './Routes'
 
 const LinkStyle = cntl`
   tracking-normal after:w-0
   text-white
 `
 
-type Props = Omit<HTMLAttr<'nav'>, 'children'>
+type Props = Omit<HTMLAttr<'nav'>, 'children'> & {
+  user: User | null
+  routes: Route[]
+}
 export default function Navigation(props: Props) {
-  const { className, ...rest } = props
-  // const user: User | null = useMemo(getUser, [])
+  const { className, user, routes, ...rest } = props
 
   return (
     <nav
@@ -25,29 +29,27 @@ export default function Navigation(props: Props) {
       {...rest}
     >
       <div className="contents">
-        {/* {user == null || user.role.is(0) ? ( */}
-        <>
-          <Link className={LinkStyle} href="/instructor">
-            Become Instructor
-          </Link>
-          <Login title="Login">
-            <Link className={LinkStyle} href="javascript:void(0);">
-              Log In
-            </Link>
-          </Login>
-          <Register title="Register">
-            <Link
-              className={twMerge(
-                LinkStyle,
-                'after:w-0 after:left-auto after:right-0 transition-colors hover:text-red-500'
-              )}
-              href="javascript:void(0);"
-            >
-              Register
-            </Link>
-          </Register>
-        </>
-        {/* ) : user.role.or(Role.STUDENT | Role.INSTRUCTOR) ? (
+        {user == null ? (
+          routes.map((route, i) => {
+            const { display, href, render, navigationOverride, onClick } = route
+            const { className, ...rest } = navigationOverride ?? {}
+            const key = display + i
+
+            const el = (
+              <Link
+                className={twMerge(LinkStyle, className)}
+                href={href}
+                onClick={onClick}
+                {...rest}
+              >
+                {display}
+              </Link>
+            )
+
+            if (render != null) return render(el, key)
+            return el
+          })
+        ) : (
           <>
             <a>
               <span className="text-2xl relative inline-flex items-center">
@@ -63,15 +65,13 @@ export default function Navigation(props: Props) {
               className="bg-white rounded-full py-0.5 pl-3 pr-1 flex gap-2 text-gray-500 justify-center items-center relative"
               id="menu-dock"
             >
-              <Popover user={user} />
+              <Popover user={user} routes={routes} />
               <a className="inline-flex text-3xl leading-none">
                 <span className="material-icons">account_circle</span>
               </a>
             </div>
           </>
-        ) : (
-          <></>
-        )}*/}
+        )}
       </div>
     </nav>
   )

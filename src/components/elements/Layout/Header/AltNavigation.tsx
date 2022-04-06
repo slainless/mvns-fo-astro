@@ -5,10 +5,15 @@ import cntl from 'cntl'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { Input } from '@Blocks/Form'
+import { Route } from './Routes'
+import { User } from '@Class/user'
 
-type Props = Omit<HTMLAttr<'div'>, 'children'>
+type Props = Omit<HTMLAttr<'div'>, 'children'> & {
+  user: User | null
+  routes: Route[]
+}
 export default function AltNavigation(props: Props) {
-  const { className, ...rest } = props
+  const { className, routes, user, ...rest } = props
   const [active, setActive] = useState(false)
   return (
     // <div id="mobile-nav" className={twMerge('justify-self-end ', className)}>
@@ -29,7 +34,24 @@ export default function AltNavigation(props: Props) {
     //     )}
     //   ></div>
     // </div>
-    <div id="mobile-nav" className={twMerge('justify-self-end ', className)}>
+    <div
+      id="mobile-nav"
+      className={twMerge('justify-self-end flex items-center', className)}
+    >
+      {user != null ? (
+        <a>
+          <span className="text-2xl relative inline-flex items-center">
+            <span className="material-icons-outlined h-full">
+              shopping_cart
+            </span>
+            <span className="badge bg-red-500 py-0.5 px-1.5 text-xs rounded-full absolute top-0 right-0 transform -translate-y-1/3 translate-x-1/2 scale-90">
+              9
+            </span>
+          </span>
+        </a>
+      ) : (
+        <></>
+      )}
       <Dialog.Root open={active} onOpenChange={setActive}>
         <Dialog.Trigger asChild={true}>
           <Icon
@@ -65,15 +87,23 @@ export default function AltNavigation(props: Props) {
                 }}
               ></Input>
               <div id="mobile-nav-list" className="flex flex-col">
-                {[
-                  ['Become an Instructor', '/instructor'],
-                  ['Log In', 'javascript:void(0);'],
-                  ['Register', 'javascript:void(0);'],
-                ].map((v) => (
-                  <a href={v[1]} className={twMerge('px-5 py-4 w-full')}>
-                    {v[0]}
-                  </a>
-                ))}
+                {routes.map((route, i) => {
+                  const { display, href, onClick, render } = route
+                  const key = display + i
+                  const el = (
+                    <a
+                      key={key}
+                      href={href}
+                      onClick={onClick}
+                      className={twMerge('px-5 py-4 w-full')}
+                    >
+                      {display}
+                    </a>
+                  )
+
+                  if (render != null) return render(el, key)
+                  return el
+                })}
               </div>
             </div>
           </Dialog.Content>

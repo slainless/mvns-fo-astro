@@ -5,14 +5,14 @@ import { mergeClass } from '@Functions/jsx-helper'
 // import { createPopper } from '@popperjs/core'
 import cntl from 'cntl'
 // import { Role, User } from '@Api/user'
+import { User } from '@Class/user'
 import { createSingleton } from '@Functions/jsx-factory'
+import { Route } from './Routes'
+import { twMerge } from 'tailwind-merge'
 
-const MenuItem = createSingleton('a', {
-  className: cntl`py-1 px-4 hover:bg-gray-100 transition-colors rounded-lg`,
-})
-
-export default function MenuPopover(props: { user: User }) {
-  const { user } = props
+type Props = { user: User; routes: Route[] }
+export default function MenuPopover(props: Props) {
+  const { user, routes } = props
 
   useEffect(() => {
     const menuDock = document.querySelector('#menu-dock')!
@@ -71,12 +71,25 @@ export default function MenuPopover(props: { user: User }) {
                 text-black
               `}
             >
-              {/* {user.role.or(Role.INSTRUCTOR) ? (
-                <MenuItem>Instructor Page</MenuItem>
-              ) : null} */}
-              <MenuItem>My Learning</MenuItem>
-              <MenuItem>Wishlist</MenuItem>
-              <MenuItem>Log out</MenuItem>
+              {routes.map((route, i) => {
+                const { display, href, onClick, render } = route
+                const key = display + i
+                const el = (
+                  <a
+                    key={key}
+                    href={href}
+                    onClick={onClick}
+                    className={twMerge(
+                      'py-1 px-4 hover:bg-gray-100 transition-colors rounded-lg'
+                    )}
+                  >
+                    {display}
+                  </a>
+                )
+
+                if (render != null) return render(el, key)
+                return el
+              })}
             </div>
           </Popover.Panel>
         </>
