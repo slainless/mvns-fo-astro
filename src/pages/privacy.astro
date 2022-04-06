@@ -17,8 +17,11 @@ import cntl from 'cntl'
     >
       Privacy & Policy
     </Section.Title>
-    <Section.Content className="gap-5 flex flex-col" id="privacy-policy">
-      <div class="card">
+    <Section.Content
+      className="xs:gap-5 flex flex-col -mx-5 xs:mx-0 "
+      id="privacy-policy"
+    >
+      <div class="card prose">
         <Markdown>
           ## Privacy
 
@@ -36,7 +39,7 @@ import cntl from 'cntl'
             another Mavensdotlive user’s information.
         </Markdown>
       </div>
-      <div class="card">
+      <div class="card prose">
         <Markdown>
           ## Cookie Policy
 
@@ -51,26 +54,19 @@ import cntl from 'cntl'
   </Section.Container>
 </Home>
 
-<style global lang="stylus">
-  #privacy-policy .card {
-    @apply text-black bg-white rounded-lg py-10 px-10 flex flex-col gap-3;
+<style>
+  .card {
+    @apply bg-white w-full max-w-full;
+    @apply py-5 px-5 sm:py-10 sm:px-10 xs:rounded-lg;
+  }
 
-    & h2 {
-      @apply text-2xl font-heading font-bold;
-    }
+  .card li {
+    @apply pl-2;
+  }
 
-    & ul {
-      @apply list-disc list-outside pl-5 inline-flex flex-col gap-2 font-medium;
-
-      & li {
-        @apply pl-3;
-      }
-
-      & li::marker {
-        @apply text-red-600 text-lg h-full;
-        font-family: 'Material Icons Outlined';
-        content: 'check_circle';
-      }
-    }
+  .card li::marker {
+    @apply text-red-600 text-lg;
+    font-family: 'Material Icons Outlined';
+    content: 'check_circle';
   }
 </style>

@@ -47,7 +47,7 @@ export default function Footer() {
           links={[
             ['FAQs', '/faq'],
             ['Terms', '/tos'],
-            ['Privacy', '/privacy-policy'],
+            ['Privacy', '/privacy'],
             ['Blog', '/blog/all'],
             ['Sitemap', '/sitemap'],
             ['Contact', '/contact'],
