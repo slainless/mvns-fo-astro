@@ -110,7 +110,11 @@ export default function Login(props: LoginProps) {
       trigger={children}
       hideTitle={true}
       {...rest}
-      className="flex flex-col gap-5 px-3 max-w-xs"
+      className="flex flex-col gap-5 px-0 xs:px-3 max-w-xs"
+      styleOverrides={{
+        card: cntl`w-screen xs:w-max shadow-none xs:shadow-md xs:drop-shadow-md drop-shadow-none xs:w-initial min-h-full place-items-center`,
+        overlay: cntl`bg-white xs:bg-black/80`,
+      }}
     >
       <h4 className="font-heading text-2xl font-medium">Log In</h4>
       <span className="text-sm text-neutral-400">

@@ -1,6 +1,7 @@
 import * as Dialog_ from '@radix-ui/react-dialog'
 import { Root as Separator } from '@radix-ui/react-separator'
 import { Root as VisuallyHidden } from '@radix-ui/react-visually-hidden'
+import cntl from 'cntl'
 import { ReactNode, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -68,15 +69,11 @@ export default function Dialog(
           >
             <div
               className={twMerge(
-                `
-                my-8
-            w-max h-max 
-            bg-white text-black rounded-2xl shadow-md drop-shadow-md
-            py-8 px-8 flex flex-col gap-3
-            max-w-md
-            animate-enter-scaled
-            pointer-events-auto
-          `,
+                'bg-white text-black rounded-2xl shadow-md drop-shadow-md',
+                'xs:my-8 sm:w-max h-max sm:py-8 sm:px-8 sm:max-w-md',
+                'w-full py-5 px-5',
+                'flex flex-col gap-3',
+                'pointer-events-auto animate-enter-scaled',
                 styleOverrides?.card
               )}
             >

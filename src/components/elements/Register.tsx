@@ -117,7 +117,11 @@ export default function Register(props: RegisterProps) {
       trigger={children}
       hideTitle={true}
       {...rest}
-      className="flex flex-col gap-5 px-3 max-w-sm"
+      className="flex flex-col gap-5 px-0 xs:px-3 max-w-xs"
+      styleOverrides={{
+        card: cntl`w-screen xs:w-max shadow-none xs:shadow-md xs:drop-shadow-md drop-shadow-none xs:w-initial min-h-full place-items-center`,
+        overlay: cntl`bg-white overflow-x-hidden xs:bg-black/80`,
+      }}
     >
       <h4 className="font-heading text-2xl font-medium">
         Create your free account
@@ -127,7 +131,7 @@ export default function Register(props: RegisterProps) {
       </span>
       <form className="contents" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-3 items-stretch">
-          <fieldset className={'grid grid-cols-2 gap-2'}>
+          <fieldset className="contents xs:grid grid-cols-2 gap-2">
             <div className={FieldsetStyle}>
               <Label
                 htmlFor="login-first-name"
