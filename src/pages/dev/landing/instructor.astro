@@ -18,12 +18,12 @@ import Blog from '@Elements/landing-page/Blog.tsx'
 
 <Home title="PAGE PUBLIC">
   <script slot="head" hoist type="module">
-    import { RoleClass, Role } from '@Api/user'
+    // import { RoleClass, Role } from '@Api/user'
 
-    window.USER = {
-      name: 'Yusuf Harun',
-      role: new RoleClass([Role.INSTRUCTOR]),
-    }
+    // window.USER = {
+    //   name: 'Yusuf Harun',
+    //   role: new RoleClass([Role.INSTRUCTOR]),
+    // }
   </script>
   <RegisterPlugin />
   <ContinueLearning client:load />

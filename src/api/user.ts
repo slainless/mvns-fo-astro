@@ -1,68 +1,77 @@
-import isBrowser from '@Functions/isBrowser'
-import { plainToInstance } from 'class-transformer'
+import create from 'zustand'
+import { persist } from 'zustand/middleware'
+import { LoginResponse, RegisterResponse, User } from '@Class/user'
+import join from 'url-join'
+import { isEmpty } from 'lodash-es'
+import { requestJSON } from '@Functions/request'
 
-export enum Role {
-  NONE = 0,
-  STUDENT = 0b0001,
-  INSTRUCTOR = 0b0010,
-  BUSINESS = 0b0100,
-}
+const USER_ENDPOINT = join(
+  import.meta.env.PUBLIC_API_ROOT,
+  'frontoffice/student'
+)
 
-export class RoleClass {
-  private role: number
-  constructor(roles: Role[]) {
-    this.role = roles.length > 0 ? roles.reduce((p, c) => p | c) : 0
+export function login(input: { email: string; password: string }) {
+  const { email, password } = input
+  const LOGIN_ENDPOINT = 'login'
+
+  if (isEmpty(email) || isEmpty(password)) {
+    throw new Error('Email or password should not be empty!')
   }
 
-  is(role: number | Role | Role[]): boolean
-  is(...roles: Role[]): boolean
-  is(...roles: (Role | Role[])[]) {
-    const first = roles[0]
-    if (roles.length === 1 && !Array.isArray(first)) {
-      return first === this.role
+  return requestJSON(join(USER_ENDPOINT, LOGIN_ENDPOINT), {
+    method: 'post',
+    json: input,
+    headers: {
+      Accept: 'application/json',
+    },
+    responseType: {
+      200: LoginResponse,
+    },
+  })
+}
+
+export function register(input: {
+  firstname: string
+  lastname: string
+  email: string
+  password: string
+}) {
+  const { firstname, lastname, email, password } = input
+  const REGISTER_ENDPOINT = 'register'
+
+  if (
+    isEmpty(email) ||
+    isEmpty(password) ||
+    isEmpty(firstname) ||
+    isEmpty(lastname)
+  ) {
+    throw new Error(`There can't be an empty input!`)
+  }
+
+  return requestJSON(join(USER_ENDPOINT, REGISTER_ENDPOINT), {
+    method: 'post',
+    json: input,
+    headers: {
+      Accept: 'application/json',
+    },
+    responseType: {
+      201: RegisterResponse,
+    },
+  })
+}
+
+type UserStore = {
+  user: User | null
+  setUser: (user: User) => void
+}
+export const useUserStore = create<UserStore>(
+  persist(
+    (set, get) => ({
+      user: null,
+      setUser: (user: User) => set({ user }),
+    }),
+    {
+      name: 'user',
     }
-    const _roles = (Array.isArray(first) ? first : roles) as Role[]
-
-    const all = _roles.reduce((p: Role, c: Role) => p | c)
-    return this.role === all
-  }
-
-  and(role: number | Role | Role[]): boolean
-  and(...roles: Role[]): boolean
-  and(...roles: (Role | Role[])[]) {
-    const first = roles[0]
-    if (roles.length === 1 && !Array.isArray(first)) {
-      return first === 0 ? false : (this.role & first) === first
-    }
-    const _roles = (Array.isArray(first) ? first : roles) as Role[]
-
-    const all = _roles.reduce((p: Role, c: Role) => p | c)
-    return (this.role & all) === all
-  }
-
-  or(role: number | Role | Role[]): boolean
-  or(...roles: Role[]): boolean
-  or(...roles: (Role | Role[])[]) {
-    const first = roles[0]
-    if (roles.length === 1 && !Array.isArray(first)) {
-      return first === 0 ? this.role > 0 : (this.role & first) > 0
-    }
-    const _roles = (Array.isArray(first) ? first : roles) as Role[]
-
-    const all = _roles.reduce((p: Role, c: Role) => p | c)
-    return (this.role & all) > 0
-  }
-
-  addRole(role: Role) {}
-
-  getRole() {}
-}
-
-export class User {
-  name!: string
-  role!: RoleClass
-}
-
-export function getUser(): User | null {
-  return isBrowser ? window.USER : null
-}
+  )
+)

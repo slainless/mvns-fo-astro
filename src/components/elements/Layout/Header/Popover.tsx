@@ -1,10 +1,10 @@
 import { Popover, Transition } from '@headlessui/react'
-import { Fragment, JSX } from 'preact'
+// import { Fragment, JSX } from 'react'
 import { useEffect, useMemo } from 'react'
 import { mergeClass } from '@Functions/jsx-helper'
 // import { createPopper } from '@popperjs/core'
 import cntl from 'cntl'
-import { Role, User } from '@Api/user'
+// import { Role, User } from '@Api/user'
 import { createSingleton } from '@Functions/jsx-factory'
 
 const MenuItem = createSingleton('a', {
@@ -30,7 +30,7 @@ export default function MenuPopover(props: { user: User }) {
     }
   }, [])
 
-  console.log(user.role.or(Role.INSTRUCTOR), user.role)
+  // console.log(user.role.or(Role.INSTRUCTOR), user.role)
 
   return (
     <Popover className="contents">
@@ -71,9 +71,9 @@ export default function MenuPopover(props: { user: User }) {
                 text-black
               `}
             >
-              {user.role.or(Role.INSTRUCTOR) ? (
+              {/* {user.role.or(Role.INSTRUCTOR) ? (
                 <MenuItem>Instructor Page</MenuItem>
-              ) : null}
+              ) : null} */}
               <MenuItem>My Learning</MenuItem>
               <MenuItem>Wishlist</MenuItem>
               <MenuItem>Log out</MenuItem>

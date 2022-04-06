@@ -1,4 +1,4 @@
-import { getUser, Role } from '@Api/user'
+// import { getUser, Role } from '@Class/role'
 import isBrowser from '@Functions/isBrowser'
 import { useEffect, useMemo } from 'react'
 
@@ -46,10 +46,11 @@ function Navigation({ hidden = false }) {
 }
 
 export default function CategoryNav() {
-  if (!isBrowser) return <Navigation />
+  // if (!isBrowser) return <Navigation />
 
-  const user = useMemo(() => getUser(), [])
-  console.log('cat nav user', user)
-  if (user == null || user.role.is(Role.NONE)) return <Navigation />
-  else return <Navigation hidden />
+  // const user = useMemo(() => getUser(), [])
+  // console.log('cat nav user', user)
+  // if (user == null || user.role.is(Role.NONE)) return <Navigation />
+  // else return <Navigation hidden />
+  return <Navigation />
 }

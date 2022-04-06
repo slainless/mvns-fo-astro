@@ -1,6 +1,6 @@
 import { useMemo, useEffect, useState } from 'react'
 import isBrowser from '@Functions/isBrowser'
-import { getUser, Role, User } from '@Api/user'
+// import { getUser, Role, User } from '@Api/user'
 import Popover from './Popover'
 import { Link } from '@Bits/Button'
 import cntl from 'cntl'
@@ -16,7 +16,7 @@ const LinkStyle = cntl`
 type Props = Omit<HTMLAttr<'nav'>, 'children'>
 export default function Navigation(props: Props) {
   const { className, ...rest } = props
-  const user: User | null = useMemo(getUser, [])
+  // const user: User | null = useMemo(getUser, [])
 
   return (
     <nav
@@ -25,29 +25,29 @@ export default function Navigation(props: Props) {
       {...rest}
     >
       <div className="contents">
-        {user == null || user.role.is(0) ? (
-          <>
-            <Link className={LinkStyle} href="/instructor">
-              Become Instructor
+        {/* {user == null || user.role.is(0) ? ( */}
+        <>
+          <Link className={LinkStyle} href="/instructor">
+            Become Instructor
+          </Link>
+          <Login title="Login">
+            <Link className={LinkStyle} href="javascript:void(0);">
+              Log In
             </Link>
-            <Login title="Login">
-              <Link className={LinkStyle} href="javascript:void(0);">
-                Log In
-              </Link>
-            </Login>
-            <Register title="Register">
-              <Link
-                className={twMerge(
-                  LinkStyle,
-                  'after:w-0 after:left-auto after:right-0 transition-colors hover:text-red-500'
-                )}
-                href="javascript:void(0);"
-              >
-                Register
-              </Link>
-            </Register>
-          </>
-        ) : user.role.or(Role.STUDENT | Role.INSTRUCTOR) ? (
+          </Login>
+          <Register title="Register">
+            <Link
+              className={twMerge(
+                LinkStyle,
+                'after:w-0 after:left-auto after:right-0 transition-colors hover:text-red-500'
+              )}
+              href="javascript:void(0);"
+            >
+              Register
+            </Link>
+          </Register>
+        </>
+        {/* ) : user.role.or(Role.STUDENT | Role.INSTRUCTOR) ? (
           <>
             <a>
               <span className="text-2xl relative inline-flex items-center">
@@ -71,7 +71,7 @@ export default function Navigation(props: Props) {
           </>
         ) : (
           <></>
-        )}
+        )}*/}
       </div>
     </nav>
   )

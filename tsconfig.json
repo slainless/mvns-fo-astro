@@ -2,11 +2,14 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "moduleResolution": "node",
+    "module": "ES2020",
     "strict": true,
     "baseUrl": ".",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "paths": {
       "@Api/*": ["src/api/*"],
       "@Bits/*": ["src/components/bits/*"],
@@ -18,6 +21,7 @@
       "@Styles/*": ["src/styles/*"],
       "@Components/*": ["src/components/*"],
       "@Dev/*": ["src/_dev/*"],
+      "@Class/*": ["src/classes/*"],
       "@/*": ["*"]
     }
   },
