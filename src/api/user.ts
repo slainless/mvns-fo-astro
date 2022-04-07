@@ -60,7 +60,7 @@ export function register(input: {
   })
 }
 
-type UserStore = {
+export type UserStore = {
   user: User | null
   setUser: (user: User) => void
   removeUser: () => void

@@ -11,7 +11,8 @@
     "style",
     "page",
     "bits",
-    "function"
+    "function",
+    "api"
   ],
   "prettier.quoteProps": "consistent",
   "prettier.semi": false,
