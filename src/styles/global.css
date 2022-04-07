@@ -1,6 +1,21 @@
+.material-icons-outlined,
+.material-icons {
+  font-size: inherit !important;
+  line-height: inherit !important;
+  font-weight: inherit !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ball-pulse {
+  @apply inline-flex;
+}
+
+.ball-pulse > div {
+  @apply w-2 h-2;
+}
 
 .hide-scrollbar {
   overflow-y: scroll;
@@ -12,13 +27,6 @@
   /* WebKit */
   width: 0;
   height: 0;
-}
-
-.material-icons-outlined,
-.material-icons {
-  font-size: inherit !important;
-  line-height: inherit !important;
-  font-weight: inherit !important;
 }
 
 body {

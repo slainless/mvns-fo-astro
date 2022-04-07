@@ -4,10 +4,10 @@ import Home from '@Layouts/Home.astro'
 
 // elements
 import Featured from '@Elements/landing-page/Featured.tsx'
-import ComingSoon from '@Elements/landing-page/ComingSoon.tsx'
-import StartLearning from '@Elements/landing-page/StartLearning.tsx'
-import ContinueLearning from '@Elements/landing-page/ContinueLearning.tsx'
-import MostRelevant from '@Elements/landing-page/MostRelevant.tsx'
+// import ComingSoon from '@Elements/landing-page/ComingSoon.tsx'
+import StartLearning from '@Elements/landing-page/student/StartLearning.tsx'
+import ContinueLearning from '@Elements/landing-page/student/ContinueLearning.tsx'
+import MostRelevant from '@Elements/landing-page/student/MostRelevant.tsx'
 import RegisterPlugin from '@Elements/RegisterPlugin.tsx'
 import Ads from '@Blocks/Ads.tsx'
 import Classes from '@Elements/landing-page/Classes.tsx'
@@ -32,7 +32,7 @@ import Blog from '@Elements/landing-page/Blog.tsx'
   <Ads width={728} height={90} src="/media/leaderboard-ad-placeholder.png" />
   <Featured title="New classes added every month" />
   <MostRelevant client:load />
-  <ComingSoon client:load />
+  <!-- <ComingSoon client:load /> -->
   <Blog client:load />
   <Classes client:load />
 </Home>

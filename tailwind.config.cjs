@@ -47,7 +47,9 @@ const Config = {
       addVariant('selected', '&[aria-selected=true]'),
       addVariant('opened', '&[data-state="open"]'),
       addVariant('closed', '&[data-state="closed"]'),
-      addVariant('expanded', '&[aria-expanded=true]')
+      addVariant('expanded', '&[aria-expanded=true]'),
+      addVariant('placeholder-not-shown', '&:not(:placeholder-shown)'),
+      addVariant('aria-invalid', '&[aria-invalid=true]')
     })
   ]
 }
