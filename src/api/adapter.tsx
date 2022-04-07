@@ -5,11 +5,12 @@ import { useUserStore } from './user'
 type ReduxStore = {
   _persist: {
     version: number
-    rehydrate: boolean
-  } | null
+    rehydrated: boolean
+  }
   accessToken: string | null
   user: User | null
 }
+
 type PersistedReduxStore = {
   [k in keyof ReduxStore]: Exclude<ReduxStore[k], null> extends Record<any, any>
     ? string | null
@@ -23,7 +24,7 @@ export default function PersistAdaptor() {
     const data: ReduxStore = {
       _persist: {
         version: 0,
-        rehydrate: true,
+        rehydrated: true,
       },
       accessToken: null,
       user: null,
@@ -41,7 +42,7 @@ export default function PersistAdaptor() {
     }
 
     persisted.user = JSON.stringify(user)
-    persisted.accessToken = user.token
+    persisted.accessToken = JSON.stringify(user.token)
     storage.setItem('persist:user', JSON.stringify(persisted))
   }, [user])
   return <></>
