@@ -10,7 +10,7 @@ export default function Ads(
 ) {
   const { width, height, src, className: cls, ...rest } = props
   return (
-    <aside className="w-full flex items-center justify-center">
+    <aside className={twMerge('w-full flex items-center justify-center', cls)}>
       <div
         className="w-full flex items-center justify-center"
         style={{

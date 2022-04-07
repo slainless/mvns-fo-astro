@@ -1,7 +1,10 @@
 import cntl from 'cntl'
 import { Common as Button, Link } from '@Bits/Button'
+import { useUserStore } from '@Api/user'
 
 export default function Hero() {
+  const user = useUserStore((state) => state.user)
+  if (user != null) return <></>
   return (
     <section
       id="hero"
@@ -9,6 +12,7 @@ export default function Hero() {
         w-full flex items-center 
         lg:flex-row flex-col
         gap-10 lg:gap-0
+        order-first
       `}
     >
       <img

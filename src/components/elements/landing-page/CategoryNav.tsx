@@ -1,6 +1,7 @@
 // import { getUser, Role } from '@Class/role'
 import isBrowser from '@Functions/isBrowser'
 import { useEffect, useMemo } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 const CATEGORIES: [display: string, href?: string][] = [
   ['Design'],
@@ -18,9 +19,10 @@ function Navigation({ hidden = false }) {
   return (
     <section
       id="all-categories"
-      className={`relative group h-max sm:h-[1080px] py-20 ${
+      className={twMerge(
+        'relative group h-max sm:h-[1080px] py-20 order-last',
         hidden ? 'hidden' : ''
-      }`}
+      )}
       hidden={hidden}
     >
       <div className="absolute inset-0 overflow-hidden w-full h-full bg-[url('/media/neonbrand-1-aA2Fadydc-unsplash.jpg')] bg-cover group-hover:opacity-50 opacity-30 transition-opacity duration-500"></div>

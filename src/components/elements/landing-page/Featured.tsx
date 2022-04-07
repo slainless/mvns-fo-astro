@@ -11,7 +11,7 @@ type Props = {
 export default function Featured(props: Props) {
   const { title } = props
   return (
-    <Section.Container id="featured-class">
+    <Section.Container id="featured-class" className="-order-1">
       <Section.Title>{title ?? 'New classes added every month'}</Section.Title>
       <Section.Content
         id="featured-container"

@@ -6,87 +6,51 @@ import { SwiperOptions } from 'swiper'
 import { SwiperSlide } from 'swiper/react'
 import cntl from 'cntl'
 import CardView from '@Elements/CardView'
-
-const Items: Parameters<typeof Card>[0][] = [
-  {
-    bgImg: '/media/blog-thumb.jpg',
-    title: 'Everything You Need to Know About Blog A...',
-    date: 'Jan 21-29, 22',
-    href: '/blog/detail',
-  },
-  {
-    bgImg: '/media/blog-thumb.jpg',
-    title: 'Everything You Need to Know About Blog B...',
-    date: 'Jan 21-29, 22',
-    href: '/blog/detail',
-  },
-  {
-    bgImg: '/media/blog-thumb.jpg',
-    title: 'Everything You Need to Know About Blog C...',
-    date: 'Jan 21-29, 22',
-    href: '/blog/detail',
-  },
-  {
-    bgImg: '/media/blog-thumb.jpg',
-    title: 'Everything You Need to Know About Blog D...',
-    date: 'Jan 21-29, 22',
-    href: '/blog/detail',
-  },
-]
-
-const swiperOptions: SwiperOptions = {}
+import { blogCards } from '@Dev/dummy'
+import CardPreset, { CardViewProps } from '@Styles/card'
+import { twMerge } from 'tailwind-merge'
+import { merge, omit } from 'lodash-es'
 
 export default function Blog() {
+  const { styleOverrides, ...preset } = CardPreset.Large
+  const override: CardViewProps = {
+    swiperOptions: {
+      rewind: false,
+      loop: true,
+      breakpoints: {
+        0: {},
+        375: {
+          slidesPerView: 1.25,
+        },
+        475: {},
+        640: {
+          slidesPerView: 1.25,
+        },
+        768: {
+          centeredSlides: false,
+        },
+        1024: {
+          slidesPerView: 1.5,
+        },
+        1280: {
+          slidesPerGroup: 1,
+          centeredSlides: true,
+        },
+      },
+    },
+  }
+
   return (
     <CardView
+      {...merge({}, preset, override)}
       id="blog"
       title="Our blog"
       subtitle="See all"
       subtitleHref="/blog/all"
-      swiperOptions={{
-        slidesPerView: 2,
-        slidesPerGroup: 1,
-        loop: true,
-        breakpoints: {
-          0: {
-            slidesPerView: 1.25,
-            slidesPerGroup: 1,
-            spaceBetween: 15,
-            centeredSlides: false,
-          },
-          475: {
-            slidesPerView: 1.25,
-            slidesPerGroup: 1,
-            spaceBetween: 20,
-            centeredSlides: false,
-          },
-          640: {
-            slidesPerView: 1.25,
-            slidesPerGroup: 1,
-            spaceBetween: 25,
-            centeredSlides: false,
-          },
-          768: {
-            slidesPerView: 1.5,
-            slidesPerGroup: 1,
-            centeredSlides: false,
-          },
-          1024: {
-            slidesPerView: 2,
-            slidesPerGroup: 1,
-            centeredSlides: true,
-          },
-          1280: {
-            slidesPerView: 2,
-            slidesPerGroup: 1,
-            centeredSlides: true,
-          },
-        },
-      }}
-      classes={Items}
+      classes={blogCards}
       styleOverrides={{
         swiper: {
-          style: cntl`h-[20rem] xs:h-[20rem] sm:h-[24rem] md:h-[28rem] rounded-none`,
+          style: cntl`h-[20rem] xs:h-[20rem] sm:h-[24rem] md:h-[28rem] rounded-none sm:rounded-lg`,
           buttons: {
             style: cntl`hidden sm:flex`,
           },
@@ -99,6 +63,7 @@ export default function Blog() {
           date: cntl`text-md`,
         },
         section: {
+          container: cntl`order-last`,
           content: cntl`-mr-5 xs:-mr-7 sm:mr-0`,
         },
       }}

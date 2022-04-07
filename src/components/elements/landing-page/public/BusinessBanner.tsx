@@ -1,23 +1,13 @@
+import { useUserStore } from '@Api/user'
 import { Common as Button } from '@Bits/Button'
 import Section from '@Blocks/Section'
 import cntl from 'cntl'
 
-const OverlayBgStyle = cntl`
-  before:content-['']
-
-  before:z-[2]
-
-  before:opacity-0 hover:before:opacity-100 
-
-  before:bg-gradient-to-br
-  before:absolute before:inset-0 before:w-full before:h-full
-  before:transition-all
-  hover:before:from-transparent hover:before:to-red-400
-`
-
 export default function BusinessBanner() {
+  const user = useUserStore((state) => state.user)
+  if (user != null) return <></>
   return (
-    <Section.Container id="business-banner">
+    <Section.Container id="business-banner" className="order-1">
       <div
         className={`
           relative group

@@ -191,6 +191,32 @@ const lorem = `
   In a, id libero condimentum cursus mi velit. 
   Tempus sed turpis euismod dui egestas auctor erat.
 `
+export const blogCards: Parameters<typeof Common>[0][] = [
+  {
+    bgImg: '/media/blog-thumb.jpg',
+    title: 'Everything You Need to Know About Blog A...',
+    date: 'Jan 21-29, 22',
+    href: '/blog/detail',
+  },
+  {
+    bgImg: '/media/blog-thumb.jpg',
+    title: 'Everything You Need to Know About Blog B...',
+    date: 'Jan 21-29, 22',
+    href: '/blog/detail',
+  },
+  {
+    bgImg: '/media/blog-thumb.jpg',
+    title: 'Everything You Need to Know About Blog C...',
+    date: 'Jan 21-29, 22',
+    href: '/blog/detail',
+  },
+  {
+    bgImg: '/media/blog-thumb.jpg',
+    title: 'Everything You Need to Know About Blog D...',
+    date: 'Jan 21-29, 22',
+    href: '/blog/detail',
+  },
+]
 
 export const blogItems: Parameters<typeof Item>[0][] = [
   {

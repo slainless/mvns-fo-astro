@@ -4,8 +4,12 @@ import cntl from 'cntl'
 import CardPreset, { CardViewProps } from '@Styles/card'
 import { merge } from 'lodash-es'
 import { twMerge } from 'tailwind-merge'
+import { useUserStore } from '@Api/user'
 
-export default function Trending() {
+export default function MostRelevant() {
+  const user = useUserStore((state) => state.user)
+  if (user == null) return <></>
+
   const override: CardViewProps = {
     styleOverrides: {
       section: {
@@ -20,9 +24,9 @@ export default function Trending() {
   return (
     <CardView
       {...merge({}, CardPreset.Normal, override)}
-      id="trending"
+      id="most-relevant"
       classes={Items}
-      title="What's Trending Now"
+      title="Most Relevant"
       subtitle="See all classes"
       subtitleHref="/class/all"
     />

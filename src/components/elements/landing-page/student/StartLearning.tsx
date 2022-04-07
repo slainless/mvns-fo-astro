@@ -4,14 +4,18 @@ import cntl from 'cntl'
 import CardPreset, { CardViewProps } from '@Styles/card'
 import { merge } from 'lodash-es'
 import { twMerge } from 'tailwind-merge'
+import { useUserStore } from '@Api/user'
 
-export default function Trending() {
+export default function StartLearning() {
+  const user = useUserStore((state) => state.user)
+  if (user == null) return <></>
+
   const override: CardViewProps = {
     styleOverrides: {
       section: {
         container: twMerge(
           CardPreset.Normal.styleOverrides?.section?.container,
-          cntl`order-1`
+          cntl`-order-2`
         ),
       },
     },
@@ -20,10 +24,10 @@ export default function Trending() {
   return (
     <CardView
       {...merge({}, CardPreset.Normal, override)}
-      id="trending"
+      id="start-learning"
       classes={Items}
-      title="What's Trending Now"
-      subtitle="See all classes"
+      title="Start Learning"
+      subtitle="See my classes"
       subtitleHref="/class/all"
     />
   )
