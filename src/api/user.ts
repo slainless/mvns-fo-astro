@@ -4,21 +4,16 @@ import { LoginResponse, RegisterResponse, User } from '@Class/user'
 import join from 'url-join'
 import { isEmpty } from 'lodash-es'
 import { requestJSON } from '@Functions/request'
-
-const USER_ENDPOINT = join(
-  import.meta.env.PUBLIC_API_ROOT,
-  'frontoffice/student'
-)
+import Endpoints from './endpoint'
 
 export function login(input: { email: string; password: string }) {
   const { email, password } = input
-  const LOGIN_ENDPOINT = 'login'
 
   if (isEmpty(email) || isEmpty(password)) {
     throw new Error('Email or password should not be empty!')
   }
 
-  return requestJSON(join(USER_ENDPOINT, LOGIN_ENDPOINT), {
+  return requestJSON(Endpoints.LOGIN, {
     method: 'post',
     json: input,
     headers: {
@@ -37,7 +32,6 @@ export function register(input: {
   password: string
 }) {
   const { firstname, lastname, email, password } = input
-  const REGISTER_ENDPOINT = 'register'
 
   if (
     isEmpty(email) ||
@@ -48,7 +42,7 @@ export function register(input: {
     throw new Error(`There can't be an empty input!`)
   }
 
-  return requestJSON(join(USER_ENDPOINT, REGISTER_ENDPOINT), {
+  return requestJSON(Endpoints.STUDENT_REGISTER, {
     method: 'post',
     json: input,
     headers: {
