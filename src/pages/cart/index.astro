@@ -13,23 +13,28 @@ import cntl from 'cntl'
     <Section.Content className="mt-12 gap-10 flex flex-col">
       <div class="flex gap-2 items-stretch">
         <Input
-          className="w-64 h-full"
-          styleOverrides={{ container: cntl`inline-flex h-auto` }}
+          className="sm:w-64 h-full"
+          styleOverrides={{
+            container: cntl`inline-flex h-auto`,
+            // icon: {
+            //   leading: cntl`hidden sm:inline-flex`,
+            // },
+          }}
           mods={['lightest-bg', 'darker-icon', 'focus-ring']}
           placeholder="Coupon Code"
           leadingIcon="redeem"
         />
         <Button
-          className="px-5 inline-flex"
+          className="px-5 inline-flex tracking-normal sm:tracking-wider"
           mods={['fill-red', 'to-outline-red', 'no-translate']}
         >
-          Apply Coupon
+          Apply&nbsp;<span class="hidden sm:inline">Coupon</span>
         </Button>
       </div>
       <Table client:only />
       <Button
         as="a"
-        className="flex gap-1 self-end w-48 py-5 text-sm"
+        className="flex gap-1 self-end py-3 sm:w-48 sm:py-5 sm:text-sm"
         mods={['fill-red', 'to-outline-red']}
         href="/cart/checkout"
         >Checkout <span class="material-icons-outlined">arrow_forward</span

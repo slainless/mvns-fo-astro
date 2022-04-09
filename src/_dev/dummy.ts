@@ -266,9 +266,9 @@ type Item = {
     img: string
     name: string
   }
-  price?: string
+  price?: number
   quantity?: number
-  subtotal?: string
+  subtotal?: number
 }
 export const cartItems: Item[] = [
   {
@@ -276,44 +276,39 @@ export const cartItems: Item[] = [
       img: '/media/image 64.png',
       name: 'Statistics Data Science and Business Analysis',
     },
-    price: '$49.65',
-    quantity: 1,
-    subtotal: '$49.65',
+    price: 49.65,
+    quantity: 2,
   },
   {
     product: {
       img: '/media/image 64.png',
       name: 'Statistics Data Science and Business Analysis',
     },
-    price: '$49.65',
-    quantity: 1,
-    subtotal: '$49.65',
+    price: 549.65,
+    quantity: 20,
   },
   {
     product: {
       img: '/media/image 64.png',
       name: 'Statistics Data Science and Business Analysis',
     },
-    price: '$49.65',
-    quantity: 1,
-    subtotal: '$49.65',
+    price: 49.65,
+    quantity: 3,
   },
   {
     product: {
       img: '/media/image 64.png',
       name: 'Statistics Data Science and Business Analysis',
     },
-    price: '$49.65',
-    quantity: 1,
-    subtotal: '$49.65',
+    price: 49.65,
+    quantity: 7,
   },
   {
     product: {
       img: '/media/image 64.png',
       name: 'Statistics Data Science and Business Analysis',
     },
-    price: '$49.65',
-    quantity: 1,
-    subtotal: '$49.65',
+    price: 49.65,
+    quantity: 20,
   },
-]
+].map((v) => ({ ...v, subtotal: v.price * v.quantity }))
