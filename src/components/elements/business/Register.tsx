@@ -10,7 +10,7 @@ export default function Register() {
     <Section.Container>
       <Section.Title>Register for Business</Section.Title>
       <Section.Content className="lg:mt-12">
-        <form className="grid grid-cols-2 gap-x-10 gap-y-5 max-w-4xl">
+        <form className="flex flex-col xs:grid grid-cols-2 gap-x-2 sm:gap-x-5 lg:gap-x-10 gap-y-5 max-w-4xl">
           <Input
             label="Company Name"
             name="company-name"
@@ -43,9 +43,9 @@ export default function Register() {
               <Checkbox
                 name="agree"
                 id="agree"
-                className="border-white/30 hover:border-red-600 transition-colors"
+                className="border-white/30 hover:border-red-600 transition-colors ring-offset-2 ring-offset-black"
                 styleOverrides={{
-                  indicator: cntl`bg-red-600 border-red-600`,
+                  indicator: cntl`bg-red-600 border-red-600 ring-offset-2 ring-offset-black`,
                 }}
               />
               <Label htmlFor="agree">
@@ -57,7 +57,7 @@ export default function Register() {
             </div>
             <Button
               type="submit"
-              className="w-32"
+              className="w-32 ring-offset-2 ring-offset-black"
               mods={['fill-red', 'to-outline-red', 'hover-darker-fill']}
             >
               Submit
