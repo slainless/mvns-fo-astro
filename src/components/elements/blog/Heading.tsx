@@ -27,7 +27,7 @@ export default function Heading() {
       <header id="blog-heading" className="flex flex-col gap-2">
         <h1
           id="blog-title"
-          className="text-4xl font-heading max-w-[30ch] font-bold order-2"
+          className="text-2xl xs:text-3xl sm:text-4xl font-heading max-w-[30ch] font-bold order-2"
         >
           {title}
         </h1>
@@ -43,7 +43,7 @@ export default function Heading() {
           {tags.map((tag, index) => (
             <li
               key={tag + index}
-              className="text-white bg-red-600 px-2 py-0.5 uppercase w-max rounded-sm"
+              className="text-white bg-red-600 px-2 py-0.5 uppercase w-max rounded-sm text-xs md:text-base"
             >
               {tag}
             </li>
