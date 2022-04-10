@@ -20,20 +20,23 @@ export default function Notice(props: Props) {
     <div
       id="notice"
       className={twMerge(
-        'flex flex-col sm:flex-row gap-y-5 gap-x-20 items-center max-w-3xl',
+        'flex flex-col sm:flex-row gap-y-5 gap-x-16 md:gap-x-20 items-center max-w-3xl',
         styleOverrides?.container
       )}
     >
       <div id="notice-illustration" className="flex-shrink-0">
         <img
           src={img}
-          className={twMerge('w-auto h-56 sm:h-72', styleOverrides?.img)}
+          className={twMerge(
+            'w-auto h-56 sm:h-64 md:h-72',
+            styleOverrides?.img
+          )}
         ></img>
       </div>
       <div id="notice-content">
         <h1
           className={twMerge(
-            'text-center font-heading text-8xl sm:text-9xl font-bold leading-none',
+            'text-center font-heading text-8xl md:text-9xl font-bold leading-none',
             styleOverrides?.title
           )}
         >
@@ -41,7 +44,7 @@ export default function Notice(props: Props) {
         </h1>
         <h2
           className={twMerge(
-            'text-2xl sm:text-4xl font-bold text-red-600 leading-none mt-2 sm:mt-3',
+            'text-2xl md:text-4xl font-bold text-red-600 leading-none mt-2 sm:mt-3',
             styleOverrides?.subtitle
           )}
         >

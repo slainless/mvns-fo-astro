@@ -4,7 +4,7 @@ import Notice from './Notice'
 
 export default function Notice404() {
   return (
-    <div className="container px-12 mx-auto flex justify-center items-center h-screen -mt-header-sm sm:-mt-header">
+    <div className="px-12 mx-auto flex justify-center items-center h-screen -mt-header-sm sm:-mt-header">
       <Notice
         img="/media/sparks/cry.png"
         title="404"
