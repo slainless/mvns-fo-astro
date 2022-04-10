@@ -74,5 +74,5 @@ body {
 }
 
 kbd {
-  @apply bg-gray-200 text-black font-black px-1 py-0.5 tracking-wide border-[1px] border-gray-400 rounded-md shadow-sm;
+  @apply bg-white/5 text-black font-black px-1 py-0.5 tracking-wide border-2 border-white/10 rounded-md shadow-sm;
 }
