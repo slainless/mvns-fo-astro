@@ -261,9 +261,10 @@ export function Tagger(props: TaggerProps): JSX.Element {
       label={label}
       htmlFor={name}
       info={
-        <div className="transition-opacity opacity-0 group-focus-within:opacity-100 group-hover:opacity-100">
+        <div className="transition-all duration-300 opacity-0 h-max max-h-0 group-focus-within:max-h-screen group-focus-within:opacity-100 mt-1">
           Multiple answer allowed: press{' '}
-          <kbd className="text-[0.6rem]">Enter</kbd> key to add another answer.
+          <kbd className="text-[0.6rem] text-white">Enter</kbd> key to add
+          another answer.
         </div>
       }
       styleOverrides={{

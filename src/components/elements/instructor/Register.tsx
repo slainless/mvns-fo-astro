@@ -4,6 +4,7 @@ import Expertise from './Register/Expertise'
 import Personal from './Register/Personal'
 import Social from './Register/Social'
 import Work from './Register/Work'
+import { twMerge } from 'tailwind-merge'
 
 const TheTabs = [
   ['Personal Identity', <Personal />],
@@ -20,16 +21,23 @@ export default function Register() {
         <Tabs.Root
           orientation="vertical"
           defaultValue={TheTabs[0][0]}
-          className="flex flex-row items-stretch"
+          className="flex flex-col md:flex-row items-stretch gap-y-5"
         >
-          <Tabs.List className="flex flex-col gap-1 flex-shrink-0 py-10 -mr-1">
+          <Tabs.List
+            className={twMerge(
+              'flex-col gap-1 flex-shrink-0 md:-mr-1 ',
+              'p-1 bg-neutral-900 grid grid-cols-2 rounded-lg',
+              'md:flex md:bg-transparent md:px-0 md:py-10'
+            )}
+          >
             {...TheTabs.map((tab) => (
               <Tabs.Trigger
-                className="
-                  text-left py-4 pl-10 pr-16 rounded-l-lg font-heading transition-all bg-zinc-800
-                  selected:shadow-md  selected:bg-zinc-900 outline-none focus:ring-2
-                  selected:z-[2]
-                "
+                className={twMerge(
+                  'text-left rounded-lg font-heading transition-all bg-neutral-800',
+                  'selected:shadow-md selected:bg-neutral-700 outline-none focus:ring-2 selected:z-[2]',
+                  'text-sm px-5 py-3',
+                  'lg:py-4 lg:pl-10 lg:pr-16 lg:text-base md:selected:bg-neutral-900 md:rounded-r-none'
+                )}
                 value={tab[0]}
               >
                 {tab[0]}
@@ -40,7 +48,7 @@ export default function Register() {
             {...TheTabs.map((tab) => (
               <Tabs.Content
                 value={tab[0]}
-                className="flex-grow bg-zinc-900 rounded-lg p-16 border-4 border-black z-[1]"
+                className="flex-grow bg-neutral-900 rounded-lg p-5 sm:p-7 lg:p-16 md:border-4 border-black z-[1] -mx-5 xs:mx-0"
               >
                 {tab[1]}
               </Tabs.Content>

@@ -7,7 +7,7 @@ import { Field, Input, TextArea } from './Form'
 
 export default function Expertise() {
   return (
-    <section className="grid grid-cols-2 gap-x-10 gap-y-5">
+    <section className="flex flex-col md:grid grid-cols-2 gap-x-5 gap-y-5">
       <fieldset className="contents" name="expertise">
         <Input label="Areas of Expertise" />
         <Input label="Job Title" />

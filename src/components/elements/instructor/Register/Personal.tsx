@@ -4,7 +4,7 @@ import { Field, Input, TextArea } from './Form'
 
 export default function Personal() {
   return (
-    <section className="grid grid-cols-2 gap-x-10 gap-y-5">
+    <section className="flex flex-col xs:grid grid-cols-2 gap-x-2 sm:gap-x-5 gap-y-5">
       <fieldset className="contents" name="identification">
         <Input label="First Name" leadingIcon="person" />
         <Input label="Last Name" />
@@ -35,6 +35,9 @@ export default function Personal() {
           leadingIcon="portrait"
           type="file"
           info="Max. 5KB"
+          styleOverrides={{
+            container: cntl`xs:col-span-2 lg:col-span-1`,
+          }}
         />
         <Input
           label="Resume"
@@ -42,6 +45,9 @@ export default function Personal() {
           leadingIcon="upload_file"
           type="file"
           info="Max. 5KB"
+          styleOverrides={{
+            container: cntl`xs:col-span-2 lg:col-span-1`,
+          }}
         />
       </fieldset>
     </section>

@@ -9,7 +9,7 @@ const Icon = ({ children }: any) => (
 
 export default function Social() {
   return (
-    <section className="grid grid-cols-2 gap-x-10 gap-y-5">
+    <section className="flex flex-col md:grid grid-cols-2 gap-x-5 gap-y-5">
       <fieldset className="contents" name="social-media">
         <Input label="Facebook Link" leadingIcon={<Facebook />} />
         {/* <Input label="Twitter Link" /> */}
