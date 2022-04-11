@@ -15,7 +15,7 @@ export default function List() {
             {...merge<Partial<typeof item>, typeof item>(
               {
                 styleOverrides: {
-                  container: cntl`flex lg:flex-row gap-5 lg:gap-10 pb-10 border-b-2 last:border-b-0 sm:last:border-b-2`,
+                  container: cntl`flex lg:flex-row gap-5 lg:gap-10 pb-10 sm:pb-0 border-b-2 last:border-b-0 sm:border-b-0`,
                   content: cntl`lg:w-2/3 pr-0 lg:pr-10`,
                   background: {
                     container: cntl`h-1/4 lg:w-1/3 flex-grow`,

@@ -25,7 +25,7 @@ export default function All() {
           height={600}
           src="/media/sidebar-ad-placeholder.png"
           id="sidebar-ads"
-          className="sticky items-start h-max w-max flex-shrink-0 top-0"
+          className="hidden lg:block sticky items-start h-max flex-shrink-1 top-0 w-full"
         />
       </Section.Content>
     </Section.Container>

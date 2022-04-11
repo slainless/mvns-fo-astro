@@ -6,25 +6,30 @@ import { merge } from 'lodash-es'
 
 export default function Latest() {
   return (
-    <Section.Container id="all-blog">
-      <Section.Title
-        styleOverrides={{
-          title: cntl`lg:text-4xl`,
-        }}
-      >
+    <Section.Container
+      id="all-blog"
+      className="flex flex-col gap-10 sm:gap-7 mt-7"
+    >
+      <Section.Title className="border-b-2 sm:border-b-0 pb-5 w-full text-3xl lg:text-4xl">
         Latest Blogs
       </Section.Title>
-      <Section.Content className="grid grid-cols-2 gap-10">
+      <Section.Content className="flex flex-col sm:grid grid-cols-2 gap-10 mt-0">
         <Item
           {...blogItems[0]}
-          ratio={16 / 12}
           styleOverrides={{
-            desc: cntl`line-clamp-none`,
+            container: cntl`pb-10 sm:pb-0 border-b-2 sm:border-b-0`,
+            desc: cntl`line-clamp-3 md:line-clamp-none`,
           }}
         ></Item>
-        <div className="grid grid-cols-2 gap-10">
+        <div className="contents lg:grid grid-cols-2 gap-10">
           {blogItems.slice(1).map((item) => (
-            <Item {...item} />
+            <Item
+              {...item}
+              styleOverrides={{
+                container: cntl`pb-10 sm:pb-0 border-b-2 last:border-b-0 sm:border-b-0`,
+                ...item.styleOverrides,
+              }}
+            />
           ))}
         </div>
       </Section.Content>
