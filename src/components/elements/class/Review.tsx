@@ -62,20 +62,23 @@ export default function Review() {
       <Section.Title id="the-review-title" className="lg:text-3xl">
         Reviews
       </Section.Title>
-      <Section.Content className="flex flex-col gap-10 max-w-4xl items-center">
+      <Section.Content className="flex flex-col gap-5 sm:gap-10 max-w-4xl items-center">
         <div id="review-info" className="flex flex-row self-start gap-5">
           <Info
             icon="star"
-            className="text-2xl"
+            className="text-xl sm:text-2xl"
             styleOverrides={{
-              icon: cntl`text-red-500`,
+              icon: cntl`text-yellow-500`,
             }}
           >
             <span className="font-bold">4.8</span> (31 Reviews)
           </Info>
           {/* <a className="underline">See all reviews</a> */}
         </div>
-        <div id="review" className="grid grid-cols-2 gap-y-10 gap-x-32">
+        <div
+          id="review"
+          className="flex flex-col sm:grid grid-cols-2 gap-y-10 sm:gap-x-14 md:gap-x-20 lg:gap-x-32"
+        >
           {template.map((item, key) => (
             <ReviewItem key={item.user + key} {...item}></ReviewItem>
           ))}

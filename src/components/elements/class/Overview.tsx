@@ -34,15 +34,16 @@ function Action(props: ActionProps) {
 const SectionStyle = cntl`
   w-full flex items-stretch 
   lg:flex-row flex-col
-  gap-10
+  gap-10 md:px-16 lg:px-0
 `
 
 const ThumbnailStyle = cntl`
-  w-full lg:w-7/12 
-  rounded-none lg:rounded-r-2xl 
+  w-full lg:mx-0 lg:w-7/12
+  h-64 sm:h-80 md:h-80 lg:h-auto
+  rounded-none md:rounded-2xl lg:rounded-none lg:rounded-r-2xl 
   pointer-events-none
   bg-[url('/media/class-thumb.png')]
-  bg-cover
+  bg-cover bg-top
   order-1
 `
 
@@ -53,7 +54,7 @@ const DetailStyle = cntl`
 `
 
 const TitleStyle = cntl`
-  font-bold text-5xl
+  font-bold text-3xl sm:text-4xl xl:text-5xl
 `
 
 export default function Overview() {
@@ -61,21 +62,26 @@ export default function Overview() {
     <section id="overview" className={SectionStyle}>
       <div id="overview-thumbnail" className={ThumbnailStyle} />
       <div id="overview-detail" className={DetailStyle}>
-        <div className="flex flex-col items-center gap-3 max-w-sm">
-          <div className="max-w-sm flex flex-col gap-3 items-center">
+        <div className="flex flex-col items-center gap-3 max-w-sm xl:max-w-md  px-5 xs:px-7 sm:px-5">
+          <div className="max-w-sm flex flex-col gap-3 items-center ">
             <h1 id="overview-title" className={TitleStyle}>
               Introduction to Design Thinking
             </h1>
             <Separator className="w-4 h-1 bg-white" />
-            <h2 id="overview-author" className="text-2xl">
+            <h2
+              id="overview-author"
+              className="font-heading text-xl sm:text-2xl"
+            >
               Uwais Zainal
             </h2>
           </div>
-          <p id="overview-description">
-            Design thinking is a non-linear, iterative process that teams use to
-            understand users, challenge assumptions, redefine problems and
-            create innovative solutions to prototype and test.
-          </p>
+          <div className="prose prose-invert mt-5">
+            <p id="overview-description">
+              Design thinking is a non-linear, iterative process that teams use
+              to understand users, challenge assumptions, redefine problems and
+              create innovative solutions to prototype and test.
+            </p>
+          </div>
           <div id="overview-actions" className="flex flex-row gap-10 my-8">
             <Action icon="play_arrow" outlined={false} text="Trailer" />
             <Action icon="content_copy" text="Sample" />
