@@ -35,7 +35,7 @@ export default function Search(props: Props) {
             autofill:bg-zinc-900
 
           `}
-          placeholder="Start Your Search"
+          placeholder="Start your search"
           id="search-input"
           name="q"
           autoComplete="search-mavens"

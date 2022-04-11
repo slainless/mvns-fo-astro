@@ -1,0 +1,23 @@
+---
+import Home from '@Layouts/Home.astro'
+import Notice from '@Elements/Notice.tsx'
+import cntl from 'cntl'
+---
+
+<Home title="Search no result">
+  <div
+    class="px-12 mx-auto flex justify-center items-center h-screen -mt-header-sm sm:-mt-header"
+  >
+    <Notice
+      img="/media/sparks/report.png"
+      title="Sorry!"
+      subtitle="No result found!"
+      subsubtitle="Maybe start another search?"
+      styleOverrides={{
+        title: cntl`text-6xl md:text-8xl md:text-left`,
+        subtitle: cntl`text-xl text-center`,
+        subsubtitle: cntl`text-zinc-500 text-base`,
+      }}
+    />
+  </div>
+</Home>
