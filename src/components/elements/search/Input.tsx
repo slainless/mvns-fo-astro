@@ -7,8 +7,12 @@ export default function Input() {
     : '...'
   return (
     <Section.Container id="input-container">
-      <Section.Content className="flex flex-col gap-12">
-        <h1 className="text-4xl font-bold">30 results for "{query}"</h1>
+      <Section.Content className="flex flex-col gap-2">
+        <h1 className="text-4xl font-bold">Search</h1>
+        <h2 className="text-xl font-bold">
+          30 <span className="font-normal">search results for</span> "
+          {query ?? '...'}"
+        </h2>
         {/* <div className="flex gap-3">
           <input
             id="search-input"

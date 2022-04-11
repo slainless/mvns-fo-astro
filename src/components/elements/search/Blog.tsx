@@ -3,8 +3,10 @@ import { SwiperSlide } from 'swiper/react'
 import { Common as Swiper } from '@Blocks/Carousel'
 import { Common as Card } from '@Blocks/Card'
 import isBrowser from '@Functions/isBrowser'
-import CardView from '@Elements/CardView'
 import cntl from 'cntl'
+import CardPreset, { CardViewProps } from '@Styles/card'
+import CardView from '@Elements/CardView'
+import { merge } from 'lodash-es'
 
 const Items: Parameters<typeof Card>[0][] = [
   {
@@ -40,26 +42,23 @@ const Items: Parameters<typeof Card>[0][] = [
 ]
 
 export default function Blog() {
+  const override: CardViewProps = {
+    styleOverrides: {
+      section: {
+        title: {
+          container: cntl`w-full justify-between`,
+        },
+      },
+    },
+  }
+
   return (
     <CardView
+      {...merge({}, CardPreset.Normal, override)}
       id="blog"
-      swiperOptions={{
-        rewind: true,
-      }}
       classes={Items}
       title="Blogs"
-      subtitle="9 Results"
-      styleOverrides={{
-        section: {
-          title: {
-            container: cntl`w-full justify-between`,
-            // subtitle: cntl`flex-grow`,
-          },
-        },
-        card: {
-          title: cntl`font-heading font-normal`,
-        },
-      }}
+      subtitle="6 Results"
     />
   )
 }

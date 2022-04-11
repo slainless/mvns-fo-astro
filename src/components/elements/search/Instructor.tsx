@@ -5,6 +5,8 @@ import { Common as Card } from '@Blocks/Card'
 import isBrowser from '@Functions/isBrowser'
 import CardView from '@Elements/CardView'
 import cntl from 'cntl'
+import CardPreset, { CardViewProps } from '@Styles/card'
+import { merge } from 'lodash-es'
 
 const Items: Parameters<typeof Card>[0][] = [
   {
@@ -40,26 +42,23 @@ const Items: Parameters<typeof Card>[0][] = [
 ]
 
 export default function Instructor() {
+  const override: CardViewProps = {
+    styleOverrides: {
+      section: {
+        title: {
+          container: cntl`w-full justify-between`,
+        },
+      },
+    },
+  }
+
   return (
     <CardView
-      id="instructor"
-      swiperOptions={{
-        rewind: true,
-      }}
+      {...merge({}, CardPreset.Normal, override)}
+      id="instructors"
       classes={Items}
       title="Instructors"
       subtitle="6 Results"
-      styleOverrides={{
-        section: {
-          title: {
-            container: cntl`w-full justify-between`,
-            // subtitle: cntl`flex-grow`,
-          },
-        },
-        card: {
-          title: cntl`font-heading font-normal`,
-        },
-      }}
     />
   )
 }
