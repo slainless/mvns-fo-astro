@@ -12,7 +12,7 @@ export default function Item(props: Props) {
   return (
     <Label
       className={twMerge(
-        'flex flex-row gap-5 justify-between px-8 py-10 rounded-lg border-2 border-white/10',
+        'flex flex-row gap-5 justify-between items-center px-8 py-10 rounded-lg border-2 border-white/10',
         className
       )}
       {...rest}

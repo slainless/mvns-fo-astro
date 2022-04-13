@@ -19,7 +19,7 @@ export default function FirstTime(props: Props) {
   return (
     <Section.Container className="flex flex-col items-center gap-8">
       <Section.Title>What topics do you find interesting?</Section.Title>
-      <Section.Content className="grid grid-cols-3 gap-x-2 gap-y-8">
+      <Section.Content className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-3 sm:gap-y-8">
         {categories.map((category) => (
           <Item name={category[1]} title={category[0]} key={category[1]}></Item>
         ))}
