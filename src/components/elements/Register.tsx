@@ -7,11 +7,11 @@ import { Common as Icon } from '@Bits/Icon'
 import { Root as Separator } from '@radix-ui/react-separator'
 import { ColoredGoogle, Google, LinkedIn } from '@Bits/Brand'
 import cntl from 'cntl'
-import { register } from '@Api/user'
+import UserAPI from '@Api/user'
 import { useRequest } from 'ahooks'
 import { useForm } from 'react-hook-form'
-import { InternalErrorResponse } from '@Class/response'
-import { RegisterResponse } from '@Class/user'
+import APIResponse from '@Class/response'
+import { UserResponse } from '@Class/user'
 import toast from 'react-hot-toast'
 import { twMerge } from 'tailwind-merge'
 import { isEmpty } from 'lodash-es'
@@ -47,7 +47,7 @@ export default function Register(props: RegisterProps) {
     loading,
     error,
     run,
-  } = useRequest(register, {
+  } = useRequest(UserAPI.register, {
     manual: true,
   })
 
@@ -69,7 +69,7 @@ export default function Register(props: RegisterProps) {
       setFeedback(null)
       return
     }
-    if (data instanceof InternalErrorResponse) {
+    if (data instanceof APIResponse.InternalError) {
       // NOTE: backend need to document this
       if (data.message.indexOf('users.users_email_unique') != -1)
         setFeedback({
@@ -84,7 +84,7 @@ export default function Register(props: RegisterProps) {
       return
     }
 
-    if (data instanceof RegisterResponse) {
+    if (data instanceof UserResponse.Register) {
       // setFeedback({
       //   type: 'ok',
       //   message: 'Register success!',

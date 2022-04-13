@@ -7,13 +7,13 @@ import { Root as Separator } from '@radix-ui/react-separator'
 import cntl from 'cntl'
 import { ColoredGoogle, Google, LinkedIn } from '@Bits/Brand'
 import { useRequest } from 'ahooks'
-import { useUserStore, login } from '@Api/user'
+import UserAPI, { useUserStore } from '@Api/user'
 import { useForm } from 'react-hook-form'
 import { Common as Icon } from '@Bits/Icon'
 import { twMerge } from './../../functions/tailwind-merge'
 import { isEmpty } from 'lodash-es'
-import { UnauthorizedResponse } from '@Class/response'
-import { LoginResponse } from '@Class/user'
+import APIResponse from '@Class/response'
+import { UserResponse } from '@Class/user'
 import toast from 'react-hot-toast'
 
 const FieldsetStyle = cntl`
@@ -44,7 +44,7 @@ export default function Login(props: LoginProps) {
     loading,
     error,
     run,
-  } = useRequest(login, {
+  } = useRequest(UserAPI.login, {
     manual: true,
   })
   const [user, setUser] = useUserStore(
@@ -69,14 +69,25 @@ export default function Login(props: LoginProps) {
       setFeedback(null)
       return
     }
-    if (data instanceof UnauthorizedResponse) {
+    if (data instanceof APIResponse.Unauthorized) {
       setFeedback({
         type: 'error',
         message: 'Invalid username or password',
       })
       return
     }
-    if (data instanceof LoginResponse) {
+    if (data instanceof UserResponse.Login) {
+      if (data.success == false) {
+        if (data.data == null) {
+          setFeedback({
+            type: 'error',
+            message: 'Invalid username or password',
+          })
+          return
+        }
+
+        throw new Error(data.message)
+      }
       // setFeedback({
       //   type: 'ok',
       //   message: 'Login success!',

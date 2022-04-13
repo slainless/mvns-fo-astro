@@ -1,12 +1,20 @@
+import { Type } from 'class-transformer'
 import {
   IsArray,
+  IsIn,
   IsNumber,
   IsObject,
   IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator'
-import { CreatedResponse, OKResponse } from './response'
+import APIResponse from './response'
+
+export enum Role {
+  STUDENT = 'student',
+  INSTRUCTOR = 'instructor',
+  ADMIN = 'admin',
+}
 
 // prettier-ignore
 export class User {
@@ -15,6 +23,7 @@ export class User {
   @IsString() firstname: string
   @IsString() lastname: string
   @IsString() email: string
+  @IsIn(Object.values(Role)) role: Role
 
   // other
   @IsArray() student_interest: any[]
@@ -38,12 +47,17 @@ export class User {
   @IsString() @IsOptional() updated_at?: string
 }
 
-export class RegisterResponse extends CreatedResponse {
-  @ValidateNested()
-  data: User
-}
+export module UserResponse {
+  export class Register extends APIResponse.Created {
+    @ValidateNested()
+    @Type(() => User)
+    data: User
+  }
 
-export class LoginResponse extends OKResponse {
-  @ValidateNested()
-  data: User
+  export class Login extends APIResponse.OK {
+    @ValidateNested()
+    @IsOptional()
+    @Type(() => User)
+    data?: User
+  }
 }
