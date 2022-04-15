@@ -1,10 +1,4 @@
-import {
-  CreatedResponse,
-  GenericResponse,
-  InternalErrorResponse,
-  OKResponse,
-  UnauthorizedResponse,
-} from '@Class/response'
+import APIResponse from '@Class/response'
 import { plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
 import ky, { HTTPError, Options } from 'ky'
@@ -14,14 +8,14 @@ type ClassOf<T extends Record<any, any>> = {
 }
 type Result<A, B> = ClassOf<Omit<A, keyof B> & B>
 const defaultResponseType = {
-  200: OKResponse,
-  201: CreatedResponse,
-  401: UnauthorizedResponse,
-  500: InternalErrorResponse,
-  default: GenericResponse,
+  200: APIResponse.OK,
+  201: APIResponse.Created,
+  401: APIResponse.Unauthorized,
+  500: APIResponse.InternalError,
+  default: APIResponse.Generic,
 }
 export async function requestJSON<
-  T extends { [k in number | 'default']?: typeof GenericResponse } = {}
+  T extends { [k in number | 'default']?: typeof APIResponse.Generic } = {}
 >(
   url: Parameters<typeof ky>[0],
   options: Options & {
@@ -60,7 +54,7 @@ export async function requestJSON<
   const data = dataType
     ? // @ts-ignore
       plainToInstance(dataType, rawJSON)
-    : plainToInstance(GenericResponse, rawJSON)
+    : plainToInstance(APIResponse.Generic, rawJSON)
 
   if ((await validate(data)).length > 0) {
     throw new Error('Response mismatch!')

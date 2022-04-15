@@ -2,10 +2,17 @@ import CardView from '@Elements/CardView'
 import { slimCard as Items } from '@Dev/dummy'
 import cntl from 'cntl'
 import CardPreset, { CardViewProps } from '@Styles/card'
-import { merge } from 'lodash-es'
+import { isArray, merge } from 'lodash-es'
 import { twMerge } from 'tailwind-merge'
+import { useRequest } from 'ahooks'
+import CourseAPI from '@Api/course'
+import { useEffect, useState } from 'react'
+import { CardData } from '@Blocks/Card'
+import { CourseResponse } from '@Class/course'
 
 export default function Trending() {
+  const { data: res, loading, error } = useRequest(CourseAPI.trending)
+  const [display, setDisplay] = useState<CardData[]>([])
   const override: CardViewProps = {
     styleOverrides: {
       section: {
@@ -17,11 +24,37 @@ export default function Trending() {
     },
   }
 
+  useEffect(() => {
+    if (res == null) return
+    const { data } = res
+
+    if (!(data instanceof CourseResponse.Get)) return
+    if (data.data.length === 0) return
+
+    let newDisplay: CardData[] = []
+    for (const item of data.data) {
+      if (item instanceof CourseResponse.Get) {
+        newDisplay.push({
+          title: item.title,
+          subtitle: item.subtitle,
+          href: item.link,
+          badges: [item.type, item.category],
+          bgImg: item.image,
+          // favorite: item.,
+          // price: item.,
+          date: item.course_datetime,
+          level: item.difficulty,
+        })
+      }
+    }
+    setDisplay(newDisplay)
+  }, [res])
+
   return (
     <CardView
       {...merge({}, CardPreset.Normal, override)}
       id="trending"
-      classes={Items}
+      classes={display.length === 0 ? Items : display}
       title="What's Trending Now"
       subtitle="See all classes"
       subtitleHref="/class/all"
