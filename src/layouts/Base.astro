@@ -2,6 +2,8 @@
 // Barebone layout to share common head between pages.
 import cntl from 'cntl'
 import { twMerge } from 'tailwind-merge'
+// Inject Reflect Metadata API to SSR's globalThis
+import 'reflect-metadata'
 import '@yaireo/tagify/dist/tagify.css'
 import 'loaders.css'
 import '@Styles/global.css'
@@ -56,6 +58,10 @@ const { title, class: cls, forceWhite } = Astro.props
       media="(prefers-color-scheme: dark)"
       content="black"
     />
+    <script type="module" hoist>
+      // Inject Reflect Metadata API to browser's window
+      import 'reflect-metadata'
+    </script>
     <title>{title}</title>
     <slot name="head" />
   </head>
