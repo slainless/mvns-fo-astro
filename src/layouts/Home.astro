@@ -5,14 +5,14 @@ import Footer from '@Elements/Layout/Footer.tsx'
 import Ads from '@Blocks/Ads.tsx'
 import PersistAdapter from '@Api/adapter.tsx'
 import { Toaster } from 'react-hot-toast'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@Functions/tailwind-merge.ts'
 const { title, class: cls, forceWhite } = Astro.props
 ---
 
 <Base
   {title}
   {forceWhite}
-  class={twMerge('mt-header-sm sm:mt-header pt-5', cls)}
+  class={twMerge('mt-header-sm md:mt-header pt-5', cls)}
 >
   <slot name="head" slot="head" />
   <Header slot="pre-main" client:load />
