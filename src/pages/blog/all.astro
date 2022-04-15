@@ -6,9 +6,9 @@ import CategoryBar from '@Elements/CategoryBar.tsx'
 import cntl from 'cntl'
 ---
 
-<Home title="All Blogs" forceWhite class="mt-0 sm:mt-0 gap-5">
+<Home title="All Blogs" forceWhite class="mt-0 sm:mt-0 md:mt-0 gap-5">
   <div class="bg-black mt-header-sm md:mt-header -mb-10" slot="pre-main">
-    <CategoryBar className="mx-16" client:load />
+    <CategoryBar className="mx-5 xs:mx-7 sm:mx-16" client:load />
   </div>
   <Latest />
   <All />
