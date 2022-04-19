@@ -17,7 +17,7 @@ function NavButton(props: NavButtonProps) {
         arrowType == 'prev'
           ? 'pr-3 left-0 after:bg-gradient-to-r'
           : 'pl-3 right-0 after:bg-gradient-to-l after:order-first',
-        'flex flex-row absolute h-full',
+        'flex flex-row absolute h-full pointer-events-none',
         'after:w-5 after:from-black after:to-transparent after:h-full',
         containerClass
       )}
@@ -28,13 +28,13 @@ function NavButton(props: NavButtonProps) {
         <div
           className={twMerge(
             arrowType == 'prev' ? 'pr-3' : 'pl-3',
-            'hidden lg:flex place-items-center bg-black h-full'
+            'hidden lg:flex place-items-center bg-black h-full pointer-events-none'
           )}
         >
           <Arrow
             arrowType={arrowType}
             className={twMerge(
-              'w-7 h-7 focus:ring-2 ring-offset-2 ring-offset-black text-base',
+              'w-7 h-7 focus:ring-2 ring-offset-2 ring-offset-black text-base pointer-events-auto',
               className
             )}
             {...rest}
