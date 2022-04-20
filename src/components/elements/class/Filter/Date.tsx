@@ -1,9 +1,11 @@
-import Button from './Button'
-import Dialog, { OptionalProps } from './Dialog'
+import { Common as Button } from '@Bits/Button'
+import TriggerButton from './Button'
 import { DateObj, useDayzed } from 'dayzed'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import cntl from 'cntl'
 import { twMerge } from 'tailwind-merge'
+import Dialog, { OptionalProps } from '@Blocks/Dialog'
+import { useBreakpoint } from '@Functions/tailwind'
 
 const monthNames = [
   'January',
@@ -21,7 +23,28 @@ const monthNames = [
 ]
 const weekdayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
+function DialogFooter() {
+  return (
+    <div className="filter-footer justify-between flex gap-10 items-center px-4 py-4 border-t-[1px] ">
+      <Button
+        className="border-transparent hover:translate-y-0 underline underline-offset-2 font-bold hover:bg-red-600 hover:shadow-red-600/30"
+        onClick={() => {}}
+      >
+        Reset
+      </Button>
+      <Button className="hover:translate-y-0 bg-black border-black hover:text-white hover:bg-red-600 hover:border-red-600 text-white hover:shadow-red-600/30">
+        Filter
+      </Button>
+    </div>
+  )
+}
+
 export default function ClassDate(props: OptionalProps) {
+  const isDesktop = useBreakpoint('md')
+  useEffect(() => {
+    window.dispatchEvent(new Event('resize'))
+  }, [])
+
   const [selected, setSelected] = useState<DateObj[]>([])
   const { calendars, getBackProps, getDateProps, getForwardProps } = useDayzed({
     selected: selected.map((obj) => obj.date),
@@ -50,7 +73,7 @@ export default function ClassDate(props: OptionalProps) {
         })
       }
     },
-    monthsToDisplay: 2,
+    monthsToDisplay: isDesktop ? 2 : 1,
   })
 
   const startTime = selected[0]?.date.getTime()
@@ -60,12 +83,16 @@ export default function ClassDate(props: OptionalProps) {
     <Dialog
       {...props}
       title="Class Date"
-      trigger={<Button>Class Date</Button>}
-      className="grid grid-cols-2 gap-y-5 gap-x-10 text-center"
+      trigger={<TriggerButton>Class Date</TriggerButton>}
+      className="grid md:grid-cols-2 gap-y-5 gap-x-10 text-center"
       styleOverrides={{
-        card: cntl`max-w-3xl`,
+        card: cntl`w-screen xs:w-max md:max-w-3xl p-0 sm:p-0 rounded-lg rounded-b-none xs:rounded-2xl animate-enter-slide-up sm:animate-enter-scaled-up`,
+        content: cntl`px-5 xs:px-5 sm:px-8 xs:py-4 sm:py-4`,
+        overlay: cntl`items-end overflow-hidden`,
+        title: cntl`pl-5 sm:pl-8 pt-5 sm:pt-8`,
       }}
       onReset={() => setSelected([])}
+      footer={<DialogFooter />}
     >
       <div id="calendar-header" className="contents">
         {calendars.map((calendar, index) => {

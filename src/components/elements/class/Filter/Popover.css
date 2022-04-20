@@ -1,0 +1,35 @@
+div[data-radix-popper-content-wrapper=''] {
+  @apply contents sm:block;
+
+  /* 
+  .popover {
+    &-arrow {
+      @apply !hidden sm:!block;
+    }
+
+    &-content {
+      @apply w-full h-full fixed bottom-0 items-end;
+      @apply sm:w-max sm:h-max sm:static sm:items-center;
+
+      @apply transition-all duration-300;
+      @apply translate-y-0 opacity-100;
+      @apply sm:scale-100;
+
+      &[data-state='closed'] {
+        @apply translate-y-24 opacity-0;
+        @apply sm:translate-y-0 sm:scale-95;
+      }
+    }
+
+    &-card {
+      @apply w-full rounded-lg rounded-b-none;
+      @apply sm:w-auto sm:rounded-lg sm:rounded-b-lg;
+
+      .filter {
+        &-content {
+          @apply max-w-full px-8 xs:px-12;
+        }
+      }
+    }
+  } */
+}

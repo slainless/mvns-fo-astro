@@ -7,15 +7,17 @@ import { twMerge } from 'tailwind-merge'
 
 type PrimitiveProps = Parameters<typeof Dialog_.Root>[0]
 type CommonProps = {
-  trigger: ReactElement
+  trigger?: ReactElement
   title: string
   hideTitle?: boolean
   hideDesc?: boolean
   desc?: string
   children?: ReactNode
+  footer?: ReactNode
   className?: string
   styleOverrides?: {
     card?: string
+    container?: string
     title?: string
     desc?: string
     content?: string
@@ -42,6 +44,7 @@ export default function Dialog(
     onOpenChange,
     modal,
     allowPinchZoom,
+    footer,
     ...rest
   } = props
 
@@ -53,7 +56,7 @@ export default function Dialog(
       modal={modal}
       allowPinchZoom={allowPinchZoom}
     >
-      <Dialog_.Trigger asChild>{trigger}</Dialog_.Trigger>
+      {trigger ? <Dialog_.Trigger asChild>{trigger}</Dialog_.Trigger> : <></>}
       <Dialog_.Portal className="filter-dialog hidden">
         <Dialog_.Overlay
           className={twMerge(
@@ -64,7 +67,7 @@ export default function Dialog(
           <Dialog_.Content
             className={twMerge(
               'w-max h-max flex place-items-center',
-              styleOverrides?.content
+              styleOverrides?.container
             )}
           >
             <div
@@ -73,7 +76,8 @@ export default function Dialog(
                 'xs:my-8 sm:w-max h-max sm:py-8 sm:px-8 sm:max-w-md',
                 'w-full py-5 px-5',
                 'flex flex-col gap-3',
-                'pointer-events-auto animate-enter-scaled',
+                'pointer-events-auto',
+                'animate-enter-slide-up sm:animate-enter-scaled-up',
                 styleOverrides?.card
               )}
             >
@@ -108,6 +112,8 @@ export default function Dialog(
               >
                 {children}
               </div>
+              {footer}
+
               <Dialog_.Close
                 className="w-6 h-6 rounded-full hover:bg-red-200 hover:text-red-600 absolute top-4 right-4 z-1 text-black flex items-center justify-center"
                 aria-label="Close"
@@ -115,12 +121,12 @@ export default function Dialog(
                 <span className="material-icons-outlined">close</span>
               </Dialog_.Close>
             </div>
-            <span
+            {/* <span
               className="inline-block h-screen align-middle"
               aria-hidden="true"
             >
               &#8203;
-            </span>
+            </span> */}
           </Dialog_.Content>
         </Dialog_.Overlay>
       </Dialog_.Portal>

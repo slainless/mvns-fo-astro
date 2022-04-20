@@ -1,10 +1,9 @@
 import Button from './Button'
-import Dialog, { OptionalProps } from './Dialog'
 import { Common as Slider } from '@Bits/Slider'
 import cntl from 'cntl'
 import { Root as Separator } from '@radix-ui/react-separator'
 import { useState } from 'react'
-import Popover from './Popover'
+import Popover, { OptionalProps } from './Popover'
 
 type FeedbackProps = {
   title: string
@@ -33,7 +32,8 @@ export default function Pricing(props: OptionalProps) {
       {...props}
       title="Price range"
       trigger={<Button>Pricing</Button>}
-      className="flex flex-col gap-5 w-96"
+      className="flex flex-col gap-5 sm:w-96"
+      onReset={() => {}}
     >
       {/* <p>The average price of an experience is $26</p> */}
       <Slider
