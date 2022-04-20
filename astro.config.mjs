@@ -3,6 +3,7 @@
 
 import { join, resolve } from 'node:path'
 import react from '@astrojs/react'
+import postcss from './postcss.config.mjs'
 
 const preactCompatPlugin = {
   name: 'preact-compat',
@@ -36,6 +37,9 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
     site: 'https://mavens.upanastudio.com/'
   },
 	vite: {
+    css: {
+      postcss
+    },
 		optimizeDeps: {
 			exclude: ['video.js'],
 			esbuildOptions: {

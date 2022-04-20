@@ -1,5 +1,7 @@
-const plugin = require('tailwindcss/plugin')
-const defaultTheme = require('tailwindcss/defaultTheme')
+import plugin from 'tailwindcss/plugin.js'
+import lineClamp from '@tailwindcss/line-clamp'
+import typography from '@tailwindcss/typography'
+import defaultTheme from 'tailwindcss/defaultTheme.js'
 
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 const Config = {
@@ -24,7 +26,10 @@ const Config = {
         'mono': '"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
       },
       animation: {
-        'enter-scaled': 'appear-scaled-up 300ms ease-out'
+        'enter-scaled-up': 'appear-scaled-up 300ms ease-out',
+        'exit-scaled-down': 'disappear-scaled-down 300ms ease-out',
+        'enter-slide-up': 'appear-slide-up 300ms ease-out',
+        'exit-slide-down': 'disappear-slide-down 300ms ease-out',
       },
       keyframes: {
         'appear-scaled-up': {
@@ -36,13 +41,43 @@ const Config = {
             opacity: 1,
             transform: 'scale(1)'
           }
+        },
+        'disappear-scaled-down': {
+          '0%': {
+            opacity: 1,
+            transform: 'scale(1)'
+          },
+          '100%': {
+            opacity: 0,
+            transform: 'scale(0.95)'
+          }
+        },
+        'appear-slide-up': {
+          '0%': {
+            opacity: 0,
+            transform: 'translateY(4rem)'
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translateY(0)'
+          }
+        },
+        'disappear-slide-down': {
+          '0%': {
+            opacity: 1,
+            transform: 'translateY(0)'
+          },
+          '100%': {
+            opacity: 0,
+            transform: 'translateY(4rem)'
+          }
         }
       }
     }
   },
   plugins: [
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/typography'),
+    lineClamp,
+    typography,
     plugin(function ({ addVariant }) {
       addVariant('selected', '&[aria-selected=true]'),
       addVariant('opened', '&[data-state="open"]'),
@@ -54,4 +89,4 @@ const Config = {
   ]
 }
 
-module.exports = Config
+export default Config
