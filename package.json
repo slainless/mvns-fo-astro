@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.3",
+    "@kodingdotninja/use-tailwind-breakpoint": "^0.0.5",
     "@radix-ui/react-accordion": "^0.1.6",
     "@radix-ui/react-alert-dialog": "^0.1.7",
     "@radix-ui/react-aspect-ratio": "^0.1.4",
