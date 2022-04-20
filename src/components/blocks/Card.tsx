@@ -7,10 +7,9 @@ import { Badge } from '@Bits/Badge'
 import { Favorite } from '@Bits/Button'
 import { Calendar, Quota, SkillLevel } from '@Bits/Info'
 
-type DivAttr = HTMLAttributes<HTMLDivElement>
-type CommonProps = DivAttr & {
+export type CardData = {
   href?: string
-  badges?: string[]
+  badges?: Array<string | undefined>
   bgImg?: string
   title?: string
   subtitle?: string
@@ -19,22 +18,27 @@ type CommonProps = DivAttr & {
   quota?: `${number}/${number}`
   date?: string
   level?: string
-  styleOverrides?: {
-    card?: {
-      header?: string
-      content?: string
-      container?: string
-      overlay?: string
-      background?: string
-    }
-    favorite?: string
-    title?: string
-    price?: string
-    date?: string
-    quota?: string
-    level?: string
-  }
 }
+
+type DivAttr = HTMLAttributes<HTMLDivElement>
+type CommonProps = DivAttr &
+  CardData & {
+    styleOverrides?: {
+      card?: {
+        header?: string
+        content?: string
+        container?: string
+        overlay?: string
+        background?: string
+      }
+      favorite?: string
+      title?: string
+      price?: string
+      date?: string
+      quota?: string
+      level?: string
+    }
+  }
 
 export const Common: FunctionComponent<CommonProps> = (props) => {
   const {

@@ -2,13 +2,14 @@ import CardView from '@Elements/CardView'
 import { slimCard as Items } from '@Dev/dummy'
 import cntl from 'cntl'
 import CardPreset, { CardViewProps } from '@Styles/card'
-import { isArray, merge } from 'lodash-es'
+import { isArray, isEmpty, merge } from 'lodash-es'
 import { twMerge } from 'tailwind-merge'
 import { useRequest } from 'ahooks'
 import CourseAPI from '@Api/course'
 import { useEffect, useState } from 'react'
 import { CardData } from '@Blocks/Card'
-import { CourseResponse } from '@Class/course'
+import { Course, CourseResponse } from '@Class/course'
+import { nanoid } from 'nanoid'
 
 export default function Trending() {
   const { data: res, loading, error } = useRequest(CourseAPI.trending)
@@ -33,13 +34,16 @@ export default function Trending() {
 
     let newDisplay: CardData[] = []
     for (const item of data.data) {
-      if (item instanceof CourseResponse.Get) {
+      if (item instanceof Course) {
         newDisplay.push({
           title: item.title,
           subtitle: item.subtitle,
           href: item.link,
           badges: [item.type, item.category],
-          bgImg: item.image,
+          bgImg:
+            isEmpty(item.image) || item.image.startsWith('http://localhost')
+              ? `https://picsum.photos/800?rand=${nanoid(10)}`
+              : item.image,
           // favorite: item.,
           // price: item.,
           date: item.course_datetime,

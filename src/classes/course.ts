@@ -10,9 +10,9 @@ import {
 import APIResponse from './response'
 
 export enum CourseType {
-  VIDEO = 'video',
-  ONLINE = 'online',
-  PHYSICAL = 'physical',
+  VIDEO = 'Video',
+  ONLINE = 'Online',
+  PHYSICAL = 'Physical',
 }
 
 export enum CourseQuery {
@@ -38,9 +38,9 @@ export class Enrollment {
 export class Course {
   @IsNumber() id: number
   @IsString() title: string
-  @IsString() subtitle: string
+  @IsString() @IsOptional() subtitle: string
   @IsString() image: string
-  @IsString() trailer: string
+  @IsString() @IsOptional() trailer: string
   @IsIn(Object.values(CourseType)) type: CourseType
 
   @IsString() @IsOptional() slug?: string
@@ -65,7 +65,9 @@ export class Course {
   @IsNumber() @IsOptional() instructor_id?: number
   @IsNumber() @IsOptional() co_instructor_id?: number
   @IsNumber() @IsOptional() number_of_session?: number
-  @IsNumber() @IsOptional() duration_for_each_session?: number
+  // duration_for_each_session: server will return Array<string> in String... WTF
+  @IsString() @IsOptional() duration_for_each_session?: string
+
   @IsString() @IsOptional() requirements?: string
 
   @IsString() @IsOptional() feature_image?: string
