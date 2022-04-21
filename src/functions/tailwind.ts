@@ -1,8 +1,8 @@
 import create from '@kodingdotninja/use-tailwind-breakpoint'
-import Config from '@/tailwind.config.mjs'
+import screens from '@Styles/screen.cjs'
 
 export function tw(...styles: string[]) {
   return styles.join(' ')
 }
 
-export const { useBreakpoint } = create(Config.theme.screens)
+export const { useBreakpoint } = create(screens ?? {})

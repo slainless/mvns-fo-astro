@@ -1,7 +1,9 @@
-import plugin from 'tailwindcss/plugin.js'
-import lineClamp from '@tailwindcss/line-clamp'
-import typography from '@tailwindcss/typography'
-import defaultTheme from 'tailwindcss/defaultTheme.js'
+const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
+const screens = require('./src/styles/screen.cjs')
+
+const pluginLineClamp = require('@tailwindcss/line-clamp')
+const pluginTypography = require('@tailwindcss/line-clamp')
 
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 const Config = {
@@ -10,10 +12,7 @@ const Config = {
     './src/**/*.{astro,js,jsx,svelte,ts,tsx,vue,md,mdx}',
   ],
   theme: {
-    screens: {
-      xs: '475px',
-      ...defaultTheme.screens
-    },
+    screens,
     extend: {
       spacing: {
         header: '5rem',
@@ -76,8 +75,8 @@ const Config = {
     }
   },
   plugins: [
-    lineClamp,
-    typography,
+    pluginLineClamp,
+    pluginTypography,
     plugin(function ({ addVariant }) {
       addVariant('selected', '&[aria-selected=true]'),
       addVariant('opened', '&[data-state="open"]'),
@@ -89,4 +88,4 @@ const Config = {
   ]
 }
 
-export default Config
+module.exports = Config

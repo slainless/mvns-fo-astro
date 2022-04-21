@@ -1,4 +1,4 @@
-declare module '@/tailwind.config.mjs' {
+declare module '@/tailwind.config.cjs' {
   const ref: import('tailwindcss/tailwind-config').TailwindConfig
   export default ref
 }
@@ -12,8 +12,11 @@ declare module '*.svg' {
   export default ref
 }
 
+declare const tw: import('@Functions/tailwind')
+
 interface ImportMetaEnv {
   readonly PUBLIC_API_ROOT: string
+  readonly MODE: 'production' | 'development'
 }
 
 interface ImportMeta {
