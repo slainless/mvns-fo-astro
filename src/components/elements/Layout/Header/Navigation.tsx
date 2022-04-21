@@ -46,7 +46,6 @@ export default function Navigation(props: Props) {
                 {display}
               </Link>
             )
-            console.log(el, key)
 
             if (render != null) return render(el, key)
             return el

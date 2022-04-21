@@ -88,7 +88,7 @@ export default function ClassDate(props: OptionalProps) {
       styleOverrides={{
         card: cntl`w-screen xs:w-max md:max-w-3xl p-0 sm:p-0 rounded-lg rounded-b-none xs:rounded-2xl animate-enter-slide-up sm:animate-enter-scaled-up`,
         content: cntl`px-5 xs:px-5 sm:px-8 xs:py-4 sm:py-4`,
-        overlay: cntl`items-end overflow-hidden`,
+        overlay: cntl`items-end sm:items-center overflow-hidden`,
         title: cntl`pl-5 sm:pl-8 pt-5 sm:pt-8`,
       }}
       onReset={() => setSelected([])}

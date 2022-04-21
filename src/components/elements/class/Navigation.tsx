@@ -46,7 +46,6 @@ export default function Navigation(props: NavigationProps) {
     >
       <div className="grid-flow-col grid w-full px-5 xs:px-0 xs:w-max">
         {watchTargets?.map(([label, id]) => {
-          console.log(activeHeadings[0]?.id, id)
           // const active = observerResult.filter((t) => t.isVisible).pop()
 
           return (

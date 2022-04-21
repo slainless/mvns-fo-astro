@@ -21,7 +21,7 @@ const FieldsetStyle = cntl`
 `
 
 type Feedback = {
-  message: string
+  message?: string
   type: 'error' | 'warning' | 'ok'
 }
 const feedbackIcon: Record<Feedback['type'], string> = {
@@ -101,6 +101,14 @@ export default function Login(props: LoginProps) {
       toast.success(`Logged in.`)
       reset()
       // location.reload()
+      return
+    }
+    if (data instanceof APIResponse.InternalError) {
+      const { data } = result ?? {}
+      setFeedback({
+        type: 'error',
+        message: 'Server Error: ' + data?.message ?? '',
+      })
       return
     }
   }, [result])

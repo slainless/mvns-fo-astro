@@ -56,7 +56,10 @@ export async function requestJSON<
       plainToInstance(dataType, rawJSON)
     : plainToInstance(APIResponse.Generic, rawJSON)
 
-  if ((await validate(data)).length > 0) {
+  const errors = await validate(data)
+  if (errors.length > 0) {
+    if (import.meta.env.MODE === 'development')
+      console.error('Validation failed with:', errors)
     throw new Error('Response mismatch!')
   }
 

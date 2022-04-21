@@ -77,7 +77,7 @@ export default function Dialog(
                 'w-full py-5 px-5',
                 'flex flex-col gap-3',
                 'pointer-events-auto',
-                'animate-enter-slide-up sm:animate-enter-scaled-up',
+                'animate-enter-scaled-up',
                 styleOverrides?.card
               )}
             >
