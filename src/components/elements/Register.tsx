@@ -114,6 +114,9 @@ export default function Register(props: RegisterProps) {
     <Dialog
       open={open}
       onOpenChange={setOpen}
+      onOpenAutoFocus={(e) => {
+        e.preventDefault()
+      }}
       trigger={children}
       hideTitle={true}
       {...rest}
