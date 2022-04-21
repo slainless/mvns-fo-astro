@@ -1,7 +1,5 @@
-// Full Astro Configuration API Documentation:
-// https://docs.astro.build/reference/configuration-reference
-
-import { join, resolve } from 'node:path'
+import { parse } from 'acorn'
+import { transform } from 'cjs-es'
 import react from '@astrojs/react'
 import postcss from './postcss.config.mjs'
 
@@ -31,35 +29,32 @@ const preactCompatPlugin = {
 
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
-	// Enable the Preact renderer to support Preact JSX components.
 	integrations: [react()],
   buildOptions: {
     site: 'https://mavens.upanastudio.com/'
   },
 	vite: {
-    css: {
-      postcss
-    },
+    plugins: [
+      {
+        name: 'cjs-to-esm',
+        async transform(code, id) {
+          if(/\.cjs$/.test(id)) {
+            const { code: result } = await transform({ code, parse })
+            return result
+          }
+          return code
+        }
+      }
+    ],
 		optimizeDeps: {
 			exclude: ['video.js'],
 			esbuildOptions: {
 				plugins: [
-          // esbuildCommonjs(['hashlru'])
         ]
 			}
 		},
     resolve: {
       alias: {
-        // react: 'preact/compat',
-        // 'react-dom': 'preact/compat',
-        // "@Api": "./src/api",
-        // "@Bits": "./src/components/bits",
-        // "@Blocks": "./src/components/blocks",
-        // "@Elements": "./src/components/elements",
-        // "@Functions": "./src/functions",
-        // "@Layouts": "./src/layouts",
-        // "@Pages": "./src/pages",
-        // "@Components": "./src/components",
       }
     }
 	}
