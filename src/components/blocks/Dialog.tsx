@@ -5,7 +5,8 @@ import cntl from 'cntl'
 import { ReactNode, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type PrimitiveProps = Parameters<typeof Dialog_.Root>[0]
+type PrimitiveProps = Parameters<typeof Dialog_.Root>[0] &
+  Pick<Parameters<typeof Dialog_.Content>[0], 'onOpenAutoFocus'>
 type CommonProps = {
   trigger?: ReactElement
   title: string
@@ -38,6 +39,7 @@ export default function Dialog(
     children,
     desc,
     styleOverrides,
+    onOpenAutoFocus,
     className,
     open,
     defaultOpen,
@@ -65,6 +67,7 @@ export default function Dialog(
           )}
         >
           <Dialog_.Content
+            onOpenAutoFocus={onOpenAutoFocus}
             className={twMerge(
               'w-max h-max flex place-items-center',
               styleOverrides?.container
