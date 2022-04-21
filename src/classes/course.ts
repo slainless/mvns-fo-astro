@@ -7,12 +7,13 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator'
+import { capitalize } from 'lodash-es'
 import APIResponse from './response'
 
 export enum CourseType {
-  VIDEO = 'Video',
-  ONLINE = 'Online',
-  PHYSICAL = 'Physical',
+  VIDEO = 'video',
+  ONLINE = 'online',
+  PHYSICAL = 'physical',
 }
 
 export enum CourseQuery {
@@ -41,7 +42,7 @@ export class Course {
   @IsString() @IsOptional() subtitle: string
   @IsString() image: string
   @IsString() @IsOptional() trailer: string
-  @IsIn(Object.values(CourseType)) type: CourseType
+  @IsIn(Object.values(CourseType).map(capitalize)) type: CourseType
 
   @IsString() @IsOptional() slug?: string
   @IsString() @IsOptional() link?: string

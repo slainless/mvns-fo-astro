@@ -48,7 +48,7 @@ module CourseAPI {
         Endpoints.COURSE_OF_TYPE,
         type,
         `?limit=${limit ?? 10}`,
-        `&q=${query ?? 'latest'}`
+        `&q=${query ?? 'newest'}`
       ),
       {
         method: 'get',

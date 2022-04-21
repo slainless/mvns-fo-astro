@@ -6,24 +6,32 @@ import { largeCard as Items } from '@Dev/dummy'
 import { useUserStore } from '@Api/user'
 import CardPreset, { CardViewProps } from '@Styles/card'
 import { twMerge } from 'tailwind-merge'
-import { merge } from 'lodash-es'
+import { isEmpty, merge } from 'lodash-es'
 import CourseAPI from '@Api/course'
 import { useRequest } from 'ahooks'
 import { useEffect, useState } from 'react'
-import { CourseResponse, CourseType } from '@Class/course'
+import { Course, CourseResponse, CourseType } from '@Class/course'
+import { nanoid } from 'nanoid'
 
 export default function VideoOnDemand() {
   const user = useUserStore((state) => state.user)
-  if (user != null) return <></>
 
   const {
     data: res,
     loading,
     error,
+    run,
   } = useRequest(CourseAPI.ofType, {
-    defaultParams: [CourseType.VIDEO],
+    // defaultParams: [],
+    manual: true,
   })
-  const [display, setDisplay] = useState<CardData[]>([])
+  const [display, setDisplay] = useState<CardData[] | null>(null)
+
+  useEffect(() => {
+    if (display != null) return
+    if (user != null) return
+    run(CourseType.VIDEO)
+  }, [display, user])
 
   useEffect(() => {
     if (res == null) return
@@ -34,13 +42,16 @@ export default function VideoOnDemand() {
 
     let newDisplay: CardData[] = []
     for (const item of data.data) {
-      if (item instanceof CourseResponse.Get) {
+      if (item instanceof Course) {
         newDisplay.push({
           title: item.title,
           subtitle: item.subtitle,
           href: item.link,
           badges: [item.type, item.category],
-          bgImg: item.image,
+          bgImg:
+            isEmpty(item.image) || item.image.startsWith('http://localhost')
+              ? `https://picsum.photos/800?rand=${nanoid(10)}`
+              : item.image,
           // favorite: item.,
           // price: item.,
           date: item.course_datetime,
@@ -63,6 +74,8 @@ export default function VideoOnDemand() {
     },
   }
 
+  if (user != null) return <></>
+
   return (
     <CardView
       {...merge({}, preset, override)}
@@ -70,7 +83,7 @@ export default function VideoOnDemand() {
       title="Video on demand"
       subtitle="See all classes"
       subtitleHref="/class/all"
-      classes={display.length === 0 ? Items : display}
+      classes={display && display.length > 0 ? display : Items}
     />
   )
 }
