@@ -61,6 +61,9 @@ export default function CardView(props: Props) {
           id={`${id}-swiper`}
           className={twMerge(
             'h-[24rem] xs:h-[28rem]',
+            'after:block after:sm:hidden',
+            'after:w-8 after:pointer-events-none after:absolute after:right-0 after:h-full after:top-0 after:z-[1]',
+            'after:bg-gradient-to-r after:from-transparent after:to-black',
             styleOverrides?.swiper?.style
           )}
           options={swiperOptions}
