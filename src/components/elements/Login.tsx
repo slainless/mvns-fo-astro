@@ -15,6 +15,7 @@ import { isEmpty } from 'lodash-es'
 import APIResponse from '@Class/response'
 import { UserResponse } from '@Class/user'
 import toast from 'react-hot-toast'
+import openLoginWindow from '@Functions/login-window'
 
 const FieldsetStyle = cntl`
   flex flex-col gap-2
@@ -252,10 +253,20 @@ export default function Login(props: LoginProps) {
         <Button
           as="a"
           className="
-          z-[1] bg-transparent text-black border-gray-300
-          hover:bg-red-600 hover:border-red-600 hover:text-white hover:shadow-red-600/30 
-          py-2 hover:translate-y-0 flex items-center gap-3 group
-        "
+            z-[1] bg-transparent text-black border-gray-300
+            hover:bg-red-600 hover:border-red-600 hover:text-white hover:shadow-red-600/30 
+            py-2 hover:translate-y-0 flex items-center gap-3 group
+          "
+          href="javascript: void(0);"
+          onClick={async () => {
+            const req = await openLoginWindow(
+              'https://mavens.upanastudio.com/backend/api/social/google'
+            )!
+            setUser(req)
+            setOpen(false)
+            toast.success(`Logged in via Google.`)
+            reset()
+          }}
         >
           <span className="w-6 h-6 group-hover:brightness-0 group-hover:invert transition-all">
             <ColoredGoogle />
@@ -269,6 +280,16 @@ export default function Login(props: LoginProps) {
           hover:bg-red-600 hover:border-red-600 hover:text-white hover:shadow-red-600/30 
           py-2 hover:translate-y-0 flex items-center gap-3 group
         "
+          href="javascript: void(0);"
+          onClick={async () => {
+            const req = await openLoginWindow(
+              'https://mavens.upanastudio.com/backend/api/social/linkedin'
+            )!
+            setUser(req)
+            setOpen(false)
+            toast.success(`Logged in via LinkedIn.`)
+            reset()
+          }}
         >
           <span className="w-6 h-6 invert">
             <LinkedIn />
