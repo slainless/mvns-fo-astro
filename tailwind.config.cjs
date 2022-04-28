@@ -3,7 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const screens = require('./src/styles/screen.cjs')
 
 const pluginLineClamp = require('@tailwindcss/line-clamp')
-const pluginTypography = require('@tailwindcss/line-clamp')
+const pluginTypography = require('@tailwindcss/typography')
 
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 const Config = {
