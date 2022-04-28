@@ -85,10 +85,7 @@ export default function Overview() {
           <div id="overview-actions" className="flex flex-row gap-10 my-8">
             <Action icon="play_arrow" outlined={false} text="Trailer" />
             <Action icon="content_copy" text="Sample" />
-            <Share
-              title="Share this class"
-              url="https://mavens.upanastudio.com/class/detail"
-            >
+            <Share title="Share this class" data={null}>
               <Action icon="share" text="Share" href="javascript:void(0);" />
             </Share>
           </div>

@@ -71,7 +71,14 @@ export default function Heading() {
           ></div>
           <Share
             title="Share this blog"
-            url="https://mavens.upanastudio.com/blog/detail"
+            data={
+              article
+                ? {
+                    ...article,
+                    href: `https://mavens.upanastudio.com/blog/detail?id=${article.id}`,
+                  }
+                : null
+            }
           >
             <Icon
               icon="share"
