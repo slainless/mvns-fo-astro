@@ -4,7 +4,7 @@ type Props = {
   title?: string
 }
 export default function Recommendation(props: Props) {
-  const { title } = props
+  const { title } = props ?? {}
   return (
     <div
       id="blog-recommendation"

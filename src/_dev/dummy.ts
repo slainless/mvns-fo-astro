@@ -224,7 +224,7 @@ export const blogItems: Parameters<typeof Item>[0][] = [
     desc: lorem,
     tags: ['News', 'Business'],
     bgImg: '/media/blog-thumb.png',
-    date: 'January 20, 2022',
+    date: new Date('20 January 2022'),
     href: '/blog/detail',
   },
   {
@@ -232,7 +232,7 @@ export const blogItems: Parameters<typeof Item>[0][] = [
     desc: lorem,
     tags: ['News', 'Business'],
     bgImg: '/media/blog-thumb.png',
-    date: 'January 20, 2022',
+    date: new Date('20 January 2022'),
     href: '/blog/detail',
   },
   {
@@ -240,7 +240,7 @@ export const blogItems: Parameters<typeof Item>[0][] = [
     desc: lorem,
     tags: ['News', 'Business'],
     bgImg: '/media/blog-thumb.png',
-    date: 'January 20, 2022',
+    date: new Date('20 January 2022'),
     href: '/blog/detail',
   },
   {
@@ -248,7 +248,7 @@ export const blogItems: Parameters<typeof Item>[0][] = [
     desc: lorem,
     tags: ['News', 'Business'],
     bgImg: '/media/blog-thumb.png',
-    date: 'January 20, 2022',
+    date: new Date('20 January 2022'),
     href: '/blog/detail',
   },
   {
@@ -256,7 +256,7 @@ export const blogItems: Parameters<typeof Item>[0][] = [
     desc: lorem,
     tags: ['News', 'Business'],
     bgImg: '/media/blog-thumb.png',
-    date: 'January 20, 2022',
+    date: new Date('20 January 2022'),
     href: '/blog/detail',
   },
 ]

@@ -1,32 +1,37 @@
 import { twMerge } from 'tailwind-merge'
 import { Root as AspectRatio } from '@radix-ui/react-aspect-ratio'
+import { DateTime } from 'luxon'
 
-type ItemProps = HTMLAttr<'a'> & {
+export type ItemData = {
   title: string
   tags?: string[]
   desc?: string
-  date?: string
-  ratio?: number
+  date?: Date
   bgImg?: string
-  styleOverrides?: {
-    container?: string
-    background?: {
+  href?: string
+}
+type ItemProps = HTMLAttr<'a'> &
+  ItemData & {
+    ratio?: number
+    styleOverrides?: {
       container?: string
-      background?: string
-    }
-    content?: string
-    title?: string
-    tags?: {
-      container?: string
-      tags?: string
-    }
-    desc?: string
-    info?: {
-      container?: string
-      date?: string
+      background?: {
+        container?: string
+        background?: string
+      }
+      content?: string
+      title?: string
+      tags?: {
+        container?: string
+        tags?: string
+      }
+      desc?: string
+      info?: {
+        container?: string
+        date?: string
+      }
     }
   }
-}
 export default function Item(props: ItemProps) {
   const {
     styleOverrides,
@@ -110,7 +115,9 @@ export default function Item(props: ItemProps) {
               styleOverrides?.info?.date
             )}
           >
-            {date}
+            {`${DateTime.fromMillis(date ? date.valueOf() : 0).toLocaleString(
+              DateTime.DATE_FULL
+            )}`}
           </div>
         </div>
       </div>

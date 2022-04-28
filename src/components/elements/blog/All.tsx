@@ -1,16 +1,12 @@
 import Ads from '@Blocks/Ads'
 import Section from '@Blocks/Section'
-import { blogItems } from '@Dev/dummy'
 import { Separator } from '@radix-ui/react-separator'
-import cntl from 'cntl'
-import { merge } from 'lodash-es'
-import Item from './Item'
 import List from './List'
 
 export default function All() {
   return (
     <Section.Container>
-      <Section.Content className="flex flex-row gap-10">
+      <Section.Content className="flex flex-row justify-between gap-10">
         <div className="flex flex-col gap-5">
           <div className="relative flex flex-col items-center">
             <Section.Title className="bg-white z-[1] px-5">

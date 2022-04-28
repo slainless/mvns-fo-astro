@@ -15,7 +15,10 @@ const Endpoints = {
   COURSE_OF_TYPE: make('courses/type'),
   COURSE_DETAIL: make('courses/show'),
 
-  BLOG_LATEST: make('blog/latest'),
+  BLOG_ALL: make('blogs'),
+  BLOG_LATEST: make('blogs/latest'),
+  BLOG_DETAIL: make('blogs/show'),
+
 }
 
 export default Endpoints

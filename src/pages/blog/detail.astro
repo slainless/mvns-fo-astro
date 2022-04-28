@@ -1,19 +1,21 @@
 ---
 import Home from '@Layouts/Home.astro'
 import Heading from '@Elements/blog/Heading.tsx'
-import Article from '@Elements/blog/Article.astro'
+import Article from '@Elements/blog/Article.tsx'
 import Banner from '@Elements/blog/Banner.tsx'
 import Recommendation from '@Elements/blog/Recommendation.tsx'
 import Section from '@Blocks/Section.tsx'
 import Ads from '@Blocks/Ads.tsx'
+import GetArticle from '@Elements/blog/GetArticle.tsx'
 ---
 
 <Home title="Detail Blog" forceWhite>
   <Section.Container>
-    <Section.Content className="flex flex-col lg:flex-row gap-16">
+    <Section.Content className="flex flex-col lg:flex-row gap-16 max-w-full">
       <div class="flex flex-col gap-10 flex-grow">
+        <GetArticle client:load />
         <Heading client:load />
-        <Article />
+        <Article client:load />
         <Banner />
       </div>
       <aside class="flex flex-col gap-16">
@@ -24,7 +26,7 @@ import Ads from '@Blocks/Ads.tsx'
           id="sidebar-ads"
           className="items-start h-max w-max flex-shrink-0"
         /> -->
-        <Recommendation />
+        <Recommendation title="Related Articles" />
       </aside>
     </Section.Content>
   </Section.Container>
