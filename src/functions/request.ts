@@ -1,6 +1,7 @@
 import APIResponse from '@Class/response'
-import { plainToInstance } from 'class-transformer'
+import { ClassConstructor, plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
+import { isArray } from 'lodash-es'
 import ky, { HTTPError, Options } from 'ky'
 
 type ClassOf<T extends Record<any, any>> = {
@@ -14,14 +15,8 @@ const defaultResponseType = {
   500: APIResponse.InternalError,
   default: APIResponse.Generic,
 }
-export async function requestJSON<
-  T extends { [k in number | 'default']?: typeof APIResponse.Generic } = {}
->(
-  url: Parameters<typeof ky>[0],
-  options: Options & {
-    responseType?: T
-  }
-): Promise<{
+
+export type RequestResult<T> = {
   data: Result<typeof defaultResponseType, T>[keyof Result<
     typeof defaultResponseType,
     T
@@ -29,7 +24,15 @@ export async function requestJSON<
   response: Response
   code: number
   error?: HTTPError
-}> {
+}
+export async function requestJSON<
+  T extends { [k in number | 'default']?: typeof APIResponse.Generic } = {}
+>(
+  url: Parameters<typeof ky>[0],
+  options: Options & {
+    responseType?: T
+  }
+): Promise<RequestResult<T>> {
   const { responseType, ...rest } = options
 
   let rawJSON
@@ -70,4 +73,16 @@ export async function requestJSON<
     response,
     error,
   }
+}
+
+export function getData<
+  T extends RequestResult<any>,
+  K extends ClassConstructor<T['data']>
+>(res: T, pick: K | K[]): InstanceType<K>['data'] | null {
+  const { data } = res ?? {}
+  if (data == null) return null
+
+  const Classes = isArray(pick) ? pick : [pick]
+  if (Classes.every((cls) => data instanceof cls == false)) return null
+  return data.data
 }
