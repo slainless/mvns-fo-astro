@@ -7,7 +7,7 @@ import { Common as Icon } from '@Bits/Icon'
 import { Root as Separator } from '@radix-ui/react-separator'
 import { ColoredGoogle, Google, LinkedIn } from '@Bits/Brand'
 import cntl from 'cntl'
-import UserAPI from '@Api/user'
+import UserAPI, { useUserStore } from '@Api/user'
 import { useRequest } from 'ahooks'
 import { useForm } from 'react-hook-form'
 import APIResponse from '@Class/response'
@@ -15,6 +15,7 @@ import { UserResponse } from '@Class/user'
 import toast from 'react-hot-toast'
 import { twMerge } from 'tailwind-merge'
 import { isEmpty } from 'lodash-es'
+import openLoginWindow from '@Functions/login-window'
 
 const FieldsetStyle = cntl`
   flex flex-col gap-2
@@ -62,6 +63,9 @@ export default function Register(props: RegisterProps) {
     setFeedback(null)
     run(data)
   }
+  const [user, setUser] = useUserStore(
+    (state) => [state.user, state.setUser] as const
+  )
 
   useEffect(() => {
     const { data } = result ?? {}
@@ -251,6 +255,15 @@ export default function Register(props: RegisterProps) {
           hover:bg-red-600 hover:border-red-600 hover:text-white hover:shadow-red-600/30 
           py-2 hover:translate-y-0 flex items-center gap-3 group
         "
+          onClick={async () => {
+            const req = await openLoginWindow(
+              'https://mavens.upanastudio.com/backend/api/social/google'
+            )!
+            setUser(req)
+            setOpen(false)
+            toast.success(`Logged in via Google.`)
+            reset()
+          }}
         >
           <span className="w-6 h-6 group-hover:brightness-0 group-hover:invert transition-all">
             <ColoredGoogle />
@@ -260,10 +273,19 @@ export default function Register(props: RegisterProps) {
         <Button
           as="a"
           className="
-          z-[1] bg-blue-600 text-white border-blue-600 
-          hover:bg-red-600 hover:border-red-600 hover:text-white hover:shadow-red-600/30 
-          py-2 hover:translate-y-0 flex items-center gap-3 group
-        "
+            z-[1] bg-blue-600 text-white border-blue-600 
+            hover:bg-red-600 hover:border-red-600 hover:text-white hover:shadow-red-600/30 
+            py-2 hover:translate-y-0 flex items-center gap-3 group
+          "
+          onClick={async () => {
+            const req = await openLoginWindow(
+              'https://mavens.upanastudio.com/backend/api/social/linkedin'
+            )!
+            setUser(req)
+            setOpen(false)
+            toast.success(`Logged in via Google.`)
+            reset()
+          }}
         >
           <span className="w-6 h-6 invert">
             <LinkedIn />
