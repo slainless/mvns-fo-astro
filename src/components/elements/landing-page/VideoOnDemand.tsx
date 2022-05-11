@@ -25,7 +25,7 @@ export default function VideoOnDemand() {
     // defaultParams: [],
     manual: true,
   })
-  const [display, setDisplay] = useState<CardData[] | null>(null)
+  const [display, setDisplay] = useState<CardData[]>([])
 
   useEffect(() => {
     if (display != null) return
@@ -44,15 +44,16 @@ export default function VideoOnDemand() {
     for (const item of data.data) {
       if (item instanceof Course) {
         newDisplay.push({
+          itemId: item.id,
           title: item.title,
           subtitle: item.subtitle,
-          href: item.link,
+          href: `/class/detail?id=${item.id}`,
           badges: [item.type, item.category],
           bgImg:
             isEmpty(item.image) || item.image.startsWith('http://localhost')
               ? `https://picsum.photos/800?rand=${nanoid(10)}`
               : item.image,
-          // favorite: item.,
+          favorite: item.is_whislist,
           // price: item.,
           date: item.course_datetime,
           level: item.difficulty,
@@ -83,7 +84,7 @@ export default function VideoOnDemand() {
       title="Video on demand"
       subtitle="See all classes"
       subtitleHref="/class/all"
-      classes={display && display.length > 0 ? display : Items}
+      classes={display}
     />
   )
 }

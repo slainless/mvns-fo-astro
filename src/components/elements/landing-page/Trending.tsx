@@ -10,9 +10,19 @@ import { useEffect, useState } from 'react'
 import { CardData } from '@Blocks/Card'
 import { Course, CourseResponse } from '@Class/course'
 import { nanoid } from 'nanoid'
+import { useUserStore } from '@Api/user'
+import { getData } from '@Functions/request'
 
 export default function Trending() {
-  const { data: res, loading, error } = useRequest(CourseAPI.trending)
+  const user = useUserStore((state) => state.user)
+  const {
+    data: res,
+    loading,
+    error,
+  } = useRequest(CourseAPI.trending, {
+    defaultParams: [{}, user?.id],
+    refreshDeps: [user],
+  })
   const [display, setDisplay] = useState<CardData[]>([])
   const override: CardViewProps = {
     styleOverrides: {
@@ -27,24 +37,23 @@ export default function Trending() {
 
   useEffect(() => {
     if (res == null) return
-    const { data } = res
-
-    if (!(data instanceof CourseResponse.Get)) return
-    if (data.data.length === 0) return
+    const courses = getData(res, CourseResponse.Get)
+    if (courses == null) return
 
     let newDisplay: CardData[] = []
-    for (const item of data.data) {
+    for (const item of courses) {
       if (item instanceof Course) {
         newDisplay.push({
+          itemId: item.id,
           title: item.title,
           subtitle: item.subtitle,
-          href: item.link,
+          href: `/class/detail?id=${item.id}`,
           badges: [item.type, item.category],
           bgImg:
             isEmpty(item.image) || item.image.startsWith('http://localhost')
               ? `https://picsum.photos/800?rand=${nanoid(10)}`
               : item.image,
-          // favorite: item.,
+          favorite: item.is_whislist,
           // price: item.,
           date: item.course_datetime,
           level: item.difficulty,
@@ -58,7 +67,8 @@ export default function Trending() {
     <CardView
       {...merge({}, CardPreset.Normal, override)}
       id="trending"
-      classes={display.length === 0 ? Items : display}
+      // classes={display.length === 0 ? Items : display}
+      classes={display}
       title="What's Trending Now"
       subtitle="See all classes"
       subtitleHref="/class/all"
