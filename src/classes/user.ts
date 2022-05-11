@@ -10,10 +10,15 @@ import {
 } from 'class-validator'
 import APIResponse from './response'
 
-export enum Role {
+export enum RoleValue {
   STUDENT = 'student',
   INSTRUCTOR = 'instructor',
   ADMIN = 'admin',
+}
+
+export class Role {
+  @IsNumber() id: number
+  @IsIn(Object.values(RoleValue)) name: RoleValue
 }
 
 // prettier-ignore
@@ -21,9 +26,11 @@ export class User {
   // must-have fields
   @IsNumber() id: number
   @IsString() firstname: string
-  @IsString() lastname: string
   @IsString() email: string
-  @IsIn(Object.values(Role)) role: Role
+  @IsString() @IsOptional() lastname: string
+  @Type(() => Role)
+  @ValidateNested()
+  roles: Role[]
 
   // other
   @IsArray() student_interest: any[]
@@ -58,6 +65,6 @@ export module UserResponse {
     @ValidateNested()
     @IsOptional()
     @Type(() => User)
-    data?: User
+    data: User
   }
 }
