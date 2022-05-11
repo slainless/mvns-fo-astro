@@ -1,4 +1,5 @@
-import Swiper, { Navigation, SwiperOptions } from 'swiper'
+import { Navigation, SwiperOptions } from 'swiper'
+import { Swiper } from 'swiper/react'
 import { useEffect, useMemo, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { nanoid } from 'nanoid'
@@ -7,7 +8,7 @@ import './Carousel.styl'
 // import 'swiper/css'
 // import 'swiper/css/navigation'
 
-type CommonProps = HTMLAttr<'div'> & {
+type CommonProps = Parameters<typeof Swiper>[0] & {
   id: string
   options?: SwiperOptions
   styleOverrides?: {
@@ -27,28 +28,24 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
     styleOverrides,
     ...rest
   } = props
-  // const randomId = useMemo(() => nanoid(5), [])
-  const swiperRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    if (swiperRef.current == null) return
-    const swiper = new Swiper(swiperRef.current, {
-      direction: 'horizontal',
-      loop: false,
-      modules: [Navigation],
 
-      navigation: {
-        nextEl: `#next-${id}`,
-        prevEl: `#prev-${id}`,
-      },
+  const mergedOptions: SwiperOptions = {
+    direction: 'horizontal',
+    loop: false,
+    modules: [Navigation],
 
-      slidesPerView: 4,
-      spaceBetween: 25,
-      slidesPerGroup: 4,
+    navigation: {
+      nextEl: `#next-${id}`,
+      prevEl: `#prev-${id}`,
+    },
 
-      breakpoints: {},
-      ...options,
-    })
-  }, [swiperRef])
+    slidesPerView: 4,
+    spaceBetween: 25,
+    slidesPerGroup: 4,
+
+    breakpoints: {},
+    ...options,
+  }
 
   return (
     <div className="swiper-container relative" id={`carousel-${id}`}>
@@ -60,13 +57,13 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
         )}
         id={`prev-${id}`}
       ></div>
-      <div
-        {...rest}
+      <Swiper
         className={twMerge('swiper w-full rounded-lg', cls)}
-        ref={swiperRef}
+        {...mergedOptions}
+        {...rest}
       >
-        <div className="swiper-wrapper">{children}</div>
-      </div>
+        {children}
+      </Swiper>
       <div
         className={twMerge(
           'swiper-button-next',
