@@ -21,7 +21,9 @@ export default function ComingSoon() {
       subtitle="See all classes"
       subtitleHref="/class/all"
       styleOverrides={{
-        swiper: cntl`h-96`,
+        swiper: {
+          style: cntl`h-96`,
+        },
         card: {
           card: {
             header: cntl`px-10`,
