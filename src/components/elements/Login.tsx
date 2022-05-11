@@ -16,6 +16,9 @@ import APIResponse from '@Class/response'
 import { UserResponse } from '@Class/user'
 import toast from 'react-hot-toast'
 import openLoginWindow from '@Functions/login-window'
+import createDisclosureStore from '@Functions/use-disclosure'
+
+export const useLoginControl = createDisclosureStore()
 
 const FieldsetStyle = cntl`
   flex flex-col gap-2
@@ -37,7 +40,9 @@ type LoginProps = Omit<Parameters<typeof Dialog>[0], 'trigger' | 'children'> & {
 export default function Login(props: LoginProps) {
   const { children, ...rest } = props
 
-  const [open, setOpen] = useState(false)
+  const open = useLoginControl((state) => state.state)
+  const setOpen = useLoginControl((state) => state.setOpen)
+  // const [open, setOpen] = useState(false)
 
   const [feedback, setFeedback] = useState<Feedback | null>(null)
   const {

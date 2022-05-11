@@ -16,6 +16,9 @@ import toast from 'react-hot-toast'
 import { twMerge } from 'tailwind-merge'
 import { isEmpty } from 'lodash-es'
 import openLoginWindow from '@Functions/login-window'
+import createDisclosureStore from '@Functions/use-disclosure'
+
+export const useRegisterControl = createDisclosureStore()
 
 const FieldsetStyle = cntl`
   flex flex-col gap-2
@@ -39,8 +42,9 @@ type RegisterProps = Omit<
 }
 export default function Register(props: RegisterProps) {
   const { children, ...rest } = props
-
-  const [open, setOpen] = useState(false)
+  const open = useRegisterControl((state) => state.state)
+  const setOpen = useRegisterControl((state) => state.setOpen)
+  // const [open, setOpen] = useState(false)
 
   const [feedback, setFeedback] = useState<Feedback | null>(null)
   const {

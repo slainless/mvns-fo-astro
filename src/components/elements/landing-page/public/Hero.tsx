@@ -1,9 +1,12 @@
 import cntl from 'cntl'
 import { Common as Button, Link } from '@Bits/Button'
 import { useUserStore } from '@Api/user'
+import { useRegisterControl } from '@Elements/Register'
 
 export default function Hero() {
   const user = useUserStore((state) => state.user)
+  const setOpen = useRegisterControl((state) => state.setOpen)
+
   if (user != null) return <></>
   return (
     <section
@@ -63,6 +66,7 @@ export default function Hero() {
         <nav className="font-body mt-4 gap-3 flex flex-col text-sm w-full max-w-[40ch] sm:w-max px-5 items-center">
           <Button
             as="a"
+            onClick={() => setOpen(true)}
             className="mt-4 px-10 w-max sm:w-full text-center text-red-500 hover:bg-red-600 hover:border-red-600 hover:shadow-red-600/50 hover:text-white font-bold"
           >
             Register Now
