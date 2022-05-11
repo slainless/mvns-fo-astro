@@ -26,10 +26,23 @@ module APIResponse {
   }
 
   // prettier-ignore
+  export class Deleted extends Generic {
+    @Equals(200) code: 200
+    @IsBoolean() success: boolean
+    @IsOptional() data?: any
+  }
+
+  // prettier-ignore
   export class Unauthorized extends Generic {
     @Equals(401) code: 401
     @Equals(false) success: false
     @IsOptional() data?: any
+  }
+
+  // prettier-ignore
+  export class NotFound extends Generic {
+    @Equals(404) code: 404
+    @Equals(false) success: false
   }
 
   // prettier-ignore
