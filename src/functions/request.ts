@@ -1,8 +1,9 @@
 import APIResponse from '@Class/response'
 import { ClassConstructor, plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
-import { isArray } from 'lodash-es'
+import { isArray, isEmpty } from 'lodash-es'
 import ky, { HTTPError, Options } from 'ky'
+import { useUserStore } from '@Api/user'
 
 type ClassOf<T extends Record<any, any>> = {
   [k in keyof T]: InstanceType<T[k]>
@@ -12,6 +13,7 @@ const defaultResponseType = {
   200: APIResponse.OK,
   201: APIResponse.Created,
   401: APIResponse.Unauthorized,
+  404: APIResponse.NotFound,
   500: APIResponse.InternalError,
   default: APIResponse.Generic,
 }
@@ -31,16 +33,27 @@ export async function requestJSON<
   url: Parameters<typeof ky>[0],
   options: Options & {
     responseType?: T
+    useAuth?: boolean
   }
 ): Promise<RequestResult<T>> {
-  const { responseType, ...rest } = options
+  const { responseType, useAuth, ...rest } = options
 
   let rawJSON
   let code: number
   let response: Response
   let error: HTTPError | undefined = undefined
   try {
-    response = await ky(url, rest)
+    response = await ky(url, {
+      ...rest,
+      headers: {
+        Authorization: (() => {
+          if (!useAuth) return undefined
+          const token = useUserStore.getState().user?.token
+          if (isEmpty(token)) return undefined
+          return `Bearer ${token}`
+        })(),
+      },
+    })
     rawJSON = await response.json()
     code = response.status
   } catch (e) {
