@@ -243,6 +243,17 @@ export default function Register(props: RegisterProps) {
           )}
         </Button>
       </form>
+      <span className="text-sm inline-flex items-stretch flex-col gap-1 -mt-4">
+        <span className="text-black/80 text-xs">
+          By signing up, you agree to our communications and usage terms.
+        </span>
+        <span className="text-sm text-center w-full">
+          Already have an account?{' '}
+          <Link className="tracking-normal after:w-0 after:-bottom-0.5">
+            Sign in
+          </Link>
+        </span>
+      </span>
       <Separator
         className="
         w-full h-[1px] bg-gray-300 relative my-2
@@ -296,17 +307,6 @@ export default function Register(props: RegisterProps) {
           </span>{' '}
           Sign Up with LinkedIn
         </Button>
-        <span className="text-sm inline-flex items-stretch flex-col gap-1">
-          <span className="text-black/80 text-xs">
-            By signing up, you agree to our communications and usage terms.
-          </span>
-          <span className="text-sm text-center w-full">
-            Already have an account?{' '}
-            <Link className="tracking-normal after:w-0 after:-bottom-0.5">
-              Sign up
-            </Link>
-          </span>
-        </span>
       </div>
     </Dialog>
   )

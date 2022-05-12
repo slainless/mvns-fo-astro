@@ -245,6 +245,12 @@ export default function Login(props: LoginProps) {
             'Log In'
           )}
         </Button>
+        <span className="text-center text-sm -mt-4">
+          Don't have an account?{' '}
+          <Link className="tracking-normal after:w-0 after:-bottom-0.5">
+            Sign up
+          </Link>
+        </span>
       </form>
       <Separator
         className="
@@ -301,12 +307,6 @@ export default function Login(props: LoginProps) {
           </span>{' '}
           Log In with LinkedIn
         </Button>
-        <span className="text-center text-sm">
-          Don't have an account?{' '}
-          <Link className="tracking-normal after:w-0 after:-bottom-0.5">
-            Sign up
-          </Link>
-        </span>
       </div>
     </Dialog>
   )
