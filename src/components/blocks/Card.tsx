@@ -6,8 +6,13 @@ import { isArray } from 'lodash-es'
 import { Badge } from '@Bits/Badge'
 import { Favorite } from '@Bits/Button'
 import { Calendar, Quota, SkillLevel } from '@Bits/Info'
+import { useState } from 'react'
+import WishlistAPI from '@Api/wishlist'
+import { WishResponse } from '@Class/wishlist'
+import APIResponse from '@Class/response'
 
 export type CardData = {
+  itemId?: number
   href?: string
   badges?: Array<string | undefined>
   bgImg?: string
@@ -42,6 +47,7 @@ type CommonProps = DivAttr &
 
 export const Common: FunctionComponent<CommonProps> = (props) => {
   const {
+    itemId,
     href,
     badges,
     bgImg,
@@ -57,6 +63,31 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
   } = props
 
   const [filled, max] = quota?.split('/') ?? []
+  const [isWished, setIsWished] = useState<boolean | undefined>(favorite)
+
+  async function requestWish(setWish: boolean) {
+    const res = setWish
+      ? await WishlistAPI.add(itemId)
+      : await WishlistAPI.remove(itemId)
+
+    const { data } = res
+    if (setWish) {
+      // TODO: handle case where class already exist
+      if (data instanceof WishResponse.Add) {
+        return setIsWished(true)
+      }
+      throw new Error('Response Mismatch')
+    } else {
+      if (
+        data instanceof WishResponse.Remove ||
+        data instanceof APIResponse.NotFound
+      ) {
+        return setIsWished(false)
+      }
+      throw new Error('Response Mismatch')
+    }
+  }
+
   return (
     <div
       className={twMerge(
@@ -122,13 +153,16 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
         <div className="items-end">
           {favorite != null ? (
             <Favorite
-              filled={favorite}
+              filled={isWished}
               filledStyle={cntl`group-hover:text-white`}
               emptyStyle={cntl`group-hover:text-white`}
               className={twMerge(
                 'pointer-events-auto hover:bg-white/30 drop-shadow-md',
                 styleOverrides?.favorite
               )}
+              onClick={() => {
+                requestWish(!isWished)
+              }}
             />
           ) : null}
         </div>
