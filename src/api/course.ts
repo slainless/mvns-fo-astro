@@ -1,5 +1,6 @@
-import { CourseQuery, CourseResponse, CourseType } from '@Class/course'
+import { Course, CourseQuery, CourseResponse, CourseType } from '@Class/course'
 import { requestJSON } from '@Functions/request'
+import { isEmpty } from 'lodash-es'
 import urlJoin from 'url-join'
 import Endpoints from './endpoint'
 
@@ -23,7 +24,10 @@ module CourseAPI {
   export function trending(options?: Pick<Options, 'limit'>) {
     const { limit } = options ?? {}
     return requestJSON(
-      urlJoin(Endpoints.COURSE_TRENDING, `?limit=${limit ?? 10}`),
+      urlJoin(
+        Endpoints.COURSE_TRENDING,
+        isEmpty(limit) ? '' : `?limit=${limit ?? 10}`
+      ),
       {
         method: 'get',
         responseType: {
@@ -47,8 +51,8 @@ module CourseAPI {
       urlJoin(
         Endpoints.COURSE_OF_TYPE,
         type,
-        `?limit=${limit ?? 10}`,
-        `&q=${query ?? 'newest'}`
+        `?q=${query ?? 'newest'}`,
+        isEmpty(limit) ? '' : `&limit=${limit ?? 10}`
       ),
       {
         method: 'get',
