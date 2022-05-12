@@ -25,7 +25,7 @@ export default function VideoOnDemand() {
     // defaultParams: [],
     manual: true,
   })
-  const [display, setDisplay] = useState<CardData[]>([])
+  const [display, setDisplay] = useState<CardData[] | null>(null)
 
   useEffect(() => {
     if (display != null) return
@@ -84,7 +84,7 @@ export default function VideoOnDemand() {
       title="Video on demand"
       subtitle="See all classes"
       subtitleHref="/class/all"
-      classes={display}
+      classes={display ?? []}
     />
   )
 }
