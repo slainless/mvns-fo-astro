@@ -15,6 +15,7 @@ import BlogAPI from '@Api/blog'
 import { useEffect, useState } from 'react'
 import { BlogResponse, Blog as BlogClass } from '@Class/blog'
 import { nanoid } from 'nanoid'
+import { DateTime } from 'luxon'
 
 export default function Blog() {
   const { data: res, loading, error } = useRequest(BlogAPI.latest)
@@ -32,7 +33,7 @@ export default function Blog() {
       if (item instanceof BlogClass) {
         newDisplay.push({
           title: item.title,
-          subtitle: item.subtitle,
+          // subtitle: item.subtitle,
           href: `/blog/detail?id=${item.id}`,
           // badges: [item.type, item.category],
           bgImg:
@@ -43,7 +44,9 @@ export default function Blog() {
               : item.thumbnail_url,
           // favorite: item.,
           // price: item.,
-          // date: item.course_datetime,
+          date: DateTime.fromISO(item.created_at ?? '').toLocaleString(
+            DateTime.DATE_FULL
+          ),
           // level: item.difficulty,
         })
       }

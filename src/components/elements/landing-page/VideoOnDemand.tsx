@@ -12,6 +12,7 @@ import { useRequest } from 'ahooks'
 import { useEffect, useState } from 'react'
 import { Course, CourseResponse, CourseType } from '@Class/course'
 import { nanoid } from 'nanoid'
+import { DateTime } from 'luxon'
 
 export default function VideoOnDemand() {
   const user = useUserStore((state) => state.user)
@@ -54,8 +55,10 @@ export default function VideoOnDemand() {
               ? `https://picsum.photos/800?rand=${nanoid(10)}`
               : item.image,
           favorite: item.is_whislist,
-          // price: item.,
-          date: item.course_datetime,
+          price: item.prices[0]?.price.toString(),
+          date: DateTime.fromISO(item?.course_datetime ?? '').toLocaleString(
+            DateTime.DATE_FULL
+          ),
           level: item.difficulty,
         })
       }
