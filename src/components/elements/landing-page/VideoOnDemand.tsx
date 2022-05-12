@@ -63,7 +63,7 @@ export default function VideoOnDemand() {
     setDisplay(newDisplay)
   }, [res])
 
-  const preset = CardPreset.Large
+  const preset = CardPreset.Normal
   const override: CardViewProps = {
     styleOverrides: {
       section: {
