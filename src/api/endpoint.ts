@@ -19,6 +19,8 @@ const Endpoints = {
   BLOG_LATEST: make('blogs/latest'),
   BLOG_DETAIL: make('blogs/show'),
 
+  WISH_ADD: make('my/wishlist'),
+  WISH_REMOVE: make('my/wishlist/destory'),
 }
 
 export default Endpoints
