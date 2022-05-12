@@ -35,10 +35,40 @@ export class Enrollment {
   @IsString() @IsOptional() review?: string
 }
 
+export class Price {
+  @IsNumber() id: number
+  @IsNumber() course_id: number
+
+  @IsString() title: string
+  @IsNumber() price: number
+  @IsString() description: string
+
+  @IsString() @IsOptional() created_at?: string
+  @IsString() @IsOptional() updated_at?: string
+}
+
+export class Lesson {
+  @IsNumber() id: number
+  @IsNumber() course_id: number
+
+  @IsString() title: string
+  @IsString() description: string
+  @Type(() => Boolean) is_active: boolean
+
+  @IsString() @IsOptional() created_at?: string
+  @IsString() @IsOptional() updated_at?: string
+
+  @IsString() content: string
+  @IsString() pdf_path: string
+}
+
+export class Review {}
+
 // prettier-ignore
 export class Course {
   @IsNumber() id: number
   @IsString() title: string
+  @IsString() description: string
   @IsString() @IsOptional() subtitle: string
   @IsString() image: string
   @IsString() @IsOptional() trailer: string
@@ -52,6 +82,7 @@ export class Course {
   @Type(() => Boolean) is_active: boolean
   @Type(() => Boolean) is_enable_coming_soon: boolean
   @Type(() => Boolean) is_comingsoon: boolean
+  @Type(() => Boolean) @IsOptional() is_whislist?: boolean
 
   @IsString() @IsOptional() course_datetime?: string
   @IsString() @IsOptional() difficulty?: string
@@ -62,6 +93,7 @@ export class Course {
   @IsString() @IsOptional() second_category?: string
   @IsString() @IsOptional() target_audience?: string
   @IsNumber() @IsOptional() avg_rating?: number
+  @IsNumber() @IsOptional() total_rating?: number
 
   @IsNumber() @IsOptional() instructor_id?: number
   @IsNumber() @IsOptional() co_instructor_id?: number
@@ -82,6 +114,18 @@ export class Course {
   @Type(() => Enrollment) 
   @ValidateNested() 
   enrollment: Enrollment[]
+
+  @Type(() => Price) 
+  @ValidateNested() 
+  prices: Price[]
+
+  @Type(() => Lesson)
+  @ValidateNested()
+  lessons: Lesson[]
+
+  @Type(() => Review)
+  @ValidateNested()
+  reviews: Review[]
 }
 
 export module CourseResponse {
