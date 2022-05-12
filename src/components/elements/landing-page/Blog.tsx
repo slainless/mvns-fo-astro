@@ -56,6 +56,7 @@ export default function Blog() {
     swiperOptions: {
       rewind: false,
       loop: true,
+      initialSlide: 1,
       breakpoints: {
         0: {},
         375: {
