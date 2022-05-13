@@ -5,6 +5,7 @@ import { Common as Card } from '@Blocks/Card'
 import isBrowser from '@Functions/isBrowser'
 import { SwiperOptions } from 'swiper'
 import { twMerge } from 'tailwind-merge'
+import { isEmpty, merge } from 'lodash-es'
 
 type Props = {
   id: string
@@ -30,6 +31,9 @@ type Props = {
       content?: string
     }
   }
+
+  isLoading?: boolean
+  fallbackContent?: any
 }
 export default function CardView(props: Props) {
   const {
@@ -39,6 +43,8 @@ export default function CardView(props: Props) {
     subtitleHref,
     swiperProps,
     classes,
+    isLoading,
+    fallbackContent,
     styleOverrides,
   } = props
   return (
@@ -60,10 +66,14 @@ export default function CardView(props: Props) {
         <Swiper
           id={`${id}-swiper`}
           className={twMerge(
+            !isEmpty(fallbackContent) && classes.length === 0 && !isLoading
+              ? 'hidden'
+              : '',
             'h-[24rem] xs:h-[28rem]',
             'after:block after:sm:hidden',
             'after:w-8 after:pointer-events-none after:absolute after:right-0 after:h-full after:top-0 after:z-[1]',
             'after:bg-gradient-to-r after:from-transparent after:to-black',
+            isLoading ? 'skeleton-zinc' : '',
             styleOverrides?.swiper?.style
           )}
           {...swiperProps}
@@ -79,6 +89,7 @@ export default function CardView(props: Props) {
             <></>
           )}
         </Swiper>
+        <div>{!isLoading && classes.length === 0 ? fallbackContent : null}</div>
       </Section.Content>
     </Section.Container>
   )
