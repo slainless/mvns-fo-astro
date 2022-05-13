@@ -1,3 +1,5 @@
+@import './skeleton.css';
+
 .material-icons-outlined,
 .material-icons {
   font-size: inherit !important;

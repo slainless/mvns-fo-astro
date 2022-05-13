@@ -1,0 +1,13 @@
+@tailwind utilities;
+
+@layer utilities {
+  .skeleton-zinc {
+    @apply rounded-md animate-pulse bg-zinc-800 text-zinc-800;
+    font-size: 0 !important;
+
+    & > * {
+      @apply !hidden;
+      font-size: 0 !important;
+    }
+  }
+}
