@@ -10,7 +10,7 @@ export default function Classes() {
   return (
     <CardView
       id="classes"
-      swiperOptions={{
+      swiperProps={{
         rewind: true,
       }}
       classes={Items}

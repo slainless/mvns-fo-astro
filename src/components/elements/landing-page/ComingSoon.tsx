@@ -11,7 +11,7 @@ export default function ComingSoon() {
   return (
     <CardView
       id="coming-soon"
-      swiperOptions={{
+      swiperProps={{
         rewind: true,
         slidesPerView: 2,
         slidesPerGroup: 2,

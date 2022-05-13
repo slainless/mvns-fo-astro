@@ -56,7 +56,7 @@ export default function Blog() {
 
   const { styleOverrides, ...preset } = CardPreset.Large
   const override: CardViewProps = {
-    swiperOptions: {
+    swiperProps: {
       rewind: false,
       loop: true,
       initialSlide: 1,

@@ -1,5 +1,5 @@
 import Section from '@Blocks/Section'
-import { SwiperSlide } from 'swiper/react'
+import { SwiperSlide, SwiperProps } from 'swiper/react'
 import { Common as Swiper } from '@Blocks/Carousel'
 import { Common as Card } from '@Blocks/Card'
 import isBrowser from '@Functions/isBrowser'
@@ -12,7 +12,7 @@ type Props = {
   subtitle?: string
   subtitleHref?: string
 
-  swiperOptions?: SwiperOptions
+  swiperProps?: SwiperProps
   classes: Parameters<typeof Card>[0][]
 
   styleOverrides?: {
@@ -37,7 +37,7 @@ export default function CardView(props: Props) {
     title,
     subtitle,
     subtitleHref,
-    swiperOptions,
+    swiperProps,
     classes,
     styleOverrides,
   } = props
@@ -66,7 +66,7 @@ export default function CardView(props: Props) {
             'after:bg-gradient-to-r after:from-transparent after:to-black',
             styleOverrides?.swiper?.style
           )}
-          options={swiperOptions}
+          {...swiperProps}
           styleOverrides={styleOverrides?.swiper}
         >
           {isBrowser ? (

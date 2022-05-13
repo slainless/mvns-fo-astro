@@ -5,7 +5,7 @@ export type CardViewProps = Partial<Parameters<typeof CardView>[0]>
 type Props = CardViewProps
 module CardPreset {
   export const Normal: Props = {
-    swiperOptions: {
+    swiperProps: {
       rewind: true,
       breakpoints: {
         0: {
@@ -74,7 +74,7 @@ module CardPreset {
         content: cntl`-mr-5 xs:-mr-7 sm:mr-0`,
       },
     },
-    swiperOptions: {
+    swiperProps: {
       rewind: true,
       breakpoints: {
         0: {

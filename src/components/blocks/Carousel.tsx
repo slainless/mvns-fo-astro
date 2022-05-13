@@ -10,7 +10,6 @@ import './Carousel.styl'
 
 type CommonProps = Parameters<typeof Swiper>[0] & {
   id: string
-  options?: SwiperOptions
   styleOverrides?: {
     buttons?: {
       style?: string
@@ -20,16 +19,9 @@ type CommonProps = Parameters<typeof Swiper>[0] & {
   }
 }
 export const Common: FunctionComponent<CommonProps> = (props) => {
-  const {
-    children,
-    className: cls,
-    id,
-    options,
-    styleOverrides,
-    ...rest
-  } = props
+  const { children, className: cls, id, styleOverrides, ...rest } = props
 
-  const mergedOptions: SwiperOptions = {
+  const defaultOptions: SwiperOptions = {
     direction: 'horizontal',
     loop: false,
     modules: [Navigation],
@@ -44,7 +36,6 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
     slidesPerGroup: 4,
 
     breakpoints: {},
-    ...options,
   }
 
   return (
@@ -59,7 +50,7 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
       ></div>
       <Swiper
         className={twMerge('swiper w-full rounded-lg', cls)}
-        {...mergedOptions}
+        {...defaultOptions}
         {...rest}
       >
         {children}
