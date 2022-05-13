@@ -22,8 +22,10 @@ export default function Instructor() {
         <div className="flex flex-col sm:flex-row gap-x-10 gap-y-5 items-center">
           <Avatar.Root
             className={twMerge(
-              'w-32 sm:w-20 rounded-full overflow-hidden',
-              !isBrowser || loading ? 'skeleton-zinc !rounded-full h-20' : ''
+              'w-32 sm:w-20 h-32 sm:h-20 rounded-full overflow-hidden',
+              !isBrowser || loading
+                ? 'skeleton-zinc-dark !rounded-full h-20'
+                : ''
             )}
           >
             <Avatar.Image
@@ -37,7 +39,7 @@ export default function Instructor() {
               id="author"
               className={twMerge(
                 "text-2xl font-bold before:font-normal sm:before:content-['Meet_your_host,_']",
-                !isBrowser || loading ? 'skeleton-zinc h-8 w-72' : ''
+                !isBrowser || loading ? 'skeleton-zinc-dark h-8 w-72' : ''
               )}
             >
               {course?.instructor_user.firstname}{' '}
@@ -47,7 +49,7 @@ export default function Instructor() {
               id="join-since"
               className={twMerge(
                 'text-neutral-400 text-sm',
-                !isBrowser || loading ? 'skeleton-zinc h-5 w-64' : ''
+                !isBrowser || loading ? 'skeleton-zinc-dark h-5 w-64' : ''
               )}
             >
               Hosted on Mavensdotlive since{' '}

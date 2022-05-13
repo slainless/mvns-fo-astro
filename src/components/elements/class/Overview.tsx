@@ -72,7 +72,7 @@ export default function Overview() {
         id="overview-thumbnail"
         className={twMerge(
           ThumbnailStyle,
-          !isBrowser || loading ? 'skeleton-zinc lg:h-[24rem]' : ''
+          !isBrowser || loading ? 'skeleton-zinc-dark lg:h-[24rem]' : ''
         )}
         style={{
           backgroundImage: `url('${course?.image}')`,
@@ -85,7 +85,7 @@ export default function Overview() {
               id="overview-title"
               className={twMerge(
                 !isBrowser || loading
-                  ? 'h-10 w-96 skeleton-zinc'
+                  ? 'h-10 w-96 skeleton-zinc-dark'
                   : 'font-bold text-3xl sm:text-4xl xl:text-4xl'
               )}
             >
@@ -100,7 +100,7 @@ export default function Overview() {
               id="overview-author"
               className={twMerge(
                 !isBrowser || loading
-                  ? 'h-8 w-64 skeleton-zinc'
+                  ? 'h-8 w-64 skeleton-zinc-dark'
                   : 'font-heading text-xl sm:text-2xl'
               )}
             >
@@ -112,7 +112,9 @@ export default function Overview() {
               id="overview-description"
               className={twMerge(
                 'line-clamp-3',
-                !isBrowser || loading ? 'h-20 block w-96 skeleton-zinc' : ''
+                !isBrowser || loading
+                  ? 'h-20 block w-96 skeleton-zinc-dark'
+                  : ''
               )}
             >
               {course?.description}
@@ -134,7 +136,7 @@ export default function Overview() {
             id="overview-pricing"
             className={twMerge(
               !isBrowser || loading
-                ? 'h-20 w-80 inline-block skeleton-zinc'
+                ? 'h-20 w-80 inline-block skeleton-zinc-dark'
                 : 'rounded-md border-[1px] border-white/10 py-5 px-10 flex flex-row gap-5 items-center'
             )}
           >

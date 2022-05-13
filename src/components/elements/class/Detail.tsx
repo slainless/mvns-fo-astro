@@ -60,7 +60,7 @@ export default function Detail() {
               container: twMerge(
                 'mb-1',
                 !isBrowser || loading
-                  ? cntl`w-20 h-6 skeleton-zinc`
+                  ? cntl`w-20 h-6 skeleton-zinc-dark`
                   : cntl`text-xl gap-3`
               ),
               text: cntl`text-sm uppercase tracking-widest`,
@@ -72,7 +72,7 @@ export default function Detail() {
           <h1
             className={twMerge(
               !isBrowser || loading
-                ? 'h-10 w-96 skeleton-zinc'
+                ? 'h-10 w-96 skeleton-zinc-dark'
                 : 'text-3xl sm:text-4xl font-bold'
             )}
           >
@@ -91,7 +91,7 @@ export default function Detail() {
                   } !text-xl`,
                   text: twMerge(
                     !isBrowser || loading
-                      ? cntl`h-6 w-12 skeleton-zinc`
+                      ? cntl`h-6 w-12 skeleton-zinc-dark`
                       : cntl`text-base font-bold`
                   ),
                 }}
@@ -103,7 +103,9 @@ export default function Detail() {
                 icon="schedule"
                 styleOverrides={{
                   text:
-                    !isBrowser || loading ? cntl`h-6 w-24 skeleton-zinc` : '',
+                    !isBrowser || loading
+                      ? cntl`h-6 w-24 skeleton-zinc-dark`
+                      : '',
                 }}
               >
                 1 Lectures (2 hours)
@@ -113,7 +115,9 @@ export default function Detail() {
                 icon="work_outline"
                 styleOverrides={{
                   text:
-                    !isBrowser || loading ? cntl`h-6 w-24 skeleton-zinc` : '',
+                    !isBrowser || loading
+                      ? cntl`h-6 w-24 skeleton-zinc-dark`
+                      : '',
                 }}
               >
                 {course?.category}
@@ -131,7 +135,7 @@ export default function Detail() {
                 <div
                   className={twMerge(
                     'w-full h-full',
-                    !isBrowser || loading ? 'skeleton-zinc' : ''
+                    !isBrowser || loading ? 'skeleton-zinc-dark' : ''
                   )}
                 >
                   <iframe
@@ -157,7 +161,7 @@ export default function Detail() {
                 {(() => {
                   const MediaActionStyle = twMerge(
                     cntl`py-3 px-5 w-full bg-zinc-900 text-left rounded-md flex items-center gap-2 leading-none`,
-                    !isBrowser || loading ? cntl`skeleton-zinc h-12` : ''
+                    !isBrowser || loading ? cntl`skeleton-zinc-dark h-12` : ''
                   )
                   const IconStyle = cntl`material-icons text-white p-1 bg-red-600 rounded-md inline-flex items-center justify-center`
 
@@ -186,7 +190,7 @@ export default function Detail() {
                 id="class-lessons"
                 className={twMerge(
                   'flex-grow relative overflow-auto rounded-lg w-full md:w-64 h-64 md:h-0 lg:w-80',
-                  !isBrowser || loading ? 'skeleton-zinc' : ''
+                  !isBrowser || loading ? 'skeleton-zinc-dark' : ''
                 )}
               >
                 <div className="h-max max-h-full absolute rounded-lg overflow-auto w-full">

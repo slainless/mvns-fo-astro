@@ -81,7 +81,8 @@ export default function Review() {
                   ? 'text-yellow-500'
                   : 'text-gray-500'
               }`,
-              text: !isBrowser || loading ? cntl`skeleton-zinc h-8 w-40` : '',
+              text:
+                !isBrowser || loading ? cntl`skeleton-zinc-dark h-8 w-40` : '',
             }}
           >
             <span className="font-bold">{course?.avg_rating ?? 0}</span> (

@@ -73,7 +73,7 @@ export default function CardView(props: Props) {
             'after:block after:sm:hidden',
             'after:w-8 after:pointer-events-none after:absolute after:right-0 after:h-full after:top-0 after:z-[1]',
             'after:bg-gradient-to-r after:from-transparent after:to-black',
-            isLoading ? 'skeleton-zinc' : '',
+            isLoading ? 'skeleton-zinc-dark' : '',
             styleOverrides?.swiper?.style
           )}
           {...swiperProps}

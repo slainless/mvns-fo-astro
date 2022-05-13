@@ -23,7 +23,7 @@ export default function Input() {
         <h2
           className={twMerge(
             !isBrowser || loading
-              ? 'h-7 w-64 skeleton-zinc'
+              ? 'h-7 w-64 skeleton-zinc-dark'
               : 'text-xl font-bold'
           )}
         >
