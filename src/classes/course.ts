@@ -9,6 +9,7 @@ import {
 } from 'class-validator'
 import { capitalize } from 'lodash-es'
 import APIResponse from './response'
+import { User } from './user'
 
 export enum CourseType {
   VIDEO = 'video',
@@ -119,6 +120,10 @@ export class Course {
   @ValidateNested() 
   prices: Price[]
 
+  @Type(() => User)
+  @ValidateNested()
+  instructor_user: User
+
   @Type(() => Lesson)
   @ValidateNested()
   lessons: Lesson[]
@@ -133,5 +138,11 @@ export module CourseResponse {
     @ValidateNested()
     @Type(() => Course)
     data: Course[]
+  }
+
+  export class GetOne extends APIResponse.OK {
+    @ValidateNested()
+    @Type(() => Course)
+    data: Course
   }
 }

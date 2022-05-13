@@ -2,6 +2,7 @@ import { Course, CourseQuery, CourseResponse, CourseType } from '@Class/course'
 import { requestJSON } from '@Functions/request'
 import { isEmpty } from 'lodash-es'
 import urlJoin from 'url-join'
+import create from 'zustand'
 import Endpoints from './endpoint'
 
 type Options = {
@@ -62,6 +63,38 @@ module CourseAPI {
       }
     )
   }
+
+  export function detail(id: number | string) {
+    return requestJSON(urlJoin(Endpoints.COURSE_DETAIL, id.toString()), {
+      method: 'get',
+      responseType: {
+        200: CourseResponse.GetOne,
+      },
+    })
+  }
 }
+
+export type CourseStore = {
+  course: Course | null
+  loading: boolean
+  getCourse: (id: string | number) => void
+}
+export const useCourseStore = create<CourseStore>((set, get) => ({
+  course: null,
+  loading: false,
+  getCourse: async (id: string | number) => {
+    if (get().loading == true) return
+
+    set({ loading: true })
+    const { data } = (await CourseAPI.detail(id)) ?? {}
+    set({ loading: false })
+    if (!(data instanceof CourseResponse.GetOne))
+      throw new Error('Response Mismatch')
+    if (!(data.data instanceof Course)) throw new Error('Response Mismatch')
+    return set({
+      course: data.data,
+    })
+  },
+}))
 
 export default CourseAPI
