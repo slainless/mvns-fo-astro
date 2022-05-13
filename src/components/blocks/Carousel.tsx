@@ -42,7 +42,7 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
     <div className="swiper-container relative" id={`carousel-${id}`}>
       <div
         className={twMerge(
-          'swiper-button-prev',
+          'swiper-button-prev swiper-button-lock',
           styleOverrides?.buttons?.style,
           styleOverrides?.buttons?.prev
         )}
@@ -57,7 +57,7 @@ export const Common: FunctionComponent<CommonProps> = (props) => {
       </Swiper>
       <div
         className={twMerge(
-          'swiper-button-next',
+          'swiper-button-next swiper-button-lock',
           styleOverrides?.buttons?.style,
           styleOverrides?.buttons?.next
         )}
