@@ -27,9 +27,9 @@ export default function Featured(props: Props) {
         <div id="featured-container-bg" className="contents">
           <div
             className="absolute inset-0 w-full h-full bg-cover bg-[center_left_-12rem] lg:bg-left rounded-lg"
-            style={{ backgroundImage: `url('/media/featured-image.png')` }}
+            style={{ backgroundImage: `url('/media/class-thumb.png')` }}
           />
-          <div className="absolute inset-0 w-full h-full from-transparent to-black/80 bg-gradient-to-b lg:hidden" />
+          <div className="absolute inset-0 w-full h-full from-black/80 to-transparent bg-gradient-to-t lg:bg-gradient-to-l" />
         </div>
         <div className="w-max p-5 z-10">
           <Favorite
@@ -51,11 +51,11 @@ export default function Featured(props: Props) {
             id="featured-title"
             className="font-heading text-3xl uppercase mt-4 font-bold"
           >
-            Politics: Inclusive Leadership
+            Introduction to Design Thinking
           </h3>
           <Separator className="mt-7 mb-3" />
           <h4 id="featured-subtitle" className="leading-none">
-            Bill Clinton
+            Uwuis Al Qarni
           </h4>
           <div className="flex gap-3 mt-2">
             {/* <Quota filled={8} max={10} suffix="Students" /> */}
