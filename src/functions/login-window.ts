@@ -1,12 +1,14 @@
 import isBrowser from './isBrowser'
 import { plainToInstance } from 'class-transformer'
-import { User } from '@Class/user'
+import { AuthUser } from '@Class/user'
 import { validateSync } from 'class-validator'
 
-export default function openLoginWindow(href: string): Promise<User> | null {
+export default function openLoginWindow(
+  href: string
+): Promise<AuthUser> | null {
   if (!isBrowser) return null
   const loginWindow = open(href, undefined, 'popup')
-  return new Promise<User>((res, rej) => {
+  return new Promise<AuthUser>((res, rej) => {
     function listen(e: MessageEvent<any>) {
       const { origin, data } = e
       if (
@@ -25,7 +27,7 @@ export default function openLoginWindow(href: string): Promise<User> | null {
 
       try {
         const rawUser = JSON.parse(escaped)
-        const user = plainToInstance(User, rawUser)
+        const user = plainToInstance(AuthUser, rawUser)
         const valResult = validateSync(user)
         if (valResult.length > 0) {
           window.removeEventListener('message', listen)

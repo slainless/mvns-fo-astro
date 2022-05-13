@@ -7,13 +7,13 @@ import { Root as Separator } from '@radix-ui/react-separator'
 import cntl from 'cntl'
 import { ColoredGoogle, Google, LinkedIn } from '@Bits/Brand'
 import { useRequest } from 'ahooks'
-import UserAPI, { useUserStore } from '@Api/user'
+import UserAPI, { useAuthUserStore } from '@Api/user'
 import { useForm } from 'react-hook-form'
 import { Common as Icon } from '@Bits/Icon'
 import { twMerge } from './../../functions/tailwind-merge'
 import { isEmpty } from 'lodash-es'
 import APIResponse from '@Class/response'
-import { UserResponse } from '@Class/user'
+import { AuthUserResponse } from '@Class/user'
 import toast from 'react-hot-toast'
 import openLoginWindow from '@Functions/login-window'
 import createDisclosureStore from '@Functions/use-disclosure'
@@ -53,7 +53,7 @@ export default function Login(props: LoginProps) {
   } = useRequest(UserAPI.login, {
     manual: true,
   })
-  const [user, setUser] = useUserStore(
+  const [user, setUser] = useAuthUserStore(
     (state) => [state.user, state.setUser] as const
   )
 
@@ -82,7 +82,7 @@ export default function Login(props: LoginProps) {
       })
       return
     }
-    if (data instanceof UserResponse.Login) {
+    if (data instanceof AuthUserResponse.Login) {
       if (data.success == false) {
         if (data.data == null) {
           setFeedback({

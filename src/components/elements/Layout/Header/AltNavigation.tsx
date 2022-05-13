@@ -6,10 +6,10 @@ import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { Input } from '@Blocks/Form'
 import { Route } from './Routes'
-import { User } from '@Class/user'
+import { AuthUser } from '@Class/user'
 
 type Props = Omit<HTMLAttr<'div'>, 'children'> & {
-  user: User | null
+  user: AuthUser | null
   routes: Route[]
 }
 export default function AltNavigation(props: Props) {

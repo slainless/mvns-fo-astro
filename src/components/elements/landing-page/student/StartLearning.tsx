@@ -4,10 +4,10 @@ import cntl from 'cntl'
 import CardPreset, { CardViewProps } from '@Styles/card'
 import { merge } from 'lodash-es'
 import { twMerge } from 'tailwind-merge'
-import { useUserStore } from '@Api/user'
+import { useAuthUserStore } from '@Api/user'
 
 export default function StartLearning() {
-  const user = useUserStore((state) => state.user)
+  const user = useAuthUserStore((state) => state.user)
   if (user == null) return <></>
 
   const override: CardViewProps = {

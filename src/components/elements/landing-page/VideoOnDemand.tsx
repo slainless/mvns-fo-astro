@@ -3,7 +3,7 @@ import { CardData, Common as Card } from '@Blocks/Card'
 import cntl from 'cntl'
 import CardView from '../CardView'
 import { largeCard as Items } from '@Dev/dummy'
-import { useUserStore } from '@Api/user'
+import { useAuthUserStore } from '@Api/user'
 import CardPreset, { CardViewProps } from '@Styles/card'
 import { twMerge } from 'tailwind-merge'
 import { isEmpty, merge } from 'lodash-es'
@@ -15,7 +15,7 @@ import { nanoid } from 'nanoid'
 import { DateTime } from 'luxon'
 
 export default function VideoOnDemand() {
-  const user = useUserStore((state) => state.user)
+  const user = useAuthUserStore((state) => state.user)
 
   const {
     data: res,

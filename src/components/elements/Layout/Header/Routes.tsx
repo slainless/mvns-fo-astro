@@ -1,6 +1,5 @@
-import { useUserStore } from '@Api/user'
+import { useAuthUserStore } from '@Api/user'
 import { Link } from '@Bits/Button'
-import { User } from '@Class/user'
 import { MouseEventHandler, ReactElement, ReactNode } from 'react'
 import Login from '@Elements/Login'
 import Register from '@Elements/Register'
@@ -14,7 +13,7 @@ export type Route = {
   navigationOverride?: Parameters<typeof Link>[0]
 }
 export default function getRoutes(): Route[] {
-  const [user, removeUser] = useUserStore(
+  const [user, removeUser] = useAuthUserStore(
     (state) => [state.user, state.removeUser] as const
   )
 

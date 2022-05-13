@@ -1,6 +1,6 @@
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-import { UserResponse, User } from '@Class/user'
+import { AuthUserResponse, AuthUser } from '@Class/user'
 import join from 'url-join'
 import { isEmpty } from 'lodash-es'
 import { requestJSON } from '@Functions/request'
@@ -21,7 +21,7 @@ module UserAPI {
         Accept: 'application/json',
       },
       responseType: {
-        200: UserResponse.Login,
+        200: AuthUserResponse.Login,
       },
     })
   }
@@ -50,7 +50,7 @@ module UserAPI {
         Accept: 'application/json',
       },
       responseType: {
-        201: UserResponse.Register,
+        201: AuthUserResponse.Register,
       },
     })
   }
@@ -58,16 +58,16 @@ module UserAPI {
 
 export default UserAPI
 
-export type UserStore = {
-  user: User | null
-  setUser: (user: User) => void
+export type AuthUserStore = {
+  user: AuthUser | null
+  setUser: (user: AuthUser) => void
   removeUser: () => void
 }
-export const useUserStore = create<UserStore>(
+export const useAuthUserStore = create<AuthUserStore>(
   persist(
     (set, get) => ({
       user: null,
-      setUser: (user: User) => set({ user }),
+      setUser: (user: AuthUser) => set({ user }),
       removeUser: () => set({ user: null }),
     }),
     {

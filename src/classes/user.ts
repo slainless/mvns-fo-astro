@@ -33,10 +33,7 @@ export class User {
   roles: Role[]
 
   // other
-  @IsArray() student_interest: any[]
-
-  // credential
-  @IsString() token: string
+  @IsArray() @IsOptional() student_interest: any[]
 
   // optional fields
   @IsString() @IsOptional() email_verified_at?: string
@@ -54,17 +51,22 @@ export class User {
   @IsString() @IsOptional() updated_at?: string
 }
 
-export module UserResponse {
+export class AuthUser extends User {
+  // credential
+  @IsString() token: string
+}
+
+export module AuthUserResponse {
   export class Register extends APIResponse.Created {
     @ValidateNested()
-    @Type(() => User)
-    data: User
+    @Type(() => AuthUser)
+    data: AuthUser
   }
 
   export class Login extends APIResponse.OK {
     @ValidateNested()
     @IsOptional()
-    @Type(() => User)
-    data: User
+    @Type(() => AuthUser)
+    data: AuthUser
   }
 }

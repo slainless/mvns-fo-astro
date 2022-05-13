@@ -1,13 +1,13 @@
 import cntl from 'cntl'
 import CardView from '@Elements/CardView'
 import { largeCard as Items } from '@Dev/dummy'
-import { useUserStore } from '@Api/user'
+import { useAuthUserStore } from '@Api/user'
 import CardPreset, { CardViewProps } from '@Styles/card'
 import { twMerge } from 'tailwind-merge'
 import { merge } from 'lodash-es'
 
 export default function ContinueLearning() {
-  const user = useUserStore((state) => state.user)
+  const user = useAuthUserStore((state) => state.user)
   if (user == null) return <></>
 
   const preset = CardPreset.Large

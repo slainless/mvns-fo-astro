@@ -1,10 +1,10 @@
 import cntl from 'cntl'
 import { Common as Button, Link } from '@Bits/Button'
-import { useUserStore } from '@Api/user'
+import { useAuthUserStore } from '@Api/user'
 import { useRegisterControl } from '@Elements/Register'
 
 export default function Hero() {
-  const user = useUserStore((state) => state.user)
+  const user = useAuthUserStore((state) => state.user)
   const setOpen = useRegisterControl((state) => state.setOpen)
 
   if (user != null) return <></>

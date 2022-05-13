@@ -10,12 +10,12 @@ import { useEffect, useState } from 'react'
 import { CardData } from '@Blocks/Card'
 import { Course, CourseResponse } from '@Class/course'
 import { nanoid } from 'nanoid'
-import { useUserStore } from '@Api/user'
+import { useAuthUserStore } from '@Api/user'
 import { getData } from '@Functions/request'
 import { DateTime } from 'luxon'
 
 export default function Trending() {
-  const user = useUserStore((state) => state.user)
+  const user = useAuthUserStore((state) => state.user)
   const {
     data: res,
     loading,

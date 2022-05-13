@@ -7,11 +7,11 @@ import { Common as Icon } from '@Bits/Icon'
 import { Root as Separator } from '@radix-ui/react-separator'
 import { ColoredGoogle, Google, LinkedIn } from '@Bits/Brand'
 import cntl from 'cntl'
-import UserAPI, { useUserStore } from '@Api/user'
+import UserAPI, { useAuthUserStore } from '@Api/user'
 import { useRequest } from 'ahooks'
 import { useForm } from 'react-hook-form'
 import APIResponse from '@Class/response'
-import { UserResponse } from '@Class/user'
+import { AuthUserResponse } from '@Class/user'
 import toast from 'react-hot-toast'
 import { twMerge } from 'tailwind-merge'
 import { isEmpty } from 'lodash-es'
@@ -67,7 +67,7 @@ export default function Register(props: RegisterProps) {
     setFeedback(null)
     run(data)
   }
-  const [user, setUser] = useUserStore(
+  const [user, setUser] = useAuthUserStore(
     (state) => [state.user, state.setUser] as const
   )
 
@@ -92,7 +92,7 @@ export default function Register(props: RegisterProps) {
       return
     }
 
-    if (data instanceof UserResponse.Register) {
+    if (data instanceof AuthUserResponse.Register) {
       // setFeedback({
       //   type: 'ok',
       //   message: 'Register success!',

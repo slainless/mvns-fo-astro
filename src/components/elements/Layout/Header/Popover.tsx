@@ -5,12 +5,12 @@ import { mergeClass } from '@Functions/jsx-helper'
 // import { createPopper } from '@popperjs/core'
 import cntl from 'cntl'
 // import { Role, User } from '@Api/user'
-import { User } from '@Class/user'
+import { AuthUser } from '@Class/user'
 import { createSingleton } from '@Functions/jsx-factory'
 import { Route } from './Routes'
 import { twMerge } from 'tailwind-merge'
 
-type Props = { user: User; routes: Route[] }
+type Props = { user: AuthUser; routes: Route[] }
 export default function MenuPopover(props: Props) {
   const { user, routes } = props
 

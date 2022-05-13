@@ -1,6 +1,6 @@
-import { User } from '@Class/user'
+import { AuthUser } from '@Class/user'
 import { useEffect } from 'react'
-import { useUserStore } from './user'
+import { useAuthUserStore } from './user'
 
 type ReduxStore = {
   _persist: {
@@ -8,7 +8,7 @@ type ReduxStore = {
     rehydrated: boolean
   }
   accessToken: string | null
-  user: User | null
+  user: AuthUser | null
 }
 
 type PersistedReduxStore = {
@@ -17,7 +17,7 @@ type PersistedReduxStore = {
     : ReduxStore[k]
 }
 export default function PersistAdaptor() {
-  const user = useUserStore((state) => state.user)
+  const user = useAuthUserStore((state) => state.user)
 
   useEffect(() => {
     const storage = window.localStorage

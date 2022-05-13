@@ -3,7 +3,7 @@ import { ClassConstructor, plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
 import { isArray, isEmpty } from 'lodash-es'
 import ky, { HTTPError, Options } from 'ky'
-import { useUserStore } from '@Api/user'
+import { useAuthUserStore } from '@Api/user'
 
 type ClassOf<T extends Record<any, any>> = {
   [k in keyof T]: InstanceType<T[k]>
@@ -48,7 +48,7 @@ export async function requestJSON<
       headers: {
         Authorization: (() => {
           if (!useAuth) return undefined
-          const token = useUserStore.getState().user?.token
+          const token = useAuthUserStore.getState().user?.token
           if (isEmpty(token)) return undefined
           return `Bearer ${token}`
         })(),

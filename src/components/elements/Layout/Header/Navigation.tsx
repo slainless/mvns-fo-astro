@@ -7,7 +7,7 @@ import cntl from 'cntl'
 import { twMerge } from 'tailwind-merge'
 import Login from '@Elements/Login'
 import Register from '@Elements/Register'
-import { User } from '@Class/user'
+import { AuthUser } from '@Class/user'
 import { Route } from './Routes'
 
 const LinkStyle = cntl`
@@ -16,7 +16,7 @@ const LinkStyle = cntl`
 `
 
 type Props = Omit<HTMLAttr<'nav'>, 'children'> & {
-  user: User | null
+  user: AuthUser | null
   routes: Route[]
 }
 export default function Navigation(props: Props) {
