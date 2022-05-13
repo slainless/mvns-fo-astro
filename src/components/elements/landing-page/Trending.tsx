@@ -21,7 +21,6 @@ export default function Trending() {
     loading,
     error,
   } = useRequest(CourseAPI.trending, {
-    defaultParams: [{}, user?.id],
     refreshDeps: [user],
   })
   const [display, setDisplay] = useState<CardData[]>([])
@@ -50,15 +49,14 @@ export default function Trending() {
           subtitle: item.subtitle,
           href: `/class/detail?id=${item.id}`,
           badges: [item.type, item.category],
-          bgImg:
-            isEmpty(item.image) || item.image.startsWith('http://localhost')
-              ? `https://picsum.photos/800?rand=${nanoid(10)}`
-              : item.image,
+          bgImg: item.image,
           favorite: item.is_whislist,
           price: item.prices[0]?.price.toString(),
-          date: DateTime.fromISO(item?.course_datetime ?? '').toLocaleString(
-            DateTime.DATE_FULL
-          ),
+          date: isEmpty(item.course_datetime)
+            ? undefined
+            : DateTime.fromISO(item?.course_datetime ?? '').toLocaleString(
+                DateTime.DATE_FULL
+              ),
           level: item.difficulty,
         })
       }
