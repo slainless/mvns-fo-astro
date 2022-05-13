@@ -1,8 +1,11 @@
+import { useCourseStore } from '@Api/course'
 import Section from '@Blocks/Section'
 import * as Avatar from '@radix-ui/react-avatar'
 import cntl from 'cntl'
+import { DateTime } from 'luxon'
 
 export default function Instructor() {
+  const course = useCourseStore((state) => state.course)
   return (
     <Section.Container id="the-instructor">
       <Section.Title id="the-instructor-title" className="lg:text-3xl">
@@ -22,20 +25,19 @@ export default function Instructor() {
               id="author"
               className="text-2xl font-bold before:font-normal sm:before:content-['Meet_your_host,_'] text-center"
             >
-              Uwuis Zainal
+              {course?.instructor_user.firstname}{' '}
+              {course?.instructor_user.lastname}
             </span>
             <span id="join-since" className="text-neutral-400 text-sm">
-              Hosted on Mavensdotlive since 2019
+              Hosted on Mavensdotlive since{' '}
+              {DateTime.fromISO(course?.instructor_user.created_at ?? '').year}
             </span>
           </div>
         </div>
         <div className="prose prose-invert">
           <p id="author-summary">
-            Pg Muhd Uwuis Al Qarni is a certified Professional Scrum Master,
-            Product Owner and a Business Coach with his vast experience mainly
-            in Software Development Projects. He is keen to support the
-            community in coaching startups with their product designs and
-            business model.
+            {/* @ts-expect-error */}
+            {course?.instructor_user['description']}
           </p>
         </div>
       </Section.Content>

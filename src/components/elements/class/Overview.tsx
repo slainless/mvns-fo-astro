@@ -3,6 +3,7 @@ import { Root as Separator } from '@radix-ui/react-separator'
 import { Common as Button } from '@Bits/Button'
 import Share from '@Elements/Share'
 import { forwardRef, Ref } from 'react'
+import { useCourseStore } from '@Api/course'
 
 type ActionProps = HTMLAttr<'a'> & {
   icon: string
@@ -51,35 +52,35 @@ const DetailStyle = cntl`
   items-center flex flex-col text-center 
   w-full lg:w-5/12
   order-2
-`
-
-const TitleStyle = cntl`
-  font-bold text-3xl sm:text-4xl xl:text-5xl
+  py-4
 `
 
 export default function Overview() {
+  const course = useCourseStore((state) => state.course)
+
   return (
     <section id="overview" className={SectionStyle}>
       <div id="overview-thumbnail" className={ThumbnailStyle} />
       <div id="overview-detail" className={DetailStyle}>
         <div className="flex flex-col items-center gap-3 max-w-sm xl:max-w-md  px-5 xs:px-7 sm:px-5">
           <div className="max-w-sm flex flex-col gap-3 items-center ">
-            <h1 id="overview-title" className={TitleStyle}>
-              Introduction to Design Thinking
+            <h1
+              id="overview-title"
+              className="font-bold text-3xl sm:text-4xl xl:text-4xl"
+            >
+              {course?.title}
             </h1>
             <Separator className="w-4 h-1 bg-white" />
             <h2
               id="overview-author"
               className="font-heading text-xl sm:text-2xl"
             >
-              Uwais Zainal
+              {`${course?.instructor_user.firstname} ${course?.instructor_user.lastname}`}
             </h2>
           </div>
           <div className="prose prose-invert mt-5">
-            <p id="overview-description">
-              Design thinking is a non-linear, iterative process that teams use
-              to understand users, challenge assumptions, redefine problems and
-              create innovative solutions to prototype and test.
+            <p id="overview-description" className="line-clamp-3">
+              {course?.description}
             </p>
           </div>
           <div id="overview-actions" className="flex flex-row gap-10 my-8">
@@ -94,7 +95,10 @@ export default function Overview() {
             className="rounded-md border-[1px] border-white/10 py-5 px-10 flex flex-row gap-5 items-center"
           >
             <div id="overview-price">
-              Prices: <span className="text-red-500 font-bold">$35.00</span>
+              Prices:{' '}
+              <span className="text-red-500 font-bold">
+                ${course?.prices[0]?.price}
+              </span>
             </div>
             <Button
               id="overview-cart"

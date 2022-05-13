@@ -6,9 +6,11 @@ import Detail from '@Elements/class/Detail.tsx'
 import Instructor from '@Elements/class/Instructor.tsx'
 import Review from '@Elements/class/Review.tsx'
 import Suggestion from '@Elements/class/Suggestion.tsx'
+import GetCourse from '@Elements/class/GetCourse.tsx'
 ---
 
 <Home title="Class Detail" class="lg:gap-12 pt-0 md:pt-0 lg:pt-5">
+  <GetCourse client:load />
   <Overview client:load />
   <div class="flex flex-col gap-12">
     <Navigation

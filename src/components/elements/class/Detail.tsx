@@ -4,6 +4,7 @@ import cntl from 'cntl'
 import { twMerge } from 'tailwind-merge'
 import { useEffect } from 'react'
 import { Root as AspectRatio } from '@radix-ui/react-aspect-ratio'
+import { useCourseStore } from '@Api/course'
 
 type ClassInfoProps = Parameters<typeof Info>[0]
 function ClassInfo(props: ClassInfoProps) {
@@ -24,6 +25,7 @@ function ClassInfo(props: ClassInfoProps) {
 }
 
 export default function Detail() {
+  const course = useCourseStore((state) => state.course)
   useEffect(() => {
     // // @ts-ignore
     // const videoPlayer = videojs('class-video', {
@@ -54,29 +56,31 @@ export default function Detail() {
               text: cntl`text-sm uppercase tracking-widest`,
             }}
           >
-            Online Class
+            {course?.type}
           </Info>
 
-          <h1 className="text-3xl sm:text-4xl font-bold">
-            Introduction to Design Thinking
-          </h1>
+          <h1 className="text-3xl sm:text-4xl font-bold">{course?.title}</h1>
           <div className="mt-5 items-center flex flex-row justify-between">
             <div className="flex flex-col sm:flex-row gap-x-2">
               <ClassInfo
                 id="class-rating"
                 icon="star"
                 styleOverrides={{
-                  icon: cntl`text-yellow-500 !text-xl`,
+                  icon: cntl`${
+                    (course?.avg_rating ?? 0) > 0
+                      ? 'text-yellow-500'
+                      : 'text-gray-500'
+                  } !text-xl`,
                   text: cntl`text-base font-bold`,
                 }}
               >
-                4.8 (31)
+                {course?.avg_rating ?? 0} ({course?.total_rating ?? 0})
               </ClassInfo>
               <ClassInfo id="class-duration" icon="schedule">
                 1 Lectures (2 hours)
               </ClassInfo>
               <ClassInfo id="class-category" icon="work_outline">
-                Business
+                {course?.category}
               </ClassInfo>
             </div>
           </div>
@@ -130,24 +134,14 @@ export default function Detail() {
                 id="class-lessons"
                 className="flex-grow relative overflow-auto rounded-lg w-full md:w-64 h-64 md:h-0 lg:w-80"
               >
-                <div className="h-full absolute rounded-lg overflow-auto w-full">
+                <div className="h-max max-h-full absolute rounded-lg overflow-auto w-full">
                   <ol className="list-decimal list-inside flex flex-col">
-                    {[
-                      'Meet Your Instructor',
-                      'Your First Steps',
-                      'Starting Line',
-                      'Goal Settings',
-                      "Balancing the Runner's Mind",
-                      'Running Equipment and Environment',
-                      'This is a Placeholder',
-                      'This is a Placeholder',
-                      'This is a Placeholder',
-                    ].map((item, index) => (
+                    {course?.lessons.map((item, index) => (
                       <li
-                        key={item + index}
+                        key={item.id + '' + index}
                         className="py-3 bg-zinc-900 px-5 border-b-[1px] border-zinc-800 last:border-0"
                       >
-                        {item}
+                        {item.title}
                       </li>
                     ))}
                   </ol>
@@ -155,11 +149,11 @@ export default function Detail() {
               </div>
             </div>
           </div>
-          <article id="class-desc" className="prose prose-invert">
+          {/* <article id="class-desc" className="prose prose-invert">
             <h2 className="font-bold text-xl">
               Learn to Make Human-centric Designs
             </h2>
-            {/* <p>
+            <p>
               How do you make the best version of your idea? While there is no
               single answer for a major question – one of the best ways to start
               is to have some clarity on its main purpose, its user and how to
@@ -167,7 +161,7 @@ export default function Detail() {
               trials and errors and immense research. This whole process is
               called ‘Design Thinking’ – all aimed to have your idea provide the
               best experience and outcome for your user.
-            </p> */}
+            </p>
             <p>
               Instructing you in this concept is Uwuis Zainal, who will be
               sharing insight on how to design Human Centric Product and Human
@@ -175,7 +169,7 @@ export default function Detail() {
               some good understanding how to develop a good product that fits
               for purpose.
             </p>
-          </article>
+          </article> */}
         </main>
       </Section.Content>
     </Section.Container>

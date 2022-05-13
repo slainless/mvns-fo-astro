@@ -3,6 +3,7 @@ import { Common as Info } from '@Bits/Info'
 import * as Avatar from '@radix-ui/react-avatar'
 import cntl from 'cntl'
 import { Common as Button, Icon } from '@Bits/Button'
+import { useCourseStore } from '@Api/course'
 
 const template = Array(6)
   .fill(0)
@@ -57,6 +58,7 @@ function ReviewItem(props: ReviewItemProps) {
 }
 
 export default function Review() {
+  const course = useCourseStore((state) => state.course)
   return (
     <Section.Container id="the-review">
       <Section.Title id="the-review-title" className="lg:text-3xl">
@@ -68,10 +70,18 @@ export default function Review() {
             icon="star"
             className="text-xl sm:text-2xl"
             styleOverrides={{
-              icon: cntl`text-yellow-500`,
+              icon: cntl`${
+                course?.avg_rating ?? 0 > 0
+                  ? 'text-yellow-500'
+                  : 'text-gray-500'
+              }`,
             }}
           >
-            <span className="font-bold">4.8</span> (31 Reviews)
+            <span className="font-bold">{course?.avg_rating ?? 0}</span> (
+            {course?.total_rating ?? 0 > 0
+              ? course?.total_rating + ' Reviews'
+              : `No review yet`}
+            )
           </Info>
           {/* <a className="underline">See all reviews</a> */}
         </div>
@@ -79,16 +89,16 @@ export default function Review() {
           id="review"
           className="flex flex-col sm:grid grid-cols-2 gap-y-10 sm:gap-x-14 md:gap-x-20 lg:gap-x-32"
         >
-          {template.map((item, key) => (
-            <ReviewItem key={item.user + key} {...item}></ReviewItem>
-          ))}
+          {/* {course?.reviews.map((item, key) => (
+            <ReviewItem key={item + key} {...item}></ReviewItem>
+          ))} */}
         </div>
-        <Button
+        {/* <Button
           as="a"
           className="w-max border-transparent bg-transparent text-white hover:border-white"
         >
           Load More
-        </Button>
+        </Button> */}
       </Section.Content>
     </Section.Container>
   )
