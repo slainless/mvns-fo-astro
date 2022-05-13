@@ -10,6 +10,8 @@ const Endpoints = {
 
   STUDENT_REGISTER: make('register/student'),
 
+  SEARCH: make('search'),
+
   COURSE_ALL: make('courses'),
   COURSE_TRENDING: make('courses/trending'),
   COURSE_OF_TYPE: make('courses/type'),
