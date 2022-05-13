@@ -10,7 +10,7 @@ export default function ContinueLearning() {
   const user = useAuthUserStore((state) => state.user)
   if (user == null) return <></>
 
-  const preset = CardPreset.Large
+  const preset = CardPreset.Normal
   const override: CardViewProps = {
     styleOverrides: {
       section: {
