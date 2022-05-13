@@ -4,6 +4,9 @@ import * as Avatar from '@radix-ui/react-avatar'
 import cntl from 'cntl'
 import { Common as Button, Icon } from '@Bits/Button'
 import { useCourseStore } from '@Api/course'
+import shallow from 'zustand/shallow'
+import { twMerge } from 'tailwind-merge'
+import isBrowser from '@Functions/isBrowser'
 
 const template = Array(6)
   .fill(0)
@@ -58,7 +61,10 @@ function ReviewItem(props: ReviewItemProps) {
 }
 
 export default function Review() {
-  const course = useCourseStore((state) => state.course)
+  const [course, loading] = useCourseStore(
+    (state) => [state.course, state.loading],
+    shallow
+  )
   return (
     <Section.Container id="the-review">
       <Section.Title id="the-review-title" className="lg:text-3xl">
@@ -68,13 +74,14 @@ export default function Review() {
         <div id="review-info" className="flex flex-row self-start gap-5">
           <Info
             icon="star"
-            className="text-xl sm:text-2xl"
+            className={twMerge('text-xl sm:text-2xl')}
             styleOverrides={{
               icon: cntl`${
                 course?.avg_rating ?? 0 > 0
                   ? 'text-yellow-500'
                   : 'text-gray-500'
               }`,
+              text: !isBrowser || loading ? cntl`skeleton-zinc h-8 w-40` : '',
             }}
           >
             <span className="font-bold">{course?.avg_rating ?? 0}</span> (

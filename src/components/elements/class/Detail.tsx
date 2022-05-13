@@ -5,6 +5,8 @@ import { twMerge } from 'tailwind-merge'
 import { useEffect } from 'react'
 import { Root as AspectRatio } from '@radix-ui/react-aspect-ratio'
 import { useCourseStore } from '@Api/course'
+import isBrowser from '@Functions/isBrowser'
+import shallow from 'zustand/shallow'
 
 type ClassInfoProps = Parameters<typeof Info>[0]
 function ClassInfo(props: ClassInfoProps) {
@@ -25,7 +27,10 @@ function ClassInfo(props: ClassInfoProps) {
 }
 
 export default function Detail() {
-  const course = useCourseStore((state) => state.course)
+  const [course, loading] = useCourseStore(
+    (state) => [state.course, state.loading],
+    shallow
+  )
   useEffect(() => {
     // // @ts-ignore
     // const videoPlayer = videojs('class-video', {
@@ -52,14 +57,27 @@ export default function Detail() {
             id="class-type"
             icon="contactless"
             styleOverrides={{
-              container: cntl`text-xl gap-3`,
+              container: twMerge(
+                'mb-1',
+                !isBrowser || loading
+                  ? cntl`w-20 h-6 skeleton-zinc`
+                  : cntl`text-xl gap-3`
+              ),
               text: cntl`text-sm uppercase tracking-widest`,
             }}
           >
             {course?.type}
           </Info>
 
-          <h1 className="text-3xl sm:text-4xl font-bold">{course?.title}</h1>
+          <h1
+            className={twMerge(
+              !isBrowser || loading
+                ? 'h-10 w-96 skeleton-zinc'
+                : 'text-3xl sm:text-4xl font-bold'
+            )}
+          >
+            {course?.title}
+          </h1>
           <div className="mt-5 items-center flex flex-row justify-between">
             <div className="flex flex-col sm:flex-row gap-x-2">
               <ClassInfo
@@ -71,15 +89,33 @@ export default function Detail() {
                       ? 'text-yellow-500'
                       : 'text-gray-500'
                   } !text-xl`,
-                  text: cntl`text-base font-bold`,
+                  text: twMerge(
+                    !isBrowser || loading
+                      ? cntl`h-6 w-12 skeleton-zinc`
+                      : cntl`text-base font-bold`
+                  ),
                 }}
               >
                 {course?.avg_rating ?? 0} ({course?.total_rating ?? 0})
               </ClassInfo>
-              <ClassInfo id="class-duration" icon="schedule">
+              <ClassInfo
+                id="class-duration"
+                icon="schedule"
+                styleOverrides={{
+                  text:
+                    !isBrowser || loading ? cntl`h-6 w-24 skeleton-zinc` : '',
+                }}
+              >
                 1 Lectures (2 hours)
               </ClassInfo>
-              <ClassInfo id="class-category" icon="work_outline">
+              <ClassInfo
+                id="class-category"
+                icon="work_outline"
+                styleOverrides={{
+                  text:
+                    !isBrowser || loading ? cntl`h-6 w-24 skeleton-zinc` : '',
+                }}
+              >
                 {course?.category}
               </ClassInfo>
             </div>
@@ -92,15 +128,22 @@ export default function Detail() {
           >
             <div id="class-player">
               <AspectRatio ratio={16 / 9}>
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/oTKXv191tYU"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <div
+                  className={twMerge(
+                    'w-full h-full',
+                    !isBrowser || loading ? 'skeleton-zinc' : ''
+                  )}
+                >
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/oTKXv191tYU"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </AspectRatio>
             </div>
             <div
@@ -112,16 +155,25 @@ export default function Detail() {
                 className="grid grid-cols-2 lg:flex flex-col gap-2"
               >
                 {(() => {
-                  const MediaActionStyle = cntl`py-3 px-5 w-full bg-zinc-900 text-left rounded-md flex items-center gap-2 leading-none`
+                  const MediaActionStyle = twMerge(
+                    cntl`py-3 px-5 w-full bg-zinc-900 text-left rounded-md flex items-center gap-2 leading-none`,
+                    !isBrowser || loading ? cntl`skeleton-zinc h-12` : ''
+                  )
                   const IconStyle = cntl`material-icons text-white p-1 bg-red-600 rounded-md inline-flex items-center justify-center`
 
                   return (
                     <>
-                      <button className={MediaActionStyle}>
+                      <button
+                        disabled={!isBrowser || loading}
+                        className={MediaActionStyle}
+                      >
                         <span className={IconStyle}>play_arrow</span>{' '}
                         <span>Video</span>
                       </button>
-                      <button className={MediaActionStyle}>
+                      <button
+                        disabled={!isBrowser || loading}
+                        className={MediaActionStyle}
+                      >
                         <span className={IconStyle}>collections</span>{' '}
                         <span>Gallery</span>
                       </button>
@@ -132,7 +184,10 @@ export default function Detail() {
               <h4>Lessons</h4>
               <div
                 id="class-lessons"
-                className="flex-grow relative overflow-auto rounded-lg w-full md:w-64 h-64 md:h-0 lg:w-80"
+                className={twMerge(
+                  'flex-grow relative overflow-auto rounded-lg w-full md:w-64 h-64 md:h-0 lg:w-80',
+                  !isBrowser || loading ? 'skeleton-zinc' : ''
+                )}
               >
                 <div className="h-max max-h-full absolute rounded-lg overflow-auto w-full">
                   <ol className="list-decimal list-inside flex flex-col">
