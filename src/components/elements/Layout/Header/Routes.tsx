@@ -4,6 +4,7 @@ import { MouseEventHandler, ReactElement, ReactNode } from 'react'
 import Login from '@Elements/Login'
 import Register from '@Elements/Register'
 import toast from 'react-hot-toast'
+import shallow from 'zustand/shallow'
 
 export type Route = {
   display: string
@@ -14,7 +15,8 @@ export type Route = {
 }
 export default function getRoutes(): Route[] {
   const [user, removeUser] = useAuthUserStore(
-    (state) => [state.user, state.removeUser] as const
+    (state) => [state.user, state.removeUser] as const,
+    shallow
   )
 
   if (user != null)

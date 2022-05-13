@@ -17,6 +17,7 @@ import { twMerge } from 'tailwind-merge'
 import { isEmpty } from 'lodash-es'
 import openLoginWindow from '@Functions/login-window'
 import createDisclosureStore from '@Functions/use-disclosure'
+import shallow from 'zustand/shallow'
 
 export const useRegisterControl = createDisclosureStore()
 
@@ -68,7 +69,8 @@ export default function Register(props: RegisterProps) {
     run(data)
   }
   const [user, setUser] = useAuthUserStore(
-    (state) => [state.user, state.setUser] as const
+    (state) => [state.user, state.setUser] as const,
+    shallow
   )
 
   useEffect(() => {

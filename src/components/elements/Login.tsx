@@ -17,6 +17,7 @@ import { AuthUserResponse } from '@Class/user'
 import toast from 'react-hot-toast'
 import openLoginWindow from '@Functions/login-window'
 import createDisclosureStore from '@Functions/use-disclosure'
+import shallow from 'zustand/shallow'
 
 export const useLoginControl = createDisclosureStore()
 
@@ -54,7 +55,8 @@ export default function Login(props: LoginProps) {
     manual: true,
   })
   const [user, setUser] = useAuthUserStore(
-    (state) => [state.user, state.setUser] as const
+    (state) => [state.user, state.setUser] as const,
+    shallow
   )
 
   const {
