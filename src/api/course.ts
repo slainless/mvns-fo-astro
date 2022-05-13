@@ -15,6 +15,7 @@ module CourseAPI {
   export function all(options?: Pick<Options, 'page'>) {
     const { page } = options ?? {}
     return requestJSON(urlJoin(Endpoints.COURSE_ALL, `?page=${page}`), {
+      useAuth: true,
       method: 'get',
       responseType: {
         200: CourseResponse.Get,
@@ -30,6 +31,7 @@ module CourseAPI {
         isEmpty(limit) ? '' : `?limit=${limit ?? 10}`
       ),
       {
+        useAuth: true,
         method: 'get',
         responseType: {
           200: CourseResponse.Get,
@@ -56,6 +58,7 @@ module CourseAPI {
         isEmpty(limit) ? '' : `&limit=${limit ?? 10}`
       ),
       {
+        useAuth: true,
         method: 'get',
         responseType: {
           200: CourseResponse.Get,
