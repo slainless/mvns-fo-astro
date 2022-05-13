@@ -1,16 +1,33 @@
+import { useSearchStore } from '@Api/search'
 import Section from '@Blocks/Section'
 import isBrowser from '@Functions/isBrowser'
+import { twMerge } from 'tailwind-merge'
+import shallow from 'zustand/shallow'
 
 export default function Input() {
+  const [result, loading] = useSearchStore(
+    (state) => [state.result, state.loading],
+    shallow
+  )
   const query = isBrowser
     ? new URLSearchParams(window.location.search).get('q')
     : '...'
+  const length =
+    (result?.blogs.length ?? 0) +
+    (result?.courses.length ?? 0) +
+    (result?.instructor.length ?? 0)
   return (
     <Section.Container id="input-container">
       <Section.Content className="flex flex-col gap-2">
         <h1 className="text-4xl font-bold">Search</h1>
-        <h2 className="text-xl font-bold">
-          30 <span className="font-normal">search results for</span> "
+        <h2
+          className={twMerge(
+            !isBrowser || loading
+              ? 'h-7 w-64 skeleton-zinc'
+              : 'text-xl font-bold'
+          )}
+        >
+          {length} <span className="font-normal">search results for</span> "
           {query ?? '...'}"
         </h2>
         {/* <div className="flex gap-3">
