@@ -30,9 +30,11 @@ export default function Instructor() {
           >
             <Avatar.Image
               className={twMerge('w-full h-full object-cover')}
-              src="/media/avatar (2).png"
+              // src="/media/avatar (2).png"
             />
-            <Avatar.Fallback />
+            <Avatar.Fallback className="w-full h-full flex items-center justify-center text-xl rounded-full bg-zinc-800">
+              AU
+            </Avatar.Fallback>
           </Avatar.Root>
           <div id="authorship" className="flex flex-col gap-1 sm:gap-2">
             <span
