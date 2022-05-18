@@ -1,8 +1,9 @@
 ---
 import Home from '@Layouts/Home.astro'
 import View from '@Elements/first-time/View.tsx'
+import Categories from '@Static/categories.ts'
 ---
 
 <Home title="First Time">
-  <View client:load />
+  <View categories={Categories} client:load />
 </Home>

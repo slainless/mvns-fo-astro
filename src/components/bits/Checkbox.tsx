@@ -1,6 +1,6 @@
 import * as Checkbox from '@radix-ui/react-checkbox'
 import cntl from 'cntl'
-import { useState } from 'react'
+import { ElementRef, forwardRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const RootStyle = cntl`
@@ -38,11 +38,13 @@ type Props = Parameters<typeof Checkbox.Root>[0] & {
     indicator?: string
   }
 }
-export function Common(props: Props) {
-  const { icon, className, styleOverrides } = props
+export const Common = forwardRef<ElementRef<'button'>, Props>((props, ref) => {
+  const { icon, className, styleOverrides, ...rest } = props
   return (
     <Checkbox.Root
       className={twMerge(RootStyle, className, styleOverrides?.container)}
+      ref={ref}
+      {...rest}
     >
       <Checkbox.Indicator
         className={twMerge(IndicatorStyle, styleOverrides?.indicator)}
@@ -51,4 +53,4 @@ export function Common(props: Props) {
       </Checkbox.Indicator>
     </Checkbox.Root>
   )
-}
+})
