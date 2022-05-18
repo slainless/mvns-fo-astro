@@ -46,7 +46,7 @@ export default function Footer() {
           title="More"
           links={[
             ['FAQs', '/faq'],
-            ['Terms', '/tos'],
+            ['Terms', '/terms'],
             ['Privacy', '/privacy'],
             ['Blog', '/blog/all'],
             ['Sitemap', '/sitemap'],

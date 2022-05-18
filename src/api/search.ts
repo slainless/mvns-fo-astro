@@ -35,7 +35,6 @@ export const useSearchStore = create<SearchStore>((set, get) => ({
     set({ loading: true })
     const { data } = (await SearchAPI.query(query)) ?? {}
     set({ loading: false })
-    console.log(data)
     if (!(data instanceof SearchResponse.Get))
       throw new Error('Response Mismatch')
     if (!(data.data instanceof SearchResult))

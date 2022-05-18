@@ -66,7 +66,6 @@ export default function Login(props: LoginProps) {
     formState: { errors },
   } = useForm()
   const onSubmit = (data: any) => {
-    console.log(errors)
     setFeedback(null)
     run(data)
   }

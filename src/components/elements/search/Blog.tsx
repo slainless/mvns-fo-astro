@@ -18,7 +18,6 @@ export default function Blog() {
     shallow
   )
   const blogs = result?.blogs
-  console.log(!isBrowser || loading)
   const override: CardViewProps = {
     styleOverrides: {
       section: {

@@ -69,11 +69,12 @@ export class Review {}
 export class Course {
   @IsNumber() id: number
   @IsString() title: string
-  @IsString() description: string
+  @IsString() @IsOptional() description: string
   @IsString() @IsOptional() subtitle: string
-  @IsString() image: string
+  @IsString() @IsOptional() image: string
   @IsString() @IsOptional() trailer: string
-  @IsIn(Object.values(CourseType).map(capitalize)) type: CourseType
+  @IsIn([...Object.values(CourseType).map(capitalize), ...Object.values(CourseType)]) 
+  type: CourseType
 
   @IsString() @IsOptional() slug?: string
   @IsString() @IsOptional() link?: string
@@ -137,12 +138,12 @@ export module CourseResponse {
   export class Get extends APIResponse.OK {
     @ValidateNested()
     @Type(() => Course)
-    data: Course[]
+    declare data: Course[]
   }
 
   export class GetOne extends APIResponse.OK {
     @ValidateNested()
     @Type(() => Course)
-    data: Course
+    declare data: Course
   }
 }
