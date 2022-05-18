@@ -23,6 +23,11 @@ const Endpoints = {
 
   WISH_ADD: make('my/wishlist'),
   WISH_REMOVE: make('my/wishlist/destory'),
+
+  CART_ADD: make('my/cart'),
+  CART_ALL: make('my/cart'),
+  CART_REMOVE: make('my/cart/destroy'),
+
 }
 
 export default Endpoints
