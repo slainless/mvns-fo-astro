@@ -47,6 +47,8 @@ export default function CardView(props: Props) {
     fallbackContent,
     styleOverrides,
   } = props
+  const fallback =
+    !isEmpty(fallbackContent) && classes.length === 0 && !isLoading
   return (
     <Section.Container
       className={twMerge(
@@ -66,9 +68,7 @@ export default function CardView(props: Props) {
         <Swiper
           id={`${id}-swiper`}
           className={twMerge(
-            !isEmpty(fallbackContent) && classes.length === 0 && !isLoading
-              ? 'hidden'
-              : '',
+            fallback ? 'hidden' : '',
             'h-[24rem] xs:h-[28rem]',
             'after:block after:sm:hidden',
             'after:w-8 after:pointer-events-none after:absolute after:right-0 after:h-full after:top-0 after:z-[1]',
@@ -77,7 +77,11 @@ export default function CardView(props: Props) {
             styleOverrides?.swiper?.style
           )}
           {...swiperProps}
-          styleOverrides={styleOverrides?.swiper}
+          styleOverrides={merge(styleOverrides?.swiper, {
+            buttons: {
+              style: fallback ? '!hidden sm:!hidden' : '',
+            },
+          })}
         >
           {isBrowser ? (
             classes.map((item, key) => (
@@ -89,7 +93,7 @@ export default function CardView(props: Props) {
             <></>
           )}
         </Swiper>
-        <div>{!isLoading && classes.length === 0 ? fallbackContent : null}</div>
+        <div>{fallback ? fallbackContent : null}</div>
       </Section.Content>
     </Section.Container>
   )

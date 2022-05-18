@@ -27,7 +27,15 @@ export default function ContinueLearning() {
       {...merge({}, preset, override)}
       id="continue-learning"
       title="Continue Learning"
-      classes={Items}
+      classes={[]}
+      fallbackContent={
+        <div className="flex w-full h-[20rem] rounded-md border-2 border-zinc-900 border-dashed justify-center items-center">
+          <div className="p-4 bg-zinc-900 rounded-md flex items-center flex-col">
+            <span className="font-bold">You have no class yet!</span>
+            To start learning, add a class
+          </div>
+        </div>
+      }
     />
   )
 }
