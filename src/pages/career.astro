@@ -1,0 +1,26 @@
+---
+import Home from '@Layouts/Home.astro'
+import Document from '@Elements/career/Document.md'
+import Hero from '@Elements/career/Hero.tsx'
+import DocumentView from '@Elements/DocumentView.tsx'
+import { Common as Button } from '@Bits/Button'
+import cntl from 'cntl'
+---
+
+<Home title="Career" class="pt-0 lg:pt-5 gap-20">
+  <Hero />
+  <DocumentView
+    styleOverrides={{
+      // container: cntl`items-center gap-10 sm:gap-16 pt-10 flex flex-col`,
+      title: cntl`text-center`,
+    }}
+    client:load
+  >
+    <Document />
+    <Button
+      as="a"
+      className="w-max font-bold !text-black hover:!text-white !no-underline mt-10"
+      >hello@mavens.live</Button
+    >
+  </DocumentView>
+</Home>
