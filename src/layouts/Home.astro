@@ -2,6 +2,7 @@
 import Base from './Base.astro'
 import Header from '@Elements/Layout/Header.tsx'
 import Footer from '@Elements/Layout/Footer.tsx'
+import FirstTimeHandler from '@Elements/FirstTimeHandler.tsx'
 import Ads from '@Blocks/Ads.tsx'
 import PersistAdapter from '@Api/adapter.tsx'
 import { Toaster } from 'react-hot-toast'
@@ -14,6 +15,7 @@ const { title, class: cls, forceWhite } = Astro.props
   {forceWhite}
   class={twMerge('mt-header-sm md:mt-header pt-5', cls)}
 >
+  <FirstTimeHandler client:load />
   <slot name="head" slot="head" />
   <Header slot="pre-main" client:load />
   <slot name="pre-main" slot="pre-main" />
