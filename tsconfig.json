@@ -2,7 +2,8 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "moduleResolution": "node",
-    "module": "ES2020",
+    "module": "ES2022",
+    "target": "ES2022",
     "strict": true,
     "baseUrl": ".",
     "skipLibCheck": true,
@@ -17,6 +18,7 @@
       "@Elements/*": ["src/components/elements/*"],
       "@Functions/*": ["src/functions/*"],
       "@Layouts/*": ["src/layouts/*"],
+      "@Static/*": ["src/static/*"],
       "@Pages/*": ["src/pages/*"],
       "@Styles/*": ["src/styles/*"],
       "@Components/*": ["src/components/*"],
