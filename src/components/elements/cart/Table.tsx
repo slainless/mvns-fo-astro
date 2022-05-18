@@ -2,10 +2,14 @@ import { Icon, Common as Button } from '@Bits/Button'
 import { Input } from '@Blocks/Form'
 import { cartItems } from '@Dev/dummy'
 import { omit } from 'lodash-es'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Column, useTable } from 'react-table'
 import { twMerge } from 'tailwind-merge'
 import cntl from 'cntl'
+import { useRequest } from 'ahooks'
+import CartAPI from '@Api/cart'
+import { CartResponse } from '@Class/cart'
+import toast from 'react-hot-toast'
 
 type Item = {
   product?: {
@@ -15,10 +19,39 @@ type Item = {
   price?: number
   quantity?: number
   subtotal?: number
+  id: number
 }
 
 export default function Table() {
-  const data: Item[] = useMemo(() => cartItems, [])
+  const { data: res, loading, error } = useRequest(CartAPI.get)
+  const [display, setDisplay] = useState<Item[]>([])
+  useEffect(() => {
+    if (res?.data == null) return
+    if (!(res.data instanceof CartResponse.Get)) return
+
+    const items = res.data.data.map((i) => {
+      const price = i.course.prices?.[0].price ?? 0
+      const quantity = i.quantity
+
+      return {
+        id: i.id,
+        price,
+        quantity,
+        subtotal: price * quantity,
+        product: {
+          name: i.course.title,
+          img: i.course.image,
+        },
+      }
+    })
+
+    setDisplay(items)
+  }, [res])
+
+  const total =
+    display.length === 0
+      ? 0
+      : display.map((i) => i.subtotal).reduce((a, b) => (a ?? 0) + (b ?? 0))
 
   const columns: Column<Item>[] = useMemo(
     () => [
@@ -67,6 +100,23 @@ export default function Table() {
         accessor: (row) => (
           <div className="flex flex-row gap-1 w-full justify-center">
             <Icon
+              onClick={() => {
+                toast.promise(
+                  CartAPI.remove(row.id).then((r) => {
+                    if (r.data instanceof CartResponse.Remove) {
+                      return void setDisplay((old) => [
+                        ...old.filter((i) => i.id !== row.id),
+                      ])
+                    }
+                    throw new Error('Response Mismatch')
+                  }),
+                  {
+                    loading: 'Removing item...',
+                    success: 'Item removed from cart!',
+                    error: 'Failed to remove item, probably server error',
+                  }
+                )
+              }}
               icon="close"
               className="transition-colors w-6 h-6 rounded-full flex items-center justify-center text-red-600 border-2 border-red-600 text-base hover:bg-red-600 hover:text-white"
             />
@@ -86,7 +136,7 @@ export default function Table() {
     rows,
     prepareRow,
     ...rest
-  } = useTable({ columns, data })
+  } = useTable({ columns, data: display })
 
   return (
     <div className="w-full border-2 border-white/10 rounded-lg">
@@ -162,10 +212,7 @@ export default function Table() {
               colSpan={3}
               className="py-5 text-center font-bold tracking-wider"
             >
-              $
-              {cartItems
-                .map((i) => i.subtotal)
-                .reduce((a, b) => (a ?? 0) + (b ?? 0))}
+              ${total}
             </td>
           </tr>
         </tfoot>
@@ -178,9 +225,12 @@ export default function Table() {
           Products
         </div>
         <div>
-          {cartItems.map((item) => {
+          {display.map((item, i) => {
             return (
-              <div className="border-b-2 last:border-b-0 border-white/10 px-2 py-2 flex flex-col gap-1">
+              <div
+                key={i}
+                className="border-b-2 last:border-b-0 border-white/10 px-2 py-2 flex flex-col gap-1"
+              >
                 <div className="flex gap-2 xs:gap-5">
                   <div className="w-32 ">
                     <img className="w-full h-auto" src={item.product?.img} />

@@ -62,9 +62,9 @@ export default function Navigation(props: Props) {
               <span className="material-icons-outlined h-full">
                 shopping_cart
               </span>
-              <span className="badge bg-red-500 py-0.5 px-1.5 text-xs rounded-full absolute top-0 right-0 transform -translate-y-1/3 translate-x-1/2 scale-90">
+              {/* <span className="badge bg-red-500 py-0.5 px-1.5 text-xs rounded-full absolute top-0 right-0 transform -translate-y-1/3 translate-x-1/2 scale-90">
                 9
-              </span>
+              </span> */}
             </Link>
             <div
               className="bg-white rounded-full py-0.5 pl-3 pr-1 flex gap-2 text-gray-500 justify-center items-center relative"

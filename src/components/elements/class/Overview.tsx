@@ -2,11 +2,16 @@ import cntl from 'cntl'
 import { Root as Separator } from '@radix-ui/react-separator'
 import { Common as Button } from '@Bits/Button'
 import Share from '@Elements/Share'
-import { forwardRef, Ref } from 'react'
+import { forwardRef, Ref, useEffect } from 'react'
 import { useCourseStore } from '@Api/course'
 import shallow from 'zustand/shallow'
 import { twMerge } from 'tailwind-merge'
 import isBrowser from '@Functions/isBrowser'
+import { useRequest } from 'ahooks'
+import CartAPI from '@Api/cart'
+import Loader from 'react-loaders'
+import { CartResponse } from '@Class/cart'
+import toast from 'react-hot-toast'
 
 type ActionProps = HTMLAttr<'a'> & {
   icon: string
@@ -62,6 +67,23 @@ export default function Overview() {
     (state) => [state.course, state.loading] as const,
     shallow
   )
+  const {
+    data: res,
+    loading: cartLoading,
+    error,
+    run: addToCart,
+  } = useRequest(CartAPI.add, {
+    manual: true,
+  })
+  useEffect(() => {
+    if (res == null) return
+    if (!(res.data instanceof CartResponse.Add)) {
+      return
+      // console.log(res)
+      // throw new Error('Response Mismatch')
+    }
+    toast.success('Class added to cart!')
+  }, [res])
   // const course = {}
   // const loading = true
   // const isBrowser = false
@@ -160,8 +182,16 @@ export default function Overview() {
             <Button
               id="overview-cart"
               className="mt-0 text-white bg-red-600 border-red-600 hover:border-white hover:translate-y-0"
+              onClick={() => {
+                if (course?.id == null) return
+                addToCart(course.id)
+              }}
             >
-              Add to Cart
+              {cartLoading ? (
+                <Loader type="ball-pulse" active />
+              ) : (
+                'Add to Cart'
+              )}
             </Button>
           </div>
         </div>
