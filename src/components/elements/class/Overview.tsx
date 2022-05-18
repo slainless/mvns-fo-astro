@@ -128,7 +128,18 @@ export default function Overview() {
           >
             <Action icon="play_arrow" outlined={false} text="Trailer" />
             <Action icon="content_copy" text="Sample" />
-            <Share title="Share this class" data={null}>
+            <Share
+              title="Share this class"
+              data={
+                course
+                  ? {
+                      title: course.title,
+                      summary: '',
+                      href: `https://mavens.upanastudio.com/class/detail?id=${course.id}`,
+                    }
+                  : null
+              }
+            >
               <Action icon="share" text="Share" href="javascript:void(0);" />
             </Share>
           </div>
