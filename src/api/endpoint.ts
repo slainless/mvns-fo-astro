@@ -12,6 +12,8 @@ const Endpoints = {
 
   SEARCH: make('search'),
 
+  CATEGORY_ALL: make('categories'),
+
   COURSE_ALL: make('courses'),
   COURSE_TRENDING: make('courses/trending'),
   COURSE_OF_TYPE: make('courses/type'),
@@ -28,6 +30,8 @@ const Endpoints = {
   CART_ALL: make('my/cart'),
   CART_REMOVE: make('my/cart/destroy'),
 
+  INTEREST_SET: make('my/course-interest'),
+  INTEREST_GET: make('my/course-interest'),
 }
 
 export default Endpoints

@@ -8,6 +8,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator'
+import { Interest } from './interest'
 import APIResponse from './response'
 
 export enum RoleValue {
@@ -33,7 +34,7 @@ export class User {
   roles: Role[]
 
   // other
-  @IsArray() @IsOptional() student_interest: any[]
+  @IsArray() @IsOptional() student_interest?: any[]
 
   // optional fields
   @IsString() @IsOptional() email_verified_at?: string
@@ -54,6 +55,10 @@ export class User {
 export class AuthUser extends User {
   // credential
   @IsString() token: string
+
+  @Type(() => Interest)
+  @ValidateNested()
+  declare student_interest: Interest[]
 }
 
 export module AuthUserResponse {
@@ -67,6 +72,6 @@ export module AuthUserResponse {
     @ValidateNested()
     @IsOptional()
     @Type(() => AuthUser)
-    data: AuthUser
+    declare data: AuthUser
   }
 }

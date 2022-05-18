@@ -5,6 +5,8 @@ import join from 'url-join'
 import { isEmpty } from 'lodash-es'
 import { requestJSON } from '@Functions/request'
 import Endpoints from './endpoint'
+import { Interest } from '@Class/interest'
+import produce from 'immer'
 
 module UserAPI {
   export function login(input: { email: string; password: string }) {
@@ -62,6 +64,7 @@ export type AuthUserStore = {
   user: AuthUser | null
   setUser: (user: AuthUser) => void
   removeUser: () => void
+  setInterest: (interests: Interest[]) => void
 }
 export const useAuthUserStore = create<AuthUserStore>(
   persist(
@@ -69,6 +72,12 @@ export const useAuthUserStore = create<AuthUserStore>(
       user: null,
       setUser: (user: AuthUser) => set({ user }),
       removeUser: () => set({ user: null }),
+      setInterest: (interests: Interest[]) =>
+        set(
+          produce<AuthUserStore>((state) => {
+            if (state.user) state.user.student_interest = interests
+          })
+        ),
     }),
     {
       name: 'user',
