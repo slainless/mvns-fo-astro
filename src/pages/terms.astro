@@ -1,0 +1,20 @@
+---
+import Home from '@Layouts/Home.astro'
+import TAC from '@Elements/terms/T&C.md'
+import DocumentView from '@Elements/DocumentView.tsx'
+import { Common as Button } from '@Bits/Button'
+import cntl from 'cntl'
+---
+
+<Home title="Become an Instructor" class="pt-0 lg:pt-5 gap-20">
+  <DocumentView
+    title="Terms & Conditions"
+    styleOverrides={{
+      container: cntl`items-center gap-10 sm:gap-16 pt-10 flex flex-col`,
+      title: cntl`text-center`,
+    }}
+    client:load
+  >
+    <TAC />
+  </DocumentView>
+</Home>
