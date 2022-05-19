@@ -37,7 +37,7 @@ export default function Classes() {
         courses?.map(
           (i): CardData => ({
             itemId: i.id,
-            href: '',
+            href: `/class/detail?id=${i.id}`,
             title: i.title,
             bgImg: i.image,
             price: i.prices?.[0]?.price.toString(),

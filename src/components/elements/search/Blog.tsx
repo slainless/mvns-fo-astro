@@ -40,7 +40,7 @@ export default function Blog() {
         blogs?.map(
           (i): CardData => ({
             itemId: i.id,
-            href: '',
+            href: `/blog/detail?id=${i.id}`,
             title: i.title,
             bgImg: `https://picsum.photos/800?rand=${nanoid(10)}`,
             date: isEmpty(i.updated_at)
