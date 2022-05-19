@@ -7,7 +7,10 @@ export default function FirstTimeHandler() {
     if (user == null) return
     const firstTime = user.student_interest.length === 0
     const url = new URL(window.location.href)
-    if (firstTime && url.pathname !== '/first-time')
+    if (
+      firstTime &&
+      ['/first-time', '/first-time/'].includes(url.pathname) == false
+    )
       window.location.href = '/first-time'
   }, [user])
 
